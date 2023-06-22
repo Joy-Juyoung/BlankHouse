@@ -1,11 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
+import UserMode from './Pages/UserMode';
 
 function App() {
   return (
-    <div>
-      <header>Hello</header>
-    </div>
+    <>
+      <UserMode />
+    </>
   );
 }
 
