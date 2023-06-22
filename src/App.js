@@ -1,10 +1,10 @@
 import './App.css';
-import UserMode from './pages/UserMode';
+import GuestMode from './pages/GuestMode';
 
 function App() {
   return (
     <>
-      <UserMode />
+      <GuestMode />
     </>
   );
 }
