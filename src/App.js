@@ -1,5 +1,5 @@
 import './App.css';
-import UserMode from './Pages/UserMode';
+import UserMode from './pages/UserMode';
 
 function App() {
   return (
