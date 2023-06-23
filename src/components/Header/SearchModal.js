@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+// import { useLocation, useParams } from 'react-router-dom';
 // import { useLocation } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -19,7 +19,7 @@ import {
 } from './SearchModalStyle';
 
 const SearchModal = ({ modalShown, toggleModal }) => {
-  const location = useLocation();
+  // const location = useLocation();
   // console.log('location', location);
 
   return (
@@ -32,12 +32,14 @@ const SearchModal = ({ modalShown, toggleModal }) => {
       <SearchModalContainer>
         <SearchModalNav>
           <SearchModalNavWrap>
-            <SearchNavbar guestmode={location.pathname === '/' ? true : false}>
+            <SearchNavbar
+            // guestmode={location.pathname === '/' ? true : false}
+            >
               Stays
             </SearchNavbar>
 
             <SearchNavbar
-              guestmode={location.pathname === '/experiences' ? true : false}
+            // guestmode={location.pathname === '/experiences' ? true : false}
             >
               Experiences
             </SearchNavbar>
