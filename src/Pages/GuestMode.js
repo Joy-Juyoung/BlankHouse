@@ -3,7 +3,7 @@ import MainPage from './Main/MainPage';
 import Header from '../components/Header/Header';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-const UserMode = () => {
+const GuestMode = () => {
   return (
     <>
       <Header />
@@ -17,4 +17,4 @@ const UserMode = () => {
   );
 };
 
-export default UserMode;
+export default GuestMode;
