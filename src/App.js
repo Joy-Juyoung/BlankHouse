@@ -1,5 +1,5 @@
 import './App.css';
-import GuestMode from './pages/GuestMode';
+// import GuestMode from './pages/GuestMode';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import MainPage from './pages/Main/MainPage';
