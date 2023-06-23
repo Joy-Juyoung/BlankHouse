@@ -1,24 +1,15 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import CloseIcon from '@mui/icons-material/Close';
 import Modal from './Modal';
 import {
   FilterClearBtn,
-  FilterModalContainer,
-  FilterModalMain,
   FilterResultBtn,
-  ModalCloseBtn,
   ModalContainer,
   ModalFooter,
-  ModalHidden,
   ModalMain,
   ModalMainSection,
   ModalMainText,
   ModalMainTitle,
-  ModalTitle,
-  ModalTop,
   PlaceInput,
-  PlaceInputSpan,
   PlaceInputText,
   PlaceTypeWrap,
   PlaceTypeWrapper,
@@ -34,7 +25,6 @@ import {
   PropertyWrpper,
   RoomBedOption,
   RoomBedOptionList,
-  RoomBedOptions,
   RoomBedWrap,
   RoomBedWrapper,
 } from './ModalStyle';
