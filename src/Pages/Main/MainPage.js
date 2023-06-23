@@ -10,6 +10,12 @@ import {
   FilterModalMain,
   FilterModalTitle,
   FilterModalTop,
+  MainContainer,
+  MainMid,
+  MainTop,
+  MainTopCategory,
+  MainTopFilter,
+  MainWrap,
   ModalCloseBtn,
   ModalHidden,
   ModalTitle,
@@ -22,29 +28,34 @@ const MainPage = () => {
   const [modalShown, toggleModal] = useState(false);
 
   return (
-    <div>
-      <div>
-        <div>
-          {/* Categories map */}
-          <MainCategories />
-        </div>
-        <div>
-          <FilterBtn
-            onClick={() => {
-              toggleModal(!modalShown);
-            }}
-          >
-            Filters
-          </FilterBtn>
-          {/* Filter Modal Open */}
-          <GuestFilterModal toggleModal={toggleModal} modalShown={modalShown} />
-        </div>
-      </div>
-      <div>
-        {/* Data Map and display Main List Cart */}
-        <MainListCard />
-      </div>
-    </div>
+    <MainContainer>
+      <MainWrap>
+        <MainTop>
+          <MainTopCategory>
+            {/* Categories map */}
+            <MainCategories />
+          </MainTopCategory>
+          <MainTopFilter>
+            <FilterBtn
+              onClick={() => {
+                toggleModal(!modalShown);
+              }}
+            >
+              Filters
+            </FilterBtn>
+            {/* Filter Modal Open */}
+            <GuestFilterModal
+              toggleModal={toggleModal}
+              modalShown={modalShown}
+            />
+          </MainTopFilter>
+        </MainTop>
+        <MainMid>
+          {/* Data Map and display Main List Cart */}
+          <MainListCard />
+        </MainMid>
+      </MainWrap>
+    </MainContainer>
   );
 };
 

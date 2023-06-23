@@ -167,8 +167,6 @@ export const PlaceInput = styled.input`
   width: 25px;
   height: 25px;
   cursor: pointer;
-  /* border: 1px solid gray; */
-  /* outline: 1px solid lightgray; */
   margin: 0;
 
   &:hover {
