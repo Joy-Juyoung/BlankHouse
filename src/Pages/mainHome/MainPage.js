@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from '../../components/Modals/Modal';
-import MainCategories from './MainCategories';
-import MainListCard from './MainListCard';
+import MainCategories from '../MainPage/MainCategories';
+import MainListCard from '../MainPage/MainListCard';
 import {
   FilterBtn,
   FilterModalBtn,
@@ -20,7 +20,7 @@ import {
   ModalHidden,
   ModalTitle,
   ModalTop,
-} from './MainStyle';
+} from '../MainPage/MainStyle';
 // import CloseIcon from '@mui/icons-material/Close';
 import GuestFilterModal from '../../components/Modals/GuestFilterModal';
 
