@@ -2,7 +2,6 @@ import React from 'react';
 import MainPage from './Main/MainPage';
 import Header from '../components/Header/Header';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
 const GuestMode = () => {
   return (
     <>
