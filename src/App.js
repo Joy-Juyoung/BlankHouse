@@ -7,9 +7,9 @@ import MainPage from './pages/Main/MainPage';
 function App() {
   return (
     <>
+      {/* <GuestMode /> */}
+
       <Router>
-        <Header />
-        {/* <GuestMode /> */}
         <Routes>
           <Route path='/' element={<MainPage />} exact={true} />
         </Routes>
