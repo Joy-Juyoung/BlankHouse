@@ -40,7 +40,7 @@ const Modal = ({ children, shown, close, title }) => {
       >
         <ModalTop>
           <div></div>
-          <ModalTitle> {title}</ModalTitle>
+          <ModalTitle>{title}</ModalTitle>
           <ModalCloseBtn
             onClick={() => {
               close();
