@@ -27,6 +27,11 @@ export const HeaderWrapper = styled.div`
     font-size: 24px;
   }
 
+  img {
+    width: 30px;
+    margin-right: 10px;
+  }
+
   &.headerCenter {
     width: 25%;
     display: flex;

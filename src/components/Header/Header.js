@@ -18,6 +18,7 @@ import LanguageIcon from '@mui/icons-material/Language';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SearchIcon from '@mui/icons-material/Search';
 import SearchModal from './SearchModal';
+import Logo from '../../assets/images/logo.png';
 
 const Header = () => {
   const [modalShown, toggleModal] = useState(false);
@@ -26,6 +27,7 @@ const Header = () => {
     <HeaderContrainer>
       <HeaderWrap>
         <HeaderWrapper style={{ zIndex: '4' }}>
+          <img src={Logo} alt='' />
           <h1>Blank House</h1>
         </HeaderWrapper>
         <HeaderWrapper className='headerCenter'>
