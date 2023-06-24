@@ -62,12 +62,6 @@ const Wrapper = styled.div`
 `;
 
 const Slide = styled.div`
-  /* width: 315px;
-  height: 400px;
-  display: flex;
-  flex-direction: column;
-  background-color: #${(props) => props.bg};
-  padding: 0 10px; */
   background-color: #${(props) => props.bg};
   margin: 0 30px;
   color: ${({ categorypick }) => (categorypick ? '#000' : 'gray')};
