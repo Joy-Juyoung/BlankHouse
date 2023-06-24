@@ -20,10 +20,31 @@ const ModalBackDrop = styled.div`
 
 const ModalContent = styled.div`
   /* width: 750px; */
-  min-height: 200px;
+  min-height: 750px;
+
   background-color: white;
   /* padding: 20px 0; */
   border-radius: 10px;
+
+  position: fixed;
+  bottom: 0;
+
+  -webkit-animation: slide 0.4s forwards;
+  animation: slide 0.4s forwards;
+
+  @-webkit-keyframes slide {
+    100% {
+      bottom: 10%;
+      /* top: 10%; */
+    }
+  }
+
+  @keyframes slide {
+    100% {
+      bottom: 10%;
+      /* top: 10%; */
+    }
+  }
 `;
 
 const Modal = ({ children, shown, close, title }) => {

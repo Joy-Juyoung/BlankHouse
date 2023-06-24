@@ -16,12 +16,38 @@ const ModalBackDrop = styled.div`
 
 const ModalContent = styled.div`
   position: fixed;
-  top: 0;
+  /* top: 0;
+  left: 0;
+  right: 0; */
+  top: -160px;
   left: 0;
   right: 0;
   background-color: #fff;
+  /* width: 100px; */
+  width: 100%;
   height: 160px;
   /* z-index: 2; */
+
+  -webkit-animation: slide 0.3s forwards;
+  /* -webkit-animation-delay: 2s; */
+  animation: slide 0.3s forwards;
+  /* animation-delay: 2s; */
+
+  @-webkit-keyframes slide {
+    100% {
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+
+  @keyframes slide {
+    100% {
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+  }
 `;
 
 const HeaderModal = ({ children, shown, close }) => {

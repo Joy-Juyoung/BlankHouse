@@ -40,7 +40,7 @@ const Arrow = styled.div`
 `;
 
 const Wrapper = styled.div`
-  margin-top: 20px;
+  margin: 20px 40px 0 40px;
   width: 100%;
   display: flex;
   transition: all 1s ease;
