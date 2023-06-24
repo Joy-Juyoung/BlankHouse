@@ -12,7 +12,7 @@ export const ModalTop = styled.div`
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid lightgray;
-  padding: 0 15px;
+  padding: 0 25px;
   height: 60px;
 `;
 
@@ -30,7 +30,7 @@ export const ModalCloseBtn = styled.button`
 `;
 
 export const ModalMain = styled.div`
-  padding: 0 20px;
+  padding: 0 25px;
   overflow-y: scroll;
   max-height: 650px;
 `;
@@ -58,7 +58,7 @@ export const ModalFooter = styled.div`
   align-items: center;
   justify-content: space-between;
   border-top: 1px solid lightgray;
-  padding: 0 15px;
+  padding: 0 25px;
 `;
 
 // Guest Filter
