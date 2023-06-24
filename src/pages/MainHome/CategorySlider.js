@@ -15,6 +15,9 @@ const Container = styled.div`
   overflow: hidden;
   /* position: absolute; */
 
+  align-items: center;
+  /* justify-content: space-between; */
+
   @media screen and (max-width: 1024px) {
     height: 100%;
   }
@@ -31,8 +34,29 @@ const Arrow = styled.div`
   position: absolute;
   top: 0;
   bottom: 0;
-  left: ${(props) => props.direction === 'left' && '10px'};
-  right: ${(props) => props.direction === 'right' && '10px'};
+  left: 10px;
+  /* left: ${(props) => props.direction === 'left' && '10px'};
+  right: ${(props) => props.direction === 'right' && '10px'}; */
+  margin: auto;
+  cursor: pointer;
+  opacity: 0.5;
+  z-index: 2;
+`;
+
+const ArrowRight = styled.div`
+  width: 50px;
+  height: 50px;
+  background-color: #fff7f7;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 10px;
+  /* left: ${(props) => props.direction === 'left' && '10px'};
+  right: ${(props) => props.direction === 'right' && '10px'}; */
   margin: auto;
   cursor: pointer;
   opacity: 0.5;
@@ -89,6 +113,10 @@ const Slide = styled.div`
     /* margin: 3px 0; */
     font-size: 13px;
     padding-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   @media screen and (max-width: 1024px) {
@@ -126,9 +154,6 @@ const CategorySlider = () => {
         <ArrowLeftIcon />
       </Arrow>
       <Wrapper slideIndex={slideIndex}>
-        {/* {CategoryData?.slice(0, 8).map((category, index) => {
-          return <MainCategories key={index} category={category} />;
-        })} */}
         {CategoryData?.map((category, index) => (
           <Slide
             key={index}
@@ -139,9 +164,9 @@ const CategorySlider = () => {
           </Slide>
         ))}
       </Wrapper>
-      <Arrow direction='right' onClick={() => handleClick('right')}>
+      <ArrowRight direction='right' onClick={() => handleClick('right')}>
         <ArrowRightIcon />
-      </Arrow>
+      </ArrowRight>
     </Container>
   );
 };
