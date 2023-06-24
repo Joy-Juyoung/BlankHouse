@@ -29,7 +29,9 @@ const ModalContent = styled.div`
   /* z-index: 2; */
 
   -webkit-animation: slide 0.3s forwards;
+  /* -webkit-animation-delay: 2s; */
   animation: slide 0.3s forwards;
+  /* animation-delay: 2s; */
 
   @-webkit-keyframes slide {
     100% {
