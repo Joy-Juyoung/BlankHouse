@@ -1,28 +1,19 @@
 import React, { useState } from 'react';
-import Modal from '../../components/Modals/Modal';
 import MainCategories from './MainCategories';
 import MainListCard from './MainListCard';
 import {
   FilterBtn,
-  FilterModalBtn,
-  FilterModalContainer,
-  FilterModalHidden,
-  FilterModalMain,
-  FilterModalTitle,
-  FilterModalTop,
   MainContainer,
   MainMid,
+  MainMidWrap,
   MainTop,
   MainTopCategory,
   MainTopFilter,
   MainWrap,
-  ModalCloseBtn,
-  ModalHidden,
-  ModalTitle,
-  ModalTop,
 } from './MainStyle';
-// import CloseIcon from '@mui/icons-material/Close';
 import GuestFilterModal from '../../components/Modals/GuestFilterModal';
+import { RoomData } from './SampleData';
+import CategorySlider from './CategorySlider';
 
 const MainPage = () => {
   const [modalShown, toggleModal] = useState(false);
@@ -33,7 +24,10 @@ const MainPage = () => {
         <MainTop>
           <MainTopCategory>
             {/* Categories map */}
-            <MainCategories />
+            <CategorySlider />
+            {/* {CategoryData.map((category, index) => {
+              return <MainCategories key={index} category={category} />;
+            })} */}
           </MainTopCategory>
           <MainTopFilter>
             <FilterBtn
@@ -51,8 +45,12 @@ const MainPage = () => {
           </MainTopFilter>
         </MainTop>
         <MainMid>
-          {/* Data Map and display Main List Cart */}
-          <MainListCard />
+          <MainMidWrap>
+            {/* Data Map and display Main List Cart */}
+            {RoomData.map((room, index) => {
+              return <MainListCard key={index} room={room} />;
+            })}
+          </MainMidWrap>
         </MainMid>
       </MainWrap>
     </MainContainer>

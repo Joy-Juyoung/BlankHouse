@@ -13,18 +13,20 @@ export const HeaderWrap = styled.div`
   justify-content: space-between;
   margin: 0 auto;
 
-  max-width: 1440px;
+  max-width: 1700px;
 `;
 
 export const HeaderWrapper = styled.div`
   display: flex;
   align-items: center;
   /* cursor: pointer; */
-  width: 20%;
+  /* width: 20%; */
+  width: 100%;
 
   h1 {
     cursor: pointer;
     font-size: 24px;
+    color: #ffae00;
   }
 
   img {
@@ -33,7 +35,7 @@ export const HeaderWrapper = styled.div`
   }
 
   &.headerCenter {
-    width: 25%;
+    /* width: 100%; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -41,15 +43,16 @@ export const HeaderWrapper = styled.div`
 
   &.headerRight {
     /* width: 20%; */
+    /* width: 100%; */
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
   }
 `;
 
 export const SearchNavWrap = styled.div`
   border-radius: 25px;
-  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.11);
+  box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.12);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -66,6 +69,14 @@ export const SearchNavSection = styled.div`
 export const SearchNavBtn = styled.div`
   /* margin: 0 5px; */
   padding: 0 10px;
+  /* flex: 1 1 auto; */
+  /* max-width: 92px; */
+
+  /* width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; */
+  font-size: 14px;
 
   &.center {
     border-left: 1px solid lightgray;
@@ -85,23 +96,58 @@ export const SearchBtn = styled.div`
 
 // export const SearchNavInput = styled.input``;
 
+export const HeaderRightSection = styled.div`
+  /* &:hover {
+    border-radius: 30px;
+    background: #f5f5f5;
+  } */
+
+  margin-left: 5px;
+`;
+
 export const ModeSetting = styled.div`
-  cursor: pointer;
-  font-weight: 600;
+  /* cursor: pointer;
+  font-weight: 600; */
+  padding: 10px;
+
+  &:hover {
+    border-radius: 30px;
+    background: #f5f5f5;
+  }
 `;
 
 export const SwitchBtn = styled.div`
   cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
 `;
 
 export const CountrySetting = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
+  padding: 10px;
+
+  &:hover {
+    border-radius: 30px;
+    background: #f5f5f5;
+  }
 `;
 
 export const UserSetting = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
+  margin-left: 5px;
+
+  border: 1px solid lightgray;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+
+  &:hover {
+    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.1);
+  }
 `;
