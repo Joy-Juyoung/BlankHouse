@@ -7,6 +7,10 @@ export const HeaderContrainer = styled.div`
   /* padding: 0 40px; */
   padding: ${({ pagesmall }) => (pagesmall ? '0 80px' : '0 40px')};
 
+  a {
+    text-decoration: none;
+  }
+
   @media screen and (max-width: 1280px) {
     padding: 0 40px;
   }
