@@ -34,12 +34,12 @@ const Header = () => {
   return (
     <HeaderContrainer pagesmall={location?.pathname === '/room' ? true : false}>
       <HeaderWrap pagesmall={location?.pathname === '/room' ? true : false}>
-        <Link to='/'>
-          <HeaderWrapper style={{ zIndex: '4' }}>
-            <img src={Logo} alt='' />
+        <HeaderWrapper style={{ zIndex: '4' }}>
+          <img src={Logo} alt='' />
+          <Link to='/'>
             <h1>BlankHouse</h1>
-          </HeaderWrapper>
-        </Link>
+          </Link>
+        </HeaderWrapper>
         <HeaderWrapper className='headerCenter'>
           {/* Search and Nav */}
           <SearchNavWrap
