@@ -23,7 +23,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchModal from './SearchModal';
 import Logo from '../../assets/images/logo.png';
-import { useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 
 const Header = () => {
   const location = useLocation();
@@ -34,10 +34,12 @@ const Header = () => {
   return (
     <HeaderContrainer pagesmall={location?.pathname === '/room' ? true : false}>
       <HeaderWrap pagesmall={location?.pathname === '/room' ? true : false}>
-        <HeaderWrapper style={{ zIndex: '4' }}>
-          <img src={Logo} alt='' />
-          <h1>BlankHouse</h1>
-        </HeaderWrapper>
+        <Link to='/'>
+          <HeaderWrapper style={{ zIndex: '4' }}>
+            <img src={Logo} alt='' />
+            <h1>BlankHouse</h1>
+          </HeaderWrapper>
+        </Link>
         <HeaderWrapper className='headerCenter'>
           {/* Search and Nav */}
           <SearchNavWrap
