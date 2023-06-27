@@ -23,18 +23,22 @@ const Container = styled.div`
   }
 `;
 
+const SliderWrap = styled.div`
+  /* padding: 50px; */
+`;
+
 const Arrow = styled.div`
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 100%;
   background-color: #fff7f7;
-  border-radius: 50%;
+  /* border-radius: 50%; */
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 10px;
+  left: 0;
   /* left: ${(props) => props.direction === 'left' && '10px'};
   right: ${(props) => props.direction === 'right' && '10px'}; */
   margin: auto;
@@ -44,22 +48,24 @@ const Arrow = styled.div`
 `;
 
 const ArrowRight = styled.div`
-  width: 50px;
-  height: 50px;
+  /* width: 50px;
+  height: 50px; */
+  width: 60px;
+  height: 100%;
   background-color: #fff7f7;
-  border-radius: 50%;
+  /* border-radius: 50%; */
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
   top: 0;
   bottom: 0;
-  right: 10px;
+  right: 0;
   /* left: ${(props) => props.direction === 'left' && '10px'};
   right: ${(props) => props.direction === 'right' && '10px'}; */
   margin: auto;
   cursor: pointer;
-  opacity: 0.5;
+  opacity: 0.8;
   z-index: 2;
 `;
 
@@ -150,23 +156,25 @@ const CategorySlider = () => {
 
   return (
     <Container>
-      <Arrow direction='left' onClick={() => handleClick('left')}>
-        <ArrowLeftIcon />
-      </Arrow>
-      <Wrapper slideIndex={slideIndex}>
-        {CategoryData?.map((category, index) => (
-          <Slide
-            key={index}
-            categorypick={category?.name === 'All' ? true : false}
-          >
-            <div className='catName'>{category?.icon}</div>
-            <span>{category?.name}</span>
-          </Slide>
-        ))}
-      </Wrapper>
-      <ArrowRight direction='right' onClick={() => handleClick('right')}>
-        <ArrowRightIcon />
-      </ArrowRight>
+      <SliderWrap>
+        <Arrow direction='left' onClick={() => handleClick('left')}>
+          <ArrowLeftIcon />
+        </Arrow>
+        <Wrapper slideIndex={slideIndex}>
+          {CategoryData?.map((category, index) => (
+            <Slide
+              key={index}
+              categorypick={category?.name === 'All' ? true : false}
+            >
+              <div className='catName'>{category?.icon}</div>
+              <span>{category?.name}</span>
+            </Slide>
+          ))}
+        </Wrapper>
+        <ArrowRight direction='right' onClick={() => handleClick('right')}>
+          <ArrowRightIcon />
+        </ArrowRight>
+      </SliderWrap>
     </Container>
   );
 };
