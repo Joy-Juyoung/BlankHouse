@@ -23,13 +23,17 @@ import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchModal from './SearchModal';
 import Logo from '../../assets/images/logo.png';
+import { useLocation, useParams } from 'react-router-dom';
 
 const Header = () => {
+  const location = useLocation();
+  // const { room } = useParams();
   const [modalShown, toggleModal] = useState(false);
+  console.log('location.pathname', location.pathname);
 
   return (
-    <HeaderContrainer>
-      <HeaderWrap>
+    <HeaderContrainer pagesmall={location?.pathname === '/room' ? true : false}>
+      <HeaderWrap pagesmall={location?.pathname === '/room' ? true : false}>
         <HeaderWrapper style={{ zIndex: '4' }}>
           <img src={Logo} alt='' />
           <h1>BlankHouse</h1>

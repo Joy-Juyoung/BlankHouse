@@ -2,8 +2,14 @@ import styled from 'styled-components';
 
 export const HeaderContrainer = styled.div`
   height: 80px;
-  padding: 0 40px;
   border-bottom: 1px solid lightgray;
+
+  /* padding: 0 40px; */
+  padding: ${({ pagesmall }) => (pagesmall ? '0 80px' : '0 40px')};
+
+  @media screen and (max-width: 1280px) {
+    padding: 0 40px;
+  }
 `;
 
 export const HeaderWrap = styled.div`
@@ -13,7 +19,8 @@ export const HeaderWrap = styled.div`
   justify-content: space-between;
   margin: 0 auto;
 
-  max-width: 1700px;
+  /* max-width: 1280px; */
+  max-width: ${({ pagesmall }) => (pagesmall ? '1200px' : '1700px')};
 `;
 
 export const HeaderWrapper = styled.div`

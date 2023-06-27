@@ -1,25 +1,34 @@
 import styled from 'styled-components';
 
 export const MainContainer = styled.div`
-  padding: 0 40px;
+  /* padding: 0 40px; */
+  height: 100%;
+  margin: 0 auto;
+
+  /* max-width: 1700px; */
+  padding: ${({ pagesmall }) => (pagesmall ? '0 80px' : '0 40px')};
+  max-width: ${({ pagesmall }) => (pagesmall ? '1200px' : '1700px')};
+
+  @media screen and (max-width: 1280px) {
+    padding: 0 40px;
+  }
 `;
 
 export const MainWrap = styled.div`
-  height: 100%;
+  /* height: 100%;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  /* justify-content: space-between; */
   margin: 0 auto;
 
-  max-width: 1700px;
+  max-width: 1700px; */
+  display: flex;
+  flex-direction: column;
 `;
 
 export const MainTop = styled.div`
   display: flex;
   height: 100px;
   /* justify-content: space-between; */
-  display: flex;
   align-items: center;
 `;
 
@@ -29,6 +38,7 @@ export const MainTopCategory = styled.div`
   align-items: center;
   /* justify-content: center; */
   width: 95%;
+  /* overflow: hidden; */
   /* overflow-x: scroll; */
   /* position: relative; */
 `;
@@ -59,6 +69,11 @@ export const MainMidWrap = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 20px;
+
+  a {
+    text-decoration: none;
+    color: #000;
+  }
 `;
 
 // -----List Each
