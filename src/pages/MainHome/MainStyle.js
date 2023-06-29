@@ -7,7 +7,7 @@ export const MainContainer = styled.div`
 
   /* max-width: 1700px; */
   padding: ${({ pagesmall }) => (pagesmall ? '0 80px' : '0 40px')};
-  max-width: ${({ pagesmall }) => (pagesmall ? '1200px' : '1700px')};
+  max-width: ${({ pagesmall }) => (pagesmall ? '1120px' : '1700px')};
 
   @media screen and (max-width: 1280px) {
     padding: 0 40px;
@@ -23,6 +23,7 @@ export const MainWrap = styled.div`
   max-width: 1700px; */
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
 
 export const MainTop = styled.div`
@@ -109,6 +110,7 @@ export const RoomLike = styled.button`
   right: 5px;
   border: none;
   background: none;
+  z-index: 2;
 
   &:active {
     transform: translateY(4px);
