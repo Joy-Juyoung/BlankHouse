@@ -125,7 +125,7 @@ const Room = () => {
               </span>
             </DetailHeaderWrap>
             {/* </DetailHeader> */}
-            {scrollPosition >= 1377 && (
+            {scrollPosition >= 1729 && (
               <DetailHeaderReserve>
                 <HeaderReserveWrap>
                   <ReservePrice>
