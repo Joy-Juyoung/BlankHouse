@@ -21,7 +21,7 @@ export const SliderWrap = styled.div`
 `;
 
 export const Arrow = styled.div`
-  width: 60px;
+  width: 50px;
   height: 100%;
   background-color: #fff;
   /* border-radius: 50%; */
@@ -32,6 +32,7 @@ export const Arrow = styled.div`
   top: 0;
   bottom: 0;
   left: 0;
+  /* right: 90; */
   /* left: ${(props) => props.direction === 'left' && '10px'};
   right: ${(props) => props.direction === 'right' && '10px'}; */
   margin: auto;
@@ -43,7 +44,7 @@ export const Arrow = styled.div`
 export const ArrowRight = styled.div`
   /* width: 50px;
   height: 50px; */
-  width: 60px;
+  width: 50px;
   height: 100%;
   background-color: #fff;
   /* border-radius: 50%; */

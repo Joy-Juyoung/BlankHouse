@@ -18,30 +18,32 @@ import {
   SearchTextBack,
 } from './SearchModalStyle';
 
-const SearchModal = ({ modalShown, toggleModal }) => {
+const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
   const location = useLocation();
   // console.log('location', location);
 
   return (
     <HeaderModal
-      shown={modalShown}
+      shown={modalSearchShown}
       close={() => {
-        toggleModal(false);
+        toggleSearchModal(false);
       }}
     >
       <SearchModalContainer>
         <SearchModalNav>
           <SearchModalNavWrap>
-            <SearchNavbar guestmode={location.pathname === '/' ? true : false}>
-              Stays
+            <SearchNavbar
+              guestmode={location.pathname === '/' ? true : false}
+              onClick={() => toggleSearchModal(false)}
+            >
+              <Link to='/'>Stays</Link>
             </SearchNavbar>
 
-            <SearchNavbar 
+            <SearchNavbar
               guestmode={location.pathname === '/experiences' ? true : false}
+              onClick={() => toggleSearchModal(false)}
             >
-              <Link to='/experiences'>
-               Experiences
-              </Link>
+              <Link to='/experiences'>Experiences</Link>
             </SearchNavbar>
           </SearchModalNavWrap>
         </SearchModalNav>

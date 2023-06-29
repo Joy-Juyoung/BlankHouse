@@ -29,17 +29,16 @@ import { Link, useLocation, useParams } from 'react-router-dom';
 const Header = () => {
   const location = useLocation();
   // const { room } = useParams();
-  const [modalShown, toggleModal] = useState(false);
+  const [modalSearchShown, toggleSearchModal] = useState(false);
 
   const [modalLogShown, toggleLogModal] = useState(false);
 
-  console.log('location.pathname', location.pathname);
-
+  // console.log('location.pathname', location.pathname);
 
   return (
-    <HeaderContrainer pagesmall={location?.pathname === '/room' ? true : false}>
-      <HeaderWrap pagesmall={location?.pathname === '/room' ? true : false}>
-        <HeaderWrapper style={{ zIndex: '4' }}>
+    <HeaderContrainer pagesmall={location.pathname === '/room' ? true : false}>
+      <HeaderWrap pagesmall={location.pathname === '/room' ? true : false}>
+        <HeaderWrapper style={{ zIndex: '5' }}>
           <img src={Logo} alt='' />
           <Link to='/'>
             <h1>BlankHouse</h1>
@@ -49,7 +48,7 @@ const Header = () => {
           {/* Search and Nav */}
           <SearchNavWrap
             onClick={() => {
-              toggleModal(!modalShown);
+              toggleSearchModal(!modalSearchShown);
             }}
           >
             <SearchNavSection>
@@ -66,7 +65,10 @@ const Header = () => {
               {/* <SearchNavInput type='text' /> */}
             </SearchNavSection>
             {/* Search Modal */}
-            <SearchModal toggleModal={toggleModal} modalShown={modalShown} />
+            <SearchModal
+              toggleSearchModal={toggleSearchModal}
+              modalSearchShown={modalSearchShown}
+            />
 
             <SearchBtn>
               <SearchIcon fontSize='small' />
@@ -88,15 +90,17 @@ const Header = () => {
           <HeaderRightSection>
             <UserSetting>
               <MenuIcon fontSize='medium' />
-              <LogBtn onClick={() => {
-                                toggleLogModal(!modalLogShown);
-                            }}>
+              <LogBtn
+                onClick={() => {
+                  toggleLogModal(!modalLogShown);
+                }}
+              >
                 <AccountCircleIcon fontSize='medium' />
               </LogBtn>
               <LogInModal
-                            toggleLogModal={toggleLogModal}
-                            modalLogShown={modalLogShown}
-                            />
+                toggleLogModal={toggleLogModal}
+                modalLogShown={modalLogShown}
+              />
             </UserSetting>
           </HeaderRightSection>
         </HeaderWrapper>

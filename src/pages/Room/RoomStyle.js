@@ -356,3 +356,74 @@ export const RoomSideReport = styled.div`
   text-align: center;
   width: 100%;
 `;
+
+export const ThingsToKnow = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  width: 100%;
+  margin-top: 15px;
+`;
+
+export const ThingsWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+`;
+
+export const ThingsTitle = styled.div`
+  font-weight: 600;
+`;
+
+export const ThingsList = styled.div`
+  margin-top: 10px;
+`;
+
+export const ShowMoreBtn = styled.div`
+  /* border: none;
+  background: none; */
+  display: flex;
+  align-items: center;
+  text-decoration: underline;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 15px 0;
+
+  svg {
+    margin-left: 10px;
+  }
+`;
+
+export const ShowAllBtn = styled.button`
+  border: 1px solid #000;
+  border-radius: 10px;
+  background: none;
+  font-size: 16px;
+  padding: 10px 15px;
+  margin: 10px 0;
+`;
+
+export const SleepWrap = styled.div`
+  border: 1px solid #c4c4c4;
+  border-radius: 10px;
+  padding: 10px 0 10px 20px;
+  max-width: 120px;
+  height: 120px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  /* svg {
+    display: flex;
+    justify-content: flex-start;
+  } */
+
+  p {
+    margin-top: 15px;
+    font-weight: 600;
+  }
+`;

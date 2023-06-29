@@ -29,6 +29,13 @@ import {
   ReserveReview,
   ReserveBtn,
   DetailHeaderWrap,
+  ShowMoreBtn,
+  ShowAllBtn,
+  ThingsToKnow,
+  ThingsWrap,
+  ThingsTitle,
+  ThingsList,
+  SleepWrap,
 } from './RoomStyle';
 import { RoomData } from '../MainHome/SampleData';
 import StarIcon from '@mui/icons-material/Star';
@@ -78,7 +85,7 @@ const Room = () => {
   const handleScroll = () => {
     setScrollPosition(window.scrollY); // => scroll position
   };
-  console.log(scrollPosition);
+  // console.log(scrollPosition);
 
   useEffect(() => {
     handleScroll();
@@ -268,18 +275,18 @@ const Room = () => {
                       who is looking to reconnect with one another and explore
                       the land around. Breakfast fixings are included.
                     </p>
-                    <button>
+                    <ShowMoreBtn>
                       <span>Show more</span>
                       <ArrowForwardIosIcon sx={{ fontSize: '14px' }} />
-                    </button>
+                    </ShowMoreBtn>
                   </RoomDetailsSections>
                   <RoomDetailsSections>
                     <h2>Where you'll sleep</h2>
-                    <div>
+                    <SleepWrap>
                       <BedIcon />
                       <p>Bedroom</p>
                       <span>1 king bed</span>
-                    </div>
+                    </SleepWrap>
                   </RoomDetailsSections>
                   <RoomDetailsSections id='viewAmenities'>
                     <h2>What this place offers</h2>
@@ -299,7 +306,7 @@ const Room = () => {
                       <i></i>
                       <span>Kitchen</span>
                     </div>
-                    <button>Show all 00 Amenities</button>
+                    <ShowAllBtn>Show all 00 Amenities</ShowAllBtn>
                   </RoomDetailsSections>
                   <RoomDetailsSections>
                     <h2>0 nights in Cochrane</h2>
@@ -320,7 +327,7 @@ const Room = () => {
                 </h2>
                 <div>Average graph</div>
                 <div>Reviews</div>
-                <button>Show all 00 Reviews</button>
+                <ShowAllBtn>Show all 00 Reviews</ShowAllBtn>
               </RoomDetailsSections>
               <RoomDetailsSections id='viewLocation'>
                 <h2>Where you’ll be</h2>
@@ -331,10 +338,10 @@ const Room = () => {
                   the historic Wine Glass Ranch, established in 1885, are our
                   direct neighbours to the West.
                 </span>
-                <button>
+                <ShowMoreBtn>
                   <span>Show more</span>
                   <ArrowForwardIosIcon sx={{ fontSize: '14px' }} />
-                </button>
+                </ShowMoreBtn>
               </RoomDetailsSections>
               <RoomDetailsSections>
                 <h2>Hosted by Grant</h2>
@@ -342,42 +349,45 @@ const Room = () => {
               </RoomDetailsSections>
               <RoomDetailsSections>
                 <h2>Things to know</h2>
-                <div>
-                  <div>
-                    <p>House rules</p>
-                    <span>Check-in: 3:00 p.m.–8:00 p.m.</span>
-                    <span>Checkout before 11:00 a.m.</span>
-                    <span>2 guests maximum</span>
-                    <button>
+                <ThingsToKnow>
+                  <ThingsWrap>
+                    <ThingsTitle>House rules</ThingsTitle>
+                    <ThingsList>Check-in: 3:00 p.m.–8:00 p.m.</ThingsList>
+                    <ThingsList>Checkout before 11:00 a.m.</ThingsList>
+                    <ThingsList>2 guests maximum</ThingsList>
+                    <ShowMoreBtn>
                       <span>Show more</span>
                       <ArrowForwardIosIcon sx={{ fontSize: '14px' }} />
-                    </button>
-                  </div>
-                  <div>
-                    <p>Safety & property</p>
-                    <span>Nearby lake, river, other body of water</span>
-                    <span>May encounter potentially dangerous animal</span>
-                    <span>Carbon monoxide alarm</span>
-                    <button>
+                    </ShowMoreBtn>
+                  </ThingsWrap>
+                  <ThingsWrap>
+                    <ThingsTitle>Safety & property</ThingsTitle>
+                    <ThingsList>
+                      Nearby lake, river, other body of water
+                    </ThingsList>
+                    <ThingsList>
+                      May encounter potentially dangerous animal
+                    </ThingsList>
+                    <ThingsList>Carbon monoxide alarm</ThingsList>
+                    <ShowMoreBtn>
                       <span>Show more</span>
                       <ArrowForwardIosIcon sx={{ fontSize: '14px' }} />
-                    </button>
-                  </div>
-                  <div>
-                    <p>Cancellation policy</p>
-                    <span>Free cancellation before Oct. 6.</span>
-                    <span>
+                    </ShowMoreBtn>
+                  </ThingsWrap>
+                  <ThingsWrap>
+                    <ThingsTitle>Cancellation policy</ThingsTitle>
+                    <ThingsList>Free cancellation before Oct. 6.</ThingsList>
+                    <ThingsList>
                       Review the Host’s full cancellation policy, which applies
                       even if you cancel for illness or disruptions caused by
                       COVID-19.
-                    </span>
-                    {/* <span>2 guests maximum</span> */}
-                    <button>
+                    </ThingsList>
+                    <ShowMoreBtn>
                       <span>Show more</span>
                       <ArrowForwardIosIcon sx={{ fontSize: '14px' }} />
-                    </button>
-                  </div>
-                </div>
+                    </ShowMoreBtn>
+                  </ThingsWrap>
+                </ThingsToKnow>
               </RoomDetailsSections>
               {/* </RoomMainDetailsWrap>
                 <RoomSide loading={loading} RoomData={RoomData} /> */}

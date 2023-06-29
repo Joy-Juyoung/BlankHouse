@@ -21,12 +21,26 @@ const Footer = () => {
   const location = useLocation();
 
   return (
-    <FooterContainer pagesmall={location?.pathname === '/room' ? true : false}>
-      {/* <FooterContainer pagesmall={location?.pathname === '/room' ? true : false}>
-      <FooterWrap pagesmall={location?.pathname === '/room' ? true : false}> */}
-      <FooterLong pagesmall={location?.pathname === '/room' ? true : false}>
+    <FooterContainer
+      pagesmall={
+        location?.pathname !== '/' && location?.pathname !== '/experiences'
+          ? true
+          : false
+      }
+    >
+      <FooterLong
+        pagesmall={
+          location?.pathname !== '/' && location?.pathname !== '/experiences'
+            ? true
+            : false
+        }
+      >
         <FooterLongWrap
-          pagesmall={location?.pathname === '/room' ? true : false}
+          pagesmall={
+            location?.pathname !== '/' && location?.pathname !== '/experiences'
+              ? true
+              : false
+          }
         >
           <FooterL>
             <LongTitle>Support</LongTitle>
@@ -61,9 +75,19 @@ const Footer = () => {
           </FooterL>
         </FooterLongWrap>
       </FooterLong>
-      <FooterShort pagesmall={location?.pathname === '/room' ? true : false}>
+      <FooterShort
+        pagesmall={
+          location?.pathname !== '/' && location?.pathname !== '/experiences'
+            ? true
+            : false
+        }
+      >
         <FooterShortWrap
-          pagesmall={location?.pathname === '/room' ? true : false}
+          pagesmall={
+            location?.pathname !== '/' && location?.pathname !== '/experiences'
+              ? true
+              : false
+          }
         >
           <FooterS>
             <span>© 2023 BlankHouse, Inc.</span>
