@@ -23,7 +23,7 @@ export const SliderWrap = styled.div`
 export const Arrow = styled.div`
   width: 60px;
   height: 100%;
-  background-color: #fff7f7;
+  background-color: #fff;
   /* border-radius: 50%; */
   display: flex;
   align-items: center;
@@ -36,7 +36,7 @@ export const Arrow = styled.div`
   right: ${(props) => props.direction === 'right' && '10px'}; */
   margin: auto;
   cursor: pointer;
-  opacity: 0.5;
+  /* opacity: 0.5; */
   z-index: 2;
 `;
 
@@ -45,7 +45,7 @@ export const ArrowRight = styled.div`
   height: 50px; */
   width: 60px;
   height: 100%;
-  background-color: #fff7f7;
+  background-color: #fff;
   /* border-radius: 50%; */
   display: flex;
   align-items: center;
@@ -58,7 +58,7 @@ export const ArrowRight = styled.div`
   right: ${(props) => props.direction === 'right' && '10px'}; */
   margin: auto;
   cursor: pointer;
-  opacity: 0.8;
+  /* opacity: 0.8; */
   z-index: 2;
 `;
 

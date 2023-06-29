@@ -24,7 +24,7 @@ export const HeaderWrap = styled.div`
   margin: 0 auto;
 
   /* max-width: 1280px; */
-  max-width: ${({ pagesmall }) => (pagesmall ? '1200px' : '1700px')};
+  max-width: ${({ pagesmall }) => (pagesmall ? '1120px' : '1700px')};
 `;
 
 export const HeaderWrapper = styled.div`
@@ -168,5 +168,4 @@ export const LogBtn = styled.button`
   background: none;
   text-decoration: none;
   cursor: pointer;
-
 `;
