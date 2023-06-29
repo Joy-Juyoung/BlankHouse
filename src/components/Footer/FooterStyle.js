@@ -23,11 +23,19 @@ import styled from 'styled-components';
 //   max-width: ${({ pagesmall }) => (pagesmall ? '1120px' : '1700px')};
 // `;
 
+export const FooterContainer = styled.div`
+  background: ${({ pagesmall }) => (pagesmall ? '#f7f7f7' : '#fff')};
+  position: ${({ pagesmall }) => (pagesmall ? '' : 'fixed')};
+  bottom: ${({ pagesmall }) => (pagesmall ? '' : '0')};
+  width: ${({ pagesmall }) => (pagesmall ? '' : '100%')};
+`;
+
 export const FooterLong = styled.div`
   border-top: 1px solid #dddd;
   padding: ${({ pagesmall }) => (pagesmall ? '0 80px' : '0 40px')};
   margin: 0 auto;
   padding: 40px 0;
+  display: ${({ pagesmall }) => (pagesmall ? '' : 'none')};
 
   @media screen and (max-width: 1280px) {
     padding: 0 40px;

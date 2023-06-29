@@ -21,7 +21,7 @@ const Footer = () => {
   const location = useLocation();
 
   return (
-    <>
+    <FooterContainer pagesmall={location?.pathname === '/room' ? true : false}>
       {/* <FooterContainer pagesmall={location?.pathname === '/room' ? true : false}>
       <FooterWrap pagesmall={location?.pathname === '/room' ? true : false}> */}
       <FooterLong pagesmall={location?.pathname === '/room' ? true : false}>
@@ -94,7 +94,7 @@ const Footer = () => {
       </FooterShort>
       {/* </FooterWrap>
     </FooterContainer> */}
-    </>
+    </FooterContainer>
   );
 };
 
