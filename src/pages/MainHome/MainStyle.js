@@ -51,6 +51,7 @@ export const MainTopFilter = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  z-index: 3;
 
   /* padding: 20px; */
 `;
@@ -59,8 +60,11 @@ export const FilterBtn = styled.div`
   cursor: pointer;
   font-size: 14px;
   border: 1px solid lightgray;
-  padding: 10px 15px;
+  padding: 15px;
   border-radius: 5px;
+
+  display: flex;
+  align-items: center;
 `;
 
 export const MainMid = styled.div`

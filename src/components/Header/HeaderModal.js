@@ -10,7 +10,7 @@ const ModalBackDrop = styled.div`
   left: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.2);
-  z-index: 3;
+  z-index: 4;
   overflow: hidden;
 `;
 
@@ -23,7 +23,7 @@ const ModalContent = styled.div`
   /* width: 100px; */
   width: 100%;
   height: 160px;
-  z-index: 2;
+  z-index: 4;
 
   -webkit-animation: slide 0.3s forwards;
   /* -webkit-animation-delay: 2s; */
