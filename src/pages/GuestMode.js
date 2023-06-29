@@ -17,8 +17,13 @@ const GuestMode = () => {
         <Route path='/experiences' element={<Experience />} exact={true} />
       </Routes>
       <Routes>
-        <Route path='/experiences/detail' element={<ExperienceDetail />} exact={true} />
+        <Route
+          path='/experiences/detail'
+          element={<ExperienceDetail />}
+          exact={true}
+        />
       </Routes>
+      <Routes>
         <Route path='/room' element={<Room />} exact={true} />
       </Routes>
       {/* <Routes>
