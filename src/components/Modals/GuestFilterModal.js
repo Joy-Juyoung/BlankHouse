@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Modal from './Modal';
 import {
   FilterClearBtn,
+  FilterPriceRageGraph,
   FilterResultBtn,
   ModalContainer,
   ModalFooter,
@@ -17,6 +18,7 @@ import {
   PriceCurrency,
   PriceInput,
   PriceRangeBarWrap,
+  PriceRangeGraph,
   PriceRangeInputSection,
   PriceRangeLabel,
   PriceRangeWrap,
@@ -32,10 +34,11 @@ import HomeIcon from '@mui/icons-material/Home';
 import DomainIcon from '@mui/icons-material/Domain';
 import GiteIcon from '@mui/icons-material/Gite';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
+import FilterPriceRage from './FilterPriceRage';
 
 const anyOptionList = ['Any', '1', '2', '3', '4', '5', '6', '7', '8+'];
 
-const GuestFilterModal = ({ modalShown, toggleModal }) => {
+const GuestFilterModal = ({ modalFilterShown, toggleFilterModal }) => {
   const [isChecked, setIsChecked] = useState(false);
 
   const [bedrooms, setBedrooms] = useState('Any');
@@ -58,9 +61,9 @@ const GuestFilterModal = ({ modalShown, toggleModal }) => {
 
   return (
     <Modal
-      shown={modalShown}
+      shown={modalFilterShown}
       close={() => {
-        toggleModal(false);
+        toggleFilterModal(false);
       }}
       title='Filters'
     >
@@ -69,12 +72,14 @@ const GuestFilterModal = ({ modalShown, toggleModal }) => {
           <ModalMainSection>
             <ModalMainTitle>Price range</ModalMainTitle>
             <ModalMainText>The average nightly price is $000,000</ModalMainText>
-            <PriceRangeBarWrap>price bar</PriceRangeBarWrap>
+            <PriceRangeBarWrap>
+              {/* <PriceRangeGraph>range graph</PriceRangeGraph> */}
+              <FilterPriceRage />
+            </PriceRangeBarWrap>
             <PriceRangeWrap>
               <PriceRangeWrapper>
                 <PriceRangeLabel>min price</PriceRangeLabel>
                 <PriceRangeInputSection>
-                  <PriceCurrency>$</PriceCurrency>
                   <PriceInput type='text' value='00000' />
                 </PriceRangeInputSection>
               </PriceRangeWrapper>

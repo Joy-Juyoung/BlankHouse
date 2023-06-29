@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MainCategories from './MainCategories';
 import MainListCard from './MainListCard';
 import {
@@ -15,34 +15,48 @@ import GuestFilterModal from '../../components/Modals/GuestFilterModal';
 import { RoomData } from './SampleData';
 import CategorySlider from './CategorySlider';
 import { Link, useLocation } from 'react-router-dom';
+import Loading from '../../components/Loading';
+import TuneIcon from '@mui/icons-material/Tune';
 
 const MainPage = () => {
   // const location = useLocation();
-  const [modalShown, toggleModal] = useState(false);
+  const [modalFilterShown, toggleFilterModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 680);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading)
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
 
   return (
     <MainContainer>
       <MainWrap>
         <MainTop>
           <MainTopCategory>
-            {/* Categories map */}
-            <CategorySlider />
-            {/* {CategoryData.map((category, index) => {
-              return <MainCategories key={index} category={category} />;
-            })} */}
+            <CategorySlider loading={loading} />
           </MainTopCategory>
           <MainTopFilter>
             <FilterBtn
               onClick={() => {
-                toggleModal(!modalShown);
+                toggleFilterModal(!modalFilterShown);
               }}
             >
+              <TuneIcon sx={{ fontSize: '18px' }} />
               Filters
             </FilterBtn>
             {/* Filter Modal Open */}
             <GuestFilterModal
-              toggleModal={toggleModal}
-              modalShown={modalShown}
+              toggleFilterModal={toggleFilterModal}
+              modalFilterShown={modalFilterShown}
             />
           </MainTopFilter>
         </MainTop>
@@ -52,7 +66,7 @@ const MainPage = () => {
             {RoomData.map((room, index) => {
               return (
                 <Link to='/room'>
-                  <MainListCard key={index} room={room} />
+                  <MainListCard key={index} room={room} loading={loading} />
                 </Link>
               );
             })}

@@ -7,7 +7,7 @@ export const MainContainer = styled.div`
 
   /* max-width: 1700px; */
   padding: ${({ pagesmall }) => (pagesmall ? '0 80px' : '0 40px')};
-  max-width: ${({ pagesmall }) => (pagesmall ? '1200px' : '1700px')};
+  max-width: ${({ pagesmall }) => (pagesmall ? '1120px' : '1700px')};
 
   @media screen and (max-width: 1280px) {
     padding: 0 40px;
@@ -23,6 +23,8 @@ export const MainWrap = styled.div`
   max-width: 1700px; */
   display: flex;
   flex-direction: column;
+  width: 100%;
+  margin-bottom: 60px;
 `;
 
 export const MainTop = styled.div`
@@ -49,6 +51,7 @@ export const MainTopFilter = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  z-index: 3;
 
   /* padding: 20px; */
 `;
@@ -57,8 +60,11 @@ export const FilterBtn = styled.div`
   cursor: pointer;
   font-size: 14px;
   border: 1px solid lightgray;
-  padding: 10px 15px;
+  padding: 15px;
   border-radius: 5px;
+
+  display: flex;
+  align-items: center;
 `;
 
 export const MainMid = styled.div`
@@ -109,6 +115,7 @@ export const RoomLike = styled.button`
   right: 5px;
   border: none;
   background: none;
+  z-index: 2;
 
   &:active {
     transform: translateY(4px);
