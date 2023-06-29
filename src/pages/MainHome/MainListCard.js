@@ -2,10 +2,6 @@ import React, { useState } from 'react';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import StarIcon from '@mui/icons-material/Star';
-
-import DefaultImg from '../../assets/images/soon.jpg';
-
-import Room1 from '../../assets/images/houseSample/room-1.jpg';
 import {
   RoomDesc,
   RoomEachDetails,
@@ -22,7 +18,7 @@ const MainListCard = ({ room }) => {
   const [fav, setFav] = useState(false);
 
   return (
-    <RoomsEach to=''>
+    <RoomsEach>
       <RoomEachPhoto src={room.photo} alt='' />
       <ToggleLike onClick={(e) => setFav(!fav)}>
         <RoomLike>

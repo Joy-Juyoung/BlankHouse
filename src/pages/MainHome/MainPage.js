@@ -14,8 +14,10 @@ import {
 import GuestFilterModal from '../../components/Modals/GuestFilterModal';
 import { RoomData } from './SampleData';
 import CategorySlider from './CategorySlider';
+import { Link, useLocation } from 'react-router-dom';
 
 const MainPage = () => {
+  // const location = useLocation();
   const [modalShown, toggleModal] = useState(false);
 
   return (
@@ -48,7 +50,11 @@ const MainPage = () => {
           <MainMidWrap>
             {/* Data Map and display Main List Cart */}
             {RoomData.map((room, index) => {
-              return <MainListCard key={index} room={room} />;
+              return (
+                <Link to='/room'>
+                  <MainListCard key={index} room={room} />
+                </Link>
+              );
             })}
           </MainMidWrap>
         </MainMid>
