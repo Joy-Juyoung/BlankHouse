@@ -25,16 +25,12 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchModal from './SearchModal';
 import Logo from '../../assets/images/logo.png';
 import LogInModal from './LogInModal';
-<<<<<<< HEAD
-import { Link, useLocation } from 'react-router-dom';
 
-const Header = () => {
-  const location = useLocation();
-  // const { room } = useParams();
-  const [modalShown, toggleModal] = useState(false);
-  const [modalLogShown, toggleLogModal] = useState(false);
-=======
 import { Link, useLocation, useParams } from 'react-router-dom';
+
+
+
+
 const Header = () => {
   const location = useLocation();
   // const { room } = useParams();
@@ -42,8 +38,6 @@ const Header = () => {
 
   const [modalLogShown, toggleLogModal] = useState(false);
 
-  // console.log('location.pathname', location.pathname);
->>>>>>> e00b28d17bf3458245bf1d793e07d2522709fa06
 
   return (
     <HeaderContrainer pagesmall={location.pathname === '/room' ? true : false}>
