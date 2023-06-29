@@ -24,6 +24,7 @@ export const MainWrap = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin-bottom: 60px;
 `;
 
 export const MainTop = styled.div`

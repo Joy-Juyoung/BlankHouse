@@ -1,14 +1,9 @@
 import styled from 'styled-components';
 
 export const RoomDetailHeader = styled.div`
-  width: 100vw;
   position: sticky;
   top: 0;
-  /* left: 0; */
   z-index: 3;
-  /* margin: 0 auto; */
-
-  /* padding: 0 -40px; */
 
   background: #fff;
   border-bottom: 1px solid #dddd;
@@ -16,12 +11,18 @@ export const RoomDetailHeader = styled.div`
 
 export const DetailHeader = styled.div`
   padding: 0 80px;
-  max-width: 1210px;
+  max-width: 1120px;
   margin: 0 auto;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const DetailHeaderWrap = styled.div`
   /* margin-left: -5px; */
   display: flex;
   align-items: center;
-  height: 80px;
 
   span {
     /* text-decoration: none; */
@@ -45,6 +46,39 @@ export const DetailHeader = styled.div`
   }
 `;
 
+export const DetailHeaderReserve = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const HeaderReserveWrap = styled.div``;
+
+export const ReservePrice = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+`;
+
+export const ReserveReview = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+`;
+
+export const ReserveBtn = styled.button`
+  border: none;
+  background: #ffae00;
+  padding: 18px;
+  border-radius: 10px;
+  margin-left: 15px;
+  cursor: pointer;
+
+  font-weight: 600;
+  font-size: 16px;
+  color: #fff;
+`;
+
+// -----------
 export const RoomTopWrap = styled.div`
   display: flex;
   flex-direction: column;
