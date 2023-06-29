@@ -23,6 +23,12 @@ import {
   RoomDetailHeader,
   RoomDetailSection,
   DetailHeader,
+  DetailHeaderReserve,
+  HeaderReserveWrap,
+  ReservePrice,
+  ReserveReview,
+  ReserveBtn,
+  DetailHeaderWrap,
 } from './RoomStyle';
 import { RoomData } from '../MainHome/SampleData';
 import StarIcon from '@mui/icons-material/Star';
@@ -37,6 +43,10 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import FlagIcon from '@mui/icons-material/Flag';
 import RoomSide from './RoomSide';
 import BedIcon from '@mui/icons-material/Bed';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { LocalizationProvider } from '@mui/x-date-pickers-pro';
+import { AdapterDayjs } from '@mui/x-date-pickers-pro/AdapterDayjs';
+import { DateRangeCalendar } from '@mui/x-date-pickers-pro/DateRangeCalendar';
 
 const Room = () => {
   const location = useLocation();
@@ -44,25 +54,22 @@ const Room = () => {
   const [loading, setLoading] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
 
-  const handleClickScroll = () => {
+  const handleClickScroll = (e) => {
     const goPhoto = document.getElementById('viewPhoto');
     const goAmenities = document.getElementById('viewAmenities');
     const goReviews = document.getElementById('viewReviews');
     const goLocation = document.getElementById('viewLocation');
 
-    if (goPhoto) {
+    if (e.target.id === 'vPhoto' && goPhoto) {
       // Will scroll smoothly to the top of the next section
-      goPhoto.scrollIntoView({ behavior: 'smooth' });
-    }
-    if (goAmenities) {
+      goPhoto.scrollIntoView({ top: 0, behavior: 'smooth' });
+    } else if (e.target.id === 'vAmenities' && goAmenities) {
       // Will scroll smoothly to the top of the next section
-      goAmenities.scrollIntoView({ behavior: 'smooth' });
-    }
-    if (goReviews) {
+      goAmenities.scrollIntoView({ top: 80, behavior: 'smooth' });
+    } else if (e.target.id === 'vReviews' && goReviews) {
       // Will scroll smoothly to the top of the next section
       goReviews.scrollIntoView({ behavior: 'smooth' });
-    }
-    if (goLocation) {
+    } else if (e.target.id === 'vLocation' && goLocation) {
       // Will scroll smoothly to the top of the next section
       goLocation.scrollIntoView({ behavior: 'smooth' });
     }
@@ -71,7 +78,7 @@ const Room = () => {
   const handleScroll = () => {
     setScrollPosition(window.scrollY); // => scroll position
   };
-  // console.log(scrollPosition);
+  console.log(scrollPosition);
 
   useEffect(() => {
     handleScroll();
@@ -98,11 +105,46 @@ const Room = () => {
     <>
       {scrollPosition >= 800 && (
         <RoomDetailHeader>
-          <DetailHeader>
-            <span onClick={handleClickScroll}>Photos</span>
-            <span onClick={handleClickScroll}>Amenities</span>
-            <span onClick={handleClickScroll}>Reviews</span>
-            <span onClick={handleClickScroll}>Location</span>
+          <DetailHeader
+            style={{
+              display: scrollPosition >= 1377 && 'flex',
+            }}
+          >
+            <DetailHeaderWrap>
+              <span id='vPhoto' onClick={handleClickScroll}>
+                Photos
+              </span>
+              <span id='vAmenities' onClick={handleClickScroll}>
+                Amenities
+              </span>
+              <span id='vReviews' onClick={handleClickScroll}>
+                Reviews
+              </span>
+              <span id='vLocation' onClick={handleClickScroll}>
+                Location
+              </span>
+            </DetailHeaderWrap>
+            {/* </DetailHeader> */}
+            {scrollPosition >= 1377 && (
+              <DetailHeaderReserve>
+                <HeaderReserveWrap>
+                  <ReservePrice>
+                    <span>$560.00</span>
+                    <span>night</span>
+                  </ReservePrice>
+                  <ReserveReview>
+                    <StarIcon sx={{ fontSize: '16px' }} />
+                    <span>{RoomData[0].rating}</span>
+                    <span className='space'>•</span>
+                    <span>
+                      <Link href=''>000 Reviews</Link>
+                    </span>
+                  </ReserveReview>
+                </HeaderReserveWrap>
+
+                <ReserveBtn>Reserve</ReserveBtn>
+              </DetailHeaderReserve>
+            )}
           </DetailHeader>
         </RoomDetailHeader>
       )}
@@ -262,77 +304,84 @@ const Room = () => {
                   <RoomDetailsSections>
                     <h2>0 nights in Cochrane</h2>
                     <p>Oct. 7, 2023 - Oct. 12, 2023</p>
-                    <div>Calendar</div>
-                  </RoomDetailsSections>
-                  <RoomDetailsSections id='viewReviews'>
-                    <h2>
-                      <StarIcon sx={{ fontSize: '16px' }} />
-                      <span>4.99 / 000 reviews</span>
-                    </h2>
-                    <div>Average graph</div>
-                    <div>Reviews</div>
-                    <button>Show all 00 Reviews</button>
-                  </RoomDetailsSections>
-                  <RoomDetailsSections id='viewLocation'>
-                    <h2>Where you’ll be</h2>
-                    <div>Map</div>
-                    <p>Cochrane, Alberta, Canada</p>
-                    <span>
-                      The historic town of Cochrane is 5min to the East of us
-                      and the historic Wine Glass Ranch, established in 1885,
-                      are our direct neighbours to the West.
-                    </span>
-                    <button>
-                      <span>Show more</span>
-                      <ArrowForwardIosIcon sx={{ fontSize: '14px' }} />
-                    </button>
-                  </RoomDetailsSections>
-                  <RoomDetailsSections>
-                    <h2>Hosted by Grant</h2>
-                    <div>Host Info</div>
-                  </RoomDetailsSections>
-                  <RoomDetailsSections>
-                    <h2>Things to know</h2>
-                    <div>
-                      <div>
-                        <p>House rules</p>
-                        <span>Check-in: 3:00 p.m.–8:00 p.m.</span>
-                        <span>Checkout before 11:00 a.m.</span>
-                        <span>2 guests maximum</span>
-                        <button>
-                          <span>Show more</span>
-                          <ArrowForwardIosIcon sx={{ fontSize: '14px' }} />
-                        </button>
-                      </div>
-                      <div>
-                        <p>Safety & property</p>
-                        <span>Nearby lake, river, other body of water</span>
-                        <span>May encounter potentially dangerous animal</span>
-                        <span>Carbon monoxide alarm</span>
-                        <button>
-                          <span>Show more</span>
-                          <ArrowForwardIosIcon sx={{ fontSize: '14px' }} />
-                        </button>
-                      </div>
-                      <div>
-                        <p>Cancellation policy</p>
-                        <span>Free cancellation before Oct. 6.</span>
-                        <span>
-                          Review the Host’s full cancellation policy, which
-                          applies even if you cancel for illness or disruptions
-                          caused by COVID-19.
-                        </span>
-                        {/* <span>2 guests maximum</span> */}
-                        <button>
-                          <span>Show more</span>
-                          <ArrowForwardIosIcon sx={{ fontSize: '14px' }} />
-                        </button>
-                      </div>
-                    </div>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                      <DemoContainer components={['DateRangeCalendar']}>
+                        <DateRangeCalendar />
+                      </DemoContainer>
+                    </LocalizationProvider>
                   </RoomDetailsSections>
                 </RoomMainDetailsWrap>
                 <RoomSide loading={loading} RoomData={RoomData} />
               </RoomMainDetails>
+              <RoomDetailsSections id='viewReviews'>
+                <h2>
+                  <StarIcon sx={{ fontSize: '16px' }} />
+                  <span>4.99 / 000 reviews</span>
+                </h2>
+                <div>Average graph</div>
+                <div>Reviews</div>
+                <button>Show all 00 Reviews</button>
+              </RoomDetailsSections>
+              <RoomDetailsSections id='viewLocation'>
+                <h2>Where you’ll be</h2>
+                <div>Map</div>
+                <p>Cochrane, Alberta, Canada</p>
+                <span>
+                  The historic town of Cochrane is 5min to the East of us and
+                  the historic Wine Glass Ranch, established in 1885, are our
+                  direct neighbours to the West.
+                </span>
+                <button>
+                  <span>Show more</span>
+                  <ArrowForwardIosIcon sx={{ fontSize: '14px' }} />
+                </button>
+              </RoomDetailsSections>
+              <RoomDetailsSections>
+                <h2>Hosted by Grant</h2>
+                <div>Host Info</div>
+              </RoomDetailsSections>
+              <RoomDetailsSections>
+                <h2>Things to know</h2>
+                <div>
+                  <div>
+                    <p>House rules</p>
+                    <span>Check-in: 3:00 p.m.–8:00 p.m.</span>
+                    <span>Checkout before 11:00 a.m.</span>
+                    <span>2 guests maximum</span>
+                    <button>
+                      <span>Show more</span>
+                      <ArrowForwardIosIcon sx={{ fontSize: '14px' }} />
+                    </button>
+                  </div>
+                  <div>
+                    <p>Safety & property</p>
+                    <span>Nearby lake, river, other body of water</span>
+                    <span>May encounter potentially dangerous animal</span>
+                    <span>Carbon monoxide alarm</span>
+                    <button>
+                      <span>Show more</span>
+                      <ArrowForwardIosIcon sx={{ fontSize: '14px' }} />
+                    </button>
+                  </div>
+                  <div>
+                    <p>Cancellation policy</p>
+                    <span>Free cancellation before Oct. 6.</span>
+                    <span>
+                      Review the Host’s full cancellation policy, which applies
+                      even if you cancel for illness or disruptions caused by
+                      COVID-19.
+                    </span>
+                    {/* <span>2 guests maximum</span> */}
+                    <button>
+                      <span>Show more</span>
+                      <ArrowForwardIosIcon sx={{ fontSize: '14px' }} />
+                    </button>
+                  </div>
+                </div>
+              </RoomDetailsSections>
+              {/* </RoomMainDetailsWrap>
+                <RoomSide loading={loading} RoomData={RoomData} /> */}
+              {/* </RoomMainDetails> */}
             </RoomDetailSection>
           </RoomMainWrap>
         </MainWrap>

@@ -5,6 +5,7 @@ import MainPage from './MainHome/MainPage';
 import Experience from './Experiences/Experience';
 import ExperienceDetail from './Experiences/ExperienceDetail';
 import Room from './Room/Room';
+import Footer from '../components/Footer/Footer';
 
 const GuestMode = () => {
   return (
@@ -26,9 +27,7 @@ const GuestMode = () => {
       <Routes>
         <Route path='/room' element={<Room />} exact={true} />
       </Routes>
-      {/* <Routes>
-        <Route path='/experiences' element={<MainPage />} exact={true} />
-      </Routes> */}
+      <Footer />
     </>
   );
 };
