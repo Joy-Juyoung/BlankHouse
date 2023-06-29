@@ -11,6 +11,10 @@ import Experience10 from '../../assets/images/houseSample/room-10.jpg';
 import Experience11 from '../../assets/images/houseSample/room-11.jpg';
 import Experience12 from '../../assets/images/houseSample/room-12.jpg';
 import Experience13 from '../../assets/images/houseSample/ex1.jpg';
+import Experience14 from '../../assets/images/houseSample/ex2.jpg';
+import Experience15 from '../../assets/images/houseSample/ex3.jpg';
+import Experience16 from '../../assets/images/houseSample/ex4.jpg';
+import Experience17 from '../../assets/images/houseSample/ex5.jpg';
 
 export const ExperiencesData = [
   {
@@ -25,7 +29,7 @@ export const ExperiencesData = [
   },
   {
     pk: 2,
-    photo: Experience2,
+    photo: Experience14,
     title: 'Discover Banff National Park Day',
     rating: '4.87(987) · 11 hours',
     City: 'Calgary',
@@ -35,7 +39,7 @@ export const ExperiencesData = [
   },
   {
     pk: 3,
-    photo: Experience3,
+    photo: Experience15,
     title: 'Discover Banff National Park Day',
     rating: '4.87(555) · 11 hours',
     City: 'Calgary',
@@ -45,7 +49,7 @@ export const ExperiencesData = [
   },
   {
     pk: 4,
-    photo: Experience4,
+    photo: Experience16,
     title: 'Discover Banff National Park Day',
     rating: '4.87(444) · 11 hours · 11 hours',
     City: 'Calgary',
@@ -55,7 +59,7 @@ export const ExperiencesData = [
   },
   {
     pk: 5,
-    photo: Experience5,
+    photo: Experience17,
     title: 'Discover Banff National Park Day',
     rating: '4.87(222) · 11 hours',
     City: 'Calgary',
@@ -243,4 +247,44 @@ export const ExperiencesData = [
     Country: 'Canada',
     price: '562',
   },
+  {
+    pk: 24,
+    photo: Experience2,
+    title: 'Discover Banff National Park Day',
+    rating: '4.87(987) · 11 hours',
+    City: 'Calgary',
+    Province: 'Alberta',
+    Country: 'Canada',
+    price: '562',
+  },
+  {
+    pk: 25,
+    photo: Experience3,
+    title: 'Discover Banff National Park Day',
+    rating: '4.87(555) · 11 hours',
+    City: 'Calgary',
+    Province: 'Alberta',
+    Country: 'Canada',
+    price: '562',
+  },
+  {
+    pk: 26,
+    photo: Experience4,
+    title: 'Discover Banff National Park Day',
+    rating: '4.87(444) · 11 hours · 11 hours',
+    City: 'Calgary',
+    Province: 'Alberta',
+    Country: 'Canada',
+    price: '562',
+  },
+  {
+    pk: 27,
+    photo: Experience5,
+    title: 'Discover Banff National Park Day',
+    rating: '4.87(222) · 11 hours',
+    City: 'Calgary',
+    Province: 'Alberta',
+    Country: 'Canada',
+    price: '562',
+  }
 ];

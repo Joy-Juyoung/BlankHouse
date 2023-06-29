@@ -25,6 +25,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchModal from './SearchModal';
 import Logo from '../../assets/images/logo.png';
 import LogInModal from './LogInModal';
+import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
   const location = useLocation();
