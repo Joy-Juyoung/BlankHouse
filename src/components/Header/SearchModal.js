@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 // import { useLocation } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -36,10 +36,12 @@ const SearchModal = ({ modalShown, toggleModal }) => {
               Stays
             </SearchNavbar>
 
-            <SearchNavbar
+            <SearchNavbar 
               guestmode={location.pathname === '/experiences' ? true : false}
             >
-              Experiences
+              <Link to='/experiences'>
+               Experiences
+              </Link>
             </SearchNavbar>
           </SearchModalNavWrap>
         </SearchModalNav>

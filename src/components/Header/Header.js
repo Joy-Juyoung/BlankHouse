@@ -6,6 +6,7 @@ import {
   HeaderRightSection,
   HeaderWrap,
   HeaderWrapper,
+  LogBtn,
   ModeSetting,
   SearchBtn,
   SearchNavBtn,
@@ -23,13 +24,17 @@ import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchModal from './SearchModal';
 import Logo from '../../assets/images/logo.png';
+import LogInModal from './LogInModal';
 import { Link, useLocation, useParams } from 'react-router-dom';
-
 const Header = () => {
   const location = useLocation();
   // const { room } = useParams();
   const [modalShown, toggleModal] = useState(false);
+
+  const [modalLogShown, toggleLogModal] = useState(false);
+
   console.log('location.pathname', location.pathname);
+
 
   return (
     <HeaderContrainer pagesmall={location?.pathname === '/room' ? true : false}>
@@ -83,7 +88,15 @@ const Header = () => {
           <HeaderRightSection>
             <UserSetting>
               <MenuIcon fontSize='medium' />
-              <AccountCircleIcon fontSize='medium' />
+              <LogBtn onClick={() => {
+                                toggleLogModal(!modalLogShown);
+                            }}>
+                <AccountCircleIcon fontSize='medium' />
+              </LogBtn>
+              <LogInModal
+                            toggleLogModal={toggleLogModal}
+                            modalLogShown={modalLogShown}
+                            />
             </UserSetting>
           </HeaderRightSection>
         </HeaderWrapper>

@@ -162,3 +162,11 @@ export const UserSetting = styled.div`
     box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.1);
   }
 `;
+
+export const LogBtn = styled.button`
+  border: none;
+  background: none;
+  text-decoration: none;
+  cursor: pointer;
+
+`;
