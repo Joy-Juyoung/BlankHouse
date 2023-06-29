@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MainPage from './MainHome/MainPage';
 import Experience from './Experiences/Experience';
 import ExperienceDetail from './Experiences/ExperienceDetail';
+import Room from './Room/Room';
 
 const GuestMode = () => {
   return (
@@ -18,6 +19,11 @@ const GuestMode = () => {
       <Routes>
         <Route path='/experiences/detail' element={<ExperienceDetail />} exact={true} />
       </Routes>
+        <Route path='/room' element={<Room />} exact={true} />
+      </Routes>
+      {/* <Routes>
+        <Route path='/experiences' element={<MainPage />} exact={true} />
+      </Routes> */}
     </>
   );
 };
