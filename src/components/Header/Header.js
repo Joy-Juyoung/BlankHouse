@@ -6,6 +6,7 @@ import {
   HeaderRightSection,
   HeaderWrap,
   HeaderWrapper,
+  LogBtn,
   ModeSetting,
   SearchBtn,
   SearchNavBtn,
@@ -23,9 +24,11 @@ import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchModal from './SearchModal';
 import Logo from '../../assets/images/logo.png';
+import LogInModal from './LogInModal';
 
 const Header = () => {
   const [modalShown, toggleModal] = useState(false);
+  const [modalLogShown, toggleLogModal] = useState(false);
 
   return (
     <HeaderContrainer>
@@ -77,7 +80,15 @@ const Header = () => {
           <HeaderRightSection>
             <UserSetting>
               <MenuIcon fontSize='medium' />
-              <AccountCircleIcon fontSize='medium' />
+              <LogBtn onClick={() => {
+                                toggleLogModal(!modalLogShown);
+                            }}>
+                <AccountCircleIcon fontSize='medium' />
+              </LogBtn>
+              <LogInModal
+                            toggleLogModal={toggleLogModal}
+                            modalLogShown={modalLogShown}
+                            />
             </UserSetting>
           </HeaderRightSection>
         </HeaderWrapper>
