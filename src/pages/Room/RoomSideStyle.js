@@ -102,51 +102,6 @@ export const SelectInput = styled.div`
   /* justify-content: space-between; */
 `;
 
-export const RoomSideBtn = styled.button`
-  position: relative;
-  /* background: #ffae00;
-  padding: 0.5rem 1rem;
-  font-size: 1.2rem;
-  border: none;
-  color: white;
-  cursor: pointer;
-  outline: none; */
-  border: none;
-  border-radius: 10px;
-  background: #ffae00;
-  color: #fff;
-  width: 100%;
-  height: 48px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-
-  overflow: hidden;
-
-  &:before {
-    content: '';
-    left: ${({ left }) => left}px;
-    top: ${({ top }) => top}px;
-    position: absolute;
-    width: 0;
-    height: 0;
-    background: radial-gradient(
-      circle closest-side,
-      rgb(255, 225, 165, 0.5),
-      transparent
-    );
-    transform: translate(-50%, -50%);
-    transition: width 0.4s ease, height 0.4s ease;
-    cursor: pointer;
-  }
-
-  &:hover:before {
-    color: red;
-    width: 200px;
-    height: 200px;
-  }
-`;
-
 export const RoomSideText = styled.div`
   margin: 20px 0;
   text-align: center;
