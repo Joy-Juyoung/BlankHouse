@@ -24,9 +24,9 @@ import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchModal from './SearchModal';
 import Logo from '../../assets/images/logo.png';
-import LogInModal from './LogInModal';
-
 import { Link, useLocation, useParams } from 'react-router-dom';
+import DropdownList from './DropdownList';
+import LogInModal from './LogInModal';
 
 
 
@@ -35,9 +35,8 @@ const Header = () => {
   const location = useLocation();
   // const { room } = useParams();
   const [modalSearchShown, toggleSearchModal] = useState(false);
-
   const [modalLogShown, toggleLogModal] = useState(false);
-
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
     <HeaderContrainer pagesmall={location.pathname === '/room' ? true : false}>
@@ -95,16 +94,23 @@ const Header = () => {
             <UserSetting>
               <MenuIcon fontSize='medium' />
               <LogBtn
-                onClick={() => {
-                  toggleLogModal(!modalLogShown);
+                  onClick={() => {
+                    toggleLogModal(!modalLogShown);
                 }}
+                // onClick={() => setIsDropdownOpen(true)}
               >
                 <AccountCircleIcon fontSize='medium' />
               </LogBtn>
+              {/* {isDropdownOpen && (
+                <DropdownList
+                  onClose={() => setIsDropdownOpen(false)}
+                  onKeyPress={() => setIsDropdownOpen(false)}
+                />
+              )} */}
               <LogInModal
-                toggleLogModal={toggleLogModal}
-                modalLogShown={modalLogShown}
-              />
+              toggleLogModal={toggleLogModal}
+              modalLogShown={modalLogShown}
+            />
             </UserSetting>
           </HeaderRightSection>
         </HeaderWrapper>

@@ -1,10 +1,41 @@
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 
-export const ExDetailMid = styled.div`
+export const ExDetailWrap = styled.div`
 
 `;
 
+export const ExDetailMid = styled.div`
+
+`;
+export const ExDetailNavWrap = styled.div`
+    padding-top: 32px;
+    display: flex;
+    align-items: center;
+    
+    ol {
+        margin: 0;
+        padding: 0;
+
+        li {
+            span {
+                margin-left: 5px;
+                margin-right: 5px;
+            }
+            display: inline-block;
+        }
+    }
+`;
+export const TopNavLink = styled(Link)`
+    color: #000;
+    text-decoration: underline;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 400;
+`;
 
 export const ExDetailMidWrap = styled.div`
     display: flex;
@@ -38,6 +69,265 @@ export const ExDetailMidWrap = styled.div`
     padding-left:24px;
     padding-right:24px;
   }
+`;
+export const DetailTopHead = styled.div`
+    padding-top: 32px;
+    position: relative;
+`;
+
+export const TopHeadOne = styled.div`
+
+
+    h1{
+        font-weight: 600;
+        font-size: 26px;
+        line-height: 30px;
+        margin: 0;
+        padding: 0;
+    }
+    @media screen and (min-width: 1128px) {
+        margin-bottom: 4px;
+    }
+    @media screen and (min-width: 744px) {
+        margin-bottom: 4px;
+  }
+`;
+
+export const TopHeadTwo = styled.div`
+    display: flex; 
+`;
+
+export const HeadTwoWrap = styled.div`
+    display: flex; 
+    flex-grow: 1;
+    font-size: 14px ;
+    line-height: 18px ;
+    align-items: baseline ;
+    flex-wrap: wrap ;
+    align-items: center;
+
+    @media screen and (min-width: 744px) {
+        margin-top: 4px;
+  }
+  span {
+        margin-right: 4px;
+        color:#000;
+    }
+`;
+
+export const ReviewNavBtn = styled.button`
+    background:none;
+    display: flex; 
+    border:none;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    svg{   
+        display: block;
+        height: 14px;
+        width: 14px;
+    }
+
+    span {
+        margin-right: 4px;
+        color:#000;
+
+    }
+`;
+export const HeadTwoBtnsWrap = styled.div`
+    display: flex;
+    justify-content: flex-end; 
+
+    /* @media screen and (min-width: 744px) {
+        display: block;
+  } */
+`;
+
+export const ShareBtnWrap = styled.div`
+    margin-right: 20px;
+
+
+`;
+export const ShareBtn = styled.button`
+    margin-left: -8px;
+    margin-right: -8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 8px;
+    padding-left: 8px;
+    background:none;
+    display: flex; 
+    border:none;
+    cursor: pointer;
+    /* align-items: center;
+    justify-content: center; */
+
+    svg {
+        height: 16px;
+        width: 16px;
+        margin-right: 8px
+    }
+
+    span {
+        font-size:14px;
+    }
+`;
+
+export const SaveBtnWrap = styled.div`
+
+`;
+
+export const SaveBtn = styled.button`
+    margin-left: -8px;
+    margin-right: -8px;
+    padding: 8px;
+    background:none;
+    display: flex; 
+    border:none;
+    cursor: pointer;
+    /* align-items: center;
+    justify-content: center; */
+
+    svg {
+        height: 16px;
+        width: 16px;
+        margin-right: 8px
+    }
+
+    span {
+        font-size:14px;
+    }
+`;
+
+export const ExPhotoWrap= styled.div`
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+    width: 100%;
+    padding-top: 32px;
+    max-height: 440px;
+    overflow: hidden;
+    position: relative;
+`;
+
+export const ExPhotoContainer= styled.div`
+    display: grid;
+    max-height: 440px;
+    height: 100%;
+    width: 100%;
+    gap: 8px;
+    grid-template-columns: 1fr 1.5fr 1fr;
+`;
+
+export const ExShowAllWrap= styled.div`
+    right: 16px;
+    bottom: 16px;
+    position: absolute;
+    z-index: 2;
+`;
+
+export const ShowAllBtnWrap= styled.button`
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: solid;
+    border-color:#000;
+    background: #fff;
+    padding: 7px 15px 7px 15px;
+    cursor: pointer;
+    margin: 0;
+    text-align: center;
+    display:flex;
+    align-items: center;
+    justify-content: center; 
+
+    svg{
+        margin-right: 8px;
+        height: 15px;
+        width: 15px;
+    }
+`;
+
+export const ExPhotoGridOne= styled.div`
+    max-height: 440px;
+    display: grid;
+    grid-area: 1 / 1 / auto / auto;
+`;
+
+export const GridOneWrap = styled.div`
+    max-height: 440px;
+    height: 100%;
+    width: 100%;
+    position: relative;
+
+    img{
+        height: 100%;
+        width: 100%;
+        /* width:252px;
+        height:331.59px; */
+    }
+`;
+
+export const ExPhotoGridTwo= styled.div`
+    display: grid;
+    grid-area: 1 / 2 / auto / auto;
+`;
+
+export const GridTwoWrap = styled.div`
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-auto-rows: 1fr;
+    gap: 8px;
+    grid-template-columns: 1fr 1fr 1fr;
+`;
+
+export const GridListOne = styled.div`
+    max-height: 440px;
+    grid-area: 1 / 1 / span 2 / span 2;
+    height: 100%;
+    width: 100%;
+    position: relative;
+
+    img {
+        height: 100%;
+        width: 100%;
+        /* height:331.59px;
+        width:249.33px; */
+    }
+`;
+
+export const GridListTwo = styled.div`
+    max-height: 440px;
+    grid-area: 1 / 3 / auto / auto;
+    height: 100%;
+    width: 100%;
+    position: relative;
+
+    img {
+        height: 100%;
+        width: 100%;
+        /* height:161.8px;
+        width:120.67px; */
+    }
+`;
+
+export const GridListThree = styled.div`
+    max-height: 440px;
+    grid-area: 2 / 3 / auto / auto;
+    height: 100%;
+    width: 100%;
+    position: relative;
+
+    img {
+        height: 100%;
+        width: 100%;
+        /* height:161.8px;
+        width:120.67px; */
+    }
+`;
+
+export const ExPhotoGridThree= styled.div`
+    display: grid;
+    grid-area: 1 / 3 / auto / auto;
 `;
 
 export const MidLeftWrap = styled.div`
@@ -821,4 +1111,60 @@ export const UserInfoWrap = styled.div`
         line-height: 20px;
         display: inline;
     }
+`;
+export const ChooseDateWrap = styled.div`
+    width: 100%;
+    border-top-color: rgb(221, 221, 221);
+    border-top-width: 1px;
+    border-top-style: solid;
+    padding-top: 48px;
+    padding-bottom: 48px;
+
+`;
+
+export const DateSlideWrap = styled.div`
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+`;
+
+export const SlideTitle = styled.div`
+    h2{
+        margin: 0;
+        padding: 0;
+        font-size: 22px;
+        line-height: 26px;
+        font-weight: 600;
+        display: flex;
+    }
+
+    span {
+        margin-top: 8px;
+        color: rgb(113, 113, 113);
+    }
+`;
+
+export const SlideBtnWrap = styled.div`
+
+
+`;
+
+export const ExtraInfoWrap = styled.div`
+    width: 100%;
+    border-top-color: rgb(221, 221, 221);
+    border-top-width: 1px;
+    border-top-style: solid;
+    padding-top: 48px;
+    padding-bottom: 48px;
+
+`;
+
+export const SimilarWrap = styled.div`
+    width: 100%;
+    border-top-color: rgb(221, 221, 221);
+    border-top-width: 1px;
+    border-top-style: solid;
+    padding-top: 48px;
+    padding-bottom: 48px;
+
 `;
