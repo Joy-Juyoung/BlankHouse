@@ -27,6 +27,15 @@ export const SearchModalNavWrap = styled.div`
 export const SearchNavbar = styled.div`
   border-bottom: ${({ guestmode }) => (guestmode ? '2px solid #000' : '')};
   padding-bottom: 5px;
+
+  &:active {
+    /* animation: shake 0.5s forwards;
+    @keyframes shake {
+      100% { */
+    transform: translateY(4px);
+    /* } */
+    /* } */
+  }
 `;
 
 export const SearchField = styled.div`

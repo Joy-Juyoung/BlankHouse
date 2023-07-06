@@ -9,6 +9,13 @@ export const MainContainer = styled.div`
   padding: ${({ pagesmall }) => (pagesmall ? '0 80px' : '0 40px')};
   max-width: ${({ pagesmall }) => (pagesmall ? '1120px' : '1700px')};
 
+  span {
+    &.coma {
+      margin: 0 3px;
+      font-weight: 600;
+    }
+  }
+
   @media screen and (max-width: 1280px) {
     padding: 0 40px;
   }

@@ -18,10 +18,28 @@ const ModalBackDrop = styled.div`
   overflow: hidden;
 `;
 
+// const ModalContent = styled.div`
+//   /* width: 750px; */
+//   min-height: 750px;
+//   background-color: white;
+//   padding: 20px;
+//   border-radius: 10px;
+
+//   bottom: 0;
+
+//   transition: all 0.3s ease-out;
+//   animation: bslide 0.3s forwards;
+
+//   @keyframes bslide {
+//     100% {
+//       bottom: 50vh;
+//     }
+//   }
+// `;
+
 const ModalContent = styled.div`
   /* width: 750px; */
   min-height: 750px;
-
   background-color: white;
   /* padding: 20px 0; */
   border-radius: 10px;
@@ -29,15 +47,8 @@ const ModalContent = styled.div`
   position: fixed;
   bottom: 0;
 
-  -webkit-animation: slide 0.4s forwards;
+  transition: all 0.3s ease-out;
   animation: slide 0.4s forwards;
-
-  @-webkit-keyframes slide {
-    100% {
-      bottom: 10%;
-      /* top: 10%; */
-    }
-  }
 
   @keyframes slide {
     100% {

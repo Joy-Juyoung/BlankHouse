@@ -9,6 +9,8 @@ export const HeaderContrainer = styled.div`
 
   a {
     text-decoration: none;
+    color: #000;
+    cursor: pointer;
   }
 
   @media screen and (max-width: 1280px) {

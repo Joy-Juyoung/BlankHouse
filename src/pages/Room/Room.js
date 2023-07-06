@@ -36,6 +36,10 @@ import {
   ThingsTitle,
   ThingsList,
   SleepWrap,
+  BasicInfo,
+  BasicIntro,
+  PlaceOffers,
+  PlaceOffersList,
 } from './RoomStyle';
 import { RoomData } from '../MainHome/SampleData';
 import StarIcon from '@mui/icons-material/Star';
@@ -54,6 +58,15 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers-pro';
 import { AdapterDayjs } from '@mui/x-date-pickers-pro/AdapterDayjs';
 import { DateRangeCalendar } from '@mui/x-date-pickers-pro/DateRangeCalendar';
+import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
+import PetsIcon from '@mui/icons-material/Pets';
+import TodayIcon from '@mui/icons-material/Today';
+import SoupKitchenIcon from '@mui/icons-material/SoupKitchen';
+import LocalLaundryServiceIcon from '@mui/icons-material/LocalLaundryService';
+import KitchenIcon from '@mui/icons-material/Kitchen';
+import WifiIcon from '@mui/icons-material/Wifi';
+import TvIcon from '@mui/icons-material/Tv';
+import MicrowaveIcon from '@mui/icons-material/Microwave';
 
 const Room = () => {
   const location = useLocation();
@@ -114,7 +127,7 @@ const Room = () => {
         <RoomDetailHeader>
           <DetailHeader
             style={{
-              display: scrollPosition >= 1377 && 'flex',
+              display: scrollPosition >= 2011.2 && 'flex',
             }}
           >
             <DetailHeaderWrap>
@@ -163,7 +176,7 @@ const Room = () => {
               <RoomTopInfo>
                 <StarIcon sx={{ fontSize: '16px' }} />
                 <span>{RoomData[0].rating}</span>
-                <span className='space'>•</span>
+                <span className='coma'>·</span>
                 <span>
                   <Link href=''>000 Reviews</Link>
                 </span>
@@ -220,51 +233,56 @@ const Room = () => {
               </RoomPhotoSub>
             </RoomMainPhotos>
             <RoomDetailSection>
-              {/* {scrollPosition >= 800 && (
-              <RoomDetailHeader>
-                <DetailHeader>
-                  <div>Photos</div>
-                  <div>Photos</div>
-                  <div>Photos</div>
-                </DetailHeader>
-              </RoomDetailHeader>
-            )} */}
               <RoomMainDetails>
                 <RoomMainDetailsWrap>
                   <RoomDetailsTop>
-                    <h2>Farm stay hosted by Grant</h2>
-                    <span>2 guests</span>
-                    <span>1 bedroom </span>
-                    <span>1 bath</span>
-                    <span>1 bath</span>
+                    <div>
+                      <h2>Farm stay hosted by Grant</h2>
+                      <span>2 guests</span>
+                      <span className='coma'>·</span>
+                      <span>1 bedroom </span>
+                      <span className='coma'>·</span>
+                      <span>1 bath</span>
+                      <span className='coma'>·</span>
+                      <span>1 bath</span>
+                    </div>
+                    <div>
+                      <img src='' alt='' />
+                    </div>
                   </RoomDetailsTop>
                   <RoomDetailsSections>
                     <ul>
                       <li>
-                        <i></i>
                         <div>
-                          <p>Self check-in</p>
-                          <span>Check yourself in with the keypad.</span>
+                          <MeetingRoomIcon />
                         </div>
+                        <BasicInfo>
+                          <p>Self check-in</p>
+                          <span>Check yourself in with the lockbox.</span>
+                        </BasicInfo>
                       </li>
                       <li>
-                        <i></i>
                         <div>
+                          <PetsIcon />
+                        </div>
+                        <BasicInfo>
                           <p>Furry friends welcome</p>
                           <span>Bring your pets along for the stay.</span>
-                        </div>
+                        </BasicInfo>
                       </li>
                       <li>
-                        <i></i>
                         <div>
+                          <TodayIcon />
+                        </div>
+                        <BasicInfo>
                           <p>Free cancellation before Oct. 6.</p>
                           <span></span>
-                        </div>
+                        </BasicInfo>
                       </li>
                     </ul>
                   </RoomDetailsSections>
                   <RoomDetailsSections>
-                    <p>
+                    <BasicIntro>
                       This private, rustic cottage, nestled on a ridge
                       overlooking the Jumping Pound Creek is your perfect
                       retreat getaway. With 300sq ft of interior living and
@@ -274,7 +292,7 @@ const Room = () => {
                       furnished and has been intentionally designed for a couple
                       who is looking to reconnect with one another and explore
                       the land around. Breakfast fixings are included.
-                    </p>
+                    </BasicIntro>
                     <ShowMoreBtn>
                       <span>Show more</span>
                       <ArrowForwardIosIcon sx={{ fontSize: '14px' }} />
@@ -290,22 +308,36 @@ const Room = () => {
                   </RoomDetailsSections>
                   <RoomDetailsSections id='viewAmenities'>
                     <h2>What this place offers</h2>
-                    <div>
-                      <i></i>
-                      <span>Garden view</span>
-                    </div>
-                    <div>
-                      <i></i>
-                      <span>Mountain view</span>
-                    </div>
-                    <div>
-                      <i></i>
-                      <span>Wifi</span>
-                    </div>
-                    <div>
-                      <i></i>
-                      <span>Kitchen</span>
-                    </div>
+                    <PlaceOffers>
+                      <PlaceOffersList>
+                        <KitchenIcon />
+                        <span>Kitchen</span>
+                      </PlaceOffersList>
+                      <PlaceOffersList>
+                        <WifiIcon />
+                        <span>Wifi</span>
+                      </PlaceOffersList>
+                      <PlaceOffersList>
+                        <LocalLaundryServiceIcon />
+                        <span>Washer</span>
+                      </PlaceOffersList>
+                      <PlaceOffersList>
+                        <TvIcon />
+                        <span>Tv</span>
+                      </PlaceOffersList>
+                      <PlaceOffersList>
+                        <MicrowaveIcon />
+                        <span>Microwave</span>
+                      </PlaceOffersList>
+                      <PlaceOffersList>
+                        <TvIcon />
+                        <span>Tv</span>
+                      </PlaceOffersList>
+                      <PlaceOffersList>
+                        <MicrowaveIcon />
+                        <span>Microwave</span>
+                      </PlaceOffersList>
+                    </PlaceOffers>
                     <ShowAllBtn>Show all 00 Amenities</ShowAllBtn>
                   </RoomDetailsSections>
                   <RoomDetailsSections>
@@ -321,8 +353,8 @@ const Room = () => {
                 <RoomSide loading={loading} RoomData={RoomData} />
               </RoomMainDetails>
               <RoomDetailsSections id='viewReviews'>
-                <h2>
-                  <StarIcon sx={{ fontSize: '16px' }} />
+                <h2 className='rating'>
+                  <StarIcon sx={{ fontSize: '24px', marginRight: '5px' }} />
                   <span>4.99 / 000 reviews</span>
                 </h2>
                 <div>Average graph</div>
@@ -362,13 +394,9 @@ const Room = () => {
                   </ThingsWrap>
                   <ThingsWrap>
                     <ThingsTitle>Safety & property</ThingsTitle>
-                    <ThingsList>
-                      Nearby lake, river, other body of water
-                    </ThingsList>
-                    <ThingsList>
-                      May encounter potentially dangerous animal
-                    </ThingsList>
                     <ThingsList>Carbon monoxide alarm</ThingsList>
+                    <ThingsList>Smoke alarm</ThingsList>
+                    <ThingsList>Must climb stairs</ThingsList>
                     <ShowMoreBtn>
                       <span>Show more</span>
                       <ArrowForwardIosIcon sx={{ fontSize: '14px' }} />
