@@ -124,6 +124,8 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
               </SearchTextBack>
               {(isCheckInDate || isCheckOutDate) && (
                 <SearchDateBox
+                  isCheckInDate={isCheckInDate}
+                  isCheckOutDate={isCheckOutDate}
                   setIsCheckInDate={setIsCheckInDate}
                   setIsCheckOutDate={setIsCheckOutDate}
                   toggleSearchModal={toggleSearchModal}

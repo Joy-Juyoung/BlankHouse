@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import MainCategories from './MainCategories';
 import MainListCard from './MainListCard';
 import {
@@ -23,12 +23,34 @@ const MainPage = () => {
   const [modalFilterShown, toggleFilterModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const [rooms, setRooms] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [error, setError] = useState();
+  const pageRef = useRef(null);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
     }, 680);
     return () => clearTimeout(timer);
   }, []);
+
+  const onIntersect = ([entry], observer) => {
+    if (entry.isIntersecting && !isLoading) {
+      observer.unobserve(entry.target);
+      // RoomData();
+      observer.observe(pageRef.current);
+    }
+  };
+
+  useEffect(() => {
+    if (!isLoading) {
+      const observer = new IntersectionObserver(onIntersect, { threshold: 1 });
+      if (pageRef.current) observer.observe(pageRef.current);
+      return () => observer && observer.disconnect();
+    }
+  }, [isLoading]);
 
   if (loading)
     return (
@@ -71,6 +93,7 @@ const MainPage = () => {
               );
             })}
           </MainMidWrap>
+          <div ref={pageRef}>{isLoading && 'Loading...'}</div>
         </MainMid>
       </MainWrap>
     </MainContainer>
