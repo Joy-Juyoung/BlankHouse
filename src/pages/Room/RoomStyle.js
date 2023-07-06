@@ -260,8 +260,8 @@ export const BasicInfo = styled.div`
   }
 `;
 
-export const BasicIntro = styled.p`
-  margin: 0;
+export const BasicIntro = styled.div`
+  margin-top: 10px;
 
   overflow: hidden;
   display: -webkit-box;

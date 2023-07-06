@@ -3,8 +3,20 @@ import styled from 'styled-components';
 export const ModalContainer = styled.div`
   max-width: 750px;
   /* max-height: 650px; */
-  /* margin: 40px; */
+  /* margin: 0 auto; */
   max-height: 780px;
+`;
+
+export const ModalWholeContainer = styled.div`
+  /* max-width: 750px;
+  margin: 0 auto;
+  max-height: 780px; */
+  /* max-height: 650px; */
+  max-width: 1120px;
+  height: 100vh;
+  margin: 0 auto;
+  /* margin-left: calc(-1 * var(--jaa-ni-h) / 2);
+  margin-right: calc(-1 * var(--jaa-ni-h) / 2); */
 `;
 
 export const ModalTop = styled.div`
@@ -27,6 +39,34 @@ export const ModalCloseBtn = styled.button`
   border: none;
   background: none;
   cursor: pointer;
+`;
+
+export const ModalRightBtns = styled.div`
+  display: flex;
+  align-items: center;
+  button {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    padding: 5px;
+    border-radius: 5px;
+
+    border: none;
+    background: none;
+    cursor: pointer;
+
+    &:active {
+      transform: translateY(4px);
+    }
+
+    span {
+      margin-left: 5px;
+    }
+
+    &:hover {
+      box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.1);
+    }
+  }
 `;
 
 export const ModalMain = styled.div`
@@ -253,4 +293,15 @@ export const PropertyWrpper = styled.div`
   &:hover {
     border: 2px solid #000;
   }
+`;
+
+// ----------------show more
+export const ModalMainContents = styled.div`
+  padding: 40px 20px;
+`;
+
+export const ModalPhotos = styled.div`
+  height: 100vh;
+  /* overflow-y: scroll; */
+  padding: 40px 20px;
 `;
