@@ -19,6 +19,14 @@ import {
   SelectInput,
   RoomSideText,
   RoomSideInside,
+  SideGuestInput,
+  SideGuestsInput,
+  GuestsDropdown,
+  GuestsInput,
+  DropBackDrop,
+  GuestsCount,
+  GuestsNotice,
+  GuestsCloseBtn,
 } from './RoomSideStyle';
 import StarIcon from '@mui/icons-material/Star';
 import { Skeleton } from '@mui/material';
@@ -26,25 +34,13 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import FlagIcon from '@mui/icons-material/Flag';
 import SubmitButton from '../../components/Buttons/SubmitButton';
+import RemoveIcon from '@mui/icons-material/Remove';
+import AddIcon from '@mui/icons-material/Add';
+import GuestDropdown from './GuestDropdown';
 
 const RoomSide = ({ loading, RoomData }) => {
-  const [mouseleft, setMouseleft] = useState(0);
-  const [mousetop, setMousetop] = useState(0);
-  const [hoverStyle, setHoverStyle] = useState({
-    mouseleft: 0,
-    mousetop: 0,
-  });
-
-  const handleMouseMove = (e) => {
-    setMouseleft(e.pageX - e.target.offsetLeft);
-    setMousetop(e.pageY - e.target.offsetTop);
-
-    // e.target.style.setProperty('--x', mouseleft + 'px');
-    // e.target.style.setProperty('--y', mousetop + 'px');
-
-    setHoverStyle({ mouseleft, mousetop });
-  };
-  console.log(' mouseleft, mousetop', mouseleft, mousetop);
+  const [isGuests, setIsGuests] = useState(false);
+  const [guestsNum, setGuestsNum] = useState(1);
 
   return (
     <RoomDetailSide>
@@ -90,25 +86,27 @@ const RoomSide = ({ loading, RoomData }) => {
                   <input type='date' />
                 </DateInput>
               </SideDateInput>
-              <SideSelectInput>
-                {/* <div> */}
-                <SelectInput>
+              <SideGuestsInput
+                onClick={() => setIsGuests(!isGuests)}
+                className={isGuests ? 'active' : ''}
+              >
+                <GuestsInput>
                   <span>GUESTS</span>
-                  <div>1 guest</div>
-                </SelectInput>
+                  <div>{guestsNum} guests</div>
+                </GuestsInput>
                 <ExpandMoreIcon />
-                {/* </div> */}
-              </SideSelectInput>
+                {isGuests && (
+                  <GuestDropdown
+                    setIsGuests={setIsGuests}
+                    guestsNum={guestsNum}
+                    setGuestsNum={setGuestsNum}
+                  />
+                )}
+              </SideGuestsInput>
             </RoomSideInputField>
-            {/* <RoomSideBtn
-              onMouseMove={handleMouseMove}
-              mouseleft={mouseleft}
-              mousetop={mousetop}
-              variant='contained'
-            > */}
+
             <SubmitButton />
-            {/* <span>Reserve</span>
-            </RoomSideBtn> */}
+
             <RoomSideText>You won't be charged yet</RoomSideText>
             <RoomSideOutput>
               <ul>

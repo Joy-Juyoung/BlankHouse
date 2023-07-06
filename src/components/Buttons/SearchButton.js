@@ -1,19 +1,30 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import SearchIcon from '@mui/icons-material/Search';
 
 const RoomSideBtn = styled.button`
   position: relative;
   border: none;
-  border-radius: 10px;
+  border-radius: 25px;
+  padding: 10px 20px;
+  margin: 5px 10px;
   background: #ffae00;
   color: #fff;
-  width: 100%;
+  /* width: 15%; */
   height: 48px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding-right: 10px; */
 
   overflow: hidden;
+
+  span {
+    margin-left: 3px;
+  }
 
   &:before {
     content: '';
@@ -33,12 +44,12 @@ const RoomSideBtn = styled.button`
   }
 
   &:hover:before {
-    width: 200px;
-    height: 200px;
+    width: 70px;
+    height: 100px;
   }
 `;
 
-const SubmitButton = ({ loading, RoomData }) => {
+const SearchButton = ({ loading, RoomData }) => {
   const [hoverStyle, setHoverStyle] = useState({
     left: 0,
     top: 0,
@@ -60,9 +71,10 @@ const SubmitButton = ({ loading, RoomData }) => {
       variant='contained'
       onMouseMove={handleMouseMove}
     >
-      <span>Reserve</span>
+      <SearchIcon fontSize='small' />
+      <span>Search</span>
     </RoomSideBtn>
   );
 };
 
-export default SubmitButton;
+export default SearchButton;

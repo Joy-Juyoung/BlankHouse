@@ -77,25 +77,142 @@ export const SideDateInput = styled.div`
 `;
 
 export const DateInput = styled.div`
-  padding: 10px;
+  padding: 10px 15px;
+  cursor: pointer;
+
+  input {
+    cursor: pointer;
+  }
 
   &.checkin {
     border-right: 1px solid #c4c4c4;
   }
 `;
 
-export const SideSelectInput = styled.div`
-  padding: 10px;
+export const SideGuestsInput = styled.div`
+  padding: 10px 15px;
   border-top: 1px solid #c4c4c4;
-  /* width: 100%; */
-
-  /* display: flex; */
   display: flex;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
+  z-index: 5;
+  position: relative;
+
+  &.active {
+    border: 2px solid #000;
+    border-radius: 10px;
+  }
 `;
 
-export const SelectInput = styled.div`
+// ---drop start
+
+export const DropBackDrop = styled.div`
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* background-color: rgba(0, 0, 0, 0.1); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 4;
+  cursor: auto;
+
+  overflow: hidden;
+`;
+
+export const GuestsDropdown = styled.div`
+  background: #fff;
+  padding: 10px;
+  /* width: 100%; */
+  position: absolute;
+  top: 70px;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  cursor: auto;
+
+  border-radius: 5px;
+  border: 1px solid #dddd;
+  box-shadow: 0px 10px 15px 2px rgba(0, 0, 0, 0.2);
+
+  ul {
+    list-style: none;
+    padding: 0 10px;
+  }
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  span {
+    font-weight: 400;
+    font-size: 14px;
+  }
+`;
+
+export const GuestsCount = styled.div`
+  display: flex;
+  align-items: center;
+
+  button {
+    border: 1px solid gray;
+    border-radius: 50%;
+    /* margin: 0 10px; */
+    width: 32px;
+    height: 32px;
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    cursor: pointer;
+
+    svg {
+      color: gray;
+    }
+  }
+  span {
+    width: 35px;
+    text-align: center;
+  }
+`;
+
+export const GuestsNotice = styled.div`
+  padding: 0 10px;
+
+  p {
+    margin: 0;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: normal;
+  }
+`;
+
+export const GuestsCloseBtn = styled.div`
+  text-decoration: underline;
+  text-align: right;
+  margin: 20px 10px;
+
+  span {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+  }
+`;
+
+// ---drop done
+
+export const GuestsInput = styled.div`
   width: 100%;
   /* display: flex;
   flex-direction: column; */
@@ -144,3 +261,19 @@ export const RoomSideReport = styled.div`
   text-align: center;
   width: 100%;
 `;
+
+// -----dropdown
+// export const GuestsDropdown = styled.div`
+//   background: #fff;
+//   padding: 10px;
+//   /* width: 100%; */
+//   position: absolute;
+//   z-index: 5;
+//   top: 69px;
+//   left: 0;
+//   right: 0;
+
+//   border-radius: 10px;
+//   border: 1px solid #dddd;
+//   box-shadow: 0px 10px 15px 2px rgba(0, 0, 0, 0.1);
+// `;
