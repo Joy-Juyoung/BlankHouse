@@ -104,11 +104,8 @@ export const RoomTopInfo = styled.div`
   span {
     a {
       color: #000;
-      margin-left: 5px;
+      /* margin-left: 5px; */
       margin-right: 10px;
-    }
-    &.space {
-      margin-left: 5px;
     }
   }
 
@@ -122,6 +119,10 @@ export const RoomTopInfo = styled.div`
     border: none;
     background: none;
     cursor: pointer;
+
+    &:active {
+      transform: translateY(4px);
+    }
 
     span {
       margin-left: 5px;
@@ -174,14 +175,37 @@ export const RoomMainDetailsWrap = styled.div`
   padding-right: 90px;
 `;
 
-export const RoomDetailsTop = styled.div``;
+export const RoomDetailsTop = styled.div`
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+
+  img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: green;
+    object-fit: cover;
+  }
+
+  /* span {
+    &.coma {
+      margin: 0 3px;
+    }
+  } */
+`;
 
 export const RoomDetailsSections = styled.div`
-  padding: 20px 0;
+  padding: 30px 0 10px 0;
   border-top: 1px solid #dddd;
 
   h2 {
     margin: 0;
+
+    &.rating {
+      display: flex;
+      align-items: center;
+    }
   }
 
   p {
@@ -190,11 +214,36 @@ export const RoomDetailsSections = styled.div`
 
   ul {
     padding: 0;
+    margin: 0;
     list-style: none;
   }
 
-  i {
+  li {
+    display: flex;
+    margin-bottom: 20px;
   }
+`;
+
+export const BasicInfo = styled.div`
+  margin-left: 15px;
+  p {
+    font-weight: 600;
+    font-size: 16px;
+  }
+  span {
+    font-size: 14px;
+    color: gray;
+  }
+`;
+
+export const BasicIntro = styled.p`
+  margin: 0;
+
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* number of lines to show */
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
 `;
 
 // ----side
@@ -389,7 +438,7 @@ export const ShowMoreBtn = styled.div`
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  margin: 15px 0;
+  margin: 20px 0;
 
   svg {
     margin-left: 10px;
@@ -402,16 +451,17 @@ export const ShowAllBtn = styled.button`
   background: none;
   font-size: 16px;
   padding: 10px 15px;
-  margin: 10px 0;
+  margin: 20px 0;
+  cursor: pointer;
 `;
 
 export const SleepWrap = styled.div`
   border: 1px solid #c4c4c4;
   border-radius: 10px;
-  padding: 10px 0 10px 20px;
+  padding: 10px 0 10px 30px;
   max-width: 120px;
   height: 120px;
-  margin-top: 20px;
+  margin: 20px 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -425,5 +475,22 @@ export const SleepWrap = styled.div`
   p {
     margin-top: 15px;
     font-weight: 600;
+  }
+`;
+
+export const PlaceOffers = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 15px;
+  margin: 20px 0 10px 0;
+`;
+
+export const PlaceOffersList = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+
+  svg {
+    margin-right: 15px;
   }
 `;

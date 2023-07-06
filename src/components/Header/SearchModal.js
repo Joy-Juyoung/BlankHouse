@@ -24,8 +24,8 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
 
   return (
     <HeaderModal
-      shown={modalSearchShown}
-      close={() => {
+      headershown={modalSearchShown}
+      headerclose={() => {
         toggleSearchModal(false);
       }}
     >
