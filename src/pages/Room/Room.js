@@ -40,6 +40,7 @@ import {
   BasicIntro,
   PlaceOffers,
   PlaceOffersList,
+  ShowPhotoBtn,
 } from './RoomStyle';
 import { RoomData } from '../MainHome/SampleData';
 import StarIcon from '@mui/icons-material/Star';
@@ -67,12 +68,18 @@ import KitchenIcon from '@mui/icons-material/Kitchen';
 import WifiIcon from '@mui/icons-material/Wifi';
 import TvIcon from '@mui/icons-material/Tv';
 import MicrowaveIcon from '@mui/icons-material/Microwave';
+import AppsIcon from '@mui/icons-material/Apps';
+import ShowMoreModal from '../../components/Modals/ShowMoreModal';
+import ShowPhotoModal from '../../components/Modals/ShowPhotoModal';
+import SmallReserveButton from '../../components/Buttons/SmallReserveButton';
 
 const Room = () => {
   const location = useLocation();
   const [fav, setFav] = useState(false);
   const [loading, setLoading] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [modalPhotoShown, togglePhotoModal] = useState(false);
+  const [modalAboutPlaceShown, toggleAboutPlaceModal] = useState(false);
 
   const handleClickScroll = (e) => {
     const goPhoto = document.getElementById('viewPhoto');
@@ -81,16 +88,12 @@ const Room = () => {
     const goLocation = document.getElementById('viewLocation');
 
     if (e.target.id === 'vPhoto' && goPhoto) {
-      // Will scroll smoothly to the top of the next section
       goPhoto.scrollIntoView({ top: 0, behavior: 'smooth' });
     } else if (e.target.id === 'vAmenities' && goAmenities) {
-      // Will scroll smoothly to the top of the next section
       goAmenities.scrollIntoView({ top: 80, behavior: 'smooth' });
     } else if (e.target.id === 'vReviews' && goReviews) {
-      // Will scroll smoothly to the top of the next section
       goReviews.scrollIntoView({ behavior: 'smooth' });
     } else if (e.target.id === 'vLocation' && goLocation) {
-      // Will scroll smoothly to the top of the next section
       goLocation.scrollIntoView({ behavior: 'smooth' });
     }
   };
@@ -127,7 +130,7 @@ const Room = () => {
         <RoomDetailHeader>
           <DetailHeader
             style={{
-              display: scrollPosition >= 2011.2 && 'flex',
+              display: scrollPosition >= 2033 && 'flex',
             }}
           >
             <DetailHeaderWrap>
@@ -144,8 +147,7 @@ const Room = () => {
                 Location
               </span>
             </DetailHeaderWrap>
-            {/* </DetailHeader> */}
-            {scrollPosition >= 1729 && (
+            {scrollPosition >= 2033 && (
               <DetailHeaderReserve>
                 <HeaderReserveWrap>
                   <ReservePrice>
@@ -162,7 +164,7 @@ const Room = () => {
                   </ReserveReview>
                 </HeaderReserveWrap>
 
-                <ReserveBtn>Reserve</ReserveBtn>
+                <SmallReserveButton />
               </DetailHeaderReserve>
             )}
           </DetailHeader>
@@ -206,32 +208,46 @@ const Room = () => {
                 <Skeleton
                   variant='rect'
                   animation='wave'
-                  sx={{ width: '100%', height: '560px', borderRadius: '10px' }}
+                  sx={{ width: '100%', height: '536px', borderRadius: '10px' }}
                 />
               </RoomPhotoMain>
               <RoomPhotoSub>
                 <Skeleton
                   variant='rect'
                   animation='wave'
-                  sx={{ width: '100%', height: '275px', borderRadius: '10px' }}
+                  sx={{ width: '100%', height: '263px', borderRadius: '10px' }}
                 />
                 <Skeleton
                   variant='rect'
                   animation='wave'
-                  sx={{ width: '100%', height: '275px', borderRadius: '10px' }}
+                  sx={{ width: '100%', height: '263px', borderRadius: '10px' }}
                 />
                 <Skeleton
                   variant='rect'
                   animation='wave'
-                  sx={{ width: '100%', height: '275px', borderRadius: '10px' }}
+                  sx={{ width: '100%', height: '263px', borderRadius: '10px' }}
                 />
                 <Skeleton
                   variant='rect'
                   animation='wave'
-                  sx={{ width: '100%', height: '275px', borderRadius: '10px' }}
+                  sx={{ width: '100%', height: '263px', borderRadius: '10px' }}
                 />
               </RoomPhotoSub>
+              <ShowPhotoBtn
+                onClick={() => {
+                  togglePhotoModal(!modalPhotoShown);
+                }}
+              >
+                <AppsIcon />
+                <span>Show all photos</span>
+              </ShowPhotoBtn>
             </RoomMainPhotos>
+            {/* About plce Modal Open */}
+            <ShowPhotoModal
+              togglePhotoModal={togglePhotoModal}
+              modalPhotoShown={modalPhotoShown}
+            />
+
             <RoomDetailSection>
               <RoomMainDetails>
                 <RoomMainDetailsWrap>
@@ -282,6 +298,7 @@ const Room = () => {
                     </ul>
                   </RoomDetailsSections>
                   <RoomDetailsSections>
+                    <h2>About this place</h2>
                     <BasicIntro>
                       This private, rustic cottage, nestled on a ridge
                       overlooking the Jumping Pound Creek is your perfect
@@ -293,11 +310,21 @@ const Room = () => {
                       who is looking to reconnect with one another and explore
                       the land around. Breakfast fixings are included.
                     </BasicIntro>
-                    <ShowMoreBtn>
+                    <ShowMoreBtn
+                      onClick={() => {
+                        toggleAboutPlaceModal(!modalAboutPlaceShown);
+                      }}
+                    >
                       <span>Show more</span>
                       <ArrowForwardIosIcon sx={{ fontSize: '14px' }} />
                     </ShowMoreBtn>
                   </RoomDetailsSections>
+                  {/* About plce Modal Open */}
+                  <ShowMoreModal
+                    toggleAboutPlaceModal={toggleAboutPlaceModal}
+                    modalAboutPlaceShown={modalAboutPlaceShown}
+                  />
+
                   <RoomDetailsSections>
                     <h2>Where you'll sleep</h2>
                     <SleepWrap>

@@ -53,7 +53,6 @@ const ModalContent = styled.div`
   @keyframes slide {
     100% {
       bottom: 10%;
-      /* top: 10%; */
     }
   }
 `;
