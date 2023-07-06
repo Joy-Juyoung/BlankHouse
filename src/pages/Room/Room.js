@@ -40,6 +40,7 @@ import {
   BasicIntro,
   PlaceOffers,
   PlaceOffersList,
+  ShowPhotoBtn,
 } from './RoomStyle';
 import { RoomData } from '../MainHome/SampleData';
 import StarIcon from '@mui/icons-material/Star';
@@ -67,6 +68,7 @@ import KitchenIcon from '@mui/icons-material/Kitchen';
 import WifiIcon from '@mui/icons-material/Wifi';
 import TvIcon from '@mui/icons-material/Tv';
 import MicrowaveIcon from '@mui/icons-material/Microwave';
+import AppsIcon from '@mui/icons-material/Apps';
 
 const Room = () => {
   const location = useLocation();
@@ -206,31 +208,35 @@ const Room = () => {
                 <Skeleton
                   variant='rect'
                   animation='wave'
-                  sx={{ width: '100%', height: '560px', borderRadius: '10px' }}
+                  sx={{ width: '100%', height: '536px', borderRadius: '10px' }}
                 />
               </RoomPhotoMain>
               <RoomPhotoSub>
                 <Skeleton
                   variant='rect'
                   animation='wave'
-                  sx={{ width: '100%', height: '275px', borderRadius: '10px' }}
+                  sx={{ width: '100%', height: '263px', borderRadius: '10px' }}
                 />
                 <Skeleton
                   variant='rect'
                   animation='wave'
-                  sx={{ width: '100%', height: '275px', borderRadius: '10px' }}
+                  sx={{ width: '100%', height: '263px', borderRadius: '10px' }}
                 />
                 <Skeleton
                   variant='rect'
                   animation='wave'
-                  sx={{ width: '100%', height: '275px', borderRadius: '10px' }}
+                  sx={{ width: '100%', height: '263px', borderRadius: '10px' }}
                 />
                 <Skeleton
                   variant='rect'
                   animation='wave'
-                  sx={{ width: '100%', height: '275px', borderRadius: '10px' }}
+                  sx={{ width: '100%', height: '263px', borderRadius: '10px' }}
                 />
               </RoomPhotoSub>
+              <ShowPhotoBtn>
+                <AppsIcon />
+                <span>Show all photos</span>
+              </ShowPhotoBtn>
             </RoomMainPhotos>
             <RoomDetailSection>
               <RoomMainDetails>

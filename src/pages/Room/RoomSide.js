@@ -1,19 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  RoomDetailsSections,
-  RoomDetailsTop,
-  RoomMainDetails,
-  RoomMainPhotos,
-  RoomMainSide,
-  RoomMainSideWrap,
-  RoomMainWrap,
-  RoomMainDetailsWrap,
-  RoomPhotoMain,
-  RoomPhotoSub,
-  RoomTopHeader,
-  RoomTopInfo,
-  RoomTopText,
-  RoomTopWrap,
   RoomDetailSide,
   RoomDetailSideWrap,
   RoomSideReserve,
@@ -33,14 +19,33 @@ import {
   SelectInput,
   RoomSideText,
   RoomSideInside,
-} from './RoomStyle';
+} from './RoomSideStyle';
 import StarIcon from '@mui/icons-material/Star';
 import { Skeleton } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import FlagIcon from '@mui/icons-material/Flag';
+import SubmitButton from '../../components/Buttons/SubmitButton';
 
 const RoomSide = ({ loading, RoomData }) => {
+  const [mouseleft, setMouseleft] = useState(0);
+  const [mousetop, setMousetop] = useState(0);
+  const [hoverStyle, setHoverStyle] = useState({
+    mouseleft: 0,
+    mousetop: 0,
+  });
+
+  const handleMouseMove = (e) => {
+    setMouseleft(e.pageX - e.target.offsetLeft);
+    setMousetop(e.pageY - e.target.offsetTop);
+
+    // e.target.style.setProperty('--x', mouseleft + 'px');
+    // e.target.style.setProperty('--y', mousetop + 'px');
+
+    setHoverStyle({ mouseleft, mousetop });
+  };
+  console.log(' mouseleft, mousetop', mouseleft, mousetop);
+
   return (
     <RoomDetailSide>
       <RoomDetailSideWrap>
@@ -95,9 +100,15 @@ const RoomSide = ({ loading, RoomData }) => {
                 {/* </div> */}
               </SideSelectInput>
             </RoomSideInputField>
-            <RoomSideBtn>
-              <button>Reserve</button>
-            </RoomSideBtn>
+            {/* <RoomSideBtn
+              onMouseMove={handleMouseMove}
+              mouseleft={mouseleft}
+              mousetop={mousetop}
+              variant='contained'
+            > */}
+            <SubmitButton />
+            {/* <span>Reserve</span>
+            </RoomSideBtn> */}
             <RoomSideText>You won't be charged yet</RoomSideText>
             <RoomSideOutput>
               <ul>
