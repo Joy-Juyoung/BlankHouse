@@ -50,10 +50,10 @@ const GuestFilterModal = ({ modalFilterShown, toggleFilterModal }) => {
   const [apartment, setApartment] = useState('');
   const [guesthouse, setGuesthouse] = useState('');
   const [hotel, setHotel] = useState('');
-  const [isPropetyClick1, setIsPropetyClick1] = useState(false);
-  const [isPropetyClick2, setIsPropetyClick2] = useState(false);
-  const [isPropetyClick3, setIsPropetyClick3] = useState(false);
-  const [isPropetyClick4, setIsPropetyClick4] = useState(false);
+  const [isPropertyClick1, setIsPropertyClick1] = useState(false);
+  const [isPropertyClick2, setIsPropertyClick2] = useState(false);
+  const [isPropertyClick3, setIsPropertyClick3] = useState(false);
+  const [isPropertyClick4, setIsPropertyClick4] = useState(false);
 
   const handleCheckedType = (e) => {
     console.log('checked type', e.target.value);
@@ -196,9 +196,9 @@ const GuestFilterModal = ({ modalFilterShown, toggleFilterModal }) => {
               <PropertyWrpper
                 onClick={() => {
                   setHouse('House');
-                  setIsPropetyClick1(!isPropetyClick1);
+                  setIsPropertyClick1(!isPropertyClick1);
                 }}
-                clicked={house && isPropetyClick1 ? true : false}
+                clicked={house && isPropertyClick1 ? true : false}
               >
                 <HomeIcon fontSize='large' />
                 <p>House</p>
@@ -206,9 +206,9 @@ const GuestFilterModal = ({ modalFilterShown, toggleFilterModal }) => {
               <PropertyWrpper
                 onClick={() => {
                   setApartment('Apartment');
-                  setIsPropetyClick2(!isPropetyClick2);
+                  setIsPropertyClick2(!isPropertyClick2);
                 }}
-                clicked={apartment && isPropetyClick2 ? true : false}
+                clicked={apartment && isPropertyClick2 ? true : false}
               >
                 <DomainIcon fontSize='large' />
                 <p>Apartment</p>
@@ -216,9 +216,9 @@ const GuestFilterModal = ({ modalFilterShown, toggleFilterModal }) => {
               <PropertyWrpper
                 onClick={() => {
                   setGuesthouse('Guesthouse');
-                  setIsPropetyClick3(!isPropetyClick3);
+                  setIsPropertyClick3(!isPropertyClick3);
                 }}
-                clicked={guesthouse && isPropetyClick3 ? true : false}
+                clicked={guesthouse && isPropertyClick3 ? true : false}
               >
                 <GiteIcon fontSize='large' />
                 <p>Guesthouse</p>
@@ -226,9 +226,9 @@ const GuestFilterModal = ({ modalFilterShown, toggleFilterModal }) => {
               <PropertyWrpper
                 onClick={() => {
                   setHotel('Hotel');
-                  setIsPropetyClick4(!isPropetyClick4);
+                  setIsPropertyClick4(!isPropertyClick4);
                 }}
-                clicked={hotel && isPropetyClick4 ? true : false}
+                clicked={hotel && isPropertyClick4 ? true : false}
               >
                 <LocationCityIcon fontSize='large' />
                 <p>Hotel</p>
