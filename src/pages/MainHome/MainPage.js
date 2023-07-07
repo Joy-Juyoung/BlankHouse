@@ -29,11 +29,13 @@ const MainPage = () => {
   const [error, setError] = useState();
   const pageRef = useRef(null);
 
+  // const [slideIndex, setSlideIndex] = useState([]);
+
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 680);
-    return () => clearTimeout(timer);
+    // const timer = setTimeout(() => {
+    //   setLoading(false);
+    // }, 680);
+    // return () => clearTimeout(timer);
   }, []);
 
   const onIntersect = ([entry], observer) => {

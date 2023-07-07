@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import StarIcon from '@mui/icons-material/Star';
@@ -18,6 +18,13 @@ import MainPhotoSlider from './MainPhotoSlider';
 
 const MainListCard = ({ room, loading }) => {
   const [fav, setFav] = useState(false);
+  const [slideIndex, setSlideIndex] = useState([]);
+
+  useEffect(() => {
+    setSlideIndex(room);
+  }, []);
+
+  // console.log('slideIndex', slideIndex?.photo);
 
   return (
     <>
@@ -70,11 +77,11 @@ const MainListCard = ({ room, loading }) => {
         </RoomsEach>
       ) : (
         <RoomsEach>
-          {room.photo.lenght > 1 ? (
-            <MainPhotoSlider room={room} />
-          ) : (
-            <RoomEachPhoto src={room.photo} alt='' />
-          )}
+          {/* {room.photo.lenght > 1 ? (
+            <MainPhotoSlider room={room} slideIndex={slideIndex} />
+          ) : ( */}
+          <RoomEachPhoto src={room.photo[0]} alt='' />
+          {/* )} */}
           <ToggleLike
             onClick={(e) => {
               e.preventDefault();
