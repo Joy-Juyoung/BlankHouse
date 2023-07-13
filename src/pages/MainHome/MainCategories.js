@@ -11,7 +11,7 @@ const CategoryIcons = styled.div`
   flex-direction: column;
   align-items: center;
   color: ${({ categorypick }) => (categorypick ? '#000' : 'gray')};
-  margin: 0 30px;
+  /* margin: 0 20px; */
 
   span {
     margin: 3px 0;

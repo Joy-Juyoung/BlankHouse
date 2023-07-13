@@ -18,13 +18,6 @@ import MainPhotoSlider from './MainPhotoSlider';
 
 const MainListCard = ({ room, loading }) => {
   const [fav, setFav] = useState(false);
-  const [slideIndex, setSlideIndex] = useState([]);
-
-  useEffect(() => {
-    setSlideIndex(room);
-  }, []);
-
-  // console.log('slideIndex', slideIndex?.photo);
 
   return (
     <>
@@ -77,11 +70,7 @@ const MainListCard = ({ room, loading }) => {
         </RoomsEach>
       ) : (
         <RoomsEach>
-          {/* {room.photo.lenght > 1 ? ( */}
-          <MainPhotoSlider room={room} slideIndex={slideIndex} />
-          {/* ) : ( */}
-          {/* <RoomEachPhoto src={room.photo[0]} alt='' /> */}
-          {/* )} */}
+          <MainPhotoSlider room={room} />
           <ToggleLike
             onClick={(e) => {
               e.preventDefault();

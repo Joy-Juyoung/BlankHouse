@@ -39,20 +39,25 @@ const SliderButton = styled.button`
   z-index: 2;
 `;
 
+const SliderImageWrap = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
 const SliderImage = styled.img`
   width: 100%;
   height: 100%;
   border-radius: 10px;
   object-fit: cover;
+  /* 
+  transition: transform 0.4s ease-in-out;
+  transform: translateX(${(props) => props.translateValue * 3}px); */
 `;
 
-const MainPhotoSlider = ({ room, slideIndex }) => {
+const MainPhotoSlider = ({ room }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const goToPrevSlide = () => {
-    // setCurrentIndex((prevIndex) =>
-    //   prevIndex === 0 ? room.photo.length - 1 : prevIndex - 1
-    // );
     setCurrentIndex((prevIndex) => {
       if (prevIndex === 0) {
         return prevIndex;
@@ -63,9 +68,6 @@ const MainPhotoSlider = ({ room, slideIndex }) => {
   };
 
   const goToNextSlide = () => {
-    // setCurrentIndex((prevIndex) =>
-    //   prevIndex === room.photo.length - 1 ? 0 : prevIndex + 1
-    // );
     setCurrentIndex((prevIndex) => {
       if (prevIndex === room.photo.length - 1) {
         return prevIndex;
@@ -74,6 +76,10 @@ const MainPhotoSlider = ({ room, slideIndex }) => {
       }
     });
   };
+
+  const translateValue = currentIndex * -100;
+
+  // console.log('translateValue', translateValue);
 
   return (
     <SliderContainer>
@@ -88,7 +94,13 @@ const MainPhotoSlider = ({ room, slideIndex }) => {
           <ArrowLeftIcon />
         </SliderButton>
       )}
-      <SliderImage src={room.photo[currentIndex]} alt='Slider' />
+      <SliderImageWrap>
+        <SliderImage
+          src={room.photo[currentIndex]}
+          alt='Slider'
+          translateValue={translateValue}
+        />
+      </SliderImageWrap>
       {currentIndex === room.photo.length - 1 ? null : (
         <SliderButton
           direction='right'
