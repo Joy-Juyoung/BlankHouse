@@ -16,11 +16,22 @@ export const allRooms = createAsyncThunk('rooms/all', async () => {
   return res.data;
 });
 
+export const getRoomById = createAsyncThunk(
+  'rooms/getRoomById',
+  async ({ id }) => {
+    const res = await roomsDataService.getById(id);
+    return res.data;
+  }
+);
+
 const roomsSlice = createSlice({
   name: 'rooms',
   initialState,
   extraReducers: {
     [allRooms.fulfilled]: (state, action) => {
+      return [...action.payload];
+    },
+    [getRoomById.fulfilled]: (state, action) => {
       return [...action.payload];
     },
   },

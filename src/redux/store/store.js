@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import roomsReducer from './redux/slices/rooms';
+import roomsReducer from '../slices/rooms';
 
 const reducer = {
   rooms: roomsReducer,

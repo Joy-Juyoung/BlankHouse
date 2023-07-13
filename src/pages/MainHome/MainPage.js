@@ -94,8 +94,8 @@ const MainPage = () => {
             {/* {RoomData.map((room, index) => { */}
             {rooms?.map((room, index) => {
               return (
-                <Link to='/room'>
-                  <MainListCard key={index} room={room} loading={loading} />
+                <Link key={index} to={`/room/${room?.pk}`}>
+                  <MainListCard room={room} loading={loading} />
                 </Link>
               );
             })}
