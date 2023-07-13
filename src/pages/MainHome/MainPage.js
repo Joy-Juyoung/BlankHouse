@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import MainCategories from './MainCategories';
 import MainListCard from './MainListCard';
 import {
@@ -19,32 +19,39 @@ import Loading from '../../components/Loading';
 import TuneIcon from '@mui/icons-material/Tune';
 import MainInfiniteScroll from './MainInfiniteScroll';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { allRooms } from '../../redux/slices/rooms';
+
 const MainPage = () => {
   // const location = useLocation();
   const [modalFilterShown, toggleFilterModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const [rooms, setRooms] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [page, setPage] = useState(1);
-  const [error, setError] = useState();
   const pageRef = useRef(null);
 
-  const onIntersect = ([entry], observer) => {
-    if (entry.isIntersecting && !isLoading) {
-      observer.unobserve(entry.target);
-      // RoomData();
-      observer.observe(pageRef.current);
-    }
-  };
+  const rooms = useSelector((state) => state.rooms);
+  const dispatch = useDispatch();
+
+  const initFetch = useCallback(() => {
+    dispatch(allRooms());
+  }, [dispatch]);
 
   useEffect(() => {
-    if (!isLoading) {
-      const observer = new IntersectionObserver(onIntersect, { threshold: 1 });
-      if (pageRef.current) observer.observe(pageRef.current);
-      return () => observer && observer.disconnect();
-    }
-  }, [isLoading]);
+    initFetch();
+  }, [initFetch]);
+
+  console.log('rooms', rooms);
+
+  useEffect(() => {
+    setLoading(true);
+    const loadData = async () => {
+      await new Promise((r) => setTimeout(r, 1000));
+      setLoading(false);
+    };
+    loadData();
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  }, []);
 
   if (loading)
     return (
@@ -80,10 +87,12 @@ const MainPage = () => {
             />
           </MainTopFilter>
         </MainTop>
+
         <MainMid>
           <MainMidWrap>
             {/* <MainInfiniteScroll RoomData={RoomData} /> */}
-            {RoomData.map((room, index) => {
+            {/* {RoomData.map((room, index) => { */}
+            {rooms?.map((room, index) => {
               return (
                 <Link to='/room'>
                   <MainListCard key={index} room={room} loading={loading} />

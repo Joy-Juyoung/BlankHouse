@@ -69,7 +69,7 @@ const MainPhotoSlider = ({ room }) => {
 
   const goToNextSlide = () => {
     setCurrentIndex((prevIndex) => {
-      if (prevIndex === room.photo.length - 1) {
+      if (prevIndex === room?.photos?.length - 1) {
         return prevIndex;
       } else {
         return prevIndex + 1;
@@ -77,7 +77,7 @@ const MainPhotoSlider = ({ room }) => {
     });
   };
 
-  const translateValue = currentIndex * -100;
+  // const translateValue = currentIndex * -100;
 
   // console.log('translateValue', translateValue);
 
@@ -96,12 +96,12 @@ const MainPhotoSlider = ({ room }) => {
       )}
       <SliderImageWrap>
         <SliderImage
-          src={room.photo[currentIndex]}
+          src={room?.photos[currentIndex]?.picture}
           alt='Slider'
-          translateValue={translateValue}
+          // translateValue={translateValue}
         />
       </SliderImageWrap>
-      {currentIndex === room.photo.length - 1 ? null : (
+      {currentIndex === room?.photos?.length - 1 ? null : (
         <SliderButton
           direction='right'
           onClick={(e) => {
