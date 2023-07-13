@@ -77,10 +77,10 @@ const MainListCard = ({ room, loading }) => {
         </RoomsEach>
       ) : (
         <RoomsEach>
-          {/* {room.photo.lenght > 1 ? (
-            <MainPhotoSlider room={room} slideIndex={slideIndex} />
-          ) : ( */}
-          <RoomEachPhoto src={room.photo[0]} alt='' />
+          {/* {room.photo.lenght > 1 ? ( */}
+          <MainPhotoSlider room={room} slideIndex={slideIndex} />
+          {/* ) : ( */}
+          {/* <RoomEachPhoto src={room.photo[0]} alt='' /> */}
           {/* )} */}
           <ToggleLike
             onClick={(e) => {

@@ -185,7 +185,7 @@ export const CategoryData = [
 export const RoomData = [
   {
     pk: 1,
-    photo: [Room1, Room3, Room4, Room5],
+    photo: [Room1, Room6, Room4, Room5],
     title: 'Golden, Canada',
     rating: '4.87',
     descripton: 'In Yoho National Park',
@@ -193,7 +193,7 @@ export const RoomData = [
   },
   {
     pk: 2,
-    photo: [Room1, Room3, Room4, Room5],
+    photo: [Room1],
     title: 'Golden, Canada',
     rating: '4.87',
     descripton: 'In Yoho National Park',

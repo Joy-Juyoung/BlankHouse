@@ -1,153 +1,107 @@
-// import React from 'react';
-// import { useState, useRef, useEffect } from 'react';
-// import styled from 'styled-components';
-// import { useParams } from 'react-router';
-// import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
-// import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
-// // import { ArrowLeftOutlined, ArrowRightOutlined } from '@material-ui/icons';
-// import DefaultImg from '../../assets/images/sorry.jpg';
-// import { RoomEachPhoto } from './MainStyle';
+import React from 'react';
+import { useState, useRef, useEffect } from 'react';
+import styled from 'styled-components';
+import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
-// const ImageSlide = styled.div`
-//   position: relative;
-//   width: 350px;
-//   /* width: 100%; */
-//   margin: auto;
-//   padding-bottom: 30px;
-// `;
+const SliderContainer = styled.div`
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  align-items: center;
+  width: 100%;
+  height: 75%;
+  /* object-fit: cover; */
+`;
 
-// const SlideBox = styled.div`
-//   position: relative;
-//   width: 100%;
-//   margin: auto;
-//   overflow-x: hidden;
-// `;
-// const SlideList = styled.div`
-//   width: 2800px;
-//   /* width: 100%; */
-//   overflow: hidden;
-// `;
+const SliderButton = styled.button`
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  margin: auto;
+  border-radius: 50%;
+  opacity: 0.5;
 
-// const SlideContent = styled.div`
-//   display: table;
-//   float: left;
-//   width: 350px;
-//   height: 300px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: ${(props) => props.direction === 'left' && '10px'};
+  right: ${(props) => props.direction === 'right' && '10px'};
+  z-index: 2;
+`;
 
-//   img {
-//     /* height: 70%; */
-//   }
-// `;
+const SliderImage = styled.img`
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+`;
 
-// const ButtonPrev = styled.button`
-//   position: absolute;
-//   top: 150px;
-//   border: none;
-//   padding-top: 5px;
-//   background: none;
-//   vertical-align: middle;
-//   cursor: pointer;
-//   z-index: 4;
+const MainPhotoSlider = ({ room, slideIndex }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-//   svg {
-//     width: 40px;
-//     height: 40px;
-//     cursor: pointer;
-//   }
-// `;
+  const goToPrevSlide = () => {
+    // setCurrentIndex((prevIndex) =>
+    //   prevIndex === 0 ? room.photo.length - 1 : prevIndex - 1
+    // );
+    setCurrentIndex((prevIndex) => {
+      if (prevIndex === 0) {
+        return prevIndex;
+      } else {
+        return prevIndex - 1;
+      }
+    });
+  };
 
-// const ButtonNext = styled.button`
-//   position: absolute;
-//   top: 150px;
-//   padding-top: 5px;
-//   background: none;
-//   vertical-align: middle;
-//   right: 5px;
-//   border: none;
-//   transition: all ease 0.5s;
-//   cursor: pointer;
-//   z-index: 4;
+  const goToNextSlide = () => {
+    // setCurrentIndex((prevIndex) =>
+    //   prevIndex === room.photo.length - 1 ? 0 : prevIndex + 1
+    // );
+    setCurrentIndex((prevIndex) => {
+      if (prevIndex === room.photo.length - 1) {
+        return prevIndex;
+      } else {
+        return prevIndex + 1;
+      }
+    });
+  };
 
-//   svg {
-//     width: 40px;
-//     height: 40px;
-//     cursor: pointer;
-//   }
-// `;
+  return (
+    <SliderContainer>
+      {currentIndex === 0 ? null : (
+        <SliderButton
+          direction='left'
+          onClick={(e) => {
+            e.preventDefault();
+            goToPrevSlide();
+          }}
+        >
+          <ArrowLeftIcon />
+        </SliderButton>
+      )}
+      <SliderImage src={room.photo[currentIndex]} alt='Slider' />
+      {currentIndex === room.photo.length - 1 ? null : (
+        <SliderButton
+          direction='right'
+          onClick={(e) => {
+            e.preventDefault();
+            goToNextSlide();
+          }}
+        >
+          <ArrowRightIcon />
+        </SliderButton>
+      )}
+    </SliderContainer>
+  );
+};
 
-// const MainPhotoSlider = ({ slideIndex }) => {
-//   // const [slideIndex, setSlideIndex] = useState([]);
-//   const [slideInd, setSlideInd] = useState(0);
-//   const slideRef = useRef(null);
-//   const IMG_WIDTH = 350;
-//   const slideRange = slideInd * IMG_WIDTH;
-
-//   const TOTAL_SLIDES = slideIndex?.photo?.length - 1;
-
-//   useEffect(() => {
-//     slideRef.current.style.transition = 'all 0.5s ease-in-out';
-//     slideRef.current.style.transform = `translateX(-${slideRange}px)`;
-//   }, [slideInd]);
-
-//   const moveToNextSlide = () => {
-//     if (slideInd >= TOTAL_SLIDES) {
-//       // 더 이상 넘어갈 슬라이드가 없으면
-//       setSlideInd(0); // 1번째 사진으로 넘어갑니다.
-//       // return;  // 클릭이 작동하지 않습니다.
-//     } else {
-//       setSlideInd(slideInd + 1);
-//     }
-//   };
-//   // Prev 버튼 클릭 시
-//   const moveToPrevSlide = () => {
-//     if (slideInd === 0) {
-//       setSlideInd(TOTAL_SLIDES); // 마지막 사진으로 넘어갑니다.
-//       // return;  // 클릭이 작동하지 않습니다.
-//     } else {
-//       setSlideInd(slideInd - 1);
-//     }
-//   };
-
-//   console.log('slideIndex', slideIndex?.photo);
-
-//   return (
-//     <ImageSlide>
-//       <SlideBox>
-//         <>
-//           <SlideList ref={slideRef}>
-//             {slideIndex?.photo?.map((image, no) => {
-//               return (
-//                 <SlideContent key={no}>
-//                   {/* <picture> */}
-//                   <RoomEachPhoto src={image} alt='' />
-//                   {/* </picture> */}
-//                 </SlideContent>
-//               );
-//             })}
-//           </SlideList>
-//           <ButtonPrev
-//             onClick={(e) => {
-//               e.preventDefault();
-//               moveToPrevSlide();
-//             }}
-//           >
-//             <ArrowCircleLeftIcon fontSize='large' />
-//           </ButtonPrev>
-//           <ButtonNext
-//             onClick={(e) => {
-//               e.preventDefault();
-//               moveToNextSlide();
-//             }}
-//           >
-//             <ArrowCircleRightIcon fontSize='large' />
-//           </ButtonNext>
-//         </>
-//         {/* )}
-//           </> */}
-//         {/* )} */}
-//       </SlideBox>
-//     </ImageSlide>
-//   );
-// };
-
-// export default MainPhotoSlider;
+export default MainPhotoSlider;
