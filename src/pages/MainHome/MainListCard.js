@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import StarIcon from '@mui/icons-material/Star';
@@ -70,11 +70,7 @@ const MainListCard = ({ room, loading }) => {
         </RoomsEach>
       ) : (
         <RoomsEach>
-          {room.photo.lenght > 1 ? (
-            <MainPhotoSlider room={room} />
-          ) : (
-            <RoomEachPhoto src={room.photo} alt='' />
-          )}
+          <MainPhotoSlider room={room} />
           <ToggleLike
             onClick={(e) => {
               e.preventDefault();

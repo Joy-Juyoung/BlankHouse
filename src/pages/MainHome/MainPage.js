@@ -12,11 +12,12 @@ import {
   MainWrap,
 } from './MainStyle';
 import GuestFilterModal from '../../components/Modals/GuestFilterModal';
-import { RoomData } from './SampleData';
+import { RoomData, CategoryData } from './SampleData';
 import CategorySlider from './CategorySlider';
 import { Link, useLocation } from 'react-router-dom';
 import Loading from '../../components/Loading';
 import TuneIcon from '@mui/icons-material/Tune';
+import MainInfiniteScroll from './MainInfiniteScroll';
 
 const MainPage = () => {
   // const location = useLocation();
@@ -28,13 +29,6 @@ const MainPage = () => {
   const [page, setPage] = useState(1);
   const [error, setError] = useState();
   const pageRef = useRef(null);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 680);
-    return () => clearTimeout(timer);
-  }, []);
 
   const onIntersect = ([entry], observer) => {
     if (entry.isIntersecting && !isLoading) {
@@ -64,7 +58,11 @@ const MainPage = () => {
       <MainWrap>
         <MainTop>
           <MainTopCategory>
-            <CategorySlider loading={loading} />
+            <CategorySlider
+              loading={loading}
+              CategoryData={CategoryData}
+              visibleItems={15}
+            />
           </MainTopCategory>
           <MainTopFilter>
             <FilterBtn
@@ -84,7 +82,7 @@ const MainPage = () => {
         </MainTop>
         <MainMid>
           <MainMidWrap>
-            {/* Data Map and display Main List Cart */}
+            {/* <MainInfiniteScroll RoomData={RoomData} /> */}
             {RoomData.map((room, index) => {
               return (
                 <Link to='/room'>
