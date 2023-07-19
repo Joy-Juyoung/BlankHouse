@@ -67,7 +67,9 @@ export const FilterBtn = styled.div`
   cursor: pointer;
   font-size: 14px;
   border: 1px solid lightgray;
+  background: #fff;
   padding: 15px;
+  /* margin-left: 10px; */
   border-radius: 5px;
 
   display: flex;

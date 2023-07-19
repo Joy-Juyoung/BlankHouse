@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import MainCategories from './MainCategories';
 import MainListCard from './MainListCard';
 import {
@@ -12,22 +12,45 @@ import {
   MainWrap,
 } from './MainStyle';
 import GuestFilterModal from '../../components/Modals/GuestFilterModal';
-import { RoomData } from './SampleData';
+import { RoomData, CategoryData } from './SampleData';
 import CategorySlider from './CategorySlider';
 import { Link, useLocation } from 'react-router-dom';
 import Loading from '../../components/Loading';
 import TuneIcon from '@mui/icons-material/Tune';
+import MainInfiniteScroll from './MainInfiniteScroll';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { allRooms } from '../../redux/slices/rooms';
 
 const MainPage = () => {
   // const location = useLocation();
   const [modalFilterShown, toggleFilterModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const [isLoading, setIsLoading] = useState(false);
+  const pageRef = useRef(null);
+
+  const rooms = useSelector((state) => state.rooms);
+  const dispatch = useDispatch();
+
+  const initFetch = useCallback(() => {
+    dispatch(allRooms());
+  }, [dispatch]);
+
   useEffect(() => {
-    const timer = setTimeout(() => {
+    initFetch();
+  }, [initFetch]);
+
+  console.log('rooms', rooms);
+
+  useEffect(() => {
+    setLoading(true);
+    const loadData = async () => {
+      await new Promise((r) => setTimeout(r, 1000));
       setLoading(false);
-    }, 680);
-    return () => clearTimeout(timer);
+    };
+    loadData();
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, []);
 
   if (loading)
@@ -42,7 +65,11 @@ const MainPage = () => {
       <MainWrap>
         <MainTop>
           <MainTopCategory>
-            <CategorySlider loading={loading} />
+            <CategorySlider
+              loading={loading}
+              CategoryData={CategoryData}
+              visibleItems={15}
+            />
           </MainTopCategory>
           <MainTopFilter>
             <FilterBtn
@@ -60,17 +87,20 @@ const MainPage = () => {
             />
           </MainTopFilter>
         </MainTop>
+
         <MainMid>
           <MainMidWrap>
-            {/* Data Map and display Main List Cart */}
-            {RoomData.map((room, index) => {
+            {/* <MainInfiniteScroll RoomData={RoomData} /> */}
+            {/* {RoomData.map((room, index) => { */}
+            {rooms?.map((room, index) => {
               return (
-                <Link to='/room'>
-                  <MainListCard key={index} room={room} loading={loading} />
+                <Link key={index} to={`/room/${room?.pk}`}>
+                  <MainListCard room={room} loading={loading} />
                 </Link>
               );
             })}
           </MainMidWrap>
+          <div ref={pageRef}>{isLoading && 'Loading...'}</div>
         </MainMid>
       </MainWrap>
     </MainContainer>

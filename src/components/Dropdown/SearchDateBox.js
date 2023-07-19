@@ -6,6 +6,7 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers-pro';
 import { AdapterDayjs } from '@mui/x-date-pickers-pro/AdapterDayjs';
 import { DateRangeCalendar } from '@mui/x-date-pickers-pro/DateRangeCalendar';
+import DateRange from '../DateRange';
 
 const SearchDateDropdown = styled.div`
   background: #fff;
@@ -13,8 +14,8 @@ const SearchDateDropdown = styled.div`
   /* width: 100%; */
   position: absolute;
   top: 70px;
-  left: 0;
-  right: 0;
+  left: 50px;
+  right: 50px;
   /* right: -100px; */
   z-index: 5;
   cursor: auto;
@@ -49,6 +50,8 @@ const SearchDateBox = ({
   setIsCheckInDate,
   setIsCheckOutDate,
   toggleSearchModal,
+  isCheckInDate,
+  isCheckOutDate,
 }) => {
   return (
     <>
@@ -58,11 +61,15 @@ const SearchDateBox = ({
         }}
       >
         <SearchDateBoxWrap>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
+          {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={['DateRangeCalendar']}>
               <DateRangeCalendar />
             </DemoContainer>
-          </LocalizationProvider>
+          </LocalizationProvider> */}
+          <DateRange
+            isCheckInDate={isCheckInDate}
+            isCheckOutDate={isCheckOutDate}
+          />
         </SearchDateBoxWrap>
       </SearchDateDropdown>
       <SearchDropBackDrop onClick={() => toggleSearchModal(false)} />

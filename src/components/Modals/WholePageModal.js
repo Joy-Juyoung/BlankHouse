@@ -33,12 +33,18 @@ const ModalContent = styled.div`
   /* border-radius: 10px; */
   overflow: clip;
   position: relative;
-  bottom: 0;
+  bottom: -100%;
 
   transition: all 0.3s ease-out;
   animation: wslide 0.4s forwards;
 
   @keyframes wslide {
+    /* 0% {
+      bottom: -100%;
+    }
+    50% {
+      bottom: -50%;
+    } */
     100% {
       bottom: 0;
     }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import StarIcon from '@mui/icons-material/Star';
@@ -18,6 +18,13 @@ import MainPhotoSlider from './MainPhotoSlider';
 
 const MainListCard = ({ room, loading }) => {
   const [fav, setFav] = useState(false);
+
+  const handleLiked = (pk) => {
+    if (room) {
+      // var tempAllRooms = room;
+      setFav(!fav);
+    }
+  };
 
   return (
     <>
@@ -70,15 +77,12 @@ const MainListCard = ({ room, loading }) => {
         </RoomsEach>
       ) : (
         <RoomsEach>
-          {room.photo.lenght > 1 ? (
-            <MainPhotoSlider room={room} />
-          ) : (
-            <RoomEachPhoto src={room.photo} alt='' />
-          )}
+          <MainPhotoSlider room={room} />
           <ToggleLike
             onClick={(e) => {
               e.preventDefault();
-              setFav(!fav);
+              // setFav(!fav);
+              handleLiked(room?.pk);
             }}
           >
             <RoomLike>
@@ -92,15 +96,20 @@ const MainListCard = ({ room, loading }) => {
 
           <RoomEachDetails>
             <RoomTitle>
-              <p>{room.title}</p>
+              {room?.name?.length > 20 ? (
+                <p>{room?.name?.substring(0, 30)}...</p>
+              ) : (
+                <p>{room?.name}</p>
+              )}
+              {/* <p>{room?.name}</p> */}
               <RoomRating>
                 <StarIcon sx={{ fontSize: '16px' }} />
-                <span>{room.rating}</span>
+                <span>{room?.rating}</span>
               </RoomRating>
             </RoomTitle>
-            <RoomDesc>{room.descripton}</RoomDesc>
+            <RoomDesc>{room?.house_type}</RoomDesc>
             <RoomPrice>
-              <p>${room.price}</p>
+              <p>${room?.price}</p>
               <span>night</span>
             </RoomPrice>
           </RoomEachDetails>

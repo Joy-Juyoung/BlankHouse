@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { MainContainer, MainTop, MainWrap } from '../MainHome/MainStyle';
 import {
   RoomDetailsSections,
@@ -72,6 +72,9 @@ import AppsIcon from '@mui/icons-material/Apps';
 import ShowMoreModal from '../../components/Modals/ShowMoreModal';
 import ShowPhotoModal from '../../components/Modals/ShowPhotoModal';
 import SmallReserveButton from '../../components/Buttons/SmallReserveButton';
+import { useDispatch, useSelector } from 'react-redux';
+import { getRoomById } from '../../redux/slices/rooms';
+import roomsDataService from '../../redux/services/RoomsService';
 
 const Room = () => {
   const location = useLocation();
@@ -80,6 +83,26 @@ const Room = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [modalPhotoShown, togglePhotoModal] = useState(false);
   const [modalAboutPlaceShown, toggleAboutPlaceModal] = useState(false);
+
+  const [roomData, setRoomData] = useState('');
+  const { roomId } = useParams();
+
+  const getRoom = (id) => {
+    roomsDataService
+      .getById(id)
+      .then((response) => {
+        setRoomData(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  useEffect(() => {
+    if (roomId) getRoom(roomId);
+  }, [roomId]);
+
+  console.log('roomData', roomData);
 
   const handleClickScroll = (e) => {
     const goPhoto = document.getElementById('viewPhoto');
@@ -156,7 +179,7 @@ const Room = () => {
                   </ReservePrice>
                   <ReserveReview>
                     <StarIcon sx={{ fontSize: '16px' }} />
-                    <span>{RoomData[0].rating}</span>
+                    <span>{roomData?.rating}</span>
                     <span className='space'>•</span>
                     <span>
                       <Link href=''>000 Reviews</Link>
@@ -173,16 +196,16 @@ const Room = () => {
       <MainContainer pagesmall={true}>
         <MainWrap>
           <RoomTopWrap id='viewPhoto'>
-            <RoomTopHeader>{RoomData[0].title}</RoomTopHeader>
+            <RoomTopHeader>{roomData?.name}</RoomTopHeader>
             <RoomTopText>
               <RoomTopInfo>
                 <StarIcon sx={{ fontSize: '16px' }} />
-                <span>{RoomData[0].rating}</span>
+                <span>{roomData?.rating}</span>
                 <span className='coma'>·</span>
                 <span>
                   <Link href=''>000 Reviews</Link>
                 </span>
-                <span>{RoomData[0].descripton}</span>
+                <span>{roomData?.category?.name}</span>
               </RoomTopInfo>
               <RoomTopInfo>
                 <button>
