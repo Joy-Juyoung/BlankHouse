@@ -14,6 +14,7 @@ import {
   ToggleLike,
 } from './MainStyle';
 import { Skeleton } from '@mui/material';
+import MainPhotoSlider from './MainPhotoSlider';
 
 const MainListCard = ({ room, loading }) => {
   const [fav, setFav] = useState(false);
@@ -69,7 +70,11 @@ const MainListCard = ({ room, loading }) => {
         </RoomsEach>
       ) : (
         <RoomsEach>
-          <RoomEachPhoto src={room.photo} alt='' />
+          {room.photo.lenght > 1 ? (
+            <MainPhotoSlider room={room} />
+          ) : (
+            <RoomEachPhoto src={room.photo} alt='' />
+          )}
           <ToggleLike
             onClick={(e) => {
               e.preventDefault();

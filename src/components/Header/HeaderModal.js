@@ -17,41 +17,25 @@ const ModalBackDrop = styled.div`
 const ModalContent = styled.div`
   position: fixed;
   top: -160px;
-  /* left: 0;
-  right: 0; */
   background-color: #fff;
-  /* width: 100px; */
   width: 100%;
   height: 160px;
   z-index: 4;
+  transition: all 0.3s ease-out;
+  animation: headerslide 0.3s forwards;
 
-  -webkit-animation: slide 0.3s forwards;
-  /* -webkit-animation-delay: 2s; */
-  animation: slide 0.3s forwards;
-  /* animation-delay: 2s; */
-
-  @-webkit-keyframes slide {
+  @keyframes headerslide {
     100% {
       top: 0;
-      left: 0;
-      right: 0;
-    }
-  }
-
-  @keyframes slide {
-    100% {
-      top: 0;
-      left: 0;
-      right: 0;
     }
   }
 `;
 
-const HeaderModal = ({ children, shown, close }) => {
-  return shown ? (
+const HeaderModal = ({ children, headershown, headerclose }) => {
+  return headershown ? (
     <ModalBackDrop
       onClick={() => {
-        close();
+        headerclose();
       }}
     >
       <ModalContent

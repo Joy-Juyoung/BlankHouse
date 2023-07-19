@@ -9,6 +9,8 @@ export const HeaderContrainer = styled.div`
 
   a {
     text-decoration: none;
+    color: #000;
+    cursor: pointer;
   }
 
   @media screen and (max-width: 1280px) {
@@ -148,6 +150,7 @@ export const CountrySetting = styled.div`
 export const UserSetting = styled.div`
   display: flex;
   align-items: center;
+  /* justify-content: center; */
   cursor: pointer;
   margin-left: 5px;
 
@@ -156,7 +159,7 @@ export const UserSetting = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px;
+  padding: 8px 10px;
 
   &:hover {
     box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.1);
@@ -164,8 +167,12 @@ export const UserSetting = styled.div`
 `;
 
 export const LogBtn = styled.button`
+  display: flex;
+  align-items: center;
+
   border: none;
   background: none;
   text-decoration: none;
   cursor: pointer;
+  padding: 0;
 `;

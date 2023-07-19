@@ -104,11 +104,8 @@ export const RoomTopInfo = styled.div`
   span {
     a {
       color: #000;
-      margin-left: 5px;
+      /* margin-left: 5px; */
       margin-right: 10px;
-    }
-    &.space {
-      margin-left: 5px;
     }
   }
 
@@ -122,6 +119,10 @@ export const RoomTopInfo = styled.div`
     border: none;
     background: none;
     cursor: pointer;
+
+    &:active {
+      transform: translateY(4px);
+    }
 
     span {
       margin-left: 5px;
@@ -137,20 +138,44 @@ export const RoomMainWrap = styled.div``;
 
 export const RoomMainPhotos = styled.div`
   padding-top: 10px;
-
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 10px;
+
+  position: relative;
 `;
 
 export const RoomPhotoMain = styled.div`
-  height: 560px;
+  height: 535px;
 `;
 
 export const RoomPhotoSub = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 10px;
+
+  /* position: relative; */
+`;
+
+export const ShowPhotoBtn = styled.div`
+  border: 1px solid #000;
+  background: #fff;
+  border-radius: 10px;
+  /* background: none; */
+  font-size: 16px;
+  padding: 7px 15px;
+  /* margin: 20px 0; */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+
+  svg {
+    margin-right: 5px;
+  }
 `;
 
 export const RoomDetailSection = styled.div`
@@ -174,14 +199,37 @@ export const RoomMainDetailsWrap = styled.div`
   padding-right: 90px;
 `;
 
-export const RoomDetailsTop = styled.div``;
+export const RoomDetailsTop = styled.div`
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+
+  img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: green;
+    object-fit: cover;
+  }
+
+  /* span {
+    &.coma {
+      margin: 0 3px;
+    }
+  } */
+`;
 
 export const RoomDetailsSections = styled.div`
-  padding: 20px 0;
+  padding: 30px 0 10px 0;
   border-top: 1px solid #dddd;
 
   h2 {
     margin: 0;
+
+    &.rating {
+      display: flex;
+      align-items: center;
+    }
   }
 
   p {
@@ -190,171 +238,36 @@ export const RoomDetailsSections = styled.div`
 
   ul {
     padding: 0;
-    list-style: none;
-  }
-
-  i {
-  }
-`;
-
-// ----side
-
-export const RoomDetailSide = styled.div`
-  flex: 1;
-  position: relative;
-  /* width: 100%; */
-`;
-
-export const RoomDetailSideWrap = styled.div`
-  /* width: 320px; */
-  position: sticky;
-  top: 128px;
-  width: 100%;
-  /* width: 100%; */
-  /* padding-left: 70px; */
-`;
-
-export const RoomSideReserve = styled.div`
-  width: 100%;
-  /* height: 555px; */
-  /* background: #fff; */
-  border-radius: 10px;
-  border: 1px solid #dddd;
-  box-shadow: 0px 10px 15px 2px rgba(0, 0, 0, 0.1);
-
-  /* padding: 20px; */
-`;
-
-export const RoomSideInside = styled.div`
-  /* width: 100%; */
-  /* height: 555px; */
-  padding: 20px;
-`;
-
-export const RoomSideTop = styled.div``;
-
-export const SideTopPrice = styled.div`
-  display: flex;
-  align-items: center;
-  /* padding: 20px; */
-
-  h2 {
     margin: 0;
-  }
-
-  span {
-    margin-left: 5px;
-  }
-`;
-
-export const SideTopInfo = styled.div`
-  display: flex;
-  align-items: center;
-
-  &.space {
-    margin: 0 5px;
-  }
-`;
-
-export const RoomSideInputField = styled.div`
-  border: 1px solid #c4c4c4;
-  border-radius: 10px;
-  margin: 20px 0;
-  /* width: 100%; */
-  /* padding: 10px; */
-
-  span {
-    font-size: 11px;
-    font-weight: 600;
-  }
-`;
-
-export const SideDateInput = styled.div`
-  display: flex;
-`;
-
-export const DateInput = styled.div`
-  padding: 10px;
-
-  &.checkin {
-    border-right: 1px solid #c4c4c4;
-  }
-`;
-
-export const SideSelectInput = styled.div`
-  padding: 10px;
-  border-top: 1px solid #c4c4c4;
-  /* width: 100%; */
-
-  /* display: flex; */
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-export const SelectInput = styled.div`
-  width: 100%;
-  /* display: flex;
-  flex-direction: column; */
-  /* justify-content: space-between; */
-`;
-
-export const RoomSideBtn = styled.div`
-  /* margin-top: 20px; */
-  button {
-    border: none;
-    border-radius: 10px;
-    background: #ffae00;
-    color: #fff;
-    width: 100%;
-    height: 48px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-  }
-`;
-
-export const RoomSideText = styled.div`
-  margin: 20px 0;
-  text-align: center;
-  /* font-weight: lighter; */
-`;
-
-export const RoomSideOutput = styled.div`
-  ul {
     list-style: none;
-    padding: 0;
   }
 
   li {
     display: flex;
-    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+`;
+
+export const BasicInfo = styled.div`
+  margin-left: 15px;
+  p {
+    font-weight: 600;
     font-size: 16px;
-    margin-bottom: 15px;
+  }
+  span {
+    font-size: 14px;
+    color: gray;
   }
 `;
 
-export const SideOutput = styled.div`
-  &.outputName {
-    text-decoration: underline;
-  }
-`;
+export const BasicIntro = styled.div`
+  margin-top: 10px;
 
-export const RoomSideTotal = styled.div`
-  font-size: 18px;
-  display: flex;
-  justify-content: space-between;
-  border-top: 1px solid #dddd;
-  padding-top: 15px;
-`;
-
-export const SideTotal = styled.div``;
-
-export const RoomSideReport = styled.div`
-  padding: 25px 0;
-  /* margin: 0 auto; */
-  text-align: center;
-  width: 100%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* number of lines to show */
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
 `;
 
 export const ThingsToKnow = styled.div`
@@ -389,7 +302,7 @@ export const ShowMoreBtn = styled.div`
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  margin: 15px 0;
+  margin: 20px 0;
 
   svg {
     margin-left: 10px;
@@ -402,16 +315,17 @@ export const ShowAllBtn = styled.button`
   background: none;
   font-size: 16px;
   padding: 10px 15px;
-  margin: 10px 0;
+  margin: 20px 0;
+  cursor: pointer;
 `;
 
 export const SleepWrap = styled.div`
   border: 1px solid #c4c4c4;
   border-radius: 10px;
-  padding: 10px 0 10px 20px;
+  padding: 10px 0 10px 30px;
   max-width: 120px;
   height: 120px;
-  margin-top: 20px;
+  margin: 20px 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -425,5 +339,22 @@ export const SleepWrap = styled.div`
   p {
     margin-top: 15px;
     font-weight: 600;
+  }
+`;
+
+export const PlaceOffers = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 15px;
+  margin: 20px 0 10px 0;
+`;
+
+export const PlaceOffersList = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+
+  svg {
+    margin-right: 15px;
   }
 `;

@@ -27,6 +27,15 @@ export const SearchModalNavWrap = styled.div`
 export const SearchNavbar = styled.div`
   border-bottom: ${({ guestmode }) => (guestmode ? '2px solid #000' : '')};
   padding-bottom: 5px;
+
+  &:active {
+    /* animation: shake 0.5s forwards;
+    @keyframes shake {
+      100% { */
+    transform: translateY(4px);
+    /* } */
+    /* } */
+  }
 `;
 
 export const SearchField = styled.div`
@@ -46,6 +55,7 @@ export const SearchWrap = styled.div`
   cursor: pointer;
 
   width: 100%;
+  position: relative;
 `;
 
 export const SearchSection = styled.div`
@@ -55,6 +65,7 @@ export const SearchSection = styled.div`
   width: 100%;
   height: 100%;
   /* margin: auto 0; */
+  /* position: relative; */
 `;
 
 export const SearchTextBack = styled.div`
@@ -63,6 +74,7 @@ export const SearchTextBack = styled.div`
   padding: 0 15px;
   /* display: flex;
   align-items: center; */
+  position: relative;
 
   &:hover {
     border-radius: 30px;
@@ -70,6 +82,12 @@ export const SearchTextBack = styled.div`
     /* height: 100%; */
     /* display: flex;
     align-items: center; */
+  }
+
+  &.avtive {
+    border-radius: 30px;
+    background: #fff;
+    box-shadow: 0px 3px 10px 1px rgba(0, 0, 0, 0.15);
   }
 `;
 
@@ -114,6 +132,21 @@ export const SearchTextSection = styled.div`
         outline: none;
       }
     }
+  }
+`;
+
+export const NumberOfGuests = styled.div`
+  width: 100%;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 10px 3px 0px;
+
+  span {
+    margin-right: 5px;
+    color: #000;
+    font-weight: 600;
   }
 `;
 

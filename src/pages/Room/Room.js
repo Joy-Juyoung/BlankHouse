@@ -36,6 +36,11 @@ import {
   ThingsTitle,
   ThingsList,
   SleepWrap,
+  BasicInfo,
+  BasicIntro,
+  PlaceOffers,
+  PlaceOffersList,
+  ShowPhotoBtn,
 } from './RoomStyle';
 import { RoomData } from '../MainHome/SampleData';
 import StarIcon from '@mui/icons-material/Star';
@@ -54,12 +59,27 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { LocalizationProvider } from '@mui/x-date-pickers-pro';
 import { AdapterDayjs } from '@mui/x-date-pickers-pro/AdapterDayjs';
 import { DateRangeCalendar } from '@mui/x-date-pickers-pro/DateRangeCalendar';
+import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
+import PetsIcon from '@mui/icons-material/Pets';
+import TodayIcon from '@mui/icons-material/Today';
+import SoupKitchenIcon from '@mui/icons-material/SoupKitchen';
+import LocalLaundryServiceIcon from '@mui/icons-material/LocalLaundryService';
+import KitchenIcon from '@mui/icons-material/Kitchen';
+import WifiIcon from '@mui/icons-material/Wifi';
+import TvIcon from '@mui/icons-material/Tv';
+import MicrowaveIcon from '@mui/icons-material/Microwave';
+import AppsIcon from '@mui/icons-material/Apps';
+import ShowMoreModal from '../../components/Modals/ShowMoreModal';
+import ShowPhotoModal from '../../components/Modals/ShowPhotoModal';
+import SmallReserveButton from '../../components/Buttons/SmallReserveButton';
 
 const Room = () => {
   const location = useLocation();
   const [fav, setFav] = useState(false);
   const [loading, setLoading] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [modalPhotoShown, togglePhotoModal] = useState(false);
+  const [modalAboutPlaceShown, toggleAboutPlaceModal] = useState(false);
 
   const handleClickScroll = (e) => {
     const goPhoto = document.getElementById('viewPhoto');
@@ -68,16 +88,12 @@ const Room = () => {
     const goLocation = document.getElementById('viewLocation');
 
     if (e.target.id === 'vPhoto' && goPhoto) {
-      // Will scroll smoothly to the top of the next section
       goPhoto.scrollIntoView({ top: 0, behavior: 'smooth' });
     } else if (e.target.id === 'vAmenities' && goAmenities) {
-      // Will scroll smoothly to the top of the next section
       goAmenities.scrollIntoView({ top: 80, behavior: 'smooth' });
     } else if (e.target.id === 'vReviews' && goReviews) {
-      // Will scroll smoothly to the top of the next section
       goReviews.scrollIntoView({ behavior: 'smooth' });
     } else if (e.target.id === 'vLocation' && goLocation) {
-      // Will scroll smoothly to the top of the next section
       goLocation.scrollIntoView({ behavior: 'smooth' });
     }
   };
@@ -114,7 +130,7 @@ const Room = () => {
         <RoomDetailHeader>
           <DetailHeader
             style={{
-              display: scrollPosition >= 1377 && 'flex',
+              display: scrollPosition >= 2033 && 'flex',
             }}
           >
             <DetailHeaderWrap>
@@ -131,8 +147,7 @@ const Room = () => {
                 Location
               </span>
             </DetailHeaderWrap>
-            {/* </DetailHeader> */}
-            {scrollPosition >= 1729 && (
+            {scrollPosition >= 2033 && (
               <DetailHeaderReserve>
                 <HeaderReserveWrap>
                   <ReservePrice>
@@ -149,7 +164,7 @@ const Room = () => {
                   </ReserveReview>
                 </HeaderReserveWrap>
 
-                <ReserveBtn>Reserve</ReserveBtn>
+                <SmallReserveButton />
               </DetailHeaderReserve>
             )}
           </DetailHeader>
@@ -163,7 +178,7 @@ const Room = () => {
               <RoomTopInfo>
                 <StarIcon sx={{ fontSize: '16px' }} />
                 <span>{RoomData[0].rating}</span>
-                <span className='space'>•</span>
+                <span className='coma'>·</span>
                 <span>
                   <Link href=''>000 Reviews</Link>
                 </span>
@@ -193,78 +208,98 @@ const Room = () => {
                 <Skeleton
                   variant='rect'
                   animation='wave'
-                  sx={{ width: '100%', height: '560px', borderRadius: '10px' }}
+                  sx={{ width: '100%', height: '536px', borderRadius: '10px' }}
                 />
               </RoomPhotoMain>
               <RoomPhotoSub>
                 <Skeleton
                   variant='rect'
                   animation='wave'
-                  sx={{ width: '100%', height: '275px', borderRadius: '10px' }}
+                  sx={{ width: '100%', height: '263px', borderRadius: '10px' }}
                 />
                 <Skeleton
                   variant='rect'
                   animation='wave'
-                  sx={{ width: '100%', height: '275px', borderRadius: '10px' }}
+                  sx={{ width: '100%', height: '263px', borderRadius: '10px' }}
                 />
                 <Skeleton
                   variant='rect'
                   animation='wave'
-                  sx={{ width: '100%', height: '275px', borderRadius: '10px' }}
+                  sx={{ width: '100%', height: '263px', borderRadius: '10px' }}
                 />
                 <Skeleton
                   variant='rect'
                   animation='wave'
-                  sx={{ width: '100%', height: '275px', borderRadius: '10px' }}
+                  sx={{ width: '100%', height: '263px', borderRadius: '10px' }}
                 />
               </RoomPhotoSub>
+              <ShowPhotoBtn
+                onClick={() => {
+                  togglePhotoModal(!modalPhotoShown);
+                }}
+              >
+                <AppsIcon />
+                <span>Show all photos</span>
+              </ShowPhotoBtn>
             </RoomMainPhotos>
+            {/* About plce Modal Open */}
+            <ShowPhotoModal
+              togglePhotoModal={togglePhotoModal}
+              modalPhotoShown={modalPhotoShown}
+            />
+
             <RoomDetailSection>
-              {/* {scrollPosition >= 800 && (
-              <RoomDetailHeader>
-                <DetailHeader>
-                  <div>Photos</div>
-                  <div>Photos</div>
-                  <div>Photos</div>
-                </DetailHeader>
-              </RoomDetailHeader>
-            )} */}
               <RoomMainDetails>
                 <RoomMainDetailsWrap>
                   <RoomDetailsTop>
-                    <h2>Farm stay hosted by Grant</h2>
-                    <span>2 guests</span>
-                    <span>1 bedroom </span>
-                    <span>1 bath</span>
-                    <span>1 bath</span>
+                    <div>
+                      <h2>Farm stay hosted by Grant</h2>
+                      <span>2 guests</span>
+                      <span className='coma'>·</span>
+                      <span>1 bedroom </span>
+                      <span className='coma'>·</span>
+                      <span>1 bath</span>
+                      <span className='coma'>·</span>
+                      <span>1 bath</span>
+                    </div>
+                    <div>
+                      <img src='' alt='' />
+                    </div>
                   </RoomDetailsTop>
                   <RoomDetailsSections>
                     <ul>
                       <li>
-                        <i></i>
                         <div>
-                          <p>Self check-in</p>
-                          <span>Check yourself in with the keypad.</span>
+                          <MeetingRoomIcon />
                         </div>
+                        <BasicInfo>
+                          <p>Self check-in</p>
+                          <span>Check yourself in with the lockbox.</span>
+                        </BasicInfo>
                       </li>
                       <li>
-                        <i></i>
                         <div>
+                          <PetsIcon />
+                        </div>
+                        <BasicInfo>
                           <p>Furry friends welcome</p>
                           <span>Bring your pets along for the stay.</span>
-                        </div>
+                        </BasicInfo>
                       </li>
                       <li>
-                        <i></i>
                         <div>
+                          <TodayIcon />
+                        </div>
+                        <BasicInfo>
                           <p>Free cancellation before Oct. 6.</p>
                           <span></span>
-                        </div>
+                        </BasicInfo>
                       </li>
                     </ul>
                   </RoomDetailsSections>
                   <RoomDetailsSections>
-                    <p>
+                    <h2>About this place</h2>
+                    <BasicIntro>
                       This private, rustic cottage, nestled on a ridge
                       overlooking the Jumping Pound Creek is your perfect
                       retreat getaway. With 300sq ft of interior living and
@@ -274,12 +309,22 @@ const Room = () => {
                       furnished and has been intentionally designed for a couple
                       who is looking to reconnect with one another and explore
                       the land around. Breakfast fixings are included.
-                    </p>
-                    <ShowMoreBtn>
+                    </BasicIntro>
+                    <ShowMoreBtn
+                      onClick={() => {
+                        toggleAboutPlaceModal(!modalAboutPlaceShown);
+                      }}
+                    >
                       <span>Show more</span>
                       <ArrowForwardIosIcon sx={{ fontSize: '14px' }} />
                     </ShowMoreBtn>
                   </RoomDetailsSections>
+                  {/* About plce Modal Open */}
+                  <ShowMoreModal
+                    toggleAboutPlaceModal={toggleAboutPlaceModal}
+                    modalAboutPlaceShown={modalAboutPlaceShown}
+                  />
+
                   <RoomDetailsSections>
                     <h2>Where you'll sleep</h2>
                     <SleepWrap>
@@ -290,22 +335,36 @@ const Room = () => {
                   </RoomDetailsSections>
                   <RoomDetailsSections id='viewAmenities'>
                     <h2>What this place offers</h2>
-                    <div>
-                      <i></i>
-                      <span>Garden view</span>
-                    </div>
-                    <div>
-                      <i></i>
-                      <span>Mountain view</span>
-                    </div>
-                    <div>
-                      <i></i>
-                      <span>Wifi</span>
-                    </div>
-                    <div>
-                      <i></i>
-                      <span>Kitchen</span>
-                    </div>
+                    <PlaceOffers>
+                      <PlaceOffersList>
+                        <KitchenIcon />
+                        <span>Kitchen</span>
+                      </PlaceOffersList>
+                      <PlaceOffersList>
+                        <WifiIcon />
+                        <span>Wifi</span>
+                      </PlaceOffersList>
+                      <PlaceOffersList>
+                        <LocalLaundryServiceIcon />
+                        <span>Washer</span>
+                      </PlaceOffersList>
+                      <PlaceOffersList>
+                        <TvIcon />
+                        <span>Tv</span>
+                      </PlaceOffersList>
+                      <PlaceOffersList>
+                        <MicrowaveIcon />
+                        <span>Microwave</span>
+                      </PlaceOffersList>
+                      <PlaceOffersList>
+                        <TvIcon />
+                        <span>Tv</span>
+                      </PlaceOffersList>
+                      <PlaceOffersList>
+                        <MicrowaveIcon />
+                        <span>Microwave</span>
+                      </PlaceOffersList>
+                    </PlaceOffers>
                     <ShowAllBtn>Show all 00 Amenities</ShowAllBtn>
                   </RoomDetailsSections>
                   <RoomDetailsSections>
@@ -321,8 +380,8 @@ const Room = () => {
                 <RoomSide loading={loading} RoomData={RoomData} />
               </RoomMainDetails>
               <RoomDetailsSections id='viewReviews'>
-                <h2>
-                  <StarIcon sx={{ fontSize: '16px' }} />
+                <h2 className='rating'>
+                  <StarIcon sx={{ fontSize: '24px', marginRight: '5px' }} />
                   <span>4.99 / 000 reviews</span>
                 </h2>
                 <div>Average graph</div>
@@ -362,13 +421,9 @@ const Room = () => {
                   </ThingsWrap>
                   <ThingsWrap>
                     <ThingsTitle>Safety & property</ThingsTitle>
-                    <ThingsList>
-                      Nearby lake, river, other body of water
-                    </ThingsList>
-                    <ThingsList>
-                      May encounter potentially dangerous animal
-                    </ThingsList>
                     <ThingsList>Carbon monoxide alarm</ThingsList>
+                    <ThingsList>Smoke alarm</ThingsList>
+                    <ThingsList>Must climb stairs</ThingsList>
                     <ShowMoreBtn>
                       <span>Show more</span>
                       <ArrowForwardIosIcon sx={{ fontSize: '14px' }} />
