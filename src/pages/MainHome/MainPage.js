@@ -21,13 +21,14 @@ import MainInfiniteScroll from './MainInfiniteScroll';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { allRooms } from '../../redux/slices/rooms';
+import { allRoomCategories } from '../../redux/slices/categories';
 
 const MainPage = () => {
   // const location = useLocation();
   const [modalFilterShown, toggleFilterModal] = useState(false);
   const [loading, setLoading] = useState(false);
-
   const [isLoading, setIsLoading] = useState(false);
+
   const pageRef = useRef(null);
 
   const rooms = useSelector((state) => state.rooms);
@@ -38,20 +39,18 @@ const MainPage = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    initFetch();
-  }, [initFetch]);
-
-  console.log('rooms', rooms);
-
-  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     setLoading(true);
     const loadData = async () => {
       await new Promise((r) => setTimeout(r, 1000));
       setLoading(false);
     };
     loadData();
-    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-  }, []);
+
+    initFetch();
+  }, [initFetch]);
+
+  console.log('rooms', rooms);
 
   if (loading)
     return (
@@ -59,7 +58,6 @@ const MainPage = () => {
         <Loading />
       </div>
     );
-
   return (
     <MainContainer>
       <MainWrap>
@@ -67,7 +65,7 @@ const MainPage = () => {
           <MainTopCategory>
             <CategorySlider
               loading={loading}
-              CategoryData={CategoryData}
+              // CategoryData={CategoryData}
               visibleItems={15}
             />
           </MainTopCategory>
