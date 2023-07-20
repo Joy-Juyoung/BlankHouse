@@ -6,8 +6,6 @@ import {
   RoomDetailsTop,
   RoomMainDetails,
   RoomMainPhotos,
-  RoomMainSide,
-  RoomMainSideWrap,
   RoomMainWrap,
   RoomMainDetailsWrap,
   RoomPhotoMain,
@@ -16,10 +14,6 @@ import {
   RoomTopInfo,
   RoomTopText,
   RoomTopWrap,
-  RoomDetailSide,
-  RoomDetailSideWrap,
-  RoomSideReserve,
-  RoomSideReport,
   RoomDetailHeader,
   RoomDetailSection,
   DetailHeader,
@@ -27,7 +21,6 @@ import {
   HeaderReserveWrap,
   ReservePrice,
   ReserveReview,
-  ReserveBtn,
   DetailHeaderWrap,
   ShowMoreBtn,
   ShowAllBtn,
@@ -50,9 +43,6 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Loading from '../../components/Loading';
 import { Skeleton } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import FlagIcon from '@mui/icons-material/Flag';
 import RoomSide from './RoomSide';
 import BedIcon from '@mui/icons-material/Bed';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
@@ -62,7 +52,6 @@ import { DateRangeCalendar } from '@mui/x-date-pickers-pro/DateRangeCalendar';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import PetsIcon from '@mui/icons-material/Pets';
 import TodayIcon from '@mui/icons-material/Today';
-import SoupKitchenIcon from '@mui/icons-material/SoupKitchen';
 import LocalLaundryServiceIcon from '@mui/icons-material/LocalLaundryService';
 import KitchenIcon from '@mui/icons-material/Kitchen';
 import WifiIcon from '@mui/icons-material/Wifi';
@@ -72,8 +61,7 @@ import AppsIcon from '@mui/icons-material/Apps';
 import ShowMoreModal from '../../components/Modals/ShowMoreModal';
 import ShowPhotoModal from '../../components/Modals/ShowPhotoModal';
 import SmallReserveButton from '../../components/Buttons/SmallReserveButton';
-import { useDispatch, useSelector } from 'react-redux';
-import { getRoomById } from '../../redux/slices/rooms';
+
 import roomsDataService from '../../redux/services/RoomsService';
 
 const Room = () => {
@@ -89,7 +77,7 @@ const Room = () => {
 
   const getRoom = (id) => {
     roomsDataService
-      .getById(id)
+      .getRoomById(id)
       .then((response) => {
         setRoomData(response.data);
       })

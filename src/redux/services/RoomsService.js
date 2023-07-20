@@ -4,13 +4,18 @@ const getAll = () => {
   return axios.get('/rooms');
 };
 
-const getById = (id) => {
+const getRoomById = (id) => {
   return axios.get(`/rooms/${id}`);
 };
 
+// const getAllRoomCategories = () => {
+//   return axios.get('/categories/rooms');
+// };
+
 const RoomsService = {
   getAll,
-  getById,
+  getRoomById,
+  // getAllRoomCategories,
 };
 
 export default RoomsService;

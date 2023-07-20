@@ -1,7 +1,7 @@
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { Skeleton } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import {
   Arrow,
   ArrowRight,
@@ -14,18 +14,33 @@ import {
   SlideIcon,
   SlideName,
 } from './CategorySliderStyle';
-import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { allRoomCategories } from '../../redux/slices/categories';
 
-const CategorySlider = ({ loading, CategoryData, visibleItems }) => {
+const CategorySlider = ({ loading, visibleItems }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const totalItems = CategoryData.length;
+  const categories = useSelector((state) => state.categories);
+  const dispatch = useDispatch();
+
+  // const initFetch = useCallback(() => {
+  //   dispatch(allRoomCategories());
+  // }, [dispatch]);
+
+  // useEffect(() => {
+  //   initFetch();
+  // }, [initFetch]);
+
+  useEffect(() => {
+    dispatch(allRoomCategories());
+  }, []);
+
+  const totalItems = categories?.length;
   const sliderWidth = `${100 / visibleItems}%`;
 
   const goToPrevSlide = () => {
     setCurrentIndex((prevIndex) => {
       if (prevIndex === 0) {
-        // return totalItems - visibleItems;
         return prevIndex;
       } else {
         return prevIndex - 1;
@@ -44,6 +59,8 @@ const CategorySlider = ({ loading, CategoryData, visibleItems }) => {
     });
   };
 
+  console.log('categories', categories);
+
   return (
     <SliderContainer>
       <SliderWrap>
@@ -60,8 +77,9 @@ const CategorySlider = ({ loading, CategoryData, visibleItems }) => {
         </SliderButton>
         {/* )} */}
         <SliderWrapper>
-          {CategoryData?.slice(currentIndex, currentIndex + visibleItems).map(
-            (category, index) => (
+          {categories
+            ?.slice(currentIndex, currentIndex + visibleItems)
+            .map((category, index) => (
               <>
                 {loading ? (
                   <Slide key={index}>
@@ -98,8 +116,7 @@ const CategorySlider = ({ loading, CategoryData, visibleItems }) => {
                   </Slide>
                 )}
               </>
-            )
-          )}
+            ))}
         </SliderWrapper>
         {/* {currentIndex === totalItems - visibleItems ? null : ( */}
         <SliderButton
