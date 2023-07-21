@@ -1,21 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import {
   CountrySetting,
-  HeaderContrainer,
-  HeaderRight,
   HeaderRightSection,
-  HeaderWrap,
+  HeaderSmallContrainer,
+  HeaderSmallWrap,
   HeaderWrapper,
   LogBtn,
   ModeSetting,
   SearchBtn,
   SearchNavBtn,
-  SearchNavBtnCenter,
-  SearchNavInput,
   SearchNavSection,
   SearchNavWrap,
   SwitchBtn,
-  UserIconSection,
   UserSetting,
 } from './HeaderStyle';
 import LanguageIcon from '@mui/icons-material/Language';
@@ -26,15 +22,14 @@ import SearchModal from './SearchModal';
 import Logo from '../../assets/images/logo.png';
 import LogInModal from './LogInModal';
 
-import { Link, useLocation, useParams } from 'react-router-dom';
-const Header = () => {
-  const location = useLocation();
+import { Link } from 'react-router-dom';
+const HeaderSmall = () => {
   const [modalSearchShown, toggleSearchModal] = useState(false);
   const [modalLogShown, toggleLogModal] = useState(false);
 
   return (
-    <HeaderContrainer>
-      <HeaderWrap>
+    <HeaderSmallContrainer>
+      <HeaderSmallWrap>
         <HeaderWrapper style={{ zIndex: '5' }}>
           <img src={Logo} alt='' />
           <Link to='/'>
@@ -101,9 +96,9 @@ const Header = () => {
             </UserSetting>
           </HeaderRightSection>
         </HeaderWrapper>
-      </HeaderWrap>
-    </HeaderContrainer>
+      </HeaderSmallWrap>
+    </HeaderSmallContrainer>
   );
 };
 
-export default Header;
+export default HeaderSmall;

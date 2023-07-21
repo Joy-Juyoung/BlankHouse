@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Link, useLocation, useParams } from 'react-router-dom';
-import { MainContainer, MainTop, MainWrap } from '../MainHome/MainStyle';
+import { Link, useParams } from 'react-router-dom';
+import { MainSmallContainer, MainWrap } from '../MainHome/MainStyle';
 import {
   RoomDetailsSections,
   RoomDetailsTop,
@@ -64,8 +64,7 @@ import SmallReserveButton from '../../components/Buttons/SmallReserveButton';
 
 import roomsDataService from '../../redux/services/RoomsService';
 
-const Room = () => {
-  const location = useLocation();
+const Room = ({ setIsPageMain }) => {
   const [fav, setFav] = useState(false);
   const [loading, setLoading] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -87,6 +86,7 @@ const Room = () => {
   };
 
   useEffect(() => {
+    setIsPageMain(false);
     if (roomId) getRoom(roomId);
   }, [roomId]);
 
@@ -181,7 +181,7 @@ const Room = () => {
           </DetailHeader>
         </RoomDetailHeader>
       )}
-      <MainContainer pagesmall={true}>
+      <MainSmallContainer>
         <MainWrap>
           <RoomTopWrap id='viewPhoto'>
             <RoomTopHeader>{roomData?.name}</RoomTopHeader>
@@ -461,7 +461,7 @@ const Room = () => {
             </RoomDetailSection>
           </RoomMainWrap>
         </MainWrap>
-      </MainContainer>
+      </MainSmallContainer>
     </>
   );
 };

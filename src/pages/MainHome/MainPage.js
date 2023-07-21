@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import MainCategories from './MainCategories';
 import MainListCard from './MainListCard';
 import {
   FilterBtn,
@@ -12,19 +11,15 @@ import {
   MainWrap,
 } from './MainStyle';
 import GuestFilterModal from '../../components/Modals/GuestFilterModal';
-import { RoomData, CategoryData } from './SampleData';
 import CategorySlider from './CategorySlider';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Loading from '../../components/Loading';
 import TuneIcon from '@mui/icons-material/Tune';
-import MainInfiniteScroll from './MainInfiniteScroll';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { allRooms } from '../../redux/slices/rooms';
-import { allRoomCategories } from '../../redux/slices/categories';
+// import MainInfiniteScroll from './MainInfiniteScroll';
 
-const MainPage = () => {
-  // const location = useLocation();
+const MainPage = ({ setIsPageMain }) => {
   const [modalFilterShown, toggleFilterModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -40,13 +35,7 @@ const MainPage = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-    setLoading(true);
-    const loadData = async () => {
-      await new Promise((r) => setTimeout(r, 1000));
-      setLoading(false);
-    };
-    loadData();
-
+    setIsPageMain(true);
     initFetch();
   }, [initFetch]);
 
@@ -63,11 +52,7 @@ const MainPage = () => {
       <MainWrap>
         <MainTop>
           <MainTopCategory>
-            <CategorySlider
-              loading={loading}
-              // CategoryData={CategoryData}
-              visibleItems={15}
-            />
+            <CategorySlider loading={loading} visibleItems={15} />
           </MainTopCategory>
           <MainTopFilter>
             <FilterBtn

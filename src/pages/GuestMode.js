@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../components/Header/Header';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MainPage from './MainHome/MainPage';
@@ -7,13 +7,23 @@ import ExDetail from './Experiences/ExDetail';
 // import ExperienceDetail from './Experiences/ExperienceDetail';
 import Room from './Room/Room';
 import Footer from '../components/Footer/Footer';
+import HeaderSmall from '../components/Header/HeaderSmall';
+import FooterSmall from '../components/Footer/FooterSmall';
 
 const GuestMode = () => {
+  const [isPageMain, setIsPageMain] = useState(false);
+
+  console.log('isPageMain', isPageMain);
+
   return (
     <>
-      <Header />
+      {isPageMain ? <Header /> : <HeaderSmall />}
       <Routes>
-        <Route path='/' element={<MainPage />} exact={true} />
+        <Route
+          path='/'
+          element={<MainPage setIsPageMain={setIsPageMain} />}
+          exact={true}
+        />
       </Routes>
       <Routes>
         <Route path='/experiences' element={<Experience />} exact={true} />
@@ -21,17 +31,14 @@ const GuestMode = () => {
       <Routes>
         <Route path='/experiences/detail' element={<ExDetail />} exact={true} />
       </Routes>
-      {/* <Routes>
+      <Routes>
         <Route
-          path='/experiences/detail'
-          element={<ExperienceDetail />}
+          path='/room/:roomId'
+          element={<Room setIsPageMain={setIsPageMain} />}
           exact={true}
         />
-      </Routes> */}
-      <Routes>
-        <Route path='/room/:roomId' element={<Room />} exact={true} />
       </Routes>
-      <Footer />
+      {isPageMain ? <Footer /> : <FooterSmall />}
     </>
   );
 };

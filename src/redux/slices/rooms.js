@@ -16,14 +16,6 @@ export const roomById = createAsyncThunk(
   }
 );
 
-// export const allRoomCategories = createAsyncThunk(
-//   'rooms/all/categories',
-//   async () => {
-//     const res = await roomsDataService.getAllRoomCategories();
-//     return res.data;
-//   }
-// );
-
 const roomsSlice = createSlice({
   name: 'rooms',
   initialState,
@@ -34,9 +26,6 @@ const roomsSlice = createSlice({
     [roomById.fulfilled]: (state, action) => {
       return [...action.payload];
     },
-    // [allRoomCategories.fulfilled]: (state, action) => {
-    //   return [...action.payload];
-    // },
   },
 });
 
