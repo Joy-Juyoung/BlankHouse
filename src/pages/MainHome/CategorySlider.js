@@ -3,15 +3,11 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { Skeleton } from '@mui/material';
 import { useCallback, useEffect, useState } from 'react';
 import {
-  Arrow,
-  ArrowRight,
   SliderContainer,
   SliderButton,
   SliderWrap,
   SliderWrapper,
   Slide,
-  Wrapper,
-  SlideIcon,
   SlideName,
 } from './CategorySliderStyle';
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,17 +19,13 @@ const CategorySlider = ({ loading, visibleItems }) => {
   const categories = useSelector((state) => state.categories);
   const dispatch = useDispatch();
 
-  // const initFetch = useCallback(() => {
-  //   dispatch(allRoomCategories());
-  // }, [dispatch]);
-
-  // useEffect(() => {
-  //   initFetch();
-  // }, [initFetch]);
+  const initFetch = useCallback(() => {
+    dispatch(allRoomCategories());
+  }, [dispatch]);
 
   useEffect(() => {
-    dispatch(allRoomCategories());
-  }, []);
+    initFetch();
+  }, [initFetch]);
 
   const totalItems = categories?.length;
   const sliderWidth = `${100 / visibleItems}%`;
@@ -59,12 +51,11 @@ const CategorySlider = ({ loading, visibleItems }) => {
     });
   };
 
-  console.log('categories', categories);
+  // console.log('categories', categories);
 
   return (
     <SliderContainer>
       <SliderWrap>
-        {/* {currentIndex === 0 ? null : ( */}
         <SliderButton
           direction='left'
           onClick={(e) => {
@@ -75,50 +66,16 @@ const CategorySlider = ({ loading, visibleItems }) => {
         >
           <ArrowLeftIcon />
         </SliderButton>
-        {/* )} */}
         <SliderWrapper>
           {categories
             ?.slice(currentIndex, currentIndex + visibleItems)
             .map((category, index) => (
-              <>
-                {loading ? (
-                  <Slide key={index}>
-                    <SlideIcon>
-                      <Skeleton
-                        variant='circular'
-                        width={25}
-                        height={25}
-                        animation='wave'
-                      />
-                    </SlideIcon>
-                    <SlideName>
-                      <Skeleton
-                        variant='rect'
-                        width={50}
-                        height={10}
-                        animation='wave'
-                        sx={{ margin: '5px 0 -5px 0 ' }}
-                      />
-                    </SlideName>
-                  </Slide>
-                ) : (
-                  <Slide
-                    key={index}
-                    categorypick={category?.name === 'All' ? true : false}
-                    style={{ width: sliderWidth }}
-                  >
-                    <SlideIcon>{category?.icon}</SlideIcon>
-                    <SlideName
-                      categorypick={category?.name === 'All' ? true : false}
-                    >
-                      {category?.name}
-                    </SlideName>
-                  </Slide>
-                )}
-              </>
+              <Slide key={index} style={{ width: sliderWidth }}>
+                {/* <SlideIcon>{category?.icon}</SlideIcon> */}
+                <SlideName>{category?.name}</SlideName>
+              </Slide>
             ))}
         </SliderWrapper>
-        {/* {currentIndex === totalItems - visibleItems ? null : ( */}
         <SliderButton
           direction='right'
           onClick={(e) => {
@@ -129,7 +86,6 @@ const CategorySlider = ({ loading, visibleItems }) => {
         >
           <ArrowRightIcon />
         </SliderButton>
-        {/* )} */}
       </SliderWrap>
     </SliderContainer>
   );

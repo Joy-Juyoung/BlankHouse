@@ -1,13 +1,28 @@
 import styled from 'styled-components';
 
 export const MainContainer = styled.div`
-  /* padding: 0 40px; */
   height: 100%;
   margin: 0 auto;
+  padding: 0 40px;
+  max-width: 1700px;
 
-  /* max-width: 1700px; */
-  padding: ${({ pagesmall }) => (pagesmall ? '0 80px' : '0 40px')};
-  max-width: ${({ pagesmall }) => (pagesmall ? '1120px' : '1700px')};
+  span {
+    &.coma {
+      margin: 0 3px;
+      font-weight: 600;
+    }
+  }
+
+  @media screen and (max-width: 1280px) {
+    padding: 0 40px;
+  }
+`;
+
+export const MainSmallContainer = styled.div`
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 80px;
+  max-width: 1120px;
 
   span {
     &.coma {
@@ -22,12 +37,6 @@ export const MainContainer = styled.div`
 `;
 
 export const MainWrap = styled.div`
-  /* height: 100%;
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-
-  max-width: 1700px; */
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -37,7 +46,6 @@ export const MainWrap = styled.div`
 export const MainTop = styled.div`
   display: flex;
   height: 100px;
-  /* justify-content: space-between; */
   align-items: center;
 `;
 

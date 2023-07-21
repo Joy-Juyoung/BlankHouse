@@ -3,9 +3,23 @@ import styled from 'styled-components';
 export const HeaderContrainer = styled.div`
   height: 80px;
   border-bottom: 1px solid lightgray;
+  padding: 0 40px;
 
-  /* padding: 0 40px; */
-  padding: ${({ pagesmall }) => (pagesmall ? '0 80px' : '0 40px')};
+  a {
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 1280px) {
+    padding: 0 40px;
+  }
+`;
+
+export const HeaderSmallContrainer = styled.div`
+  height: 80px;
+  border-bottom: 1px solid lightgray;
+  padding: 0 80px;
 
   a {
     text-decoration: none;
@@ -25,15 +39,22 @@ export const HeaderWrap = styled.div`
   justify-content: space-between;
   margin: 0 auto;
 
-  /* max-width: 1280px; */
-  max-width: ${({ pagesmall }) => (pagesmall ? '1120px' : '1700px')};
+  max-width: 1700px;
+`;
+
+export const HeaderSmallWrap = styled.div`
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+
+  max-width: 1120px;
 `;
 
 export const HeaderWrapper = styled.div`
   display: flex;
   align-items: center;
-  /* cursor: pointer; */
-  /* width: 20%; */
   width: 100%;
 
   h1 {

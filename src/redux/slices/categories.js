@@ -11,11 +11,22 @@ export const allRoomCategories = createAsyncThunk(
   }
 );
 
+export const allExCategories = createAsyncThunk(
+  'categories/experience',
+  async () => {
+    const res = await categoriesDataService.getAllExCategories();
+    return res.data;
+  }
+);
+
 const categoriesSlice = createSlice({
   name: 'categories',
   initialState,
   extraReducers: {
     [allRoomCategories.fulfilled]: (state, action) => {
+      return [...action.payload];
+    },
+    [allExCategories.fulfilled]: (state, action) => {
       return [...action.payload];
     },
   },

@@ -3,29 +3,22 @@ import LanguageIcon from '@mui/icons-material/Language';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import {
-  FooterContainer,
-  FooterL,
-  FooterLong,
-  FooterLongWrap,
-  FooterS,
-  FooterShort,
-  FooterShortWrap,
-  FooterWrap,
-  LongList,
-  LongTitle,
-} from './FooterStyle';
+import { FooterL, FooterS, LongList, LongTitle } from './FooterStyle';
 import { useLocation } from 'react-router-dom';
-import FooterSmall from './FooterSmall';
+import {
+  FooterSmallContainer,
+  FooterSmallLong,
+  FooterSmallLongWrap,
+  FooterSmallShort,
+  FooterSmallShortWrap,
+} from './FooterSmallStyle';
 
-const Footer = () => {
-  const location = useLocation();
-
+const FooterSmall = () => {
   return (
     <>
-      <FooterContainer>
-        <FooterLong>
-          <FooterLongWrap>
+      <FooterSmallContainer>
+        <FooterSmallLong>
+          <FooterSmallLongWrap>
             <FooterL>
               <LongTitle>Support</LongTitle>
               <LongList>Help Centre</LongList>
@@ -57,10 +50,10 @@ const Footer = () => {
               <LongList>Investors</LongList>
               <LongList>Gift cards</LongList>
             </FooterL>
-          </FooterLongWrap>
-        </FooterLong>
-        <FooterShort>
-          <FooterShortWrap>
+          </FooterSmallLongWrap>
+        </FooterSmallLong>
+        <FooterSmallShort>
+          <FooterSmallShortWrap>
             <FooterS>
               <span>© 2023 BlankHouse, Inc.</span>
               <span>Privacy</span>
@@ -86,13 +79,13 @@ const Footer = () => {
                 <InstagramIcon />
               </span>
             </FooterS>
-          </FooterShortWrap>
-        </FooterShort>
+          </FooterSmallShortWrap>
+        </FooterSmallShort>
         {/* </FooterWrap>
     </FooterContainer> */}
-      </FooterContainer>
+      </FooterSmallContainer>
     </>
   );
 };
 
-export default Footer;
+export default FooterSmall;
