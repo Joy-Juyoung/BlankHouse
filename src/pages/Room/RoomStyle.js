@@ -63,6 +63,12 @@ export const ReserveReview = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+
+  span {
+    &.coma {
+      margin: 0 5px;
+    }
+  }
 `;
 
 export const ReserveBtn = styled.button`
@@ -146,7 +152,32 @@ export const RoomMainPhotos = styled.div`
 `;
 
 export const RoomPhotoMain = styled.div`
+  cursor: pointer;
+  position: relative;
+  border-radius: 10px;
   height: 535px;
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    /* display: inline-block; */
+  }
+
+  &:hover {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.15);
+      z-index: 2;
+    }
+  }
 `;
 
 export const RoomPhotoSub = styled.div`
@@ -155,6 +186,42 @@ export const RoomPhotoSub = styled.div`
   grid-gap: 10px;
 
   /* position: relative; */
+`;
+
+export const PhotoSubCover = styled.div`
+  cursor: pointer;
+  position: relative;
+  border-radius: 10px;
+  height: 262.5px;
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    /* display: inline-block; */
+  }
+
+  &:hover {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.15);
+      /*       
+      linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.1) 0%,
+          rgba(0, 0, 0, 0.1) 100%
+        ),
+        linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, transparent 100%); */
+      z-index: 2;
+    }
+  }
 `;
 
 export const ShowPhotoBtn = styled.div`
@@ -172,6 +239,7 @@ export const ShowPhotoBtn = styled.div`
   position: absolute;
   bottom: 20px;
   right: 20px;
+  z-index: 3;
 
   svg {
     margin-right: 5px;

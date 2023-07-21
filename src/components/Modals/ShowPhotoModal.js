@@ -6,98 +6,51 @@ import {
   ModalMainContents,
   ModalPhotos,
   ModalWholeContainer,
+  ModalWholeWrap,
 } from './ModalStyle';
 import WholePageModal from './WholePageModal';
 import { Skeleton } from '@mui/material';
 import {
+  PhotoSubCover,
   RoomMainPhotos,
   RoomPhotoMain,
   RoomPhotoSub,
 } from '../../pages/Room/RoomStyle';
 
-const ShowPhotoModal = ({ modalPhotoShown, togglePhotoModal }) => {
+const ShowPhotoModal = ({ modalPhotoShown, togglePhotoModal, roomData }) => {
+  // useEffect(() => {
+  //   window.addEventListener('scroll', listenToScroll);
+  //   return () => window.removeEventListener('scroll', listenToScroll);
+  // }, []);
+
   return (
     <WholePageModal
       shown={modalPhotoShown}
       close={() => {
         togglePhotoModal(false);
+        document.body.style.overflow = 'unset';
       }}
       // title='About this place'
     >
       <ModalWholeContainer>
-        {/* <ModalMain> */}
-        {/* <ModalMainSection> */}
-        {/* <ModalMainTitle>Price range</ModalMainTitle> */}
-        <ModalPhotos>
-          <RoomMainPhotos>
-            <RoomPhotoMain>
-              <Skeleton
-                variant='rect'
-                animation='wave'
-                sx={{ width: '100%', height: '536px', borderRadius: '10px' }}
-              />
-            </RoomPhotoMain>
-            <RoomPhotoSub>
-              <Skeleton
-                variant='rect'
-                animation='wave'
-                sx={{ width: '100%', height: '263px', borderRadius: '10px' }}
-              />
-              <Skeleton
-                variant='rect'
-                animation='wave'
-                sx={{ width: '100%', height: '263px', borderRadius: '10px' }}
-              />
-              <Skeleton
-                variant='rect'
-                animation='wave'
-                sx={{ width: '100%', height: '263px', borderRadius: '10px' }}
-              />
-              <Skeleton
-                variant='rect'
-                animation='wave'
-                sx={{ width: '100%', height: '263px', borderRadius: '10px' }}
-              />
-            </RoomPhotoSub>
-            <RoomPhotoMain>
-              <img src='../assets/houseSample.room-1.jpg' alt='' />
-            </RoomPhotoMain>
-            <RoomPhotoMain>
-              <img src='' alt='' />
-            </RoomPhotoMain>
-            {/* <RoomPhotoMain>
-              <Skeleton
-                variant='rect'
-                animation='wave'
-                sx={{ width: '100%', height: '536px', borderRadius: '10px' }}
-              />
-            </RoomPhotoMain>
-            <RoomPhotoMain>
-              <Skeleton
-                variant='rect'
-                animation='wave'
-                sx={{ width: '100%', height: '536px', borderRadius: '10px' }}
-              />
-            </RoomPhotoMain>
-            <RoomPhotoMain>
-              <Skeleton
-                variant='rect'
-                animation='wave'
-                sx={{ width: '100%', height: '536px', borderRadius: '10px' }}
-              />
-            </RoomPhotoMain>
-            <RoomPhotoMain>
-              <Skeleton
-                variant='rect'
-                animation='wave'
-                sx={{ width: '100%', height: '536px', borderRadius: '10px' }}
-              />
-            </RoomPhotoMain>
-           */}
-          </RoomMainPhotos>
-        </ModalPhotos>
-        {/* </ModalMainSection> */}
-        {/* </ModalMain> */}
+        <ModalWholeWrap>
+          {/* <ModalMainSection> */}
+          {/* <ModalMainTitle>Price range</ModalMainTitle> */}
+          <ModalPhotos>
+            <RoomMainPhotos>
+              {roomData?.photos?.map((pic) => {
+                return (
+                  <PhotoSubCover key={pic?.pk}>
+                    <img src={pic?.picture} alt='' />
+                    {/* <span className='subCover'></span> */}
+                  </PhotoSubCover>
+                );
+              })}
+            </RoomMainPhotos>
+          </ModalPhotos>
+          {/* </ModalMainSection> */}
+          {/* </ModalMain> */}
+        </ModalWholeWrap>
       </ModalWholeContainer>
     </WholePageModal>
   );

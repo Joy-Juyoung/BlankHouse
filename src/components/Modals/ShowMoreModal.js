@@ -10,7 +10,11 @@ import {
   ModalMainTitle,
 } from './ModalStyle';
 
-const ShowMoreModal = ({ modalAboutPlaceShown, toggleAboutPlaceModal }) => {
+const ShowMoreModal = ({
+  modalAboutPlaceShown,
+  toggleAboutPlaceModal,
+  roomData,
+}) => {
   return (
     <Modal
       shown={modalAboutPlaceShown}
@@ -23,16 +27,7 @@ const ShowMoreModal = ({ modalAboutPlaceShown, toggleAboutPlaceModal }) => {
         {/* <ModalMain> */}
         {/* <ModalMainSection> */}
         {/* <ModalMainTitle>Price range</ModalMainTitle> */}
-        <ModalMainContents>
-          The average nightly price is $000,000 The average nightly price is
-          $000,000The average nightly price is $000,000The average nightly price
-          is $000,000The average nightly price is $000,000The average nightly
-          price is $000,000The average nightly price is $000,000The average
-          nightly price is $000,000The average nightly price is $000,000The
-          average nightly price is $000,000The average nightly price is
-          $000,000The average nightly price is $000,000The average nightly price
-          is $000,000
-        </ModalMainContents>
+        <ModalMainContents>{roomData?.description}</ModalMainContents>
         {/* </ModalMainSection> */}
         {/* </ModalMain> */}
       </ModalContainer>

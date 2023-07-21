@@ -54,8 +54,10 @@ export const SideTopInfo = styled.div`
   display: flex;
   align-items: center;
 
-  &.space {
-    margin: 0 5px;
+  span {
+    &.coma {
+      margin: 0 5px;
+    }
   }
 `;
 

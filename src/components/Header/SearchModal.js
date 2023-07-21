@@ -32,6 +32,21 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
   const [isCheckInDate, setIsCheckInDate] = useState(false);
   const [isCheckOutDate, setIsCheckOutDate] = useState(false);
 
+  const [isRoom, setIsRoom] = useState(false);
+  const [isExp, setIsExp] = useState(false);
+
+  const handleNav = () => {
+    toggleSearchModal(false);
+    if (location.pathname === '/') {
+      setIsRoom(true);
+    }
+    if (location.pathname === '/experiences') {
+      setIsExp(true);
+    }
+    setIsRoom(false);
+    setIsExp(false);
+  };
+
   return (
     <HeaderModal
       headershown={modalSearchShown}

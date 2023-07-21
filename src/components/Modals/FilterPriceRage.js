@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import { PriceRangeGraph } from './ModalStyle';
 // import { PriceRangeGraph } from './ModalStyle';
 import ReactEcharts from 'echarts-for-react';
+import { allRooms } from '../../redux/slices/rooms';
 
 function valuetext(value) {
   return `${value}°C`;
@@ -47,8 +49,8 @@ const options = {
   series: [
     {
       data: [
-        0, 0, 0, 0, 0, 0, 0, 200, 280, 300, 350, 200, 280, 300, 350, 200, 280,
-        300, 350, 200, 0, 0, 0, 0, 0,
+        0, 0, 0, 100, 2100, 1300, 3100, 2000, 2800, 3000, 3500, 200, 2800, 300,
+        3500, 2000, 2810, 300, 3510, 2100, 100, 0, 0, 0, 0,
       ],
       type: 'bar',
       smooth: true,
@@ -60,7 +62,17 @@ const options = {
 };
 
 const FilterPriceRage = () => {
-  const [value, setValue] = React.useState([30, 80]);
+  const rooms = useSelector((state) => state.rooms);
+  const [value, setValue] = React.useState([10, 85]);
+  const dispatch = useDispatch();
+
+  const initFetch = useCallback(() => {
+    dispatch(allRooms());
+  }, [dispatch]);
+
+  useEffect(() => {
+    initFetch();
+  }, [initFetch]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

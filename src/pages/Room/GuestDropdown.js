@@ -61,7 +61,7 @@ const GuestDropdown = ({ setIsGuests, guestsNum, setGuestsNum }) => {
             <GuestsCount>
               <button
                 name='children'
-                style={{ opacity: adultNum === 0 ? '0.25' : '1' }}
+                style={{ opacity: childrenNum === 0 ? '0.25' : '1' }}
                 onClick={() =>
                   childrenNum !== 0 && setChildrenNum(childrenNum - 1)
                 }
@@ -85,7 +85,7 @@ const GuestDropdown = ({ setIsGuests, guestsNum, setGuestsNum }) => {
             <GuestsCount>
               <button
                 name='infants'
-                style={{ opacity: adultNum === 0 ? '0.25' : '1' }}
+                style={{ opacity: infantsNum === 0 ? '0.25' : '1' }}
                 onClick={() =>
                   infantsNum !== 0 && setInfantsNum(infantsNum - 1)
                 }
@@ -109,7 +109,7 @@ const GuestDropdown = ({ setIsGuests, guestsNum, setGuestsNum }) => {
             <GuestsCount>
               <button
                 name='pets'
-                style={{ opacity: adultNum === 0 ? '0.25' : '1' }}
+                style={{ opacity: petsNum === 0 ? '0.25' : '1' }}
                 onClick={() => petsNum !== 0 && setPetsNum(petsNum - 1)}
               >
                 <RemoveIcon sx={{ fontSize: '18px' }} />
