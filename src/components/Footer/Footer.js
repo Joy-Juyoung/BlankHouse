@@ -15,7 +15,7 @@ import {
   LongList,
   LongTitle,
 } from './FooterStyle';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import FooterSmall from './FooterSmall';
 
 const Footer = () => {
@@ -62,7 +62,9 @@ const Footer = () => {
         <FooterShort>
           <FooterShortWrap>
             <FooterS>
-              <span>© 2023 BlankHouse, Inc.</span>
+              <Link to='/test'>
+                <span>© 2023 BlankHouse, Inc.</span>
+              </Link>
               <span>Privacy</span>
               <span>Terms</span>
               <span>Sitemap</span>
@@ -88,8 +90,6 @@ const Footer = () => {
             </FooterS>
           </FooterShortWrap>
         </FooterShort>
-        {/* </FooterWrap>
-    </FooterContainer> */}
       </FooterContainer>
     </>
   );

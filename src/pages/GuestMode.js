@@ -9,6 +9,7 @@ import Room from './Room/Room';
 import Footer from '../components/Footer/Footer';
 import HeaderSmall from '../components/Header/HeaderSmall';
 import FooterSmall from '../components/Footer/FooterSmall';
+import Test from './Test';
 
 const GuestMode = () => {
   const [isPageMain, setIsPageMain] = useState(false);
@@ -37,6 +38,10 @@ const GuestMode = () => {
           element={<Room setIsPageMain={setIsPageMain} />}
           exact={true}
         />
+      </Routes>
+
+      <Routes>
+        <Route path='/test' element={<Test />} exact={true} />
       </Routes>
       {isPageMain ? <Footer /> : <FooterSmall />}
     </>

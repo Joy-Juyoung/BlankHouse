@@ -104,12 +104,12 @@ const MainListCard = ({ room, loading }) => {
               {/* <p>{room?.name}</p> */}
               <RoomRating>
                 <StarIcon sx={{ fontSize: '16px' }} />
-                <span>{room?.rating}</span>
+                <span>{room?.rating.toFixed(2)}</span>
               </RoomRating>
             </RoomTitle>
             <RoomDesc>{room?.house_type}</RoomDesc>
             <RoomPrice>
-              <p>${room?.price}</p>
+              <p>${room?.price.toFixed(2)}</p>
               <span>night</span>
             </RoomPrice>
           </RoomEachDetails>

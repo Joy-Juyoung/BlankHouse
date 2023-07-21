@@ -38,7 +38,7 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import GuestDropdown from './GuestDropdown';
 
-const RoomSide = ({ loading, RoomData }) => {
+const RoomSide = ({ loading, roomData, rooms, reviews }) => {
   const [isGuests, setIsGuests] = useState(false);
   const [guestsNum, setGuestsNum] = useState(1);
 
@@ -65,14 +65,14 @@ const RoomSide = ({ loading, RoomData }) => {
           <RoomSideInside>
             <RoomSideTop>
               <SideTopPrice>
-                <h2>$560.00</h2>
+                <h2>${roomData?.price?.toFixed(2)}</h2>
                 <span>night</span>
               </SideTopPrice>
               <SideTopInfo>
                 <StarIcon sx={{ fontSize: '16px' }} />
-                <span>{RoomData[0].rating}</span>
-                <span className='space'>•</span>
-                <span>000 Reviews</span>
+                <span>{roomData?.rating?.toFixed(2)}</span>
+                <span className='coma'>·</span>
+                <span>{reviews?.length} Reviews</span>
               </SideTopInfo>
             </RoomSideTop>
             <RoomSideInputField>
