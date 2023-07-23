@@ -12,31 +12,36 @@ const SliderContainer = styled.div`
   width: 100%;
   height: 75%;
   /* object-fit: cover; */
+  /* z-index: 100; */
 `;
 
 const SliderButton = styled.button`
-  background-color: transparent;
   border: none;
+  border-radius: 50%;
   outline: none;
   cursor: pointer;
+
   padding: 0;
-  margin: 0;
+  margin: auto;
+
   width: 30px;
   height: 30px;
+
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #fff;
-  margin: auto;
-  border-radius: 50%;
   opacity: 0.5;
-
   position: absolute;
   top: 0;
   bottom: 0;
   left: ${(props) => props.direction === 'left' && '10px'};
   right: ${(props) => props.direction === 'right' && '10px'};
   z-index: 2;
+
+  /* &:hover {
+    background-color: #fff;
+  } */
 `;
 
 const SliderImageWrap = styled.div`
@@ -56,6 +61,7 @@ const SliderImage = styled.img`
 
 const MainPhotoSlider = ({ room }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isBtnShown, setIsBtnShown] = useState(false);
 
   const goToPrevSlide = () => {
     setCurrentIndex((prevIndex) => {
@@ -82,17 +88,24 @@ const MainPhotoSlider = ({ room }) => {
   // console.log('translateValue', translateValue);
 
   return (
-    <SliderContainer>
+    <SliderContainer
+      onMouseEnter={() => setIsBtnShown(true)}
+      onMouseLeave={() => setIsBtnShown(false)}
+    >
       {currentIndex === 0 ? null : (
-        <SliderButton
-          direction='left'
-          onClick={(e) => {
-            e.preventDefault();
-            goToPrevSlide();
-          }}
-        >
-          <ArrowLeftIcon />
-        </SliderButton>
+        <>
+          {isBtnShown && (
+            <SliderButton
+              direction='left'
+              onClick={(e) => {
+                e.preventDefault();
+                goToPrevSlide();
+              }}
+            >
+              <ArrowLeftIcon />
+            </SliderButton>
+          )}
+        </>
       )}
       <SliderImageWrap>
         <SliderImage
@@ -103,15 +116,19 @@ const MainPhotoSlider = ({ room }) => {
       </SliderImageWrap>
       {currentIndex === room?.photos?.length - 1 ||
       currentIndex === 4 ? null : (
-        <SliderButton
-          direction='right'
-          onClick={(e) => {
-            e.preventDefault();
-            goToNextSlide();
-          }}
-        >
-          <ArrowRightIcon />
-        </SliderButton>
+        <>
+          {isBtnShown && (
+            <SliderButton
+              direction='right'
+              onClick={(e) => {
+                e.preventDefault();
+                goToNextSlide();
+              }}
+            >
+              <ArrowRightIcon />
+            </SliderButton>
+          )}
+        </>
       )}
     </SliderContainer>
   );
