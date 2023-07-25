@@ -3,72 +3,44 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { MainSmallContainer, MainWrap } from '../MainHome/MainStyle';
 import {
-  RoomDetailsSections,
-  RoomDetailsTop,
-  RoomMainDetails,
   RoomMainPhotos,
   RoomMainWrap,
-  RoomMainDetailsWrap,
-  RoomPhotoMain,
-  RoomPhotoSub,
   RoomTopHeader,
   RoomTopInfo,
   RoomTopText,
   RoomTopWrap,
-  RoomDetailHeader,
-  RoomDetailSection,
-  DetailHeader,
-  DetailHeaderReserve,
-  HeaderReserveWrap,
-  ReservePrice,
-  ReserveReview,
-  DetailHeaderWrap,
-  ShowMoreBtn,
-  ShowAllBtn,
-  ThingsToKnow,
-  ThingsWrap,
-  ThingsTitle,
-  ThingsList,
-  SleepWrap,
-  BasicInfo,
-  BasicIntro,
-  PlaceOffers,
-  PlaceOffersList,
   ShowPhotoBtn,
 } from './RoomStyle';
 import StarIcon from '@mui/icons-material/Star';
 import ShareIcon from '@mui/icons-material/Share';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import Loading from '../../components/Loading';
+// import Loading from '../../components/Loading';
 import AppsIcon from '@mui/icons-material/Apps';
 import ShowPhotoModal from '../../components/Modals/ShowPhotoModal';
 
 import roomsDataService from '../../redux/services/RoomsService';
-import { allReviews } from '../../redux/slices/reviews';
-import RoomDetailHead from './RoomDetailHead';
-import PhotoMainSk from './Skeletons/PhotoMainSk';
-import PhotoSubSk from './Skeletons/PhotoSubSk';
-import RoomDetails from './RoomDetails';
+import { allReviews, allRoomReviews } from '../../redux/slices/reviews';
+import RoomInfoHead from './RoomInfoHead';
+import RoomInfo from './RoomInfo';
 import { allRooms } from '../../redux/slices/rooms';
+import RoomPhotos from './RoomPhotos';
+import PageLoading from '../../components/Loading/PageLoading';
 
 const Room = ({ setIsPageMain }) => {
   const [fav, setFav] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [scrollPosition, setScrollPosition] = useState(0);
   const [modalPhotoShown, togglePhotoModal] = useState(false);
-  // const [reviewData, setReviewData] = useState('');
   const [roomData, setRoomData] = useState('');
   const { roomId } = useParams();
-  const [roomInfo, setRoomInfo] = useState('');
 
-  const reviews = useSelector((state) => state.reviews);
-  const rooms = useSelector((state) => state.rooms);
+  const rooms = useSelector((state) => state.rooms[0]);
+  const reviews = useSelector((state) => state.reviews[0]);
   const dispatch = useDispatch();
 
   const initFetch = useCallback(() => {
-    dispatch(allReviews());
-    // dispatch(allRooms());
+    dispatch(allRoomReviews());
+    dispatch(allRooms());
   }, [dispatch]);
 
   const getRoom = (id) => {
@@ -82,16 +54,7 @@ const Room = ({ setIsPageMain }) => {
       });
   };
 
-  // const getReviews = (id) => {
-  //   reviewsDataService
-  //     .getReviewById(id)
-  //     .then((response) => {
-  //       setReviewData(response.data);
-  //     })
-  //     .catch((e) => {
-  //       console.log(e);
-  //     });
-  // };
+  console.log('reviews', reviews);
 
   useEffect(() => {
     setIsPageMain(false);
@@ -100,50 +63,22 @@ const Room = ({ setIsPageMain }) => {
     // getReviews(roomId);
   }, [initFetch]);
 
-  useEffect(() => {
-    dispatch(allRooms());
-  }, [roomId]);
-
-  // console.log('roomData', roomData);
-  // console.log('reviews', reviews);
-  // console.log('rooms', rooms);
-
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     setLoading(false);
-  //   }, 680);
-  //   return () => clearTimeout(timer);
-  // }, []);
-
-  const handleScroll = () => {
-    setScrollPosition(window.scrollY); // => scroll position
-  };
-  // console.log(scrollPosition);
-
-  useEffect(() => {
-    handleScroll();
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
   const handlePhotoShowAll = () => {
     togglePhotoModal(!modalPhotoShown);
     document.body.style.overflow = 'hidden';
   };
 
+  console.log('rooms', rooms);
+
   if (loading)
     return (
       <div>
-        <Loading />
+        <PageLoading />
       </div>
     );
   return (
     <>
-      {scrollPosition >= 800 && (
-        <RoomDetailHead roomData={roomData} rooms={rooms} reviews={reviews} />
-      )}
+      <RoomInfoHead roomData={roomData} rooms={rooms} reviews={reviews} />
       <MainSmallContainer>
         <MainWrap>
           <RoomTopWrap id='viewPhoto'>
@@ -178,8 +113,7 @@ const Room = ({ setIsPageMain }) => {
           </RoomTopWrap>
           <RoomMainWrap>
             <RoomMainPhotos>
-              <PhotoMainSk roomData={roomData} />
-              <PhotoSubSk roomData={roomData} />
+              <RoomPhotos roomData={roomData} />
               <ShowPhotoBtn onClick={handlePhotoShowAll}>
                 <AppsIcon />
                 <span>Show all photos</span>
@@ -193,7 +127,7 @@ const Room = ({ setIsPageMain }) => {
               roomData={roomData}
             />
 
-            <RoomDetails
+            <RoomInfo
               roomData={roomData}
               reviews={reviews}
               rooms={rooms}

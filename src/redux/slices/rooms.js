@@ -21,10 +21,13 @@ const roomsSlice = createSlice({
   initialState,
   extraReducers: {
     [allRooms.fulfilled]: (state, action) => {
-      return [...action.payload];
+      return [action.payload];
     },
+    // [allRooms.pending]: () => {
+    //   return alert('pending data');
+    // },
     [roomById.fulfilled]: (state, action) => {
-      return [...action.payload];
+      return [action.payload];
     },
   },
 });

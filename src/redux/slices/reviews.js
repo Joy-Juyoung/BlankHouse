@@ -8,6 +8,11 @@ export const allReviews = createAsyncThunk('reviews/all', async () => {
   return res.data;
 });
 
+export const allRoomReviews = createAsyncThunk('reviews/all/room', async () => {
+  const res = await reviewsDataService.getAllRoomReviews();
+  return res.data;
+});
+
 export const reviewById = createAsyncThunk(
   'reviews/getReviewById',
   async ({ id }) => {
@@ -21,10 +26,13 @@ const reviewsSlice = createSlice({
   initialState,
   extraReducers: {
     [allReviews.fulfilled]: (state, action) => {
-      return [...action.payload];
+      return [action.payload];
+    },
+    [allRoomReviews.fulfilled]: (state, action) => {
+      return [action.payload];
     },
     [reviewById.fulfilled]: (state, action) => {
-      return [...action.payload];
+      return [action.payload];
     },
   },
 });

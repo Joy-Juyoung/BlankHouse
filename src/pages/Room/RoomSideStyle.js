@@ -68,23 +68,30 @@ export const RoomSideInputField = styled.div`
   /* width: 100%; */
   /* padding: 10px; */
 
-  span {
+  /* span {
     font-size: 11px;
     font-weight: 600;
-  }
+  } */
+`;
+
+export const InputLabel = styled.span`
+  font-size: 11px;
+  font-weight: 600;
 `;
 
 export const SideDateInput = styled.div`
   display: flex;
+  /* justify-content: space-evenly; */
+`;
+
+export const DateValue = styled.p`
+  margin: 0;
+  cursor: pointer;
 `;
 
 export const DateInput = styled.div`
   padding: 10px 15px;
-  cursor: pointer;
-
-  input {
-    cursor: pointer;
-  }
+  width: 100%;
 
   &.checkin {
     border-right: 1px solid #c4c4c4;
@@ -260,8 +267,11 @@ export const SideTotal = styled.div``;
 export const RoomSideReport = styled.div`
   padding: 25px 0;
   /* margin: 0 auto; */
-  text-align: center;
+  /* text-align: center; */
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 // -----dropdown

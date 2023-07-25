@@ -264,7 +264,7 @@ export const RoomMainDetails = styled.div`
 
 export const RoomMainDetailsWrap = styled.div`
   flex: 1.8;
-  padding-right: 90px;
+  padding-right: 45px;
 `;
 
 export const RoomDetailsTop = styled.div`
@@ -371,6 +371,7 @@ export const ShowMoreBtn = styled.div`
   font-weight: 600;
   cursor: pointer;
   margin: 20px 0;
+  color: #000;
 
   svg {
     margin-left: 10px;

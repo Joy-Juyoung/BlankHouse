@@ -54,7 +54,8 @@ export const MainTopCategory = styled.div`
   display: flex;
   align-items: center;
   /* justify-content: center; */
-  width: 95%;
+  width: 100%;
+  margin-right: 10px;
   /* overflow: hidden; */
   /* overflow-x: scroll; */
   /* position: relative; */
@@ -62,7 +63,7 @@ export const MainTopCategory = styled.div`
 
 export const MainTopFilter = styled.div`
   /* flex: 1; */
-  width: 5%;
+  /* width: 5%; */
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -74,10 +75,10 @@ export const MainTopFilter = styled.div`
 export const FilterBtn = styled.div`
   cursor: pointer;
   font-size: 14px;
-  border: 1px solid lightgray;
+  border: 1px solid #999999;
   background: #fff;
-  padding: 15px;
-  /* margin-left: 10px; */
+  padding: 10px 15px;
+  margin-left: 10px;
   border-radius: 5px;
 
   display: flex;

@@ -25,16 +25,25 @@ export const SearchModalNavWrap = styled.div`
 `;
 
 export const SearchNavbar = styled.div`
-  border-bottom: ${({ guestmode }) => (guestmode ? '2px solid #000' : '')};
-  padding-bottom: 5px;
+  &.deactive {
+    &:after {
+      padding-bottom: 5px;
+      display: block;
+      content: '';
+      border-bottom: 2px solid #000;
+      transform: scaleX(0);
+      transition: transform 250ms ease-in-out;
+    }
+    &:hover {
+      &:after {
+        transform: scaleX(1);
+      }
+    }
+  }
 
-  &:active {
-    /* animation: shake 0.5s forwards;
-    @keyframes shake {
-      100% { */
-    transform: translateY(4px);
-    /* } */
-    /* } */
+  &.active {
+    padding-bottom: 5px;
+    border-bottom: 2px solid #000;
   }
 `;
 
@@ -48,7 +57,7 @@ export const SearchField = styled.div`
 
 export const SearchWrap = styled.div`
   border-radius: 30px;
-  background: #e5e5e5;
+  background: #f2f2f2;
   display: flex;
   align-items: center;
   height: 65px;
@@ -78,7 +87,7 @@ export const SearchTextBack = styled.div`
 
   &:hover {
     border-radius: 30px;
-    background: #dddddd;
+    background: #e5e5e5;
     /* height: 100%; */
     /* display: flex;
     align-items: center; */
@@ -97,9 +106,11 @@ export const SearchTextSection = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  /* align-items: center; */
   position: relative;
 
-  padding: 0 10px;
+  padding: 0 5px;
+  /* margin: 0 auto; */
 
   p {
     margin: 0;
