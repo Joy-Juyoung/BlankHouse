@@ -47,12 +47,15 @@ const SearchDateBoxWrap = styled.div`
 `;
 
 const SearchDateBox = ({
-  setIsCheckInDate,
-  setIsCheckOutDate,
   toggleSearchModal,
-  isCheckInDate,
-  isCheckOutDate,
+  checkInDate,
+  checkOutDate,
+  setCheckInDate,
+  setCheckOutDate,
 }) => {
+  // const [checkInDate, setCheckInDate] = useState('');
+  // const [checkOutDate, setCheckOutDate] = useState('');
+
   return (
     <>
       <SearchDateDropdown
@@ -67,8 +70,10 @@ const SearchDateBox = ({
             </DemoContainer>
           </LocalizationProvider> */}
           <DateRange
-            isCheckInDate={isCheckInDate}
-            isCheckOutDate={isCheckOutDate}
+            checkInDate={checkInDate}
+            checkOutDate={checkOutDate}
+            setCheckInDate={setCheckInDate}
+            setCheckOutDate={setCheckOutDate}
           />
         </SearchDateBoxWrap>
       </SearchDateDropdown>

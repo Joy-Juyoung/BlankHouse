@@ -105,7 +105,7 @@ const LodingWrap = styled.div`
   }
 `;
 
-const Loading = () => {
+const PageLoading = () => {
   return (
     <LodingContainer>
       <LodingWrap></LodingWrap>
@@ -113,4 +113,4 @@ const Loading = () => {
   );
 };
 
-export default Loading;
+export default PageLoading;

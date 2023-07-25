@@ -49,7 +49,7 @@ const RoomSideBtn = styled.button`
   }
 `;
 
-const SearchButton = ({ loading, RoomData }) => {
+const SearchButton = () => {
   const [hoverStyle, setHoverStyle] = useState({
     left: 0,
     top: 0,

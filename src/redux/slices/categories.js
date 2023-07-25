@@ -24,10 +24,10 @@ const categoriesSlice = createSlice({
   initialState,
   extraReducers: {
     [allRoomCategories.fulfilled]: (state, action) => {
-      return [...action.payload];
+      return [action.payload];
     },
     [allExCategories.fulfilled]: (state, action) => {
-      return [...action.payload];
+      return [action.payload];
     },
   },
 });

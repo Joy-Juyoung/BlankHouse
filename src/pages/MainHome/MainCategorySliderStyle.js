@@ -6,7 +6,7 @@ export const SliderContainer = styled.div`
   position: relative;
   align-items: center;
   justify-content: center;
-  width: 99%;
+  width: 100%;
   /* height: 75%; */
   /* object-fit: cover; */
 `;
@@ -52,22 +52,9 @@ export const SliderWrapper = styled.div`
 `;
 
 export const Slide = styled.div`
-  background-color: #${(props) => props.bg};
-  /* margin: 0 25px; */
-  color: ${({ categorypick }) => (categorypick ? '#000' : 'gray')};
-  /* border-bottom: ${({ categorypick }) =>
-    categorypick ? '3px solid #000' : ''}; */
-
+  width: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  cursor: pointer;
-
-  @media screen and (max-width: 1024px) {
-    width: 250px;
-    height: 300px;
-  }
 `;
 
 export const SlideIcon = styled.div`
@@ -78,13 +65,19 @@ export const SlideIcon = styled.div`
 `;
 
 export const SlideName = styled.div`
-  font-size: 13px;
-  padding-bottom: 5px;
-  width: 50px;
-  height: 15px;
+  width: 100%;
   display: flex;
+  align-items: center;
   justify-content: center;
+  cursor: pointer;
 
-  border-bottom: ${({ categorypick }) =>
-    categorypick ? '3px solid #000' : ''};
+  color: #666666;
+  border: 1px solid #999999;
+  border-radius: 5px;
+  margin: 0 10px;
+  padding: 5px;
+
+  span {
+    font-size: 13px;
+  }
 `;

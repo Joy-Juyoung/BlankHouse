@@ -21,10 +21,6 @@ import StarIcon from '@mui/icons-material/Star';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import RoomSide from './RoomSide';
 import BedIcon from '@mui/icons-material/Bed';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-import { LocalizationProvider } from '@mui/x-date-pickers-pro';
-import { AdapterDayjs } from '@mui/x-date-pickers-pro/AdapterDayjs';
-import { DateRangeCalendar } from '@mui/x-date-pickers-pro/DateRangeCalendar';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import PetsIcon from '@mui/icons-material/Pets';
 import TodayIcon from '@mui/icons-material/Today';
@@ -34,22 +30,21 @@ import WifiIcon from '@mui/icons-material/Wifi';
 import TvIcon from '@mui/icons-material/Tv';
 import MicrowaveIcon from '@mui/icons-material/Microwave';
 import ShowMoreModal from '../../components/Modals/ShowMoreModal';
-import SearchDateBox from '../../components/Dropdown/SearchDateBox';
+// import SearchDateBox from '../../components/Dropdown/SearchDateBox';
 import DateRange from '../../components/DateRange';
+import RoomReviews from './RoomReviews';
 
-const RoomDetails = ({ reviews, roomData, rooms, roomId }) => {
+const RoomInfo = ({ reviews, roomData, rooms, roomId }) => {
   const [loading, setLoading] = useState(false);
   const [modalAboutPlaceShown, toggleAboutPlaceModal] = useState(false);
-  const [isCheckInDate, setIsCheckInDate] = useState(false);
-  const [isCheckOutDate, setIsCheckOutDate] = useState(false);
+  const [checkInDate, setCheckInDate] = useState('');
+  const [checkOutDate, setCheckOutDate] = useState('');
   // const [houseTyp, setHouseTyp] = useState('Entire');
-  // const [roomInfo, setRoomInfo] = useState('');
-  const roomInfo = rooms?.filter((room) => room.pk === roomData?.pk);
+  // const [roomInfo, setRoomInfo] = useState( rooms?.filter((room) => room.pk === roomData?.pk));
+  const roomInfo = rooms?.filter((room) => room?.pk === roomId);
 
-  useEffect(() => {
-    console.log('roomInfo', roomInfo);
-    console.log('roomData', roomData);
-  }, []);
+  // console.log('rooms', rooms);
+  // console.log('roomData', roomData);
 
   return (
     <RoomDetailSection>
@@ -58,19 +53,20 @@ const RoomDetails = ({ reviews, roomData, rooms, roomId }) => {
           <RoomDetailsTop>
             <div>
               <h2>
-                {roomInfo[0]?.house_type === 'entire_place' && 'Entire '}
-                {roomInfo[0]?.house_type === 'private_room' && 'Private room '}
-                {roomInfo[0]?.house_type === 'shared_room' && 'Shared room '}
-                {roomData?.category?.name?.toLowerCase()} hosted by{' '}
-                {roomData?.owner?.username}
+                {roomInfo?.[0]?.house_type === 'entire_place' && 'Entire '}
+                {roomInfo?.[0]?.house_type === 'private_room' &&
+                  'Private room '}
+                {roomInfo?.[0]?.house_type === 'shared_room' && 'Shared room '}
+                {roomInfo?.[0]?.category?.name?.toLowerCase()} hosted by{' '}
+                {roomInfo?.[0]?.owner?.username}
               </h2>
-              <span>{roomData?.maximum_guests} guests</span>
+              <span>{roomInfo?.[0]?.maximum_guests} guests</span>
               <span className='coma'>·</span>
-              <span>{roomInfo[0]?.number_of_room} bedroom </span>
+              <span>{roomInfo?.[0]?.number_of_room} bedroom </span>
               <span className='coma'>·</span>
-              <span>{roomInfo[0]?.number_of_toilet} bath</span>
+              <span>{roomInfo?.[0]?.number_of_toilet} bath</span>
               <span className='coma'>·</span>
-              <span>{roomInfo[0]?.number_of_bed} bath</span>
+              <span>{roomInfo?.[0]?.number_of_bed} bath</span>
             </div>
             <div>
               <img src='' alt='' />
@@ -131,7 +127,7 @@ const RoomDetails = ({ reviews, roomData, rooms, roomId }) => {
             <SleepWrap>
               <BedIcon />
               <p>Bedroom</p>
-              <span>{roomInfo[0]?.number_of_bed} bed</span>
+              <span>{roomInfo?.[0]?.number_of_bed} bed</span>
             </SleepWrap>
           </RoomDetailsSections>
           <RoomDetailsSections id='viewAmenities'>
@@ -171,14 +167,11 @@ const RoomDetails = ({ reviews, roomData, rooms, roomId }) => {
           <RoomDetailsSections>
             <h2>0 nights in Cochrane</h2>
             <p>Oct. 7, 2023 - Oct. 12, 2023</p>
-            {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer components={['DateRangeCalendar']}>
-                <DateRangeCalendar />
-              </DemoContainer>
-            </LocalizationProvider> */}
             <DateRange
-              isCheckInDate={isCheckInDate}
-              isCheckOutDate={isCheckOutDate}
+              checkInDate={checkInDate}
+              checkOutDate={checkOutDate}
+              setCheckInDate={setCheckInDate}
+              setCheckOutDate={setCheckOutDate}
             />
           </RoomDetailsSections>
         </RoomMainDetailsWrap>
@@ -187,6 +180,8 @@ const RoomDetails = ({ reviews, roomData, rooms, roomId }) => {
           roomData={roomData}
           rooms={rooms}
           reviews={reviews}
+          checkInDate={checkInDate}
+          checkOutDate={checkOutDate}
         />
       </RoomMainDetails>
       <RoomDetailsSections id='viewReviews'>
@@ -196,8 +191,7 @@ const RoomDetails = ({ reviews, roomData, rooms, roomId }) => {
             {roomData?.rating?.toFixed(2)} / {reviews?.length} reviews
           </span>
         </h2>
-        <div>Average graph</div>
-        <div>Reviews</div>
+        <RoomReviews roomData={roomData} reviews={reviews} />
         <ShowAllBtn>Show all 00 Reviews</ShowAllBtn>
       </RoomDetailsSections>
       <RoomDetailsSections id='viewLocation'>
@@ -262,4 +256,4 @@ const RoomDetails = ({ reviews, roomData, rooms, roomId }) => {
   );
 };
 
-export default RoomDetails;
+export default RoomInfo;

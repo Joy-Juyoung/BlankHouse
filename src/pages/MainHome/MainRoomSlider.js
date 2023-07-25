@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import SorryImg from '../../assets/images/sorry.jpg';
 
 const SliderContainer = styled.div`
   display: flex;
@@ -59,9 +60,9 @@ const SliderImage = styled.img`
   transform: translateX(${(props) => props.translateValue * 3}px); */
 `;
 
-const MainPhotoSlider = ({ room }) => {
+const MainRoomSlider = ({ room, isBtnShown }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isBtnShown, setIsBtnShown] = useState(false);
+  // const [isBtnShown, setIsBtnShown] = useState(false);
 
   const goToPrevSlide = () => {
     setCurrentIndex((prevIndex) => {
@@ -88,10 +89,7 @@ const MainPhotoSlider = ({ room }) => {
   // console.log('translateValue', translateValue);
 
   return (
-    <SliderContainer
-      onMouseEnter={() => setIsBtnShown(true)}
-      onMouseLeave={() => setIsBtnShown(false)}
-    >
+    <SliderContainer>
       {currentIndex === 0 ? null : (
         <>
           {isBtnShown && (
@@ -109,9 +107,8 @@ const MainPhotoSlider = ({ room }) => {
       )}
       <SliderImageWrap>
         <SliderImage
-          src={room?.photos[currentIndex]?.picture}
+          src={room?.photos[currentIndex]?.picture || SorryImg}
           alt='Slider'
-          // translateValue={translateValue}
         />
       </SliderImageWrap>
       {currentIndex === room?.photos?.length - 1 ||
@@ -134,4 +131,4 @@ const MainPhotoSlider = ({ room }) => {
   );
 };
 
-export default MainPhotoSlider;
+export default MainRoomSlider;

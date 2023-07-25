@@ -9,14 +9,14 @@ import {
   SliderWrapper,
   Slide,
   SlideName,
-} from './CategorySliderStyle';
+} from './MainCategorySliderStyle';
 import { useDispatch, useSelector } from 'react-redux';
 import { allRoomCategories } from '../../redux/slices/categories';
 
-const CategorySlider = ({ loading, visibleItems }) => {
+const MainCategorySlider = ({ loading, visibleItems }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const categories = useSelector((state) => state.categories);
+  const categories = useSelector((state) => state.categories[0]);
   const dispatch = useDispatch();
 
   const initFetch = useCallback(() => {
@@ -42,7 +42,10 @@ const CategorySlider = ({ loading, visibleItems }) => {
 
   const goToNextSlide = () => {
     setCurrentIndex((prevIndex) => {
-      if (prevIndex === totalItems - visibleItems) {
+      if (
+        prevIndex === totalItems - visibleItems ||
+        totalItems <= visibleItems
+      ) {
         // return 0;
         return prevIndex;
       } else {
@@ -67,14 +70,15 @@ const CategorySlider = ({ loading, visibleItems }) => {
           <ArrowLeftIcon />
         </SliderButton>
         <SliderWrapper>
-          {categories
-            ?.slice(currentIndex, currentIndex + visibleItems)
-            .map((category, index) => (
-              <Slide key={index} style={{ width: sliderWidth }}>
-                {/* <SlideIcon>{category?.icon}</SlideIcon> */}
-                <SlideName>{category?.name}</SlideName>
-              </Slide>
-            ))}
+          <Slide>
+            {categories
+              ?.slice(currentIndex, currentIndex + visibleItems)
+              .map((category, index) => (
+                <SlideName key={index} style={{ width: sliderWidth }}>
+                  <span>{category?.name}</span>
+                </SlideName>
+              ))}
+          </Slide>
         </SliderWrapper>
         <SliderButton
           direction='right'
@@ -82,7 +86,10 @@ const CategorySlider = ({ loading, visibleItems }) => {
             e.preventDefault();
             goToNextSlide();
           }}
-          disabled={currentIndex === totalItems - visibleItems}
+          disabled={
+            currentIndex === totalItems - visibleItems ||
+            totalItems <= visibleItems
+          }
         >
           <ArrowRightIcon />
         </SliderButton>
@@ -91,4 +98,4 @@ const CategorySlider = ({ loading, visibleItems }) => {
   );
 };
 
-export default CategorySlider;
+export default MainCategorySlider;

@@ -1,74 +1,49 @@
-// import React, { Component } from 'react';
-// import { DateRangePicker } from 'react-dates';
-// import 'react-dates/initialize';
-// import 'react-dates/lib/css/_datepicker.css';
-// import moment from 'moment';
-// import './styles.css';
-
-// class DateRange extends Component {
-//   state = {
-//     startDate: null,
-//     endDate: null,
-//     focusedInput: null,
-//   };
-
-//   handleDateChange = ({ startDate, endDate }) =>
-//     this.setState({ startDate, endDate });
-
-//   handleFocusChange = (focusedInput) => this.setState({ focusedInput });
-
-//   render = () => (
-//     // <DateRangePicker
-//     //   endDate={this.state.endDate}
-//     //   endDateId='endDate'
-//     //   focusedInput={this.state.focusedInput}
-//     //   isOutsideRange={() => null}
-//     //   onDatesChange={this.handleDateChange}
-//     //   onFocusChange={this.handleFocusChange}
-//     //   startDate={this.state.startDate}
-//     //   startDateId='startDate'
-//     // />
-//     <DateRangePicker
-//       startDateId='startDate'
-//       endDateId='endDate'
-//       startDate={this.state.startDate}
-//       endDate={this.state.endDate}
-//       onDatesChange={({ startDate, endDate }) => {
-//         this.setState({ startDate, endDate });
-//       }}
-//       focusedInput={this.state.focusedInput}
-//       onFocusChange={(focusedInput) => {
-//         this.setState({ focusedInput });
-//       }}
-//     />
-//   );
-// }
-
-// export default DateRange;
-
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { addDays } from 'date-fns';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { DateRangePicker } from 'react-date-range';
 
-const DateRange = ({ isCheckInDate, isCheckOutDate }) => {
-  const [state, setState] = useState([
+const DateRange = ({
+  checkInDate,
+  checkOutDate,
+  setCheckInDate,
+  setCheckOutDate,
+}) => {
+  const [selectedDateRange, setSelectedDateRange] = useState([
     {
       startDate: new Date(),
       endDate: addDays(new Date(), 7),
       key: 'selection',
     },
   ]);
-  console.log('item', state.selection);
+
+  useEffect(() => {
+    // setSelectedDateRange([
+    //   {
+    //     startDate: new Date(),
+    //     endDate: addDays(new Date(), 7),
+    //     key: 'selection',
+    //   },
+    // ]);
+    setCheckInDate(
+      selectedDateRange[0]?.startDate?.toLocaleDateString('en-CA')
+    );
+    setCheckOutDate(selectedDateRange[0]?.endDate?.toLocaleDateString('en-CA'));
+  }, [selectedDateRange]);
+
+  // console.log('item', Number(checkOutDate - checkInDate));
+  // console.log('checkInDate', checkInDate);
+  // console.log('checkOutDate', checkOutDate);
 
   return (
     <div>
       <DateRangePicker
-        onChange={(item) => setState([item.selection])}
+        onChange={(item) => setSelectedDateRange([item.selection])}
         moveRangeOnFirstSelection={false}
         months={2}
-        ranges={state}
+        ranges={selectedDateRange}
+        // rangeColors='#ffae00 !important'
         direction='horizontal'
       />
     </div>
