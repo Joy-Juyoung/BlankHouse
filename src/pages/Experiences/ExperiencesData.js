@@ -21,7 +21,7 @@ export const ExperiencesData = [
     pk: 1,
     photo: Experience13,
     title: 'Discover Banff National Park Day',
-    rating: '4.87(1000)',
+    rating: '4.87(1000) · 11 hours',
     city: 'Calgary',
     province: 'Alberta',
     country: 'Canada',

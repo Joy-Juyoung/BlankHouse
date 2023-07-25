@@ -55,6 +55,13 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
             >
               <Link to='/experiences'>Experiences</Link>
             </SearchNavbar>
+            <SearchNavbar
+              guestmode={location.pathname === '/onlinexperiences' ? true : false}
+              onClick={() => toggleSearchModal(false)}
+            >
+              <Link to='/onlinexperiences'>Online Experiences</Link>
+            </SearchNavbar>
+
           </SearchModalNavWrap>
         </SearchModalNav>
         <SearchField>

@@ -111,8 +111,9 @@ export const FilterResultBtn = styled.button`
 // ----------Price Range--------------
 
 export const PriceRangeBarWrap = styled.div`
-  margin: 20px;
-  min-height: 80px;
+  margin: 25px;
+  min-height: 50px;
+  align-items: center;
   /* background: lightgray; */
 `;
 
@@ -129,8 +130,8 @@ export const PriceBetween = styled.div`
 `;
 
 export const PriceRangeWrapper = styled.div`
-  border: 2px solid lightgray;
-  border-radius: 5px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
   width: 100%;
   cursor: text;
   padding: 5px 10px;

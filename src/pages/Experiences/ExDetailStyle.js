@@ -663,7 +663,7 @@ export const CoHostLists = styled.ul`
 `;
 
 export const CoAvatars = styled.li`
-    margin: 0;
+    margin: 0 15px 0 0;
     padding: 0;
     height: 32px;
     width: 32px;
@@ -1159,6 +1159,61 @@ export const ExtraInfoWrap = styled.div`
 
 `;
 
+export const ThingsWrap = styled.div`
+    padding-bottom: 20px;
+    h2 {
+        margin: 0;
+        padding: 0;
+        font-weight: 600;
+        font-size: 22px;
+        line-height: 26px;
+    }
+`;
+
+export const ThingsInfoWrap = styled.div`
+margin-bottom: -32px;
+
+`;
+
+export const ThingInfoTop = styled.div`
+    position: relative;
+    width: 100%;
+    margin-left: 0%;
+    margin-right: 0%;
+    padding-left: 6px;
+    padding-right: 6px;
+    margin-bottom: 32px;
+
+    h3 {
+        font-weight: 600;
+        margin-bottom: 16px;
+    }
+`;
+
+export const IconInfoWrap = styled.div`
+    display:flex;
+    justify-centent:center;
+    align-items: center;
+    margin-bottom: 16px;
+    svg {
+        height: 20px;
+        width:20px;
+        margin-right: 8px
+    }
+    span {
+        line-height: 24px;
+    }
+`;
+
+export const ThingInfoBottom = styled.div`
+    position: relative;
+    width: 100%;
+    margin-left: 0%;
+    margin-right: 0%;
+    padding-left: 6px;
+    padding-right: 6px;
+
+`;
 export const SimilarWrap = styled.div`
     width: 100%;
     border-top-color: rgb(221, 221, 221);
@@ -1167,4 +1222,180 @@ export const SimilarWrap = styled.div`
     padding-top: 48px;
     padding-bottom: 48px;
 
+
+`;
+
+
+export const ExpDatePickWrap = styled.div`
+    position: absolute;
+    top:70px;
+    left:-25px;
+    border: 1px solid #c4c4c4;
+    border-radius: 10px;
+    z-index: 100;
+`;
+
+
+export const GuestsInput = styled.div`
+width: 100%;
+/* display: flex;
+flex-direction: column; */
+/* justify-content: space-between; */
+`;
+export const RoomSideInputField = styled.div`
+    display:flex;   
+    margin: 20px 0;
+    z-index: 6;
+    /* width: 100%; */
+    /* padding: 10px; */
+    border-radius: 10px;
+    border: 1px solid #c4c4c4;
+
+    span {
+        font-size: 11px;
+        font-weight: 600;
+    }
+`;
+
+export const SideDateInput = styled.div`
+  display: flex;
+`;
+export const SideDatesInput = styled.div`
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  z-index: 5;
+  position: relative;
+  width:100% ;
+
+  &.active {
+    border: 2px solid #000;
+    border-radius: 10px;
+  }
+`;
+
+export const SideGuestsInput = styled.div`
+  padding: 10px 15px;
+  border-left: 1px solid #c4c4c4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  z-index: 10;
+  position: relative;
+  width:100% ;
+
+  &.active {
+    border: 2px solid #000;
+    border-radius: 10px;
+    width:100% ;
+  }
+`;
+
+
+// ---drop start
+
+export const DropBackDrop = styled.div`
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* background-color: rgba(0, 0, 0, 0.1); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 4;
+  cursor: auto;
+
+  overflow: hidden;
+`;
+
+export const GuestsDropdown = styled.div`
+  background: #fff;
+  padding: 10px;
+  width: 450px;
+  position: absolute;
+  top: 70px;
+  left: -260px;
+  right: 0;
+  z-index: 2;
+  cursor: auto;
+
+  border-radius: 10px;
+  border: 1px solid #dddd;
+  box-shadow: 0px 10px 15px 2px rgba(0, 0, 0, 0.2);
+
+  ul {
+    list-style: none;
+    padding: 0 10px;
+  }
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  span {
+    font-weight: 400;
+    font-size: 14px;
+  }
+`;
+
+export const GuestsCount = styled.div`
+  display: flex;
+  align-items: center;
+
+  button {
+    border: 1px solid gray;
+    border-radius: 50%;
+    /* margin: 0 10px; */
+    width: 32px;
+    height: 32px;
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    cursor: pointer;
+
+    svg {
+      color: gray;
+    }
+  }
+  span {
+    width: 35px;
+    text-align: center;
+  }
+`;
+
+export const GuestsNotice = styled.div`
+  padding: 0 10px;
+
+  p {
+    margin: 0;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: normal;
+  }
+`;
+
+export const GuestsCloseBtn = styled.div`
+  text-decoration: underline;
+  text-align: right;
+  margin: 20px 10px;
+
+  span {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+  }
 `;

@@ -18,7 +18,6 @@ export const DropAccountCoverTop = styled.div`
 
 export const DropAccountCoverMain = styled.div`
   position: fixed;
-  top: 112px;
   bottom: 0;
   left: 0;
   right: 0;

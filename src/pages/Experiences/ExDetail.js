@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ExperiencesData } from './ExperiencesData';
 import StarIcon from '@mui/icons-material/Star';
+import Avatar from '@mui/material/Avatar';
 import { AvatarBtn, 
         BookBtn, BottomInfoWrap, 
         ChooseBtn, CoAvatars, CoHostAvatar,CoHostLink, CoHostLists, ContactHostWrap, 
@@ -38,7 +39,17 @@ import { AvatarBtn,
         ChooseDateWrap,
         DateSlideWrap,
         SlideTitle,
-        SlideBtnWrap} from './ExDetailStyle';
+        SlideBtnWrap,
+        DataPickBtnWrap,
+        ExpDatePickWrap,
+        SideDatesInput,
+        ThingsWrap,
+        ThingsInfoWrap,
+        ThingInfoTop,
+        ThingInfoBottom,
+        IconInfoWrap,
+        } from './ExDetailStyle';
+import ExpDatePicker from './ExpDatePicker';
 import FaceOutlinedIcon from '@mui/icons-material/FaceOutlined';
 import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined';
 import EditCalendarOutlinedIcon from '@mui/icons-material/EditCalendarOutlined';
@@ -51,9 +62,20 @@ import Map1 from '../../assets/images/houseSample/map1.jpg';
 import IosShareOutlinedIcon from '@mui/icons-material/IosShareOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import GridOnIcon from '@mui/icons-material/GridOn';
-
+import { DateInput, GuestsInput, RoomSideInputField, SideDateInput, SideGuestsInput } from './ExDetailStyle';
+import ExGuestDropdown from './ExGuestDropdown';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import PersonIcon from '@mui/icons-material/Person';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import RollerSkatingIcon from '@mui/icons-material/RollerSkating';
+import MasksIcon from '@mui/icons-material/Masks';
 
 const ExDetail = () => {
+
+    const [isDatePikerOpen, setIsDatePickerOpen] = useState(false);
+    const [isGuests, setIsGuests] = useState(false);
+    const [guestsNum, setGuestsNum] = useState(1);
+
   return (
     <div>
         <ExDetailWrap>
@@ -65,11 +87,11 @@ const ExDetail = () => {
                                 <TopNavLink>{ExperiencesData[0].city},{ExperiencesData[0].country}</TopNavLink>
                             </li>
                             <li>
-                                <span>></span>
+                                <span></span>
                                 <TopNavLink>  Transportation activities</TopNavLink>
                             </li>
                             <li>
-                                <span>></span>
+                                <span></span>
                                 <TopNavLink> Walk </TopNavLink>
                             </li>
                         </ol>
@@ -164,7 +186,7 @@ const ExDetail = () => {
                                 </TitleInfoLeft>
                                 <TitleInfoRight>
                                     <RightAvartar>
-                                        <FaceOutlinedIcon/>
+                                        <Avatar>H</Avatar>
                                     </RightAvartar>
                                 </TitleInfoRight>
                             </LeftTitleInfo>
@@ -230,7 +252,7 @@ const ExDetail = () => {
                                     <HostInfoWrap>
                                         <HostAvatar>
                                             <AvatarBtn>
-                                                <FaceOutlinedIcon/>
+                                                <Avatar>H</Avatar>
                                             </AvatarBtn>
                                         </HostAvatar>
                                         <HostSimpleInfo>
@@ -254,12 +276,12 @@ const ExDetail = () => {
                                         <CoHostLists>
                                             <CoAvatars>
                                                 <CoHostLink>
-                                                    <FaceOutlinedIcon/>
+                                                    <Avatar>H</Avatar>
                                                 </CoHostLink>
                                             </CoAvatars>
                                             <CoAvatars>
                                                 <CoHostLink>
-                                                    <FaceOutlinedIcon/>
+                                                    <Avatar>H</Avatar>
                                                 </CoHostLink>
                                             </CoAvatars>
                                         </CoHostLists>
@@ -292,10 +314,39 @@ const ExDetail = () => {
                                             <ShowPriceBtn>
                                                 <span>Show all prices</span>
                                             </ShowPriceBtn>
-                                            <DatePersonPick>
-                                                Dates Picker
-                                            </DatePersonPick>
-                                            <PickOptionsList>
+                                            <RoomSideInputField>
+                                                <SideDatesInput>
+                                                    <GuestsInput>
+                                                    <span>DATES</span>
+                                                    <div>Add dates</div>
+                                                    </GuestsInput>
+                                                    <ExpandMoreIcon                                                     
+                                                    onClick={() => {
+                                                        setIsDatePickerOpen(!isDatePikerOpen);
+                                                        }}/>                                                    
+                                                    {isDatePikerOpen && (
+                                                        <ExpDatePicker/>
+                                                         )}                                                    
+                                                </SideDatesInput>
+                                                <SideGuestsInput
+                                                    onClick={() => setIsGuests(!isGuests)}
+                                                    className={isGuests ? 'active' : ''}
+                                                >
+                                                    <GuestsInput>
+                                                    <span>GUESTS</span>
+                                                    <div>{guestsNum} guests</div>
+                                                    </GuestsInput>
+                                                    <ExpandMoreIcon />
+                                                    {isGuests && (
+                                                    <ExGuestDropdown
+                                                        setIsGuests={setIsGuests}
+                                                        guestsNum={guestsNum}
+                                                        setGuestsNum={setGuestsNum}
+                                                    />
+                                                    )}
+                                                </SideGuestsInput>
+                                            </RoomSideInputField>
+                                             <PickOptionsList>
                                                 <OptionsDetail>
                                                     <OptionsInfoWrap>
                                                         <DetailInfoList>
@@ -398,7 +449,7 @@ const ExDetail = () => {
                                                 <span>June 2023</span>
                                             </UserInfoWrap>
                                             <ReviewAvatarBtn>
-                                                <FaceOutlinedIcon/>
+                                                <Avatar>H</Avatar>
                                             </ReviewAvatarBtn>
                                         </ReviewsUserInfo>
                                         <ReviewsIntro>
@@ -424,7 +475,7 @@ const ExDetail = () => {
                                                 <span>June 2023</span>
                                             </UserInfoWrap>
                                             <ReviewAvatarBtn>
-                                                <FaceOutlinedIcon/>
+                                                <Avatar>H</Avatar>
                                             </ReviewAvatarBtn>
                                         </ReviewsUserInfo>
                                         <ReviewsIntro>
@@ -450,7 +501,7 @@ const ExDetail = () => {
                                                 <span>June 2023</span>
                                             </UserInfoWrap>
                                             <ReviewAvatarBtn>
-                                                <FaceOutlinedIcon/>
+                                            <Avatar>H</Avatar>
                                             </ReviewAvatarBtn>
                                         </ReviewsUserInfo>
                                         <ReviewsIntro>
@@ -476,7 +527,7 @@ const ExDetail = () => {
                                                 <span>June 2023</span>
                                             </UserInfoWrap>
                                             <ReviewAvatarBtn>
-                                                <FaceOutlinedIcon/>
+                                            <Avatar>H</Avatar>
                                             </ReviewAvatarBtn>
                                         </ReviewsUserInfo>
                                         <ReviewsIntro>
@@ -502,7 +553,7 @@ const ExDetail = () => {
                                                 <span>June 2023</span>
                                             </UserInfoWrap>
                                             <ReviewAvatarBtn>
-                                                <FaceOutlinedIcon/>
+                                                <Avatar>H</Avatar>                                           
                                             </ReviewAvatarBtn>
                                         </ReviewsUserInfo>
                                         <ReviewsIntro>
@@ -528,7 +579,7 @@ const ExDetail = () => {
                                                 <span>June 2023</span>
                                             </UserInfoWrap>
                                             <ReviewAvatarBtn>
-                                                <FaceOutlinedIcon/>
+                                                <Avatar>H</Avatar>                                           
                                             </ReviewAvatarBtn>
                                         </ReviewsUserInfo>
                                         <ReviewsIntro>
@@ -563,7 +614,33 @@ const ExDetail = () => {
             <ExDetailMid>
                 <ExDetailMidWrap>
                     <ExtraInfoWrap>
-                        <h2> Things to know</h2>                       
+                        <ThingsWrap>
+                            <h2> Things to know</h2>  
+                        </ThingsWrap>   
+                        <ThingsInfoWrap>
+                            <ThingInfoTop>
+                                <h3>Guest requirements</h3>
+                                <IconInfoWrap>
+                                    <PersonIcon/>
+                                    <span>Guests aged 2 and up can attend, up to 4 guests total. Parents can also bring children under 2 years of age.</span>
+                                </IconInfoWrap>
+                                <IconInfoWrap>
+                                    <MasksIcon/>
+                                    <span>Airbnb's health and safety guidelines apply.</span>
+                                </IconInfoWrap>
+                                <IconInfoWrap>
+                                    <RollerSkatingIcon/>
+                                    <span>The activity level for this Experience is light.</span>
+                                </IconInfoWrap>
+                                <IconInfoWrap>
+                                    <BarChartIcon/>
+                                    <span>The skill level for this Experience is beginner.</span>
+                                </IconInfoWrap>
+                            </ThingInfoTop>
+                        <ThingInfoBottom>
+
+                            </ThingInfoBottom>
+                        </ThingsInfoWrap>                                                        
                     </ExtraInfoWrap>
                 </ExDetailMidWrap>
             </ExDetailMid>
@@ -571,7 +648,10 @@ const ExDetail = () => {
             <ExDetailMid>
                 <ExDetailMidWrap>
                     <SimilarWrap>
-                    <h2>Similar experiences</h2>                        
+                        
+                            <h2>Similar experiences</h2>
+                        
+                           
                     </SimilarWrap>
                 </ExDetailMidWrap>
             </ExDetailMid>

@@ -12,8 +12,9 @@ import {   RoomDesc,
   RoomRating,
   RoomsEach,
   RoomTitle,
-  ToggleLike, } from './ExperienceStyle';
-import ExSlider from './ExSlider';
+  ToggleLike, } from './OnlineExpStyle';
+import ExSlider from '../Experiences/ExSlider';
+
 
 
 

@@ -7,6 +7,7 @@ import ExDetail from './Experiences/ExDetail';
 
 import Room from './Room/Room';
 import Footer from '../components/Footer/Footer';
+import OnlineExp from './OnlineExperiences/OnlineExp';
 
 const GuestMode = () => {
   return (
@@ -17,6 +18,9 @@ const GuestMode = () => {
       </Routes>
       <Routes>
         <Route path='/experiences' element={<Experience />} exact={true} />
+      </Routes>
+      <Routes>
+        <Route path='/onlinexperiences' element={<OnlineExp />} exact={true} />
       </Routes>
       <Routes>
         <Route path='/experiences/detail' element={<ExDetail />} exact={true} />

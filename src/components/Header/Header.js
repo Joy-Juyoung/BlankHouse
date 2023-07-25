@@ -94,23 +94,23 @@ const Header = () => {
             <UserSetting>
               <MenuIcon fontSize='medium' />
               <LogBtn
-                  onClick={() => {
-                    toggleLogModal(!modalLogShown);
-                }}
-                // onClick={() => setIsDropdownOpen(true)}
+                //   onClick={() => {
+                //     toggleLogModal(!modalLogShown);
+                // }}
+                onClick={() => setIsDropdownOpen(true)}
               >
                 <AccountCircleIcon fontSize='medium' />
               </LogBtn>
-              {/* {isDropdownOpen && (
+              {isDropdownOpen && (
                 <DropdownList
                   onClose={() => setIsDropdownOpen(false)}
                   onKeyPress={() => setIsDropdownOpen(false)}
                 />
-              )} */}
-              <LogInModal
+              )}
+              {/* <LogInModal
               toggleLogModal={toggleLogModal}
               modalLogShown={modalLogShown}
-            />
+            /> */}
             </UserSetting>
           </HeaderRightSection>
         </HeaderWrapper>

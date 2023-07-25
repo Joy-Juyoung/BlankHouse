@@ -27,13 +27,15 @@ const DropdownList = () => {
                 onClick={() => {
                         toggleLogModal(!modalLogShown);
                     }}
-              >
-                <DropLi>Sign up</DropLi>
-              </BtnAccount>
-              {/* <LogInModal
-              toggleLogModal={toggleLogModal}
-              modalLogShown={modalLogShown}
-            /> */}
+                >
+                  <DropLi>Sign up</DropLi>
+                </BtnAccount>
+                {modalLogShown &&(
+                  <LogInModal
+                  toggleLogModal={toggleLogModal}
+                  modalLogShown={modalLogShown}
+                  />
+                )}
               <LinkAccount to='/userOrders'>
                 <DropLi>Log in</DropLi>
               </LinkAccount>

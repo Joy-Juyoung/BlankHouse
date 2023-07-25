@@ -36,6 +36,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import DomainIcon from '@mui/icons-material/Domain';
 import GiteIcon from '@mui/icons-material/Gite';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
+import ExPriceRage from './ExPriceRage';
 
 const anyOptionList = ['Any', '1', '2', '3', '4', '5', '6', '7', '8+'];
 
@@ -170,7 +171,9 @@ const ExperienceFilterModal = ({ modalShown, toggleModal }) => {
           <ModalMainSection>
             <ModalMainTitle>Price range</ModalMainTitle>
             <ModalMainText>The average price of an experience is $000 CAD.</ModalMainText>
-            <PriceRangeBarWrap>price bar</PriceRangeBarWrap>
+            <PriceRangeBarWrap>
+              <ExPriceRage/>
+              </PriceRangeBarWrap>
             <PriceRangeWrap>
               <PriceRangeWrapper>
                 <PriceRangeLabel>min price</PriceRangeLabel>
