@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Modal from './Modal';
+import Modal from '../Modals/Modal';
 import {
   FilterClearBtn,
   FilterPriceRageGraph,
@@ -29,7 +29,7 @@ import {
   RoomBedOptionList,
   RoomBedWrap,
   RoomBedWrapper,
-} from './ModalStyle';
+} from '../Modals/ModalStyle';
 import HomeIcon from '@mui/icons-material/Home';
 import DomainIcon from '@mui/icons-material/Domain';
 import GiteIcon from '@mui/icons-material/Gite';

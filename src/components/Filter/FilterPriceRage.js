@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
-import { PriceRangeGraph } from './ModalStyle';
+import { PriceRangeGraph } from '../Modals/ModalStyle';
 // import { PriceRangeGraph } from './ModalStyle';
 import ReactEcharts from 'echarts-for-react';
 import { allRooms } from '../../redux/slices/rooms';

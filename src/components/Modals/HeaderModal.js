@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-// import { ModalCloseBtn, ModalTitle, ModalTop } from './ModalStyle';
-// import CloseIcon from '@mui/icons-material/Close';
 
 const ModalBackDrop = styled.div`
   position: fixed;

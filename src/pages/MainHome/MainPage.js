@@ -10,7 +10,7 @@ import {
   MainTopFilter,
   MainWrap,
 } from './MainStyle';
-import GuestFilterModal from '../../components/Modals/GuestFilterModal';
+import GuestFilterModal from '../../components/Filter/GuestFilterModal';
 import { Link } from 'react-router-dom';
 // import Loading from '../../components/Loading';
 import TuneIcon from '@mui/icons-material/Tune';

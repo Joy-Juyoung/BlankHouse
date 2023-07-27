@@ -2,16 +2,12 @@ import styled from 'styled-components';
 
 export const SearchModalContainer = styled.div`
   padding: 0 40px;
-  /* display: flex; */
-  /* align-items: center; */
-  /* justify-content: center; */
   max-width: 850px;
   margin: 0 auto;
 `;
 
 export const SearchModalNav = styled.div`
   height: 80px;
-  /* max-width: 850px; */
   display: flex;
   align-items: center;
   justify-content: center;

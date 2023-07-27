@@ -17,8 +17,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 // import Loading from '../../components/Loading';
 import AppsIcon from '@mui/icons-material/Apps';
-import ShowPhotoModal from '../../components/Modals/ShowPhotoModal';
-
+import ShowPhotoModal from '../../components/Show/ShowPhotoModal';
 import roomsDataService from '../../redux/services/RoomsService';
 import { allReviews, allRoomReviews } from '../../redux/slices/reviews';
 import RoomInfoHead from './RoomInfoHead';
