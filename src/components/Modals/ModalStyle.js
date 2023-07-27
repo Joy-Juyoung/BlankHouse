@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const ModalContainer = styled.div`
   max-width: 750px;
+  /* max-width: 600px; */
   /* max-height: 650px; */
   /* margin: 0 auto; */
   max-height: 780px;
@@ -79,12 +80,14 @@ export const ModalMain = styled.div`
 `;
 
 export const ModalMainSection = styled.div`
+  /* width: 100%; */
   padding: 30px 0;
   border-bottom: 1px solid lightgray;
 `;
 
 export const ModalMainTitle = styled.h1`
   font-size: 24px;
+  /* width: 100%; */
   margin: 0;
   padding: 0;
 `;

@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 
 import LogModal from '../Modals/ModalLayout';
 import {
-  MainFormWrap,
-  MainHeaderWrap,
   ModalContainer,
-  ModalMainWrapper,
-} from './LogInModalStyle';
-
-const anyOptionList = ['Any', '1', '2', '3', '4', '5', '6', '7', '8+'];
+  ModalMain,
+  ModalMainSection,
+  ModalMainTitle,
+  ModalTitle,
+} from '../Modals/ModalStyle';
+import { LoginWrap } from './LogInModalStyle';
 
 const SignupModal = ({ modalSignupShown, toggleSignupModal }) => {
   return (
@@ -20,12 +20,12 @@ const SignupModal = ({ modalSignupShown, toggleSignupModal }) => {
       title='sign up'
     >
       <ModalContainer>
-        <ModalMainWrapper>
-          <MainHeaderWrap>
-            <h3>Welcome to Airbnb</h3>
-          </MainHeaderWrap>
-          <MainFormWrap></MainFormWrap>
-        </ModalMainWrapper>
+        <ModalMain>
+          <ModalMainSection>
+            <ModalTitle>Welcome to Airbnb</ModalTitle>
+            <LoginWrap></LoginWrap>
+          </ModalMainSection>
+        </ModalMain>
       </ModalContainer>
     </LogModal>
   );

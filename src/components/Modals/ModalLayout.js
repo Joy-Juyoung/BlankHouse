@@ -26,6 +26,7 @@ const ModalContentWrap = styled.div`
 
 const ModalContentWrapper = styled.div`
   width: 100%;
+  /* max-width: 680px; */
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -54,7 +55,7 @@ const ModalContent = styled.div`
   z-index: 6;
 `;
 
-const Modal = ({ children, shown, close, title }) => {
+const ModalLayout = ({ children, shown, close, title }) => {
   return shown ? (
     <ModalBackDrop
       onClick={() => {
@@ -88,4 +89,4 @@ const Modal = ({ children, shown, close, title }) => {
   ) : null;
 };
 
-export default Modal;
+export default ModalLayout;
