@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useParams } from 'react-router-dom';
 // import { useLocation } from 'react-router-dom';
-import HeaderModal from '../Modals/HeaderModal';
+import HeaderModal from '../Modals/HeaderModalLayout';
 
 import {
   SearchModalContainer,

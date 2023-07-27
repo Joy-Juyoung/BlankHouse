@@ -1,35 +1,107 @@
 import React, { useState } from 'react';
-
-import HomeIcon from '@mui/icons-material/Home';
-import DomainIcon from '@mui/icons-material/Domain';
-import GiteIcon from '@mui/icons-material/Gite';
-import LocationCityIcon from '@mui/icons-material/LocationCity';
-import LogModal from '../Modals/Modal';
 import {
-  MainFormWrap,
-  MainHeaderWrap,
   ModalContainer,
-  ModalMainWrapper,
+  ModalMain,
+  ModalMainSection,
+  ModalMainTitle,
+  ModalTitle,
+} from '../Modals/ModalStyle';
+import {
+  DivideLine,
+  EyeIcon,
+  GotoSignup,
+  LoginBtnWrap,
+  LoginInputWrap,
+  LoginWithBtn,
+  LoginWrap,
+  ModalLoginMain,
+  PassewordWrapper,
 } from './LogInModalStyle';
+import LogModal from '../Modals/ModalLayout';
+import ColorButton from '../Buttons/ColorButton';
+import facebookIcon from '../../assets/images/facebook.png';
+import googleIcon from '../../assets/images/google.png';
+import appleIcon from '../../assets/images/apple.png';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { Link } from 'react-router-dom';
+// const anyOptionList = ['Any', '1', '2', '3', '4', '5', '6', '7', '8+'];
 
-const anyOptionList = ['Any', '1', '2', '3', '4', '5', '6', '7', '8+'];
-
-const LogInModal = ({ modalLogShown, toggleLogModal }) => {
+const LogInModal = ({
+  modalLogShown,
+  toggleLogModal,
+  modalSignupShown,
+  toggleSignupModal,
+}) => {
   return (
     <LogModal
       shown={modalLogShown}
       close={() => {
         toggleLogModal(false);
       }}
-      title='Log in or sign up'
+      title='Log in'
     >
       <ModalContainer>
-        <ModalMainWrapper>
-          <MainHeaderWrap>
-            <h3>Welcome to Airbnb</h3>
-          </MainHeaderWrap>
-          <MainFormWrap></MainFormWrap>
-        </ModalMainWrapper>
+        <ModalLoginMain>
+          <ModalMainSection>
+            <ModalTitle>Welcome to Blankhouse</ModalTitle>
+            <LoginWrap>
+              <LoginInputWrap className='first'>
+                <p>Username</p>
+                <input type='text' placeholder='Enter username' />
+              </LoginInputWrap>
+              <LoginInputWrap className='last'>
+                <p>Password</p>
+                <PassewordWrapper>
+                  <input type='password' placeholder='Enter password' />
+                  <EyeIcon>
+                    {/* {pwdType === 'password' ? (
+                  <VisibilityOffIcon  onClick={togglePwd} fontSize='small' />
+                ) : (
+                  <VisibilityIcon  onClick={togglePwd} fontSize='small' />
+                )} */}
+                    <VisibilityOffIcon />
+                  </EyeIcon>
+                </PassewordWrapper>
+              </LoginInputWrap>
+            </LoginWrap>
+            <LoginWrap>
+              <ColorButton buttonLabel='Log in' />
+            </LoginWrap>
+            <DivideLine>or</DivideLine>
+            <LoginWrap>
+              <LoginWithBtn>
+                <img src={facebookIcon} alt='' />
+                <span>Continue with Facebook</span>
+              </LoginWithBtn>
+              <LoginWithBtn>
+                <img src={googleIcon} alt='' />
+                <span>Continue with Google</span>
+              </LoginWithBtn>
+              <LoginWithBtn>
+                <img src={appleIcon} alt='' />
+                <span>Continue with Apple</span>
+              </LoginWithBtn>
+              {/* <LoginWithBtn>
+                <img src={facebookIcon} alt='' />
+                <span>Continue with email</span>
+              </LoginWithBtn> */}
+            </LoginWrap>
+            <LoginWrap>
+              <GotoSignup>
+                Don't have an account?
+                <span
+                  onClick={() => {
+                    toggleLogModal(!modalLogShown);
+                    toggleSignupModal(!modalSignupShown);
+                  }}
+                >
+                  Go to Sign up
+                </span>
+              </GotoSignup>
+            </LoginWrap>
+          </ModalMainSection>
+        </ModalLoginMain>
       </ModalContainer>
     </LogModal>
   );

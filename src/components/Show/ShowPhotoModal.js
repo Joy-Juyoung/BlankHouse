@@ -6,7 +6,7 @@ import {
   ModalWholeContainer,
   ModalWholeWrap,
 } from '../Modals/ModalStyle';
-import WholePageModal from '../Modals/WholePageModal';
+import WholePageModal from '../Modals/WholePageModalLayout';
 import { PhotoSubCover, RoomMainPhotos } from '../../pages/Room/RoomStyle';
 
 const ShowPhotoModal = ({ modalPhotoShown, togglePhotoModal, roomData }) => {

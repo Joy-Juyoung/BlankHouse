@@ -64,11 +64,6 @@ const SearchDateBox = ({
         }}
       >
         <SearchDateBoxWrap>
-          {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DemoContainer components={['DateRangeCalendar']}>
-              <DateRangeCalendar />
-            </DemoContainer>
-          </LocalizationProvider> */}
           <DateRange
             checkInDate={checkInDate}
             checkOutDate={checkOutDate}

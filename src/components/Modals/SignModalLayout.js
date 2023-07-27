@@ -13,33 +13,15 @@ const ModalBackDrop = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 3;
+  z-index: 6;
 
   overflow: hidden;
 `;
 
-// const ModalContent = styled.div`
-//   /* width: 750px; */
-//   min-height: 750px;
-//   background-color: white;
-//   padding: 20px;
-//   border-radius: 10px;
-
-//   bottom: 0;
-
-//   transition: all 0.3s ease-out;
-//   animation: bslide 0.3s forwards;
-
-//   @keyframes bslide {
-//     100% {
-//       bottom: 50vh;
-//     }
-//   }
-// `;
-
 const ModalContent = styled.div`
   /* width: 750px; */
-  min-height: 750px;
+  max-height: 680px;
+  min-height: 410px;
   background-color: white;
   /* padding: 20px 0; */
   border-radius: 10px;
@@ -57,7 +39,7 @@ const ModalContent = styled.div`
   }
 `;
 
-const Modal = ({ children, shown, close, title }) => {
+const SignModalLayout = ({ children, shown, close, title }) => {
   return shown ? (
     <ModalBackDrop
       onClick={() => {
@@ -87,4 +69,4 @@ const Modal = ({ children, shown, close, title }) => {
   ) : null;
 };
 
-export default Modal;
+export default SignModalLayout;

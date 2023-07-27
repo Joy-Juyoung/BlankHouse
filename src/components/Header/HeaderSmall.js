@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   CountrySetting,
   HeaderRightSection,
@@ -23,14 +23,16 @@ import Logo from '../../assets/images/logo.png';
 import LogInModal from './LogInModal';
 
 import { Link } from 'react-router-dom';
+import UserDropBox from '../Dropdown/UserDropBox';
 const HeaderSmall = () => {
+  const dropdownRef = useRef(null);
   const [modalSearchShown, toggleSearchModal] = useState(false);
-  const [modalLogShown, toggleLogModal] = useState(false);
+  const [isUserDrop, setIsUserDrop] = useState(false);
 
   return (
     <HeaderSmallContrainer>
       <HeaderSmallWrap>
-        <HeaderWrapper style={{ zIndex: '5' }}>
+        <HeaderWrapper>
           <img src={Logo} alt='' />
           <Link to='/'>
             <h1>BlankHouse</h1>
@@ -41,6 +43,7 @@ const HeaderSmall = () => {
           <SearchNavWrap
             onClick={() => {
               toggleSearchModal(!modalSearchShown);
+              setIsUserDrop(false);
             }}
           >
             <SearchNavSection>
@@ -64,7 +67,7 @@ const HeaderSmall = () => {
           </SearchNavWrap>
         </HeaderWrapper>
 
-        <HeaderWrapper className='headerRight' style={{ zIndex: '4' }}>
+        <HeaderWrapper className='headerRight'>
           <HeaderRightSection>
             <ModeSetting>
               <SwitchBtn>Airbnb your home</SwitchBtn>
@@ -76,21 +79,28 @@ const HeaderSmall = () => {
             </CountrySetting>
           </HeaderRightSection>
           <HeaderRightSection>
-            <UserSetting>
+            <UserSetting
+              onClick={() => {
+                setIsUserDrop(!isUserDrop);
+                toggleSearchModal(false);
+              }}
+              ref={dropdownRef}
+            >
               <MenuIcon fontSize='medium' />
-              <LogBtn
-                onClick={() => {
-                  toggleLogModal(!modalLogShown);
-                }}
-              >
+              <LogBtn>
                 <AccountCircleIcon fontSize='medium' />
               </LogBtn>
-              <LogInModal
-                toggleLogModal={toggleLogModal}
-                modalLogShown={modalLogShown}
-              />
             </UserSetting>
           </HeaderRightSection>
+          {isUserDrop && (
+            <>
+              <UserDropBox
+                setIsUserDrop={setIsUserDrop}
+                isUserDrop={isUserDrop}
+                dropdownRef={dropdownRef}
+              />
+            </>
+          )}
         </HeaderWrapper>
       </HeaderSmallWrap>
     </HeaderSmallContrainer>

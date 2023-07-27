@@ -18,7 +18,7 @@ const ModalContent = styled.div`
   background-color: #fff;
   width: 100%;
   height: 160px;
-  z-index: 4;
+  z-index: 3;
   transition: all 0.3s ease-out;
   animation: headerslide 0.3s forwards;
 
