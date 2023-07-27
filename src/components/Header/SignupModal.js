@@ -8,9 +8,21 @@ import {
   ModalMainTitle,
   ModalTitle,
 } from '../Modals/ModalStyle';
-import { LoginWrap } from './LogInModalStyle';
+import {
+  DivideLine,
+  GotoSignup,
+  LoginInputWrap,
+  LoginWithBtn,
+  LoginWrap,
+  ModalLoginMain,
+} from './LogInModalStyle';
 
-const SignupModal = ({ modalSignupShown, toggleSignupModal }) => {
+const SignupModal = ({
+  modalSignupShown,
+  toggleSignupModal,
+  modalLogShown,
+  toggleLogModal,
+}) => {
   return (
     <LogModal
       shown={modalSignupShown}
@@ -20,12 +32,34 @@ const SignupModal = ({ modalSignupShown, toggleSignupModal }) => {
       title='sign up'
     >
       <ModalContainer>
-        <ModalMain>
+        <ModalLoginMain>
           <ModalMainSection>
-            <ModalTitle>Welcome to Airbnb</ModalTitle>
-            <LoginWrap></LoginWrap>
+            <ModalTitle>Create account</ModalTitle>
+            <LoginWrap>
+              <LoginInputWrap className='first'>
+                <p>Username</p>
+                <input type='text' placeholder='Enter username' />
+              </LoginInputWrap>
+              <LoginInputWrap className='last'>
+                <p>Password</p>
+                <input type='password' placeholder='Enter password' />
+              </LoginInputWrap>
+            </LoginWrap>
+            <LoginWrap>
+              <GotoSignup>
+                Already have an account?
+                <span
+                  onClick={() => {
+                    toggleLogModal(!modalLogShown);
+                    toggleSignupModal(!modalSignupShown);
+                  }}
+                >
+                  Go to Log in
+                </span>
+              </GotoSignup>
+            </LoginWrap>
           </ModalMainSection>
-        </ModalMain>
+        </ModalLoginMain>
       </ModalContainer>
     </LogModal>
   );

@@ -111,6 +111,8 @@ const UserDropBox = ({ dropdownRef, setIsUserDrop, isUserDrop }) => {
           <SignupModal
             toggleSignupModal={toggleSignupModal}
             modalSignupShown={modalSignupShown}
+            toggleLogModal={toggleLogModal}
+            modalLogShown={modalLogShown}
           />
 
           <hr />
@@ -128,6 +130,8 @@ const UserDropBox = ({ dropdownRef, setIsUserDrop, isUserDrop }) => {
           toggleLogModal={toggleLogModal}
           modalLogShown={modalLogShown}
           setIsUserDrop={setIsUserDrop}
+          toggleSignupModal={toggleSignupModal}
+          modalSignupShown={modalSignupShown}
         />
 
         {/* <SignupModal

@@ -28,6 +28,26 @@ export const ModalLoginMain = styled.div`
   padding: 0 25px;
   /* overflow-y: scroll; */
   max-height: 650px;
+  align-items: center;
+`;
+
+export const PassewordWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const EyeIcon = styled.div`
+  color: #a3a9b3;
+  margin-right: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+
+  svg {
+    display: flex;
+    align-items: center;
+  }
 `;
 
 export const LoginWrap = styled.div`
@@ -119,5 +139,17 @@ export const LoginWithBtn = styled.button`
     justify-content: center;
     margin-left: -35px;
     font-size: 14px;
+  }
+`;
+
+export const GotoSignup = styled.div`
+  font-size: 14px;
+  text-align: center;
+  span {
+    margin-left: 5px;
+    /* font-weight: 600; */
+    color: #e29700;
+    text-decoration: underline;
+    cursor: pointer;
   }
 `;

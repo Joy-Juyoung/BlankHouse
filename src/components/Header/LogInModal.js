@@ -8,20 +8,31 @@ import {
 } from '../Modals/ModalStyle';
 import {
   DivideLine,
+  EyeIcon,
+  GotoSignup,
   LoginBtnWrap,
   LoginInputWrap,
   LoginWithBtn,
   LoginWrap,
   ModalLoginMain,
+  PassewordWrapper,
 } from './LogInModalStyle';
 import LogModal from '../Modals/ModalLayout';
 import ColorButton from '../Buttons/ColorButton';
 import facebookIcon from '../../assets/images/facebook.png';
 import googleIcon from '../../assets/images/google.png';
 import appleIcon from '../../assets/images/apple.png';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { Link } from 'react-router-dom';
 // const anyOptionList = ['Any', '1', '2', '3', '4', '5', '6', '7', '8+'];
 
-const LogInModal = ({ modalLogShown, toggleLogModal, setIsUserDrop }) => {
+const LogInModal = ({
+  modalLogShown,
+  toggleLogModal,
+  modalSignupShown,
+  toggleSignupModal,
+}) => {
   return (
     <LogModal
       shown={modalLogShown}
@@ -36,16 +47,22 @@ const LogInModal = ({ modalLogShown, toggleLogModal, setIsUserDrop }) => {
             <ModalTitle>Welcome to Blankhouse</ModalTitle>
             <LoginWrap>
               <LoginInputWrap className='first'>
-                {/* <LoginInputText> */}
                 <p>Username</p>
                 <input type='text' placeholder='Enter username' />
-                {/* </LoginInputText> */}
               </LoginInputWrap>
               <LoginInputWrap className='last'>
-                {/* <LoginInputText> */}
                 <p>Password</p>
-                <input type='text' placeholder='Enter password' />
-                {/* </LoginInputText> */}
+                <PassewordWrapper>
+                  <input type='password' placeholder='Enter password' />
+                  <EyeIcon>
+                    {/* {pwdType === 'password' ? (
+                  <VisibilityOffIcon  onClick={togglePwd} fontSize='small' />
+                ) : (
+                  <VisibilityIcon  onClick={togglePwd} fontSize='small' />
+                )} */}
+                    <VisibilityOffIcon />
+                  </EyeIcon>
+                </PassewordWrapper>
               </LoginInputWrap>
             </LoginWrap>
             <LoginWrap>
@@ -69,6 +86,19 @@ const LogInModal = ({ modalLogShown, toggleLogModal, setIsUserDrop }) => {
                 <img src={facebookIcon} alt='' />
                 <span>Continue with email</span>
               </LoginWithBtn> */}
+            </LoginWrap>
+            <LoginWrap>
+              <GotoSignup>
+                Don't have an account?
+                <span
+                  onClick={() => {
+                    toggleLogModal(!modalLogShown);
+                    toggleSignupModal(!modalSignupShown);
+                  }}
+                >
+                  Go to Sign up
+                </span>
+              </GotoSignup>
             </LoginWrap>
           </ModalMainSection>
         </ModalLoginMain>
