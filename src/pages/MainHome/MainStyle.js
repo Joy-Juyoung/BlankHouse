@@ -5,6 +5,7 @@ export const MainContainer = styled.div`
   margin: 0 auto;
   padding: 0 40px;
   max-width: 1700px;
+  /* z-index: 2; */
 
   span {
     &.coma {
@@ -106,6 +107,7 @@ export const RoomsEach = styled.div`
   position: relative;
   width: 100%;
   height: 350px;
+
   /* width: 300px;
   height: 300px; */
 `;

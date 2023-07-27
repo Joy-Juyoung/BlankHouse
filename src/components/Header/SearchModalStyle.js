@@ -178,20 +178,6 @@ export const SearchedBtn = styled.div`
     margin-top: 2px;
   }
 
-  /* color: #fff;
-  border: 3px solid #ffae00;
-  background-image: -webkit-linear-gradient(
-    30deg,
-    #c266d3 50%,
-    transparent 50%
-  );
-  background-image: linear-gradient(30deg, #ffae00 50%, transparent 50%);
-  background-size: 500px;
-  background-repeat: no-repeat;
-  background-position: 0%;
-  -webkit-transition: background 0.4s ease-in-out;
-  transition: background 0.4s ease-in-out; */
-
   background: #ffc147;
   color: #fff;
   transition: 0.1s ease-in-out;

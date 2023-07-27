@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
 
-import HomeIcon from '@mui/icons-material/Home';
-import DomainIcon from '@mui/icons-material/Domain';
-import GiteIcon from '@mui/icons-material/Gite';
-import LocationCityIcon from '@mui/icons-material/LocationCity';
 import LogModal from '../Modals/ModalLayout';
 import {
   MainFormWrap,
@@ -12,16 +8,16 @@ import {
   ModalMainWrapper,
 } from './LogInModalStyle';
 
-// const anyOptionList = ['Any', '1', '2', '3', '4', '5', '6', '7', '8+'];
+const anyOptionList = ['Any', '1', '2', '3', '4', '5', '6', '7', '8+'];
 
-const LogInModal = ({ modalLogShown, toggleLogModal, setIsUserDrop }) => {
+const SignupModal = ({ modalSignupShown, toggleSignupModal }) => {
   return (
     <LogModal
-      shown={modalLogShown}
+      shown={modalSignupShown}
       close={() => {
-        toggleLogModal(false);
+        toggleSignupModal(false);
       }}
-      title='Log in'
+      title='sign up'
     >
       <ModalContainer>
         <ModalMainWrapper>
@@ -34,5 +30,4 @@ const LogInModal = ({ modalLogShown, toggleLogModal, setIsUserDrop }) => {
     </LogModal>
   );
 };
-
-export default LogInModal;
+export default SignupModal;

@@ -56,11 +56,13 @@ export const HeaderWrapper = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
+  /* z-index: 5; */
 
   h1 {
     cursor: pointer;
     font-size: 24px;
     color: #ffae00;
+    /* z-index: 5; */
   }
 
   img {

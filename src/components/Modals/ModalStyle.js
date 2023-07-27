@@ -5,6 +5,7 @@ export const ModalContainer = styled.div`
   /* max-height: 650px; */
   /* margin: 0 auto; */
   max-height: 780px;
+  z-index: 6;
 `;
 
 export const ModalWholeContainer = styled.div`
