@@ -58,15 +58,11 @@ const Header = () => {
               <SearchNavBtn>
                 <span>Add Guest</span>
               </SearchNavBtn>
-
-              {/* <SearchNavInput type='text' /> */}
             </SearchNavSection>
-            {/* Search Modal */}
             <SearchModal
               toggleSearchModal={toggleSearchModal}
               modalSearchShown={modalSearchShown}
             />
-
             <SearchBtn>
               <SearchIcon fontSize='small' />
             </SearchBtn>

@@ -1,14 +1,7 @@
 // import { Modal } from '@mui/material';
 import React from 'react';
-import Modal from './Modal';
-import {
-  ModalContainer,
-  ModalMain,
-  ModalMainContents,
-  ModalMainSection,
-  ModalMainText,
-  ModalMainTitle,
-} from './ModalStyle';
+import Modal from '../Modals/Modal';
+import { ModalContainer, ModalMainContents } from '../Modals/ModalStyle';
 
 const ShowMoreModal = ({
   modalAboutPlaceShown,

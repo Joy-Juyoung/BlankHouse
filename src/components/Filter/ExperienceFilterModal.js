@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Modal from './Modal';
+import Modal from '../Modals/Modal';
 import {
   FilterClearBtn,
   FilterResultBtn,
@@ -39,11 +39,6 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 
 const anyOptionList = ['Any', '1', '2', '3', '4', '5', '6', '7', '8+'];
 
-
-
-
-
-
 const ExperienceFilterModal = ({ modalShown, toggleModal }) => {
   const [isChecked, setIsChecked] = useState(false);
 
@@ -75,7 +70,7 @@ const ExperienceFilterModal = ({ modalShown, toggleModal }) => {
     >
       <ModalContainer>
         <ModalMain>
-        <ModalMainSection>
+          <ModalMainSection>
             <ModalMainTitle>Activity</ModalMainTitle>
             <PlaceTypeWrap>
               <PlaceTypeWrapper>
@@ -145,7 +140,7 @@ const ExperienceFilterModal = ({ modalShown, toggleModal }) => {
                   onChange={(e) => handleCheckedType(e)}
                 />
                 <PlaceInputText>
-                  <p>Wellness</p>                  
+                  <p>Wellness</p>
                 </PlaceInputText>
               </PlaceTypeWrapper>
               <PlaceTypeWrapper>
@@ -161,7 +156,7 @@ const ExperienceFilterModal = ({ modalShown, toggleModal }) => {
               {/* show all button  */}
               <ShowAllWrap>
                 <ShowAllBtn>
-                <span>Hide activity types</span>
+                  <span>Hide activity types</span>
                 </ShowAllBtn>
               </ShowAllWrap>
             </PlaceTypeWrap>
@@ -169,7 +164,9 @@ const ExperienceFilterModal = ({ modalShown, toggleModal }) => {
 
           <ModalMainSection>
             <ModalMainTitle>Price range</ModalMainTitle>
-            <ModalMainText>The average price of an experience is $000 CAD.</ModalMainText>
+            <ModalMainText>
+              The average price of an experience is $000 CAD.
+            </ModalMainText>
             <PriceRangeBarWrap>price bar</PriceRangeBarWrap>
             <PriceRangeWrap>
               <PriceRangeWrapper>
@@ -233,12 +230,10 @@ const ExperienceFilterModal = ({ modalShown, toggleModal }) => {
                   <p>Korean</p>
                 </PlaceInputText>
               </PlaceTypeWrapper>
-               {/* show more button  */}
+              {/* show more button  */}
               <ShowAllWrap>
                 <ShowAllBtn>
-                <span>
-                  Show less
-                </span>
+                  <span>Show less</span>
                 </ShowAllBtn>
               </ShowAllWrap>
             </PlaceTypeWrap>
@@ -247,7 +242,7 @@ const ExperienceFilterModal = ({ modalShown, toggleModal }) => {
           <ModalMainSection>
             <ModalMainTitle>Time of day</ModalMainTitle>
             <PlaceTypeWrap>
-            <PlaceTypeWrapper>
+              <PlaceTypeWrapper>
                 <PlaceInput
                   type='checkbox'
                   value='Morning'
@@ -287,10 +282,9 @@ const ExperienceFilterModal = ({ modalShown, toggleModal }) => {
             <ModalMainTitle>Accessibility features</ModalMainTitle>
             <PlaceTypeWrap>
               <PlaceTypeWrapper>
-                <h3>Mobility</h3>              
+                <h3>Mobility</h3>
               </PlaceTypeWrapper>
-              <PlaceTypeWrapper>         
-              </PlaceTypeWrapper>
+              <PlaceTypeWrapper></PlaceTypeWrapper>
               <PlaceTypeWrapper>
                 <PlaceInput
                   type='checkbox'
@@ -332,10 +326,9 @@ const ExperienceFilterModal = ({ modalShown, toggleModal }) => {
                 </PlaceInputText>
               </PlaceTypeWrapper>
               <PlaceTypeWrapper>
-                <h3>Communication</h3>              
+                <h3>Communication</h3>
               </PlaceTypeWrapper>
-              <PlaceTypeWrapper>         
-              </PlaceTypeWrapper>
+              <PlaceTypeWrapper></PlaceTypeWrapper>
               <PlaceTypeWrapper>
                 <PlaceInput
                   type='checkbox'
@@ -363,7 +356,7 @@ const ExperienceFilterModal = ({ modalShown, toggleModal }) => {
                   onChange={(e) => handleCheckedType(e)}
                 />
                 <PlaceInputText>
-                  <p>Deaf-aware techniques</p>                  
+                  <p>Deaf-aware techniques</p>
                 </PlaceInputText>
               </PlaceTypeWrapper>
               <PlaceTypeWrapper>
@@ -377,10 +370,9 @@ const ExperienceFilterModal = ({ modalShown, toggleModal }) => {
                 </PlaceInputText>
               </PlaceTypeWrapper>
               <PlaceTypeWrapper>
-                <h3>Sensory</h3>              
+                <h3>Sensory</h3>
               </PlaceTypeWrapper>
-              <PlaceTypeWrapper>         
-              </PlaceTypeWrapper>
+              <PlaceTypeWrapper></PlaceTypeWrapper>
               <PlaceTypeWrapper>
                 <PlaceInput
                   type='checkbox'
@@ -402,10 +394,9 @@ const ExperienceFilterModal = ({ modalShown, toggleModal }) => {
                 </PlaceInputText>
               </PlaceTypeWrapper>
               <PlaceTypeWrapper>
-                <h3>Access providers</h3>              
+                <h3>Access providers</h3>
               </PlaceTypeWrapper>
-              <PlaceTypeWrapper>         
-              </PlaceTypeWrapper>
+              <PlaceTypeWrapper></PlaceTypeWrapper>
               <PlaceTypeWrapper>
                 <PlaceInput
                   type='checkbox'
@@ -413,15 +404,18 @@ const ExperienceFilterModal = ({ modalShown, toggleModal }) => {
                   onChange={(e) => handleCheckedType(e)}
                 />
                 <PlaceNameText>
-                  <p>Free admission for people assisting guests with disabilities</p>
+                  <p>
+                    Free admission for people assisting guests with disabilities
+                  </p>
                   <span>
-                    Interpreters, caregivers, or other access providers are welcome to join the guests they’re assisting at no additional cost.
+                    Interpreters, caregivers, or other access providers are
+                    welcome to join the guests they’re assisting at no
+                    additional cost.
                   </span>
                 </PlaceNameText>
               </PlaceTypeWrapper>
             </PlaceTypeWrap>
           </ModalMainSectionTwo>
-
         </ModalMain>
         <ModalFooter>
           <FilterClearBtn>Clear all</FilterClearBtn>

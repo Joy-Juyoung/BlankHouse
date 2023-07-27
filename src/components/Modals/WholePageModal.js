@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import {
-  ModalCloseBtn,
-  ModalRightBtns,
-  ModalTitle,
-  ModalTop,
-} from './ModalStyle';
+import { ModalCloseBtn, ModalRightBtns, ModalTop } from './ModalStyle';
 import CloseIcon from '@mui/icons-material/Close';
 import ShareIcon from '@mui/icons-material/Share';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';

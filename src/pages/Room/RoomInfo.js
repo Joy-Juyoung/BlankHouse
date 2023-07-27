@@ -29,7 +29,7 @@ import KitchenIcon from '@mui/icons-material/Kitchen';
 import WifiIcon from '@mui/icons-material/Wifi';
 import TvIcon from '@mui/icons-material/Tv';
 import MicrowaveIcon from '@mui/icons-material/Microwave';
-import ShowMoreModal from '../../components/Modals/ShowMoreModal';
+import ShowMoreModal from '../../components/Show/ShowMoreModal';
 // import SearchDateBox from '../../components/Dropdown/SearchDateBox';
 import DateRange from '../../components/DateRange';
 import RoomReviews from './RoomReviews';

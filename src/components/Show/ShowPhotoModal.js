@@ -2,27 +2,14 @@
 import React from 'react';
 // import Modal from './Modal';
 import {
-  ModalContainer,
-  ModalMainContents,
   ModalPhotos,
   ModalWholeContainer,
   ModalWholeWrap,
-} from './ModalStyle';
-import WholePageModal from './WholePageModal';
-import { Skeleton } from '@mui/material';
-import {
-  PhotoSubCover,
-  RoomMainPhotos,
-  RoomPhotoMain,
-  RoomPhotoSub,
-} from '../../pages/Room/RoomStyle';
+} from '../Modals/ModalStyle';
+import WholePageModal from '../Modals/WholePageModal';
+import { PhotoSubCover, RoomMainPhotos } from '../../pages/Room/RoomStyle';
 
 const ShowPhotoModal = ({ modalPhotoShown, togglePhotoModal, roomData }) => {
-  // useEffect(() => {
-  //   window.addEventListener('scroll', listenToScroll);
-  //   return () => window.removeEventListener('scroll', listenToScroll);
-  // }, []);
-
   return (
     <WholePageModal
       shown={modalPhotoShown}
@@ -34,22 +21,17 @@ const ShowPhotoModal = ({ modalPhotoShown, togglePhotoModal, roomData }) => {
     >
       <ModalWholeContainer>
         <ModalWholeWrap>
-          {/* <ModalMainSection> */}
-          {/* <ModalMainTitle>Price range</ModalMainTitle> */}
           <ModalPhotos>
             <RoomMainPhotos>
               {roomData?.photos?.map((pic) => {
                 return (
                   <PhotoSubCover key={pic?.pk}>
                     <img src={pic?.picture} alt='' />
-                    {/* <span className='subCover'></span> */}
                   </PhotoSubCover>
                 );
               })}
             </RoomMainPhotos>
           </ModalPhotos>
-          {/* </ModalMainSection> */}
-          {/* </ModalMain> */}
         </ModalWholeWrap>
       </ModalWholeContainer>
     </WholePageModal>
