@@ -77,8 +77,10 @@ const UserDropBox = ({
   useEffect(() => {
     if (isLoggedIn === true) {
       initFetch();
+      // localStorage.setItem('logUser', JSON.stringify({ isLoggedIn: true }));
     }
-  }, [initFetch, isLoggedIn]);
+    // JSON.parse(localStorage.getItem('logUser'));
+  }, [initFetch]);
 
   console.log('users', users);
 
@@ -97,6 +99,7 @@ const UserDropBox = ({
 
   const handleLogout = () => {
     dispatch(logoutUser(users?.username));
+    // localStorage.clear('logUser');
     setIsLoggedIn(false);
   };
 

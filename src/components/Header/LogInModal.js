@@ -44,6 +44,7 @@ const LogInModal = ({
 }) => {
   const [username, setUsernmae] = useState('');
   const [password, setPassword] = useState('');
+  // const [savedCp, setSavedCp] = useState([]);
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigation = useNavigate();
 
@@ -75,6 +76,12 @@ const LogInModal = ({
   //   }
   // }, []);
 
+  // useEffect(() => {
+  //   localStorage.setItem('logUser', JSON.stringify({ isLoggedIn: true }));
+  // }, [isLoggedIn]);
+
+  // console.log("logUser",logUser)
+
   return (
     <LogModal
       shown={modalLogShown}
@@ -84,7 +91,7 @@ const LogInModal = ({
       }}
       title='Log in'
     >
-      {users?.ok === 'Welcome!' && <SuccessAlert />}
+      {/* {users?.ok === 'Welcome!' && <SuccessAlert />} */}
       <ModalContainer>
         <ModalLoginMain>
           <ModalMainSection>
