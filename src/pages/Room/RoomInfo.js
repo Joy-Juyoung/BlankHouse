@@ -33,6 +33,7 @@ import ShowMoreModal from '../../components/Show/ShowMoreModal';
 // import SearchDateBox from '../../components/Dropdown/SearchDateBox';
 import DateRange from '../../components/DateRange';
 import RoomReviews from './RoomReviews';
+import Avatar from '../../components/Avatar/Avatar';
 
 const RoomInfo = ({ reviewData, roomData, rooms, roomId }) => {
   const [loading, setLoading] = useState(false);
@@ -68,7 +69,12 @@ const RoomInfo = ({ reviewData, roomData, rooms, roomId }) => {
               <span>{roomInfo?.number_of_bed} bath</span>
             </div>
             <div>
-              <img src='' alt='' />
+              {/* <img src='' alt='' /> */}
+              <Avatar
+                initials={roomData?.owner?.username
+                  ?.substring(0, 1)
+                  .toUpperCase()}
+              />
             </div>
           </RoomDetailsTop>
           <RoomDetailsSections>
