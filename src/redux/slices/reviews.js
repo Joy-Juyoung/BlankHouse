@@ -21,6 +21,14 @@ export const reviewById = createAsyncThunk(
   }
 );
 
+export const reviewByRoom = createAsyncThunk(
+  'reviews/getReviewByRoom',
+  async ({ id }) => {
+    const res = await reviewsDataService.getReviewByRoom(id);
+    return res.data;
+  }
+);
+
 const reviewsSlice = createSlice({
   name: 'reviews',
   initialState,
@@ -32,6 +40,9 @@ const reviewsSlice = createSlice({
       return [action.payload];
     },
     [reviewById.fulfilled]: (state, action) => {
+      return [action.payload];
+    },
+    [reviewByRoom.fulfilled]: (state, action) => {
       return [action.payload];
     },
   },

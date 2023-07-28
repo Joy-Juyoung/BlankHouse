@@ -12,10 +12,15 @@ const getReviewById = (id) => {
   return axios.get(`/reviews/${id}`);
 };
 
+const getReviewByRoom = (id) => {
+  return axios.get(`/reviews/rooms/${id}`);
+};
+
 const ReviewsService = {
   getAllReviews,
   getAllRoomReviews,
   getReviewById,
+  getReviewByRoom,
 };
 
 export default ReviewsService;

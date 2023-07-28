@@ -74,6 +74,12 @@ export const ReviewUserInfo = styled.div`
   flex-direction: column;
   margin-left: 10px;
   /* align-items: center; */
+
+  span {
+    font-size: 13px;
+    margin-top: 2px;
+    color: gray;
+  }
 `;
 
 export const ReviewCardText = styled.div`

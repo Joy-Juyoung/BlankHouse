@@ -27,6 +27,7 @@ import UserDropBox from '../Dropdown/UserDropBox';
 
 const HeaderContens = ({ isLoggedIn, setIsLoggedIn }) => {
   const dropdownRef = useRef(null);
+
   const [modalSearchShown, toggleSearchModal] = useState(false);
   const [isUserDrop, setIsUserDrop] = useState(false);
 

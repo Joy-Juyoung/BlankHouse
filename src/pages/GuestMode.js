@@ -54,9 +54,9 @@ const GuestMode = () => {
         <Route path='/experiences/detail' element={<ExDetail />} exact={true} />
       </Routes>
 
-      <Routes>
+      {/* <Routes>
         <Route path='/test' element={<Test meData={meData} />} exact={true} />
-      </Routes>
+      </Routes> */}
       <GotoTopButton />
       <Footer isPageMain={isPageMain} />
     </>

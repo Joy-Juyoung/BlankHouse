@@ -19,12 +19,12 @@ import {
 } from './RoomReviewsStyle';
 // import { allUsers, userMe } from '../redux/slices/users';
 
-const RoomReviews = ({ roomData, reviews }) => {
+const RoomReviews = ({ roomData, reviewData }) => {
   return (
     <RoomReviewsContainter>
       <ReviewsWrap>
         <ReviewsMainTop>
-          <ReviewGraphs>
+          {/* <ReviewGraphs>
             <ReviewGraphsName>Cleanliness</ReviewGraphsName>
             <ReviewGraphsRate>
               <RoomReviewBar rating={roomData?.cleanliness_rating} />
@@ -32,7 +32,7 @@ const RoomReviews = ({ roomData, reviews }) => {
                 {roomData?.cleanliness_rating?.toFixed(2)}
               </GraphsRateNum>
             </ReviewGraphsRate>
-          </ReviewGraphs>
+          </ReviewGraphs> */}
           <ReviewGraphs>
             <ReviewGraphsName>Accuracy</ReviewGraphsName>
             <ReviewGraphsRate>
@@ -71,10 +71,13 @@ const RoomReviews = ({ roomData, reviews }) => {
           </ReviewGraphs>
         </ReviewsMainTop>
         <ReviewsList>
-          {reviews
-            ?.filter((rf) => rf?.room !== null)
-            ?.slice(0, 6)
-            ?.map((review) => {
+          {/* {reviewData?.map((review) => {
+            return <RoomReviewsCard key={review?.pk} review={review} />;
+          })} */}
+          {/* <RoomReviewsCard reviewData={reviewData} /> */}
+
+          {reviewData?.length > 0 &&
+            reviewData?.map((review) => {
               return <RoomReviewsCard key={review?.pk} review={review} />;
             })}
         </ReviewsList>

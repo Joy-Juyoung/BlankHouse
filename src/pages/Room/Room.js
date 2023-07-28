@@ -19,6 +19,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import AppsIcon from '@mui/icons-material/Apps';
 import ShowPhotoModal from '../../components/Show/ShowPhotoModal';
 import roomsDataService from '../../redux/services/RoomsService';
+import reviewsDataService from '../../redux/services/ReviewsService';
 import { allReviews, allRoomReviews } from '../../redux/slices/reviews';
 import RoomInfoHead from './RoomInfoHead';
 import RoomInfo from './RoomInfo';
@@ -31,6 +32,7 @@ const Room = ({ setIsPageMain }) => {
   const [loading, setLoading] = useState(false);
   const [modalPhotoShown, togglePhotoModal] = useState(false);
   const [roomData, setRoomData] = useState('');
+  const [reviewData, setReviewData] = useState('');
   const { roomId } = useParams();
 
   const rooms = useSelector((state) => state.rooms[0]);
@@ -38,8 +40,8 @@ const Room = ({ setIsPageMain }) => {
   const dispatch = useDispatch();
 
   const initFetch = useCallback(() => {
-    dispatch(allRoomReviews());
-    dispatch(allRooms());
+    // dispatch(allRoomReviews());
+    // dispatch(allRooms());
   }, [dispatch]);
 
   const getRoom = (id) => {
@@ -53,12 +55,24 @@ const Room = ({ setIsPageMain }) => {
       });
   };
 
-  console.log('reviews', reviews);
+  const getRoomReview = (id) => {
+    reviewsDataService
+      .getReviewByRoom(id)
+      .then((response) => {
+        setReviewData(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  console.log('reviewData', reviewData);
 
   useEffect(() => {
+    initFetch();
     setIsPageMain(false);
     getRoom(roomId);
-    initFetch();
+    getRoomReview(roomId);
     // getReviews(roomId);
   }, [initFetch]);
 
@@ -67,7 +81,7 @@ const Room = ({ setIsPageMain }) => {
     document.body.style.overflow = 'hidden';
   };
 
-  console.log('rooms', rooms);
+  console.log('rooms', roomData);
 
   if (loading)
     return (
@@ -77,7 +91,7 @@ const Room = ({ setIsPageMain }) => {
     );
   return (
     <>
-      <RoomInfoHead roomData={roomData} rooms={rooms} reviews={reviews} />
+      <RoomInfoHead roomData={roomData} rooms={rooms} reviewData={reviewData} />
       <MainSmallContainer>
         <MainWrap>
           <RoomTopWrap id='viewPhoto'>
@@ -88,7 +102,7 @@ const Room = ({ setIsPageMain }) => {
                 <span>{roomData?.rating}</span>
                 <span className='coma'>·</span>
                 <span>
-                  <Link href=''>{reviews?.length} Reviews</Link>
+                  <Link href=''>{reviewData?.length} Reviews</Link>
                 </span>
                 <span>{roomData?.category?.name}</span>
               </RoomTopInfo>
@@ -128,7 +142,7 @@ const Room = ({ setIsPageMain }) => {
 
             <RoomInfo
               roomData={roomData}
-              reviews={reviews}
+              reviewData={reviewData}
               rooms={rooms}
               roomId={roomId}
             />
