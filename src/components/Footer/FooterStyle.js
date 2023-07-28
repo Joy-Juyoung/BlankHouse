@@ -31,6 +31,21 @@ export const FooterLongWrap = styled.div`
 
 export const FooterL = styled.div``;
 
+export const LongBtn = styled.div`
+  /* cursor: pointer;
+  width: 40px;
+  height: 50px;
+  background: #000;
+  color: #fff;
+  border-radius: 50%;
+  padding: 5px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px; */
+`;
+
 export const LongTitle = styled.div`
   font-weight: 600;
   margin-bottom: 15px;

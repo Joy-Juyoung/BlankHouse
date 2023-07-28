@@ -198,4 +198,20 @@ export const LogBtn = styled.button`
   text-decoration: none;
   cursor: pointer;
   padding: 0;
+
+  img {
+    width: 30px;
+    height: 30px;
+    background: gray;
+    margin: 0 0 0 5px;
+    border-radius: 50%;
+  }
+
+  svg {
+    width: 30px;
+    height: 30px;
+    /* background: gray; */
+    margin: 0 0 0 5px;
+    border-radius: 50%;
+  }
 `;

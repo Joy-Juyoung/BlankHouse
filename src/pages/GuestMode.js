@@ -4,26 +4,16 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MainPage from './MainHome/MainPage';
 import Experience from './Experiences/Experience';
 import ExDetail from './Experiences/ExDetail';
-// import ExperienceDetail from './Experiences/ExperienceDetail';
 import Room from './Room/Room';
 import Footer from '../components/Footer/Footer';
-import HeaderSmall from '../components/Header/HeaderSmall';
-import FooterSmall from '../components/Footer/FooterSmall';
 import Test from './Test';
-import GuestLayout from './GuestLayout';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  allUsers,
-  userMe,
-  loginUser,
-  logoutUser,
-  register,
-} from '../redux/slices/users';
 import meDataService from '../redux/services/UsersService';
+import GotoTopButton from '../components/Buttons/GotoTopButton';
 
 const GuestMode = () => {
   const [isPageMain, setIsPageMain] = useState(false);
   const [meData, setMeData] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const getMe = () => {
     meDataService
@@ -44,7 +34,11 @@ const GuestMode = () => {
 
   return (
     <>
-      {isPageMain ? <Header /> : <HeaderSmall />}
+      <Header
+        isPageMain={isPageMain}
+        isLoggedIn={isLoggedIn}
+        setIsLoggedIn={setIsLoggedIn}
+      />
       <Routes>
         <Route
           path='/'
@@ -63,7 +57,8 @@ const GuestMode = () => {
       <Routes>
         <Route path='/test' element={<Test meData={meData} />} exact={true} />
       </Routes>
-      {isPageMain ? <Footer /> : <FooterSmall />}
+      <GotoTopButton />
+      <Footer isPageMain={isPageMain} />
     </>
   );
 };
