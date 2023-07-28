@@ -34,11 +34,11 @@ export const logoutUser = createAsyncThunk(
 
 export const register = createAsyncThunk(
   'users/register',
-  async ({ username, password }, thunkAPI) => {
+  async ({ username, email, password }, thunkAPI) => {
     // try {
     const res = await usersDataService.registerUser({
       username,
-      // email,
+      email,
       password,
     });
     return res.data;

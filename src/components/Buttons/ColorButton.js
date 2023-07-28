@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const RoomSideBtn = styled.button`
+const RoomSideBtn = styled.div`
   position: relative;
   border: none;
   border-radius: 10px;
@@ -13,6 +13,9 @@ const RoomSideBtn = styled.button`
   font-weight: 600;
   cursor: pointer;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
 
   &:before {

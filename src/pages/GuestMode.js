@@ -13,6 +13,7 @@ import GotoTopButton from '../components/Buttons/GotoTopButton';
 const GuestMode = () => {
   const [isPageMain, setIsPageMain] = useState(false);
   const [meData, setMeData] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const getMe = () => {
     meDataService
@@ -33,7 +34,11 @@ const GuestMode = () => {
 
   return (
     <>
-      <Header isPageMain={isPageMain} />
+      <Header
+        isPageMain={isPageMain}
+        isLoggedIn={isLoggedIn}
+        setIsLoggedIn={setIsLoggedIn}
+      />
       <Routes>
         <Route
           path='/'

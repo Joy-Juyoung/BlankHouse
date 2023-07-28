@@ -1,5 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { logoutUser, userMe } from '../../redux/slices/users';
 import DateRange from '../DateRange';
 import LogInModal from '../Header/LogInModal';
 import SignupModal from '../Header/SignupModal';
@@ -23,6 +25,7 @@ const UserDropdown = styled.div`
 const UserDropdownWrap = styled.div`
   /* display: flex; */
   /* justify-content: center; */
+  font-size: 14px;
 
   hr {
     border: 1px solid #dddddd;
@@ -55,18 +58,32 @@ const UserDropdownWrap = styled.div`
   }
 `;
 
-const UserDropBox = ({ dropdownRef, setIsUserDrop, isUserDrop }) => {
+const UserDropBox = ({
+  dropdownRef,
+  setIsUserDrop,
+  isUserDrop,
+  isLoggedIn,
+  setIsLoggedIn,
+}) => {
   const [modalLogShown, toggleLogModal] = useState(false);
   const [modalSignupShown, toggleSignupModal] = useState(false);
+  const dispatch = useDispatch();
+
+  const users = useSelector((state) => state.users);
+  const initFetch = useCallback(() => {
+    dispatch(userMe());
+  }, [dispatch]);
 
   useEffect(() => {
-    // if (modalLogShown) {
-    //   setIsUserDrop(false);
-    // }
-    // Attach event listener when the component mounts
-    document.addEventListener('click', handleOutsideClick);
+    if (isLoggedIn === true) {
+      initFetch();
+    }
+  }, [initFetch, isLoggedIn]);
 
-    // Clean up the event listener when the component unmounts
+  console.log('users', users);
+
+  useEffect(() => {
+    document.addEventListener('click', handleOutsideClick);
     return () => {
       document.removeEventListener('click', handleOutsideClick);
     };
@@ -74,9 +91,13 @@ const UserDropBox = ({ dropdownRef, setIsUserDrop, isUserDrop }) => {
 
   const handleOutsideClick = (e) => {
     if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-      // Click occurred outside of the dropdown, so close it
       setIsUserDrop(!isUserDrop);
     }
+  };
+
+  const handleLogout = () => {
+    dispatch(logoutUser(users?.username));
+    setIsLoggedIn(false);
   };
 
   return (
@@ -87,44 +108,70 @@ const UserDropBox = ({ dropdownRef, setIsUserDrop, isUserDrop }) => {
         }}
       >
         <UserDropdownWrap>
-          <ul>
-            <li
-              className='login'
-              onClick={() => {
-                toggleLogModal(!modalLogShown);
-                toggleSignupModal(false);
-                // setIsUserDrop(false);
-              }}
-            >
-              <span>Log in</span>
-            </li>
-            <li
-              onClick={() => {
-                toggleSignupModal(!modalSignupShown);
-                toggleLogModal(false);
-              }}
-            >
-              <span>Sign up</span>
-            </li>
-          </ul>
-
-          <SignupModal
-            toggleSignupModal={toggleSignupModal}
-            modalSignupShown={modalSignupShown}
-            toggleLogModal={toggleLogModal}
-            modalLogShown={modalLogShown}
-            setIsUserDrop={setIsUserDrop}
-          />
-
-          <hr />
-          <ul>
-            <li>
-              <span>Hosting</span>
-            </li>
-            <li>
-              <span>Help</span>
-            </li>
-          </ul>
+          {isLoggedIn ? (
+            <>
+              <ul>
+                <li className='login'>
+                  <span>Messages</span>
+                </li>
+                <li className='login'>
+                  <span>Trips</span>
+                </li>
+                <li className='login'>
+                  <span>Wishlists</span>
+                </li>
+              </ul>
+              <hr />
+              <ul>
+                <li>
+                  <span>Manage listings</span>
+                </li>
+                <li>
+                  <span>Account</span>
+                </li>
+              </ul>
+              <hr />
+              <ul>
+                <li>
+                  <span>Help</span>
+                </li>
+                <li onClick={handleLogout}>
+                  <span>Log out</span>
+                </li>
+              </ul>
+            </>
+          ) : (
+            <>
+              <ul>
+                <li
+                  className='login'
+                  onClick={() => {
+                    toggleLogModal(!modalLogShown);
+                    toggleSignupModal(false);
+                  }}
+                >
+                  <span>Log in</span>
+                </li>
+                <li
+                  onClick={() => {
+                    toggleSignupModal(!modalSignupShown);
+                    toggleLogModal(false);
+                  }}
+                >
+                  <span>Sign up</span>
+                </li>
+              </ul>
+              <hr />
+              <ul>
+                <li>
+                  <span>Hosting</span>
+                </li>
+                <li>
+                  <span>Help</span>
+                </li>
+              </ul>
+            </>
+          )}
         </UserDropdownWrap>
 
         <LogInModal
@@ -133,12 +180,20 @@ const UserDropBox = ({ dropdownRef, setIsUserDrop, isUserDrop }) => {
           toggleSignupModal={toggleSignupModal}
           modalSignupShown={modalSignupShown}
           setIsUserDrop={setIsUserDrop}
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+          users={users}
         />
 
-        {/* <SignupModal
+        <SignupModal
           toggleSignupModal={toggleSignupModal}
           modalSignupShown={modalSignupShown}
-        /> */}
+          toggleLogModal={toggleLogModal}
+          modalLogShown={modalLogShown}
+          setIsUserDrop={setIsUserDrop}
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+        />
       </UserDropdown>
     </>
   );

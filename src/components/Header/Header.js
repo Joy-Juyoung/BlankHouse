@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   HeaderContrainer,
   HeaderSmallContrainer,
@@ -6,20 +6,27 @@ import {
   HeaderWrap,
 } from './HeaderStyle';
 import HeaderContens from './HeaderContents';
+import SuccessAlert from '../Notifications/SuccessAlert';
 
-const Header = ({ isPageMain }) => {
+const Header = ({ isPageMain, isLoggedIn, setIsLoggedIn }) => {
   return (
     <>
       {isPageMain ? (
         <HeaderContrainer>
           <HeaderWrap>
-            <HeaderContens />
+            <HeaderContens
+              isLoggedIn={isLoggedIn}
+              setIsLoggedIn={setIsLoggedIn}
+            />
           </HeaderWrap>
         </HeaderContrainer>
       ) : (
         <HeaderSmallContrainer>
           <HeaderSmallWrap>
-            <HeaderContens />
+            <HeaderContens
+              isLoggedIn={isLoggedIn}
+              setIsLoggedIn={setIsLoggedIn}
+            />
           </HeaderSmallWrap>
         </HeaderSmallContrainer>
       )}

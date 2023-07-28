@@ -25,14 +25,13 @@ import LogInModal from './LogInModal';
 import { Link } from 'react-router-dom';
 import UserDropBox from '../Dropdown/UserDropBox';
 
-const HeaderContens = () => {
+const HeaderContens = ({ isLoggedIn, setIsLoggedIn }) => {
   const dropdownRef = useRef(null);
   const [modalSearchShown, toggleSearchModal] = useState(false);
   const [isUserDrop, setIsUserDrop] = useState(false);
 
+  console.log('isLoggedIn', isLoggedIn);
   return (
-    // <HeaderSmallContrainer>
-    //   <HeaderSmallWrap>
     <>
       <HeaderWrapper>
         <img src={Logo} alt='' />
@@ -81,18 +80,33 @@ const HeaderContens = () => {
           </CountrySetting>
         </HeaderRightSection>
         <HeaderRightSection>
-          <UserSetting
-            onClick={() => {
-              setIsUserDrop(!isUserDrop);
-              toggleSearchModal(false);
-            }}
-            ref={dropdownRef}
-          >
-            <MenuIcon fontSize='medium' />
-            <LogBtn>
-              <AccountCircleIcon fontSize='medium' />
-            </LogBtn>
-          </UserSetting>
+          {isLoggedIn ? (
+            <UserSetting
+              onClick={() => {
+                setIsUserDrop(!isUserDrop);
+                toggleSearchModal(false);
+              }}
+              ref={dropdownRef}
+            >
+              <MenuIcon fontSize='medium' />
+              <LogBtn>
+                <img src='' alt='' />
+              </LogBtn>
+            </UserSetting>
+          ) : (
+            <UserSetting
+              onClick={() => {
+                setIsUserDrop(!isUserDrop);
+                toggleSearchModal(false);
+              }}
+              ref={dropdownRef}
+            >
+              <MenuIcon fontSize='medium' />
+              <LogBtn>
+                <AccountCircleIcon fontSize='medium' />
+              </LogBtn>
+            </UserSetting>
+          )}
         </HeaderRightSection>
         {isUserDrop && (
           <>
@@ -100,13 +114,13 @@ const HeaderContens = () => {
               setIsUserDrop={setIsUserDrop}
               isUserDrop={isUserDrop}
               dropdownRef={dropdownRef}
+              isLoggedIn={isLoggedIn}
+              setIsLoggedIn={setIsLoggedIn}
             />
           </>
         )}
       </HeaderWrapper>
     </>
-    //   </HeaderSmallWrap>
-    // </HeaderSmallContrainer>
   );
 };
 

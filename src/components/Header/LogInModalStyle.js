@@ -56,6 +56,15 @@ export const LoginWrap = styled.div`
   margin: 20px auto;
 `;
 
+export const LoginBtn = styled.button`
+  /* max-width: calc(100vw - 20%); */
+  width: 550px;
+  margin: 20px auto;
+  border: none;
+  background: none;
+  padding: 0;
+`;
+
 export const LoginInputWrap = styled.div`
   /* width: 100%; */
   border: 1px solid #bbbbbb;
@@ -116,7 +125,7 @@ export const DivideLine = styled.div`
   }
 `;
 
-export const LoginWithBtn = styled.button`
+export const LoginWithBtn = styled.div`
   width: 100%;
   height: 48px;
   font-size: 16px;
@@ -128,6 +137,7 @@ export const LoginWithBtn = styled.button`
 
   display: flex;
   align-items: center;
+  text-align: center;
   cursor: pointer;
 
   img {
