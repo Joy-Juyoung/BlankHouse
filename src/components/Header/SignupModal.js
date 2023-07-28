@@ -16,18 +16,21 @@ import {
   LoginWrap,
   ModalLoginMain,
 } from './LogInModalStyle';
+import ColorButton from '../Buttons/ColorButton';
 
 const SignupModal = ({
   modalSignupShown,
   toggleSignupModal,
   modalLogShown,
   toggleLogModal,
+  setIsUserDrop,
 }) => {
   return (
     <LogModal
       shown={modalSignupShown}
       close={() => {
         toggleSignupModal(false);
+        setIsUserDrop(false);
       }}
       title='sign up'
     >
@@ -40,10 +43,21 @@ const SignupModal = ({
                 <p>Username</p>
                 <input type='text' placeholder='Enter username' />
               </LoginInputWrap>
+              <LoginInputWrap>
+                <p>Email</p>
+                <input type='email' placeholder='Enter email' />
+              </LoginInputWrap>
+              <LoginInputWrap>
+                <p>Phone</p>
+                <input type='text' placeholder='Enter phone' />
+              </LoginInputWrap>
               <LoginInputWrap className='last'>
                 <p>Password</p>
                 <input type='password' placeholder='Enter password' />
               </LoginInputWrap>
+            </LoginWrap>
+            <LoginWrap>
+              <ColorButton buttonLabel='Sign up' />
             </LoginWrap>
             <LoginWrap>
               <GotoSignup>

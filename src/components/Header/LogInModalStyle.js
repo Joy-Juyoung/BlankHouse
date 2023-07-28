@@ -60,12 +60,13 @@ export const LoginInputWrap = styled.div`
   /* width: 100%; */
   border: 1px solid #bbbbbb;
   padding: 10px;
+  border-bottom: none;
 
   &.first {
-    border-bottom: none;
     border-radius: 10px 10px 0 0;
   }
   &.last {
+    border-bottom: 1px solid #bbbbbb;
     border-radius: 0 0 10px 10px;
   }
 
@@ -145,6 +146,7 @@ export const LoginWithBtn = styled.button`
 export const GotoSignup = styled.div`
   font-size: 14px;
   text-align: center;
+  margin-top: 35px;
   span {
     margin-left: 5px;
     /* font-weight: 600; */

@@ -32,12 +32,14 @@ const LogInModal = ({
   toggleLogModal,
   modalSignupShown,
   toggleSignupModal,
+  setIsUserDrop,
 }) => {
   return (
     <LogModal
       shown={modalLogShown}
       close={() => {
         toggleLogModal(false);
+        setIsUserDrop(false);
       }}
       title='Log in'
     >
@@ -82,10 +84,6 @@ const LogInModal = ({
                 <img src={appleIcon} alt='' />
                 <span>Continue with Apple</span>
               </LoginWithBtn>
-              {/* <LoginWithBtn>
-                <img src={facebookIcon} alt='' />
-                <span>Continue with email</span>
-              </LoginWithBtn> */}
             </LoginWrap>
             <LoginWrap>
               <GotoSignup>
