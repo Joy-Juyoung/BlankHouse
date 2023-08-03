@@ -24,14 +24,23 @@ import LogInModal from './LogInModal';
 
 import { Link } from 'react-router-dom';
 import UserDropBox from '../Dropdown/UserDropBox';
+import { useDispatch } from 'react-redux';
+import { getMe, getUserInfoAsync } from '../../redux/slices/userSlice';
+import Avatar from '../Avatar/Avatar';
 
-const HeaderContens = ({ isLoggedIn, setIsLoggedIn }) => {
+const HeaderContens = ({ user, isUserLogIn, setIsUserLogIn }) => {
   const dropdownRef = useRef(null);
-
+  const dispatch = useDispatch();
   const [modalSearchShown, toggleSearchModal] = useState(false);
   const [isUserDrop, setIsUserDrop] = useState(false);
+  // const [isUserLogIn, setIsUserLogIn] = useState(false);
 
-  console.log('isLoggedIn', isLoggedIn);
+  // useEffect(() => {
+  //   dispatch(getUserInfoAsync());
+  // }, [dispatch]);
+
+  // console.log('user', user);
+
   return (
     <>
       <HeaderWrapper>
@@ -81,7 +90,7 @@ const HeaderContens = ({ isLoggedIn, setIsLoggedIn }) => {
           </CountrySetting>
         </HeaderRightSection>
         <HeaderRightSection>
-          {isLoggedIn ? (
+          {user ? (
             <UserSetting
               onClick={() => {
                 setIsUserDrop(!isUserDrop);
@@ -91,7 +100,12 @@ const HeaderContens = ({ isLoggedIn, setIsLoggedIn }) => {
             >
               <MenuIcon fontSize='medium' />
               <LogBtn>
-                <img src='' alt='' />
+                {/* <img src={user?.user?.} alt='' /> */}
+                <span>
+                  <Avatar
+                    initials={user.username?.substring(0, 1).toUpperCase()}
+                  />
+                </span>
               </LogBtn>
             </UserSetting>
           ) : (
@@ -115,8 +129,9 @@ const HeaderContens = ({ isLoggedIn, setIsLoggedIn }) => {
               setIsUserDrop={setIsUserDrop}
               isUserDrop={isUserDrop}
               dropdownRef={dropdownRef}
-              isLoggedIn={isLoggedIn}
-              setIsLoggedIn={setIsLoggedIn}
+              user={user}
+              isUserLogIn={isUserLogIn}
+              setIsUserLogIn={setIsUserLogIn}
             />
           </>
         )}

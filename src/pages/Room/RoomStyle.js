@@ -287,6 +287,11 @@ export const RoomDetailsTop = styled.div`
   } */
 `;
 
+export const AvatarHost = styled.div`
+  width: 45px;
+  height: 45px;
+`;
+
 export const RoomDetailsSections = styled.div`
   padding: 30px 0 10px 0;
   border-top: 1px solid #dddd;

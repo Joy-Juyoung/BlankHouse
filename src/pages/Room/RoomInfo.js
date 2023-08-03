@@ -16,6 +16,7 @@ import {
   BasicIntro,
   PlaceOffers,
   PlaceOffersList,
+  AvatarHost,
 } from './RoomStyle';
 import StarIcon from '@mui/icons-material/Star';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -68,14 +69,14 @@ const RoomInfo = ({ reviewData, roomData, rooms, roomId }) => {
               <span className='coma'>·</span>
               <span>{roomInfo?.number_of_bed} bath</span>
             </div>
-            <div>
+            <AvatarHost>
               {/* <img src='' alt='' /> */}
               <Avatar
                 initials={roomData?.owner?.username
                   ?.substring(0, 1)
                   .toUpperCase()}
               />
-            </div>
+            </AvatarHost>
           </RoomDetailsTop>
           <RoomDetailsSections>
             <ul>

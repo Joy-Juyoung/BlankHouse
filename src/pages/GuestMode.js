@@ -7,37 +7,36 @@ import ExDetail from './Experiences/ExDetail';
 import Room from './Room/Room';
 import Footer from '../components/Footer/Footer';
 import Test from './Test';
-import meDataService from '../redux/services/UsersService';
 import GotoTopButton from '../components/Buttons/GotoTopButton';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  getMe,
+  getUserInfoAsync,
+  getUserMe,
+  isLogged,
+  selectUser,
+  userMe,
+} from '../redux/slices/userSlice';
 
 const GuestMode = () => {
   const [isPageMain, setIsPageMain] = useState(false);
-  const [meData, setMeData] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const getMe = () => {
-    meDataService
-      .getUser()
-      .then((response) => {
-        setMeData(response.data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
+  const [isUserLogIn, setIsUserLogIn] = useState(false);
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
 
   useEffect(() => {
-    getMe();
-  }, []);
+    dispatch(getUserInfoAsync());
+  }, [dispatch, isUserLogIn]);
 
-  // console.log('meData', meData);
+  console.log('user', user);
 
   return (
     <>
       <Header
         isPageMain={isPageMain}
-        isLoggedIn={isLoggedIn}
-        setIsLoggedIn={setIsLoggedIn}
+        user={user}
+        isUserLogIn={isUserLogIn}
+        setIsUserLogIn={setIsUserLogIn}
       />
       <Routes>
         <Route

@@ -199,6 +199,12 @@ export const LogBtn = styled.button`
   cursor: pointer;
   padding: 0;
 
+  span {
+    width: 30px;
+    height: 30px;
+    margin: 0 0 0 5px;
+  }
+
   img {
     width: 30px;
     height: 30px;

@@ -37,10 +37,11 @@ const RoomReviewsCard = ({ review }) => {
   return (
     <ReviewCardWrap>
       <ReviewCardUserWrap>
-        {/* <ReviewUserAvatar></ReviewUserAvatar> */}
-        <Avatar
-          initials={review?.user?.username?.substring(0, 1).toUpperCase()}
-        />
+        <ReviewUserAvatar>
+          <Avatar
+            initials={review?.user?.username?.substring(0, 1).toUpperCase()}
+          />
+        </ReviewUserAvatar>
         <ReviewUserInfo>
           <p>{review?.user?.username}</p>
           <span>{review?.created_at?.split('T')[0]}</span>

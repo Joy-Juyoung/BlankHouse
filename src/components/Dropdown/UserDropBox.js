@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { logoutUser, userMe } from '../../redux/slices/users';
+// import { logoutUser, userMe } from '../../redux/slices/users';
 import DateRange from '../DateRange';
 import LogInModal from '../Header/LogInModal';
 import SignupModal from '../Header/SignupModal';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { logout, logoutAsync } from '../../redux/slices/userSlice';
 
 const UserDropdown = styled.div`
   background: #fff;
@@ -62,27 +65,27 @@ const UserDropBox = ({
   dropdownRef,
   setIsUserDrop,
   isUserDrop,
-  isLoggedIn,
-  setIsLoggedIn,
+  user,
+  isUserLogIn,
+  setIsUserLogIn,
 }) => {
   const [modalLogShown, toggleLogModal] = useState(false);
   const [modalSignupShown, toggleSignupModal] = useState(false);
   const dispatch = useDispatch();
 
-  const users = useSelector((state) => state.users);
-  const initFetch = useCallback(() => {
-    dispatch(userMe());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (isLoggedIn === true) {
-      initFetch();
-      // localStorage.setItem('logUser', JSON.stringify({ isLoggedIn: true }));
-    }
-    // JSON.parse(localStorage.getItem('logUser'));
-  }, [initFetch]);
-
-  console.log('users', users);
+  const handleLogout = () => {
+    dispatch(logoutAsync(user?.username))
+      .then(() => {
+        // toast.success('Logged out successfully!');
+        toggleLogModal(false);
+        setIsUserDrop(false);
+        setIsUserLogIn(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error('Logout failed. Please try again.');
+      });
+  };
 
   useEffect(() => {
     document.addEventListener('click', handleOutsideClick);
@@ -97,12 +100,6 @@ const UserDropBox = ({
     }
   };
 
-  const handleLogout = () => {
-    dispatch(logoutUser(users?.username));
-    // localStorage.clear('logUser');
-    setIsLoggedIn(false);
-  };
-
   return (
     <>
       <UserDropdown
@@ -111,7 +108,7 @@ const UserDropBox = ({
         }}
       >
         <UserDropdownWrap>
-          {isLoggedIn ? (
+          {user ? (
             <>
               <ul>
                 <li className='login'>
@@ -145,6 +142,7 @@ const UserDropBox = ({
             </>
           ) : (
             <>
+              {/* <ToastContainer /> */}
               <ul>
                 <li
                   className='login'
@@ -183,9 +181,9 @@ const UserDropBox = ({
           toggleSignupModal={toggleSignupModal}
           modalSignupShown={modalSignupShown}
           setIsUserDrop={setIsUserDrop}
-          isLoggedIn={isLoggedIn}
-          setIsLoggedIn={setIsLoggedIn}
-          users={users}
+          user={user}
+          isUserLogIn={isUserLogIn}
+          setIsUserLogIn={setIsUserLogIn}
         />
 
         <SignupModal
@@ -194,8 +192,9 @@ const UserDropBox = ({
           toggleLogModal={toggleLogModal}
           modalLogShown={modalLogShown}
           setIsUserDrop={setIsUserDrop}
-          isLoggedIn={isLoggedIn}
-          setIsLoggedIn={setIsLoggedIn}
+          user={user}
+          isUserLogIn={isUserLogIn}
+          setIsUserLogIn={setIsUserLogIn}
         />
       </UserDropdown>
     </>
