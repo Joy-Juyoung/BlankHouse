@@ -1,14 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
-import roomsReducer from '../slices/rooms';
-import categoriesReducer from '../slices/categories';
-import reviewsReducer from '../slices/reviews';
+import roomReducer from '../slices/roomSlice';
+import categoryReducer from '../slices/categorySlice';
+import reviewReducer from '../slices/reviewSlice';
 import userReducer from '../slices/userSlice';
 
 const reducer = {
   user: userReducer,
-  rooms: roomsReducer,
-  categories: categoriesReducer,
-  reviews: reviewsReducer,
+  room: roomReducer,
+  category: categoryReducer,
+  review: reviewReducer,
 };
 
 const store = configureStore({

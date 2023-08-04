@@ -5,6 +5,7 @@ export const MainContainer = styled.div`
   margin: 0 auto;
   padding: 0 40px;
   max-width: 1700px;
+  min-height: 70vh;
   /* z-index: 2; */
 
   span {

@@ -26,92 +26,75 @@ import RoomInfo from './RoomInfo';
 import { allRooms } from '../../redux/slices/rooms';
 import RoomPhotos from './RoomPhotos';
 import PageLoading from '../../components/Loading/PageLoading';
+import {
+  getAllRoomReviewsAsync,
+  selectReview,
+} from '../../redux/slices/reviewSlice';
+import {
+  getRoomsByIdAsync,
+  selectRoom,
+  selectRoomById,
+} from '../../redux/slices/roomSlice';
+// import { selectRoomById } from '../../redux/slices/roomSlice';
 
 const Room = ({ setIsPageMain }) => {
   const [fav, setFav] = useState(false);
   const [loading, setLoading] = useState(false);
   const [modalPhotoShown, togglePhotoModal] = useState(false);
-  const [roomData, setRoomData] = useState('');
-  const [reviewData, setReviewData] = useState('');
-  const { roomId } = useParams();
 
-  const rooms = useSelector((state) => state.rooms[0]);
-  const reviews = useSelector((state) => state.reviews[0]);
+  const { roomId } = useParams();
   const dispatch = useDispatch();
 
-  const initFetch = useCallback(() => {
-    // dispatch(allRoomReviews());
-    // dispatch(allRooms());
-  }, [dispatch]);
-
-  const getRoom = (id) => {
-    roomsDataService
-      .getRoomById(id)
-      .then((response) => {
-        setRoomData(response.data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
-
-  const getRoomReview = (id) => {
-    reviewsDataService
-      .getReviewByRoom(id)
-      .then((response) => {
-        setReviewData(response.data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
-
-  console.log('reviewData', reviewData);
+  // const roomsById = useSelector(selectRoom);
+  const roomsById = useSelector((state) => state.room[roomId]);
 
   useEffect(() => {
-    initFetch();
     setIsPageMain(false);
-    getRoom(roomId);
-    getRoomReview(roomId);
-    // getReviews(roomId);
-  }, [initFetch]);
+    dispatch(getAllRoomReviewsAsync());
+    dispatch(getRoomsByIdAsync({ id: Number(roomId) }))
+      .unwrap()
+      .then(() => setLoading(false))
+      .catch(() => setLoading(false));
+  }, [dispatch, roomId]);
 
   const handlePhotoShowAll = () => {
     togglePhotoModal(!modalPhotoShown);
     document.body.style.overflow = 'hidden';
   };
 
-  console.log('rooms', roomData);
+  console.log('roomsById', roomsById);
 
-  if (loading)
+  if (loading) {
     return (
       <div>
         <PageLoading />
       </div>
     );
+  }
+
   return (
     <>
-      <RoomInfoHead roomData={roomData} rooms={rooms} reviewData={reviewData} />
+      <RoomInfoHead roomsById={roomsById} />
       <MainSmallContainer>
         <MainWrap>
           <RoomTopWrap id='viewPhoto'>
-            <RoomTopHeader>{roomData?.name}</RoomTopHeader>
+            <RoomTopHeader>{roomsById?.name}</RoomTopHeader>
             <RoomTopText>
               <RoomTopInfo>
                 <StarIcon sx={{ fontSize: '16px' }} />
-                <span>{roomData?.rating}</span>
+                <span>{roomsById?.rating}</span>
                 <span className='coma'>·</span>
                 <span>
-                  <Link href=''>{reviewData?.length} Reviews</Link>
+                  <Link href=''>{roomsById?.reviews?.length} Reviews</Link>
                 </span>
-                <span>{roomData?.category?.name}</span>
+                <span>{roomsById?.category?.name}</span>
               </RoomTopInfo>
               <RoomTopInfo>
                 <button>
                   <ShareIcon sx={{ fontSize: '18px' }} />
                   <span>Share</span>
                 </button>
-                <button onClick={(e) => setFav(!fav)}>
+                <button onClick={() => setFav(!fav)}>
                   {fav ? (
                     <FavoriteIcon sx={{ fontSize: '18px', color: '#e20000' }} />
                   ) : (
@@ -126,26 +109,21 @@ const Room = ({ setIsPageMain }) => {
           </RoomTopWrap>
           <RoomMainWrap>
             <RoomMainPhotos>
-              <RoomPhotos roomData={roomData} />
+              <RoomPhotos roomsById={roomsById} />
               <ShowPhotoBtn onClick={handlePhotoShowAll}>
                 <AppsIcon />
                 <span>Show all photos</span>
               </ShowPhotoBtn>
             </RoomMainPhotos>
 
-            {/* About plce Modal Open */}
+            {/* About place Modal Open */}
             <ShowPhotoModal
               togglePhotoModal={togglePhotoModal}
               modalPhotoShown={modalPhotoShown}
-              roomData={roomData}
+              roomsById={roomsById}
             />
 
-            <RoomInfo
-              roomData={roomData}
-              reviewData={reviewData}
-              rooms={rooms}
-              roomId={roomId}
-            />
+            <RoomInfo roomsById={roomsById} roomId={roomId} />
           </RoomMainWrap>
         </MainWrap>
       </MainSmallContainer>

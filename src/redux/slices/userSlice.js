@@ -5,11 +5,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 // Check if there is user data in localStorage during initial store setup
 const userData = localStorage.getItem('user');
-// const initialState = {
-//   user: userData ? JSON.parse(userData) : null,
-//   status: 'loading', // or 'loading', 'succeeded', 'failed'
-//   error: null,
-// };
 let initialState;
 
 try {
@@ -140,12 +135,6 @@ const userSlice = createSlice({
       state.status = 'succeeded';
       state.error = null;
     },
-    // logout(state) {
-    //   state.user = null;
-    //   state.status = 'succeeded';
-    //   state.error = null;
-    //   localStorage.removeItem('user'); // Remove user data from localStorage on logout
-    // },
   },
   extraReducers: (builder) => {
     builder
@@ -205,7 +194,7 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUser, logout } = userSlice.actions;
+export const { setUser } = userSlice.actions;
 
 export const selectUser = (state) => state.user.user;
 export const selectStatus = (state) => state.user.status;

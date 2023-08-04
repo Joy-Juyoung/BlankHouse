@@ -36,14 +36,14 @@ import DateRange from '../../components/DateRange';
 import RoomReviews from './RoomReviews';
 import Avatar from '../../components/Avatar/Avatar';
 
-const RoomInfo = ({ reviewData, roomData, rooms, roomId }) => {
+const RoomInfo = ({ reviews, roomsById, roomId }) => {
   const [loading, setLoading] = useState(false);
   const [modalAboutPlaceShown, toggleAboutPlaceModal] = useState(false);
   const [checkInDate, setCheckInDate] = useState('');
   const [checkOutDate, setCheckOutDate] = useState('');
   // const [houseTyp, setHouseTyp] = useState('Entire');
-  // const [roomInfo, setRoomInfo] = useState( rooms?.filter((room) => room.pk === roomData?.pk));
-  const roomInfo = rooms?.filter((room) => room?.pk === roomId);
+  // const [roomInfo, setRoomInfo] = useState( roomsById?.filter((room) => room.pk === roomsById?.pk));
+  // const roomInfo = roomsById?.filter((room) => room?.pk === roomId);
 
   // console.log('roomInfo', roomInfo);
   // console.log('rooms', rooms);
@@ -55,24 +55,24 @@ const RoomInfo = ({ reviewData, roomData, rooms, roomId }) => {
           <RoomDetailsTop>
             <div>
               <h2>
-                {roomInfo?.house_type === 'entire_place' && 'Entire '}
-                {roomInfo?.house_type === 'private_room' && 'Private room '}
-                {roomInfo?.house_type === 'shared_room' && 'Shared room '}
-                {roomInfo?.category?.name?.toLowerCase()} hosted by{' '}
-                {roomInfo?.owner?.username}
+                {roomsById?.house_type === 'entire_place' && 'Entire '}
+                {roomsById?.house_type === 'private_room' && 'Private room '}
+                {roomsById?.house_type === 'shared_room' && 'Shared room '}
+                {roomsById?.category?.name?.toLowerCase()} hosted by{' '}
+                {roomsById?.owner?.username}
               </h2>
-              <span>{roomInfo?.maximum_guests} guests</span>
+              <span>{roomsById?.maximum_guests} guests</span>
               <span className='coma'>·</span>
-              <span>{roomInfo?.number_of_room} bedroom </span>
+              <span>{roomsById?.number_of_room} bedroom </span>
               <span className='coma'>·</span>
-              <span>{roomInfo?.number_of_toilet} bath</span>
+              <span>{roomsById?.number_of_toilet} bath</span>
               <span className='coma'>·</span>
-              <span>{roomInfo?.number_of_bed} bath</span>
+              <span>{roomsById?.number_of_bed} bath</span>
             </div>
             <AvatarHost>
               {/* <img src='' alt='' /> */}
               <Avatar
-                initials={roomData?.owner?.username
+                initials={roomsById?.owner?.username
                   ?.substring(0, 1)
                   .toUpperCase()}
               />
@@ -111,7 +111,7 @@ const RoomInfo = ({ reviewData, roomData, rooms, roomId }) => {
           </RoomDetailsSections>
           <RoomDetailsSections>
             <h2>About this place</h2>
-            <BasicIntro>{roomData?.description}</BasicIntro>
+            <BasicIntro>{roomsById?.description}</BasicIntro>
             <ShowMoreBtn
               onClick={() => {
                 toggleAboutPlaceModal(!modalAboutPlaceShown);
@@ -125,7 +125,7 @@ const RoomInfo = ({ reviewData, roomData, rooms, roomId }) => {
           <ShowMoreModal
             toggleAboutPlaceModal={toggleAboutPlaceModal}
             modalAboutPlaceShown={modalAboutPlaceShown}
-            roomData={roomData}
+            roomsById={roomsById}
           />
 
           <RoomDetailsSections>
@@ -133,7 +133,7 @@ const RoomInfo = ({ reviewData, roomData, rooms, roomId }) => {
             <SleepWrap>
               <BedIcon />
               <p>Bedroom</p>
-              <span>{roomInfo?.[0]?.number_of_bed} bed</span>
+              <span>{roomsById?.number_of_bed} bed</span>
             </SleepWrap>
           </RoomDetailsSections>
           <RoomDetailsSections id='viewAmenities'>
@@ -183,9 +183,9 @@ const RoomInfo = ({ reviewData, roomData, rooms, roomId }) => {
         </RoomMainDetailsWrap>
         <RoomSide
           loading={loading}
-          roomData={roomData}
-          rooms={rooms}
-          reviewData={reviewData}
+          roomsById={roomsById}
+          // roomsById={roomsById}
+          reviews={reviews}
           checkInDate={checkInDate}
           checkOutDate={checkOutDate}
         />
@@ -194,10 +194,10 @@ const RoomInfo = ({ reviewData, roomData, rooms, roomId }) => {
         <h2 className='rating'>
           <StarIcon sx={{ fontSize: '24px', marginRight: '5px' }} />
           <span>
-            {roomData?.rating?.toFixed(2)} / {reviewData?.length} reviews
+            {roomsById?.rating?.toFixed(2)} / {reviews?.length} reviews
           </span>
         </h2>
-        <RoomReviews roomData={roomData} reviewData={reviewData} />
+        <RoomReviews roomsById={roomsById} reviews={reviews} />
         <ShowAllBtn>Show all 00 Reviews</ShowAllBtn>
       </RoomDetailsSections>
       <RoomDetailsSections id='viewLocation'>
@@ -256,7 +256,7 @@ const RoomInfo = ({ reviewData, roomData, rooms, roomId }) => {
         </ThingsToKnow>
       </RoomDetailsSections>
       {/* </RoomMainDetailsWrap>
-                <RoomSide loading={loading} RoomData={RoomData} /> */}
+                <RoomSide loading={loading} roomsById={roomsById} /> */}
       {/* </RoomMainDetails> */}
     </RoomDetailSection>
   );

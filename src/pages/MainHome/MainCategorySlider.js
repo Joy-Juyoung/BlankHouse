@@ -12,20 +12,20 @@ import {
 } from './MainCategorySliderStyle';
 import { useDispatch, useSelector } from 'react-redux';
 import { allRoomCategories } from '../../redux/slices/categories';
+import {
+  getAllRoomCategoryAsync,
+  selectCategory,
+} from '../../redux/slices/categorySlice';
 
 const MainCategorySlider = ({ loading, visibleItems }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const categories = useSelector((state) => state.categories[0]);
+  const categories = useSelector(selectCategory);
   const dispatch = useDispatch();
 
-  const initFetch = useCallback(() => {
-    dispatch(allRoomCategories());
-  }, [dispatch]);
-
   useEffect(() => {
-    initFetch();
-  }, [initFetch]);
+    dispatch(getAllRoomCategoryAsync());
+  }, [dispatch]);
 
   const totalItems = categories?.length;
   const sliderWidth = `${100 / visibleItems}%`;

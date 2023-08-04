@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import MainRoomCard from './MainRoomCard';
 import {
   FilterBtn,
@@ -12,34 +12,26 @@ import {
 } from './MainStyle';
 import GuestFilterModal from '../../components/Filter/GuestFilterModal';
 import { Link } from 'react-router-dom';
-// import Loading from '../../components/Loading';
 import TuneIcon from '@mui/icons-material/Tune';
 import { useDispatch, useSelector } from 'react-redux';
-import { allRooms } from '../../redux/slices/rooms';
 import PageLoading from '../../components/Loading/PageLoading';
 import MainCategorySlider from './MainCategorySlider';
-// import MainInfiniteScroll from './MainInfiniteScroll';
+import { getAllRoomsAsync, selectRoom } from '../../redux/slices/roomSlice';
 
 const MainPage = ({ setIsPageMain }) => {
   const [modalFilterShown, toggleFilterModal] = useState(false);
   const [loading, setLoading] = useState(false);
-  // const [isLoading, setIsLoading] = useState(false);
-  // const pageRef = useRef(null);
 
-  const rooms = useSelector((state) => state.rooms[0]);
+  const rooms = useSelector(selectRoom);
   const dispatch = useDispatch();
-
-  const initFetch = useCallback(() => {
-    dispatch(allRooms());
-  }, [dispatch]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    dispatch(getAllRoomsAsync());
     setIsPageMain(true);
-    initFetch();
-  }, [initFetch]);
+  }, [dispatch]);
 
-  console.log('rooms', rooms);
+  console.log('All Rooms', rooms);
 
   if (loading)
     return (

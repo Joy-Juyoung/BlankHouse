@@ -47,7 +47,6 @@ const LogInModal = ({
     event.preventDefault();
     dispatch(loginAsync({ username, password }))
       .then(() => {
-        // toast.success('Logged in successfully!');
         toggleLogModal(false);
         setIsUserDrop(false);
         setIsUserLogIn(true);
@@ -57,10 +56,6 @@ const LogInModal = ({
         toast.error('Login failed. Please try again.');
       });
   };
-
-  // useEffect(()=> {
-  //   toast.success('Logged in successfully!');
-  // },[])
 
   return (
     <LogModal
