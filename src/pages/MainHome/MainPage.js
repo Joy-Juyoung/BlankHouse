@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import MainCategories from './MainCategories';
-import MainListCard from './MainListCard';
+import MainRoomCard from './MainRoomCard';
 import {
   FilterBtn,
   MainContainer,
@@ -11,26 +10,23 @@ import {
   MainTopFilter,
   MainWrap,
 } from './MainStyle';
-import GuestFilterModal from '../../components/Modals/GuestFilterModal';
-import { RoomData, CategoryData } from './SampleData';
-import CategorySlider from './CategorySlider';
-import { Link, useLocation } from 'react-router-dom';
-import Loading from '../../components/Loading';
+import GuestFilterModal from '../../components/Filter/GuestFilterModal';
+import { Link } from 'react-router-dom';
+// import Loading from '../../components/Loading';
 import TuneIcon from '@mui/icons-material/Tune';
-import MainInfiniteScroll from './MainInfiniteScroll';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { allRooms } from '../../redux/slices/rooms';
+import PageLoading from '../../components/Loading/PageLoading';
+import MainCategorySlider from './MainCategorySlider';
+// import MainInfiniteScroll from './MainInfiniteScroll';
 
-const MainPage = () => {
-  // const location = useLocation();
+const MainPage = ({ setIsPageMain }) => {
   const [modalFilterShown, toggleFilterModal] = useState(false);
   const [loading, setLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
+  // const pageRef = useRef(null);
 
-  const [isLoading, setIsLoading] = useState(false);
-  const pageRef = useRef(null);
-
-  const rooms = useSelector((state) => state.rooms);
+  const rooms = useSelector((state) => state.rooms[0]);
   const dispatch = useDispatch();
 
   const initFetch = useCallback(() => {
@@ -38,38 +34,25 @@ const MainPage = () => {
   }, [dispatch]);
 
   useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    setIsPageMain(true);
     initFetch();
   }, [initFetch]);
 
   console.log('rooms', rooms);
 
-  useEffect(() => {
-    setLoading(true);
-    const loadData = async () => {
-      await new Promise((r) => setTimeout(r, 1000));
-      setLoading(false);
-    };
-    loadData();
-    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-  }, []);
-
   if (loading)
     return (
       <div>
-        <Loading />
+        <PageLoading />
       </div>
     );
-
   return (
     <MainContainer>
       <MainWrap>
         <MainTop>
           <MainTopCategory>
-            <CategorySlider
-              loading={loading}
-              CategoryData={CategoryData}
-              visibleItems={15}
-            />
+            <MainCategorySlider loading={loading} visibleItems={15} />
           </MainTopCategory>
           <MainTopFilter>
             <FilterBtn
@@ -80,7 +63,7 @@ const MainPage = () => {
               <TuneIcon sx={{ fontSize: '18px' }} />
               Filters
             </FilterBtn>
-            {/* Filter Modal Open */}
+
             <GuestFilterModal
               toggleFilterModal={toggleFilterModal}
               modalFilterShown={modalFilterShown}
@@ -90,17 +73,15 @@ const MainPage = () => {
 
         <MainMid>
           <MainMidWrap>
-            {/* <MainInfiniteScroll RoomData={RoomData} /> */}
-            {/* {RoomData.map((room, index) => { */}
             {rooms?.map((room, index) => {
               return (
                 <Link key={index} to={`/room/${room?.pk}`}>
-                  <MainListCard room={room} loading={loading} />
+                  <MainRoomCard room={room} loading={loading} />
                 </Link>
               );
             })}
           </MainMidWrap>
-          <div ref={pageRef}>{isLoading && 'Loading...'}</div>
+          {/* <div ref={pageRef}>{isLoading && 'Loading...'}</div> */}
         </MainMid>
       </MainWrap>
     </MainContainer>

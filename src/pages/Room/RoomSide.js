@@ -8,82 +8,78 @@ import {
   RoomSideTotal,
   SideOutput,
   RoomSideOutput,
-  RoomSideBtn,
-  SideSelectInput,
   SideDateInput,
   RoomSideInputField,
   SideTopInfo,
   SideTopPrice,
   RoomSideTop,
   DateInput,
-  SelectInput,
   RoomSideText,
   RoomSideInside,
-  SideGuestInput,
   SideGuestsInput,
-  GuestsDropdown,
   GuestsInput,
-  DropBackDrop,
-  GuestsCount,
-  GuestsNotice,
-  GuestsCloseBtn,
+  InputLabel,
+  DateValue,
 } from './RoomSideStyle';
 import StarIcon from '@mui/icons-material/Star';
-import { Skeleton } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import FlagIcon from '@mui/icons-material/Flag';
 import SubmitButton from '../../components/Buttons/SubmitButton';
-import RemoveIcon from '@mui/icons-material/Remove';
-import AddIcon from '@mui/icons-material/Add';
-import GuestDropdown from './GuestDropdown';
+import SideGuestDropdown from './SideGuestDropdown';
 
-const RoomSide = ({ loading, RoomData }) => {
+const RoomSide = ({
+  loading,
+  roomData,
+  rooms,
+  reviews,
+  checkInDate,
+  checkOutDate,
+}) => {
   const [isGuests, setIsGuests] = useState(false);
   const [guestsNum, setGuestsNum] = useState(1);
+
+  const handleDate = () => {
+    // console.log('checkIn', checkInDate);
+    // console.log('checkOut', checkOutDate);
+  };
 
   return (
     <RoomDetailSide>
       <RoomDetailSideWrap>
-        {/* <Skeleton
-                  variant='rect'
-                  animation='wave'
-                  sx={{ width: '100%', height: '555px', borderRadius: '10px' }}
-                />
-                <Skeleton
-                  variant='rect'
-                  animation='wave'
-                  sx={{
-                    width: '50%',
-                    height: '25px',
-                    margin: '20px auto',
-                    borderRadius: '10px',
-                  }}
-                /> */}
-
         <RoomSideReserve>
           <RoomSideInside>
             <RoomSideTop>
               <SideTopPrice>
-                <h2>$560.00</h2>
+                <h2>${roomData?.price?.toFixed(2)}</h2>
                 <span>night</span>
               </SideTopPrice>
               <SideTopInfo>
                 <StarIcon sx={{ fontSize: '16px' }} />
-                <span>{RoomData[0].rating}</span>
-                <span className='space'>•</span>
-                <span>000 Reviews</span>
+                <span>{roomData?.rating?.toFixed(2)}</span>
+                <span className='coma'>·</span>
+                <span>{reviews?.length} Reviews</span>
               </SideTopInfo>
             </RoomSideTop>
             <RoomSideInputField>
               <SideDateInput>
                 <DateInput className='checkin'>
-                  <span>CHECK-IN</span>
-                  <input type='date' />
+                  <InputLabel>CHECK-IN</InputLabel>
+                  {/* <input
+                    type='date'
+                    value={checkInDate}
+                    onChange={handleDate}
+                  /> */}
+                  <DateValue>{checkInDate}</DateValue>
                 </DateInput>
                 <DateInput>
-                  <span>CHECK-OUT</span>
-                  <input type='date' />
+                  <InputLabel>CHECK-OUT</InputLabel>
+                  {/* <input
+                    type='date'
+                    value={checkOutDate}
+                    onChange={handleDate}
+                  /> */}
+                  <DateValue>{checkOutDate}</DateValue>
                 </DateInput>
               </SideDateInput>
               <SideGuestsInput
@@ -91,12 +87,12 @@ const RoomSide = ({ loading, RoomData }) => {
                 className={isGuests ? 'active' : ''}
               >
                 <GuestsInput>
-                  <span>GUESTS</span>
+                  <InputLabel>GUESTS</InputLabel>
                   <div>{guestsNum} guests</div>
                 </GuestsInput>
                 <ExpandMoreIcon />
                 {isGuests && (
-                  <GuestDropdown
+                  <SideGuestDropdown
                     setIsGuests={setIsGuests}
                     guestsNum={guestsNum}
                     setGuestsNum={setGuestsNum}

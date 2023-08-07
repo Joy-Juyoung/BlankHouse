@@ -7,18 +7,9 @@ import CategoryList from './CategoryList';
 import OnlineCard from '../OnlineExperiences/OnlineCard';
 import ExpListCard from './ExpListCard';
 import { ExperiencesData } from './ExperiencesData';
-import { ExpBody, ExpBodyBottom, ExpBodyTop, ExpDetail, ExpWrapper, 
-        InfoSlideWrap, 
-        LeftArrowBtn, 
-        OnlineExpWrap, 
-        RightArrowBtn, 
-        ShowAllLink, SliderArrowWrap,
-        TopLeftInfo, TopRightInfo } from '../OnlineExperiences/OnlineExpStyle';
 
 
 const Experience = () => {
-
-
   return (
         <TopMenuContainer>
             <TopMenuWrap>
@@ -27,43 +18,6 @@ const Experience = () => {
                     <MainTopWrap>
                         <h1>49 nearby Experiences</h1>
                     </MainTopWrap>
-                    <OnlineExpWrap>
-                        <ExpWrapper>
-                            <ExpDetail>
-                                <ExpBody>
-                                    <ExpBodyTop>
-                                        <TopLeftInfo>
-                                            <h2>Happening tomorrow</h2>
-                                        </TopLeftInfo>
-                                            <TopRightInfo>
-                                                <SliderArrowWrap>
-                                                    <LeftArrowBtn>
-                                                        <KeyboardArrowLeftOutlinedIcon/>
-                                                    </LeftArrowBtn>
-                                                    <p/>
-                                                    <RightArrowBtn>
-                                                        <KeyboardArrowRightOutlinedIcon/>
-                                                    </RightArrowBtn>
-                                                </SliderArrowWrap>
-                                            </TopRightInfo>
-                                        </ExpBodyTop>
-                                        <ExpBodyBottom>
-                                            <InfoSlideWrap>                         
-                                                {ExperiencesData
-                                                .filter(
-                                                (list) =>
-                                                    list.pk === 1 || 
-                                                    list.pk < 6
-                                                )
-                                                .map((experiences, index) => {
-                                                return <OnlineCard key={index} experiences={experiences} />;
-                                                })}
-                                            </InfoSlideWrap>
-                                        </ExpBodyBottom>
-                                    </ExpBody>
-                                </ExpDetail>
-                            </ExpWrapper>
-                        </OnlineExpWrap>
                     <MainMidWrap>
                         <MainMidTitle>
                             <h2>All Experiences</h2>

@@ -1,13 +1,29 @@
 import styled from 'styled-components';
 
 export const MainContainer = styled.div`
-  /* padding: 0 40px; */
   height: 100%;
   margin: 0 auto;
+  padding: 0 40px;
+  max-width: 1700px;
+  /* z-index: 2; */
 
-  /* max-width: 1700px; */
-  padding: ${({ pagesmall }) => (pagesmall ? '0 80px' : '0 40px')};
-  max-width: ${({ pagesmall }) => (pagesmall ? '1120px' : '1700px')};
+  span {
+    &.coma {
+      margin: 0 3px;
+      font-weight: 600;
+    }
+  }
+
+  @media screen and (max-width: 1280px) {
+    padding: 0 40px;
+  }
+`;
+
+export const MainSmallContainer = styled.div`
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 80px;
+  max-width: 1120px;
 
   span {
     &.coma {
@@ -22,12 +38,6 @@ export const MainContainer = styled.div`
 `;
 
 export const MainWrap = styled.div`
-  /* height: 100%;
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-
-  max-width: 1700px; */
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -37,7 +47,6 @@ export const MainWrap = styled.div`
 export const MainTop = styled.div`
   display: flex;
   height: 100px;
-  /* justify-content: space-between; */
   align-items: center;
 `;
 
@@ -46,7 +55,8 @@ export const MainTopCategory = styled.div`
   display: flex;
   align-items: center;
   /* justify-content: center; */
-  width: 95%;
+  width: 100%;
+  margin-right: 10px;
   /* overflow: hidden; */
   /* overflow-x: scroll; */
   /* position: relative; */
@@ -54,7 +64,7 @@ export const MainTopCategory = styled.div`
 
 export const MainTopFilter = styled.div`
   /* flex: 1; */
-  width: 5%;
+  /* width: 5%; */
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -66,10 +76,10 @@ export const MainTopFilter = styled.div`
 export const FilterBtn = styled.div`
   cursor: pointer;
   font-size: 14px;
-  border: 1px solid lightgray;
+  border: 1px solid #999999;
   background: #fff;
-  padding: 15px;
-  /* margin-left: 10px; */
+  padding: 10px 15px;
+  margin-left: 10px;
   border-radius: 5px;
 
   display: flex;
@@ -97,6 +107,7 @@ export const RoomsEach = styled.div`
   position: relative;
   width: 100%;
   height: 350px;
+
   /* width: 300px;
   height: 300px; */
 `;

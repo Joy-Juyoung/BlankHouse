@@ -1,35 +1,64 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Header from '../components/Header/Header';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MainPage from './MainHome/MainPage';
 import Experience from './Experiences/Experience';
 import ExDetail from './Experiences/ExDetail';
-
 import Room from './Room/Room';
 import Footer from '../components/Footer/Footer';
-import OnlineExp from './OnlineExperiences/OnlineExp';
+import Test from './Test';
+import meDataService from '../redux/services/UsersService';
+import GotoTopButton from '../components/Buttons/GotoTopButton';
 
 const GuestMode = () => {
+  const [isPageMain, setIsPageMain] = useState(false);
+  const [meData, setMeData] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const getMe = () => {
+    meDataService
+      .getUser()
+      .then((response) => {
+        setMeData(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  useEffect(() => {
+    getMe();
+  }, []);
+
+  // console.log('meData', meData);
+
   return (
     <>
-      <Header />
+      <Header
+        isPageMain={isPageMain}
+        isLoggedIn={isLoggedIn}
+        setIsLoggedIn={setIsLoggedIn}
+      />
       <Routes>
-        <Route path='/' element={<MainPage />} exact={true} />
-      </Routes>
-      <Routes>
+        <Route
+          path='/'
+          element={<MainPage setIsPageMain={setIsPageMain} />}
+          exact={true}
+        />
+        <Route
+          path='/room/:roomId'
+          element={<Room setIsPageMain={setIsPageMain} />}
+          exact={true}
+        />
         <Route path='/experiences' element={<Experience />} exact={true} />
-      </Routes>
-      <Routes>
-        <Route path='/onlinexperiences' element={<OnlineExp />} exact={true} />
-      </Routes>
-      <Routes>
         <Route path='/experiences/detail' element={<ExDetail />} exact={true} />
       </Routes>
-      <Routes>
-        <Route path='/room/:roomId' element={<Room />} exact={true} />
-      </Routes>
-      <Footer />
 
+      {/* <Routes>
+        <Route path='/test' element={<Test meData={meData} />} exact={true} />
+      </Routes> */}
+      <GotoTopButton />
+      <Footer isPageMain={isPageMain} />
     </>
   );
 };

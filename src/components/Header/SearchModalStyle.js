@@ -2,16 +2,12 @@ import styled from 'styled-components';
 
 export const SearchModalContainer = styled.div`
   padding: 0 40px;
-  /* display: flex; */
-  /* align-items: center; */
-  /* justify-content: center; */
   max-width: 850px;
   margin: 0 auto;
 `;
 
 export const SearchModalNav = styled.div`
   height: 80px;
-  /* max-width: 850px; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,16 +21,25 @@ export const SearchModalNavWrap = styled.div`
 `;
 
 export const SearchNavbar = styled.div`
-  border-bottom: ${({ guestmode }) => (guestmode ? '2px solid #000' : '')};
-  padding-bottom: 5px;
+  &.deactive {
+    &:after {
+      padding-bottom: 5px;
+      display: block;
+      content: '';
+      border-bottom: 2px solid #000;
+      transform: scaleX(0);
+      transition: transform 250ms ease-in-out;
+    }
+    &:hover {
+      &:after {
+        transform: scaleX(1);
+      }
+    }
+  }
 
-  &:active {
-    /* animation: shake 0.5s forwards;
-    @keyframes shake {
-      100% { */
-    transform: translateY(4px);
-    /* } */
-    /* } */
+  &.active {
+    padding-bottom: 5px;
+    border-bottom: 2px solid #000;
   }
 `;
 
@@ -48,7 +53,7 @@ export const SearchField = styled.div`
 
 export const SearchWrap = styled.div`
   border-radius: 30px;
-  background: #e5e5e5;
+  background: #f2f2f2;
   display: flex;
   align-items: center;
   height: 65px;
@@ -78,7 +83,7 @@ export const SearchTextBack = styled.div`
 
   &:hover {
     border-radius: 30px;
-    background: #dddddd;
+    background: #e5e5e5;
     /* height: 100%; */
     /* display: flex;
     align-items: center; */
@@ -97,9 +102,11 @@ export const SearchTextSection = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  /* align-items: center; */
   position: relative;
 
-  padding: 0 10px;
+  padding: 0 5px;
+  /* margin: 0 auto; */
 
   p {
     margin: 0;
@@ -170,20 +177,6 @@ export const SearchedBtn = styled.div`
     justify-content: center;
     margin-top: 2px;
   }
-
-  /* color: #fff;
-  border: 3px solid #ffae00;
-  background-image: -webkit-linear-gradient(
-    30deg,
-    #c266d3 50%,
-    transparent 50%
-  );
-  background-image: linear-gradient(30deg, #ffae00 50%, transparent 50%);
-  background-size: 500px;
-  background-repeat: no-repeat;
-  background-position: 0%;
-  -webkit-transition: background 0.4s ease-in-out;
-  transition: background 0.4s ease-in-out; */
 
   background: #ffc147;
   color: #fff;

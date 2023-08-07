@@ -3,23 +3,15 @@ import roomsDataService from '../services/RoomsService';
 
 const initialState = [];
 
-// export const createTutorial = createAsyncThunk(
-//   "tutorials/create",
-//   async ({ title, description }) => {
-//     const res = await TutorialDataService.create({ title, description });
-//     return res.data;
-//   }
-// );
-
 export const allRooms = createAsyncThunk('rooms/all', async () => {
   const res = await roomsDataService.getAll();
   return res.data;
 });
 
-export const getRoomById = createAsyncThunk(
+export const roomById = createAsyncThunk(
   'rooms/getRoomById',
   async ({ id }) => {
-    const res = await roomsDataService.getById(id);
+    const res = await roomsDataService.getRoomById(id);
     return res.data;
   }
 );
@@ -29,10 +21,13 @@ const roomsSlice = createSlice({
   initialState,
   extraReducers: {
     [allRooms.fulfilled]: (state, action) => {
-      return [...action.payload];
+      return [action.payload];
     },
-    [getRoomById.fulfilled]: (state, action) => {
-      return [...action.payload];
+    // [allRooms.pending]: () => {
+    //   return alert('pending data');
+    // },
+    [roomById.fulfilled]: (state, action) => {
+      return [action.payload];
     },
   },
 });

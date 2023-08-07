@@ -1,41 +1,18 @@
 import styled from 'styled-components';
 
-// export const FooterContainer = styled.div`
-//   /* height: 80px; */
-//   border-top: 1px solid lightgray;
-
-//   /* padding: 0 40px; */
-//   padding: ${({ pagesmall }) => (pagesmall ? '0 80px' : '0 40px')};
-
-//   a {
-//     text-decoration: none;
-//   }
-
-//   @media screen and (max-width: 1280px) {
-//     padding: 0 40px;
-//   }
-// `;
-
-// export const FooterWrap = styled.div`
-//   height: 100%;
-//   margin: 0 auto;
-
-//   max-width: ${({ pagesmall }) => (pagesmall ? '1120px' : '1700px')};
-// `;
-
 export const FooterContainer = styled.div`
-  background: ${({ pagesmall }) => (pagesmall ? '#f7f7f7' : '#fff')};
-  position: ${({ pagesmall }) => (pagesmall ? '' : 'fixed')};
-  bottom: ${({ pagesmall }) => (pagesmall ? '' : '0')};
-  width: ${({ pagesmall }) => (pagesmall ? '' : '100%')};
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 `;
 
 export const FooterLong = styled.div`
   border-top: 1px solid #dddd;
-  padding: ${({ pagesmall }) => (pagesmall ? '0 80px' : '0 40px')};
+  padding: 0 40px;
   margin: 0 auto;
   padding: 40px 0;
-  display: ${({ pagesmall }) => (pagesmall ? '' : 'none')};
+  display: none;
 
   @media screen and (max-width: 1280px) {
     padding: 0 40px;
@@ -45,7 +22,7 @@ export const FooterLong = styled.div`
 export const FooterLongWrap = styled.div`
   /* font-size: 14px; */
   margin: 0 auto;
-  max-width: ${({ pagesmall }) => (pagesmall ? '1120px' : '1700px')};
+  max-width: 1700px;
 
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -53,6 +30,21 @@ export const FooterLongWrap = styled.div`
 `;
 
 export const FooterL = styled.div``;
+
+export const LongBtn = styled.div`
+  /* cursor: pointer;
+  width: 40px;
+  height: 50px;
+  background: #000;
+  color: #fff;
+  border-radius: 50%;
+  padding: 5px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px; */
+`;
 
 export const LongTitle = styled.div`
   font-weight: 600;
@@ -65,7 +57,7 @@ export const LongList = styled.div`
 
 export const FooterShort = styled.div`
   border-top: 1px solid #dddd;
-  padding: ${({ pagesmall }) => (pagesmall ? '0 80px' : '0 40px')};
+  padding: 0 40px;
 
   @media screen and (max-width: 1280px) {
     padding: 0 40px;
@@ -74,7 +66,7 @@ export const FooterShort = styled.div`
 
 export const FooterShortWrap = styled.div`
   margin: 0 auto;
-  max-width: ${({ pagesmall }) => (pagesmall ? '1120px' : '1700px')};
+  max-width: 1700px;
 
   display: flex;
   justify-content: space-between;

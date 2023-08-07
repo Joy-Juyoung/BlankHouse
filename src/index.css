@@ -3,8 +3,8 @@ body {
   /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif; */
-  font-family: 'Kanit', sans-serif, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue';
+  font-family: 'Inter', 'Kanit', sans-serif, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -26,3 +26,36 @@ code {
   font-size: 16px;
   font-weight: 600;
 }
+
+.rdrDay span:after {
+  background: rgb(255, 174, 0, 0.8) !important;
+  /* border-color: #ffae00 !important; */
+}
+
+.rdrInRange {
+  background: rgb(244, 221, 173, 0.5) !important;
+  /* color: #000 !important; */
+  /* font-weight: 600 !important; */
+}
+
+.rdrDay:not(.rdrDayPassive) .rdrInRange ~ .rdrDayNumber span {
+  color: rgba(0, 0, 0, 0.85) !important;
+}
+
+.rdrDay:not(.rdrDayPassive) .rdrStartEdge ~ .rdrDayNumber span,
+.rdrDay:not(.rdrDayPassive) .rdrEndEdge ~ .rdrDayNumber span {
+  color: rgba(0, 0, 0, 0.85) !important;
+  /* font-weight: 600; */
+}
+
+.rdrStartEdge,
+.rdrEndEdge {
+  /* background: #5ea6ff !important; */
+  background: rgb(255, 174, 0, 0.8) !important;
+  /* color: rgba(255, 255, 255, 0.85) !important; */
+  /* border-radius: 1.042em; */
+}
+
+/* .rdrStartEdge {
+  color: rgba(255, 255, 255, 0.85) !important;
+} */

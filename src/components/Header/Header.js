@@ -1,22 +1,9 @@
 import React, { useState } from 'react';
 import {
-  CountrySetting,
   HeaderContrainer,
-  HeaderRight,
-  HeaderRightSection,
+  HeaderSmallContrainer,
+  HeaderSmallWrap,
   HeaderWrap,
-  HeaderWrapper,
-  LogBtn,
-  ModeSetting,
-  SearchBtn,
-  SearchNavBtn,
-  SearchNavBtnCenter,
-  SearchNavInput,
-  SearchNavSection,
-  SearchNavWrap,
-  SwitchBtn,
-  UserIconSection,
-  UserSetting,
 } from './HeaderStyle';
 import LanguageIcon from '@mui/icons-material/Language';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -24,53 +11,26 @@ import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchModal from './SearchModal';
 import Logo from '../../assets/images/logo.png';
-import { Link, useLocation, useParams } from 'react-router-dom';
-import DropdownList from './DropdownList';
 import LogInModal from './LogInModal';
 
-
-
-
+import { Link, useLocation, useParams } from 'react-router-dom';
 const Header = () => {
   const location = useLocation();
   // const { room } = useParams();
   const [modalSearchShown, toggleSearchModal] = useState(false);
+
   const [modalLogShown, toggleLogModal] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  // console.log('location.pathname', location.pathname);
 
   return (
-    <HeaderContrainer pagesmall={location.pathname === '/room' ? true : false}>
-      <HeaderWrap pagesmall={location.pathname === '/room' ? true : false}>
-        <HeaderWrapper style={{ zIndex: '5' }}>
-          <img src={Logo} alt='' />
-          <Link to='/'>
-            <h1>BlankHouse</h1>
-          </Link>
-        </HeaderWrapper>
-        <HeaderWrapper className='headerCenter'>
-          {/* Search and Nav */}
-          <SearchNavWrap
-            onClick={() => {
-              toggleSearchModal(!modalSearchShown);
-            }}
-          >
-            <SearchNavSection>
-              <SearchNavBtn>
-                <span>Anywhere</span>
-              </SearchNavBtn>
-              <SearchNavBtn className='center'>
-                <span>Any week</span>
-              </SearchNavBtn>
-              <SearchNavBtn>
-                <span>Add Guest</span>
-              </SearchNavBtn>
-
-              {/* <SearchNavInput type='text' /> */}
-            </SearchNavSection>
-            {/* Search Modal */}
-            <SearchModal
-              toggleSearchModal={toggleSearchModal}
-              modalSearchShown={modalSearchShown}
+    <>
+      {isPageMain ? (
+        <HeaderContrainer>
+          <HeaderWrap>
+            <HeaderContens
+              isLoggedIn={isLoggedIn}
+              setIsLoggedIn={setIsLoggedIn}
             />
 
             <SearchBtn>
@@ -94,23 +54,16 @@ const Header = () => {
             <UserSetting>
               <MenuIcon fontSize='medium' />
               <LogBtn
-                //   onClick={() => {
-                //     toggleLogModal(!modalLogShown);
-                // }}
-                onClick={() => setIsDropdownOpen(true)}
+                onClick={() => {
+                  toggleLogModal(!modalLogShown);
+                }}
               >
                 <AccountCircleIcon fontSize='medium' />
               </LogBtn>
-              {isDropdownOpen && (
-                <DropdownList
-                  onClose={() => setIsDropdownOpen(false)}
-                  onKeyPress={() => setIsDropdownOpen(false)}
-                />
-              )}
-              {/* <LogInModal
-              toggleLogModal={toggleLogModal}
-              modalLogShown={modalLogShown}
-            /> */}
+              <LogInModal
+                toggleLogModal={toggleLogModal}
+                modalLogShown={modalLogShown}
+              />
             </UserSetting>
           </HeaderRightSection>
         </HeaderWrapper>

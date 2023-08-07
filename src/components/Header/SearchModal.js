@@ -1,16 +1,13 @@
-import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation, useParams } from 'react-router-dom';
 // import { useLocation } from 'react-router-dom';
-import SearchIcon from '@mui/icons-material/Search';
+import HeaderModal from '../Modals/HeaderModalLayout';
 
-import HeaderModal from './HeaderModal';
 import {
-  SearchFiled,
   SearchModalContainer,
   SearchModalNav,
   SearchModalNavWrap,
   SearchNavbar,
-  SearchedBtn,
   SearchTextSection,
   SearchSection,
   SearchWrap,
@@ -25,12 +22,31 @@ import SearchDateBox from '../Dropdown/SearchDateBox';
 
 const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
   const location = useLocation();
-  // console.log('location', location);
   const [isGuests, setIsGuests] = useState(false);
   const [guestsNum, setGuestsNum] = useState(1);
 
   const [isCheckInDate, setIsCheckInDate] = useState(false);
   const [isCheckOutDate, setIsCheckOutDate] = useState(false);
+  const [checkInDate, setCheckInDate] = useState('');
+  const [checkOutDate, setCheckOutDate] = useState('');
+
+  const [isRoom, setIsRoom] = useState(false);
+  const [isExp, setIsExp] = useState(false);
+  const { roomId } = useParams();
+
+  useEffect(() => {
+    if (location.pathname === '/' || !roomId) {
+      setIsRoom(true);
+      setIsExp(false);
+    }
+    if (
+      location.pathname === '/experiences' ||
+      location.pathname === '/experiences/detail'
+    ) {
+      setIsRoom(false);
+      setIsExp(true);
+    }
+  }, [location]);
 
   return (
     <HeaderModal
@@ -43,14 +59,14 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
         <SearchModalNav>
           <SearchModalNavWrap>
             <SearchNavbar
-              guestmode={location.pathname === '/' ? true : false}
+              className={isRoom ? 'active' : 'deactive'}
               onClick={() => toggleSearchModal(false)}
             >
               <Link to='/'>Stays</Link>
             </SearchNavbar>
 
             <SearchNavbar
-              guestmode={location.pathname === '/experiences' ? true : false}
+              className={isExp ? 'active' : 'deactive'}
               onClick={() => toggleSearchModal(false)}
             >
               <Link to='/experiences'>Experiences</Link>
@@ -83,7 +99,7 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
               >
                 <SearchTextSection>
                   <p>Check in</p>
-                  <span>Add dates</span>
+                  <span>{checkInDate || 'Add dates'}</span>
                 </SearchTextSection>
               </SearchTextBack>
               <SearchTextBack
@@ -96,7 +112,7 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
               >
                 <SearchTextSection>
                   <p>Check out</p>
-                  <span>Add dates</span>
+                  <span>{checkOutDate || 'Add dates'}</span>
                 </SearchTextSection>
               </SearchTextBack>
               <SearchTextBack
@@ -131,18 +147,15 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
               </SearchTextBack>
               {(isCheckInDate || isCheckOutDate) && (
                 <SearchDateBox
-                  isCheckInDate={isCheckInDate}
-                  isCheckOutDate={isCheckOutDate}
-                  setIsCheckInDate={setIsCheckInDate}
-                  setIsCheckOutDate={setIsCheckOutDate}
                   toggleSearchModal={toggleSearchModal}
+                  checkInDate={checkInDate}
+                  checkOutDate={checkOutDate}
+                  setCheckInDate={setCheckInDate}
+                  setCheckOutDate={setCheckOutDate}
                 />
               )}
             </SearchSection>
-            {/* <SearchedBtn>
-              <SearchIcon fontSize='small' />
-              <span>Search</span>
-            </SearchedBtn> */}
+
             <SearchButton />
           </SearchWrap>
         </SearchField>

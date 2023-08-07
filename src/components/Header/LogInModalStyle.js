@@ -1,204 +1,170 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-
 export const ModalContainer = styled.div`
-  /* max-width: 750px;
-  max-height: 780px; */
-    padding: 24px;
-    flex: 1 1 auto;
-    overflow-y: auto;
+  padding: 24px;
 `;
 
-export const ModalMain = styled.div`
+export const ModalMainWrapper = styled.div``;
 
+export const MainHeaderWrap = styled.div`
+  margin-top: 8px;
+  margin-bottom: 24px;
+
+  h3 {
+    margin-top: 0;
+    font-size: 22px;
+    line-height: 26px;
+    color: rgb(34, 34, 34);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
 `;
 
-export const ModalMainTitle = styled.h1`
-    margin-top: 8px ;
-    margin-bottom: 24px ;
+export const MainFormWrap = styled.form``;
 
-    h3{
-        margin-top: 0;
-        font-size: 22px;
-        line-height: 26px;
-        color: rgb(34, 34, 34);
-        font-weight: 600;
-        margin-bottom: 8px;
-    }
+//---------------------------
+
+export const ModalLoginMain = styled.div`
+  padding: 0 25px;
+  /* overflow-y: scroll; */
+  max-height: 650px;
+  align-items: center;
 `;
-export const ModalTop = styled.div`
+
+export const PassewordWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const EyeIcon = styled.div`
+  color: #a3a9b3;
+  margin-right: 5px;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid lightgray;
-  padding: 0 25px;
-  height: 60px;
-`;
 
-export const PlaceTypeWrap = styled.form`
-
-`;
-
-export const PlaceTypeWrapper = styled.div`
-    margin-top: 16px;
-`;
-
-export const InputListsWrap = styled.div`
-    border-radius: 8px;
-    border: 1px solid #717171;
-    position: relative;
-`;
-
-export const ListsWrapper = styled.div`
+  svg {
     display: flex;
+    align-items: center;
+  }
 `;
 
-export const CountryWrap = styled.div`
-    display: flex;
-    position: relative;
-    flex: 1 1 auto;
+export const LoginWrap = styled.div`
+  /* max-width: calc(100vw - 20%); */
+  width: 550px;
+  margin: 20px auto;
+`;
+
+export const LoginBtn = styled.button`
+  /* max-width: calc(100vw - 20%); */
+  width: 550px;
+  margin: 20px auto;
+  border: none;
+  background: none;
+  padding: 0;
+`;
+
+export const LoginInputWrap = styled.div`
+  /* width: 100%; */
+  border: 1px solid #bbbbbb;
+  padding: 10px;
+  border-bottom: none;
+
+  &.first {
+    border-radius: 10px 10px 0 0;
+  }
+  &.last {
+    border-bottom: 1px solid #bbbbbb;
+    border-radius: 0 0 10px 10px;
+  }
+
+  p {
+    margin: 0;
+    font-size: 13px;
+  }
+
+  input {
     width: 100%;
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 400;
-    padding: 0;
-`;
-
-
-export const CountryTitle = styled.div`
-    position: absolute;
-    top: 8px;
-    transform-origin: 0% 0%;
-    left: 18px;
-    right: 12px;
-    margin: 0;
-    padding: 0 24px 0 0;
-    font-size: 12px;
-    line-height: 16px;
-
-    span {
-        max-width: 100%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        color: #717171;
-    }
-`;
-
-
-export const CountrySelect = styled.select`
-    margin: 0;
-    padding: 26px 36px 10px 12px ;
-    min-height: 56px;
-    width: 100%;
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 400;
-
-    /* border-bottom: 1px solid lightgray; */
-
-`;
-export const PhoneNumWrap = styled.div`
-    position: relative;
-    flex: 2 1 auto;
-    cursor: text;
-    margin: 0;
+    padding: 5px 0;
+    /* margin: 0 !important; */
+    outline: none;
     border: none;
-    border-radius: 0;
-    box-shadow: none;
-    /* display: flex; */
-    min-height: 56px;
-    width: 100%;
     font-size: 16px;
-    line-height: 20px;
-    font-weight: 400;
+  }
 `;
 
-export const PhoneNumTitle = styled.div`
-    position: relative;
-    transform-origin: 0% 0%;
-    top:8px;
-    left: 18px;
-    flex:1;
-    right: 12px;
-    margin: 0;
-    padding: 0 ;
-    font-size: 12px;
-    line-height: 16px;
-
-    span {
-        max-width: 100%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        color: #717171;
-    }
+export const LoginBtnWrap = styled.div`
+  /* max-width: calc(100vw - 20%); */
+  width: 550px;
+  margin: 30px auto;
 `;
 
-export const InputWrapper = styled.input.attrs({
-    placeholder: "+1 (XXX)-XXX-XXXX"
-})`   
-    /* flex:2; */
-    /* display: flex; */
-    border: none;
-    padding: 0;
-    margin:0;
-    width:100%;
-    height:100%;
-    /* input{
-        border: none;
-        padding: 0;
-        min-height: 56px;
-        width: 100%;
-        outline: none;
-    } */
+export const DivideLine = styled.div`
+  display: flex !important;
+  align-items: center !important;
+  margin: 16px 0px !important;
+  color: #bbbbbb;
+
+  &::before {
+    content: '' !important;
+    display: block !important;
+    width: 100% !important;
+    height: 1px !important;
+    background-color: rgb(221, 221, 221) !important;
+    margin-right: 16px !important;
+  }
+
+  &::after {
+    content: '' !important;
+    display: block !important;
+    width: 100% !important;
+    height: 1px !important;
+    background-color: rgb(221, 221, 221) !important;
+    margin-left: 16px !important;
+  }
 `;
 
+export const LoginWithBtn = styled.div`
+  width: 100%;
+  height: 48px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 1px solid gray;
+  border-radius: 10px;
+  background: #fff;
+  margin-top: 15px;
 
-export const LoginInfosWrap = styled.div`
-    margin-top: 8px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
 
-
-    span {
-        color: rgb(34, 34, 34);
-        font-size: 12px;
-        line-height: 16px;
-        font-weight: 400;
-        /* text-decoration: underline; */
-    }
+  img {
+    margin-left: 10px;
+    height: 20px;
+    object-fit: contain;
+  }
+  span {
+    width: 100%;
+    justify-content: center;
+    margin-left: -35px;
+    font-size: 14px;
+  }
 `;
 
-export const PolicyLink = styled(Link)`
-    color:#000;
+export const GotoSignup = styled.div`
+  font-size: 14px;
+  text-align: center;
+  margin-top: 35px;
+  span {
+    margin-left: 5px;
+    /* font-weight: 600; */
+    color: #e29700;
     text-decoration: underline;
     cursor: pointer;
-`;
-
-export const ContinueBtnWrap = styled.div`
-    margin-bottom: 24px;
-    margin-top: 16px;
-`;
-
-export const ContinueBtn = styled.button`
-    border-radius: 8px;
-    border-width: 1px;
-    border-style: solid;
-    padding: 14px 24px;
-    border: none;
-    background: #de1162;
-    cursor: pointer;
-    margin: 0;
-    text-align: center;
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 600;
-    width:100%;
-    
-span{
-    color:#fff;
-}
-
+  }
 `;
 export const ModalTitle = styled.div`
   font-size: 18px;

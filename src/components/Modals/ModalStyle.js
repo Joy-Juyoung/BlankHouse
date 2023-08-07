@@ -2,21 +2,25 @@ import styled from 'styled-components';
 
 export const ModalContainer = styled.div`
   max-width: 750px;
+  /* max-width: 600px; */
   /* max-height: 650px; */
   /* margin: 0 auto; */
   max-height: 780px;
+  z-index: 6;
 `;
 
 export const ModalWholeContainer = styled.div`
-  /* max-width: 750px;
-  margin: 0 auto;
-  max-height: 780px; */
-  /* max-height: 650px; */
-  max-width: 1120px;
+  max-width: 100vw;
   height: 100vh;
   margin: 0 auto;
-  /* margin-left: calc(-1 * var(--jaa-ni-h) / 2);
-  margin-right: calc(-1 * var(--jaa-ni-h) / 2); */
+  overflow-y: scroll;
+`;
+
+export const ModalWholeWrap = styled.div`
+  max-width: 1120px;
+  /* height: 100vh; */
+  margin: 0 auto;
+  padding-bottom: 80px;
 `;
 
 export const ModalTop = styled.div`
@@ -76,12 +80,14 @@ export const ModalMain = styled.div`
 `;
 
 export const ModalMainSection = styled.div`
+  /* width: 100%; */
   padding: 30px 0;
   border-bottom: 1px solid lightgray;
 `;
 
 export const ModalMainTitle = styled.h1`
   font-size: 24px;
+  /* width: 100%; */
   margin: 0;
   padding: 0;
 `;
@@ -301,7 +307,7 @@ export const ModalMainContents = styled.div`
 `;
 
 export const ModalPhotos = styled.div`
-  height: 100vh;
+  /* height: 100vh; */
   /* overflow-y: scroll; */
   padding: 40px 20px;
 `;
