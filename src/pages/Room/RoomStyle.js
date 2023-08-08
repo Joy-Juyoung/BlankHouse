@@ -57,17 +57,32 @@ export const ReservePrice = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  font-weight: 600;
+
+  span {
+    &.side {
+      margin-left: 5px;
+      font-weight: 400;
+    }
+  }
 `;
 
 export const ReserveReview = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  font-size: 11px;
+  margin-top: 5px;
 
   span {
     &.coma {
       margin: 0 5px;
     }
+  }
+
+  a {
+    text-decoration: none;
+    color: gray;
   }
 `;
 
@@ -101,17 +116,48 @@ export const RoomTopText = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  &.account {
+    margin-top: 5px;
+  }
+
+  &.accountPath {
+    font-size: 14px;
+    margin-bottom: 5px;
+    margin-top: 0;
+  }
 `;
 
 export const RoomTopInfo = styled.div`
   display: flex;
   align-items: center;
+  /* font-size: 14px; */
 
   span {
     a {
       color: #000;
       /* margin-left: 5px; */
-      margin-right: 10px;
+      /* margin-right: 10px; */
+      &.accountPath {
+        text-decoration: none;
+        cursor: pointer;
+
+        &:hover {
+          /* border-bottom: 1px solid; */
+          text-decoration: underline;
+        }
+      }
+    }
+
+    &.coma {
+      margin: 0 5px;
+    }
+    &.strong {
+      font-weight: 600;
+    }
+
+    &.accountPath {
+      margin: 0 15px;
     }
   }
 

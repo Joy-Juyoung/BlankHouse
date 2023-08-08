@@ -7,7 +7,8 @@ import LogInModal from '../Header/LogInModal';
 import SignupModal from '../Header/SignupModal';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { logout, logoutAsync } from '../../redux/slices/userSlice';
+import { logout, logoutAsync, logoutUser } from '../../redux/slices/userSlice';
+import { Link, useLocation } from 'react-router-dom';
 
 const UserDropdown = styled.div`
   background: #fff;
@@ -65,16 +66,20 @@ const UserDropBox = ({
   dropdownRef,
   setIsUserDrop,
   isUserDrop,
-  user,
+  userMe,
   isUserLogIn,
   setIsUserLogIn,
 }) => {
+  const location = useLocation();
+  let currentPath = location.pathname;
   const [modalLogShown, toggleLogModal] = useState(false);
   const [modalSignupShown, toggleSignupModal] = useState(false);
+
+  const userLogout = useSelector(logoutUser);
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    dispatch(logoutAsync(user?.username))
+    dispatch(logoutAsync(userMe?.username))
       .then(() => {
         // toast.success('Logged out successfully!');
         toggleLogModal(false);
@@ -94,6 +99,10 @@ const UserDropBox = ({
     };
   }, []);
 
+  // useEffect(() => {
+  //   setIsUserDrop(!isUserDrop);
+  // }, [location]);
+
   const handleOutsideClick = (e) => {
     if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
       setIsUserDrop(!isUserDrop);
@@ -108,7 +117,7 @@ const UserDropBox = ({
         }}
       >
         <UserDropdownWrap>
-          {user ? (
+          {isUserLogIn || JSON.parse(localStorage.getItem('user')) ? (
             <>
               <ul>
                 <li className='login'>
@@ -117,18 +126,22 @@ const UserDropBox = ({
                 <li className='login'>
                   <span>Trips</span>
                 </li>
-                <li className='login'>
-                  <span>Wishlists</span>
-                </li>
+                <Link to='/wishlist' onClick={() => setIsUserDrop(false)}>
+                  <li className='login'>
+                    <span>Wishlists</span>
+                  </li>
+                </Link>
               </ul>
               <hr />
               <ul>
                 <li>
                   <span>Manage listings</span>
                 </li>
-                <li>
-                  <span>Account</span>
-                </li>
+                <Link to='/account' onClick={() => setIsUserDrop(false)}>
+                  <li>
+                    <span>Account</span>{' '}
+                  </li>
+                </Link>
               </ul>
               <hr />
               <ul>
@@ -181,7 +194,7 @@ const UserDropBox = ({
           toggleSignupModal={toggleSignupModal}
           modalSignupShown={modalSignupShown}
           setIsUserDrop={setIsUserDrop}
-          user={user}
+          userMe={userMe}
           isUserLogIn={isUserLogIn}
           setIsUserLogIn={setIsUserLogIn}
         />
@@ -192,7 +205,7 @@ const UserDropBox = ({
           toggleLogModal={toggleLogModal}
           modalLogShown={modalLogShown}
           setIsUserDrop={setIsUserDrop}
-          user={user}
+          userMe={userMe}
           isUserLogIn={isUserLogIn}
           setIsUserLogIn={setIsUserLogIn}
         />

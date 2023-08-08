@@ -8,14 +8,14 @@ import {
 import HeaderContens from './HeaderContents';
 import SuccessAlert from '../Notifications/SuccessAlert';
 
-const Header = ({ isPageMain, user, isUserLogIn, setIsUserLogIn }) => {
+const Header = ({ isPageMain, userMe, isUserLogIn, setIsUserLogIn }) => {
   return (
     <>
       {isPageMain ? (
         <HeaderContrainer>
           <HeaderWrap>
             <HeaderContens
-              user={user}
+              userMe={userMe}
               isUserLogIn={isUserLogIn}
               setIsUserLogIn={setIsUserLogIn}
             />
@@ -25,7 +25,7 @@ const Header = ({ isPageMain, user, isUserLogIn, setIsUserLogIn }) => {
         <HeaderSmallContrainer>
           <HeaderSmallWrap>
             <HeaderContens
-              user={user}
+              userMe={userMe}
               isUserLogIn={isUserLogIn}
               setIsUserLogIn={setIsUserLogIn}
             />

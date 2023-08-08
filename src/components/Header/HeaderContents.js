@@ -24,22 +24,28 @@ import LogInModal from './LogInModal';
 
 import { Link } from 'react-router-dom';
 import UserDropBox from '../Dropdown/UserDropBox';
-import { useDispatch } from 'react-redux';
-import { getMe, getUserInfoAsync } from '../../redux/slices/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  getMe,
+  getUserInfoAsync,
+  logoutAsync,
+  logoutUser,
+} from '../../redux/slices/userSlice';
 import Avatar from '../Avatar/Avatar';
 
-const HeaderContens = ({ user, isUserLogIn, setIsUserLogIn }) => {
+const HeaderContens = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
   const dropdownRef = useRef(null);
-  const dispatch = useDispatch();
   const [modalSearchShown, toggleSearchModal] = useState(false);
   const [isUserDrop, setIsUserDrop] = useState(false);
   // const [isUserLogIn, setIsUserLogIn] = useState(false);
+  // const userLogout = useSelector(logoutUser);
+  // const dispatch = useDispatch();
 
   // useEffect(() => {
-  //   dispatch(getUserInfoAsync());
+  //   dispatch(logoutAsync());
   // }, [dispatch]);
 
-  // console.log('user', user);
+  console.log('userMe', userMe);
 
   return (
     <>
@@ -90,7 +96,7 @@ const HeaderContens = ({ user, isUserLogIn, setIsUserLogIn }) => {
           </CountrySetting>
         </HeaderRightSection>
         <HeaderRightSection>
-          {user ? (
+          {isUserLogIn || JSON.parse(localStorage.getItem('user')) ? (
             <UserSetting
               onClick={() => {
                 setIsUserDrop(!isUserDrop);
@@ -103,7 +109,7 @@ const HeaderContens = ({ user, isUserLogIn, setIsUserLogIn }) => {
                 {/* <img src={user?.user?.} alt='' /> */}
                 <span>
                   <Avatar
-                    initials={user.username?.substring(0, 1).toUpperCase()}
+                    initials={userMe?.username?.substring(0, 1).toUpperCase()}
                   />
                 </span>
               </LogBtn>
@@ -129,7 +135,7 @@ const HeaderContens = ({ user, isUserLogIn, setIsUserLogIn }) => {
               setIsUserDrop={setIsUserDrop}
               isUserDrop={isUserDrop}
               dropdownRef={dropdownRef}
-              user={user}
+              userMe={userMe}
               isUserLogIn={isUserLogIn}
               setIsUserLogIn={setIsUserLogIn}
             />

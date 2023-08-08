@@ -30,23 +30,18 @@ import KitchenIcon from '@mui/icons-material/Kitchen';
 import WifiIcon from '@mui/icons-material/Wifi';
 import TvIcon from '@mui/icons-material/Tv';
 import MicrowaveIcon from '@mui/icons-material/Microwave';
-import ShowMoreModal from '../../components/Show/ShowMoreModal';
+// import ShowMoreModal from '../../components/Modals/ShowMoreModalLayout';
 // import SearchDateBox from '../../components/Dropdown/SearchDateBox';
 import DateRange from '../../components/DateRange';
 import RoomReviews from './RoomReviews';
 import Avatar from '../../components/Avatar/Avatar';
+import ShowMoreModal from '../../components/Show/ShowMoreModal';
 
-const RoomInfo = ({ reviews, roomsById, roomId }) => {
+const RoomInfo = ({ roomInfo, roomId, roomReviewInfo }) => {
   const [loading, setLoading] = useState(false);
   const [modalAboutPlaceShown, toggleAboutPlaceModal] = useState(false);
   const [checkInDate, setCheckInDate] = useState('');
   const [checkOutDate, setCheckOutDate] = useState('');
-  // const [houseTyp, setHouseTyp] = useState('Entire');
-  // const [roomInfo, setRoomInfo] = useState( roomsById?.filter((room) => room.pk === roomsById?.pk));
-  // const roomInfo = roomsById?.filter((room) => room?.pk === roomId);
-
-  // console.log('roomInfo', roomInfo);
-  // console.log('rooms', rooms);
 
   return (
     <RoomDetailSection>
@@ -55,24 +50,24 @@ const RoomInfo = ({ reviews, roomsById, roomId }) => {
           <RoomDetailsTop>
             <div>
               <h2>
-                {roomsById?.house_type === 'entire_place' && 'Entire '}
-                {roomsById?.house_type === 'private_room' && 'Private room '}
-                {roomsById?.house_type === 'shared_room' && 'Shared room '}
-                {roomsById?.category?.name?.toLowerCase()} hosted by{' '}
-                {roomsById?.owner?.username}
+                {roomInfo?.house_type === 'entire_place' && 'Entire '}
+                {roomInfo?.house_type === 'private_room' && 'Private room '}
+                {roomInfo?.house_type === 'shared_room' && 'Shared room '}
+                {roomInfo?.category?.name?.toLowerCase()} hosted by{' '}
+                {roomInfo?.owner?.username}
               </h2>
-              <span>{roomsById?.maximum_guests} guests</span>
+              <span>{roomInfo?.maximum_guests} guests</span>
               <span className='coma'>·</span>
-              <span>{roomsById?.number_of_room} bedroom </span>
+              <span>{roomInfo?.number_of_room} bedroom </span>
               <span className='coma'>·</span>
-              <span>{roomsById?.number_of_toilet} bath</span>
+              <span>{roomInfo?.number_of_toilet} bath</span>
               <span className='coma'>·</span>
-              <span>{roomsById?.number_of_bed} bath</span>
+              <span>{roomInfo?.number_of_bed} bath</span>
             </div>
             <AvatarHost>
               {/* <img src='' alt='' /> */}
               <Avatar
-                initials={roomsById?.owner?.username
+                initials={roomInfo?.owner?.username
                   ?.substring(0, 1)
                   .toUpperCase()}
               />
@@ -111,7 +106,7 @@ const RoomInfo = ({ reviews, roomsById, roomId }) => {
           </RoomDetailsSections>
           <RoomDetailsSections>
             <h2>About this place</h2>
-            <BasicIntro>{roomsById?.description}</BasicIntro>
+            <BasicIntro>{roomInfo?.description}</BasicIntro>
             <ShowMoreBtn
               onClick={() => {
                 toggleAboutPlaceModal(!modalAboutPlaceShown);
@@ -122,10 +117,15 @@ const RoomInfo = ({ reviews, roomsById, roomId }) => {
             </ShowMoreBtn>
           </RoomDetailsSections>
           {/* About plce Modal Open */}
+          {/* <ShowMoreModalLayout
+            toggleAboutPlaceModal={toggleAboutPlaceModal}
+            modalAboutPlaceShown={modalAboutPlaceShown}
+            roomInfo={roomInfo}
+          /> */}
           <ShowMoreModal
             toggleAboutPlaceModal={toggleAboutPlaceModal}
             modalAboutPlaceShown={modalAboutPlaceShown}
-            roomsById={roomsById}
+            roomInfo={roomInfo}
           />
 
           <RoomDetailsSections>
@@ -133,7 +133,7 @@ const RoomInfo = ({ reviews, roomsById, roomId }) => {
             <SleepWrap>
               <BedIcon />
               <p>Bedroom</p>
-              <span>{roomsById?.number_of_bed} bed</span>
+              <span>{roomInfo?.number_of_bed} bed</span>
             </SleepWrap>
           </RoomDetailsSections>
           <RoomDetailsSections id='viewAmenities'>
@@ -183,9 +183,8 @@ const RoomInfo = ({ reviews, roomsById, roomId }) => {
         </RoomMainDetailsWrap>
         <RoomSide
           loading={loading}
-          roomsById={roomsById}
-          // roomsById={roomsById}
-          reviews={reviews}
+          roomInfo={roomInfo}
+          roomReviewInfo={roomReviewInfo}
           checkInDate={checkInDate}
           checkOutDate={checkOutDate}
         />
@@ -194,11 +193,11 @@ const RoomInfo = ({ reviews, roomsById, roomId }) => {
         <h2 className='rating'>
           <StarIcon sx={{ fontSize: '24px', marginRight: '5px' }} />
           <span>
-            {roomsById?.rating?.toFixed(2)} / {reviews?.length} reviews
+            {roomInfo?.rating?.toFixed(2)} / {roomReviewInfo?.length} reviews
           </span>
         </h2>
-        <RoomReviews roomsById={roomsById} reviews={reviews} />
-        <ShowAllBtn>Show all 00 Reviews</ShowAllBtn>
+        <RoomReviews roomInfo={roomInfo} roomReviewInfo={roomReviewInfo} />
+        <ShowAllBtn>Show all {roomReviewInfo?.length} Reviews</ShowAllBtn>
       </RoomDetailsSections>
       <RoomDetailsSections id='viewLocation'>
         <h2>Where you’ll be</h2>
@@ -256,7 +255,7 @@ const RoomInfo = ({ reviews, roomsById, roomId }) => {
         </ThingsToKnow>
       </RoomDetailsSections>
       {/* </RoomMainDetailsWrap>
-                <RoomSide loading={loading} roomsById={roomsById} /> */}
+                <RoomSide loading={loading} roomInfo={roomInfo} /> */}
       {/* </RoomMainDetails> */}
     </RoomDetailSection>
   );

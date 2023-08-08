@@ -53,10 +53,15 @@ export const SideTopPrice = styled.div`
 export const SideTopInfo = styled.div`
   display: flex;
   align-items: center;
+  margin-top: 5px;
+  font-size: 13px;
 
   span {
     &.coma {
       margin: 0 5px;
+    }
+    &.review {
+      color: gray;
     }
   }
 `;

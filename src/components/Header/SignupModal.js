@@ -18,11 +18,11 @@ import {
   ModalLoginMain,
 } from './LogInModalStyle';
 import ColorButton from '../Buttons/ColorButton';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // import { register } from '../../redux/slices/users';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { signupAsync } from '../../redux/slices/userSlice';
+import { signupAsync, signupUser } from '../../redux/slices/userSlice';
 
 const SignupModal = ({
   modalSignupShown,
@@ -36,6 +36,8 @@ const SignupModal = ({
 }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  const userSignup = useSelector(signupUser);
   const dispatch = useDispatch();
 
   const handleSubmit = (event) => {

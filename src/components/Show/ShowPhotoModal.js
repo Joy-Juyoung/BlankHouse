@@ -1,6 +1,4 @@
-// import { Modal } from '@mui/material';
 import React from 'react';
-// import Modal from './Modal';
 import {
   ModalPhotos,
   ModalWholeContainer,
@@ -9,7 +7,7 @@ import {
 import WholePageModal from '../Modals/WholePageModalLayout';
 import { PhotoSubCover, RoomMainPhotos } from '../../pages/Room/RoomStyle';
 
-const ShowPhotoModal = ({ modalPhotoShown, togglePhotoModal, roomData }) => {
+const ShowPhotoModal = ({ modalPhotoShown, togglePhotoModal, roomInfo }) => {
   return (
     <WholePageModal
       shown={modalPhotoShown}
@@ -23,7 +21,7 @@ const ShowPhotoModal = ({ modalPhotoShown, togglePhotoModal, roomData }) => {
         <ModalWholeWrap>
           <ModalPhotos>
             <RoomMainPhotos>
-              {roomData?.photos?.map((pic) => {
+              {roomInfo?.photos?.map((pic) => {
                 return (
                   <PhotoSubCover key={pic?.pk}>
                     <img src={pic?.picture} alt='' />

@@ -10,8 +10,9 @@ export const ReviewsMainTop = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 95px;
-  grid-row-gap: 8px;
+  grid-row-gap: 15px;
   width: 100%;
+  /* margin: 10px 0; */
 `;
 
 export const ReviewGraphs = styled.div`
@@ -19,6 +20,7 @@ export const ReviewGraphs = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  /* margin: 10px 0; */
 `;
 
 export const ReviewGraphsName = styled.div`

@@ -16,22 +16,29 @@ import TuneIcon from '@mui/icons-material/Tune';
 import { useDispatch, useSelector } from 'react-redux';
 import PageLoading from '../../components/Loading/PageLoading';
 import MainCategorySlider from './MainCategorySlider';
-import { getAllRoomsAsync, selectRoom } from '../../redux/slices/roomSlice';
+import { getAllRoomInfo, getAllRoomsAsync } from '../../redux/slices/roomSlice';
+import RoomCard from '../../components/RoomCard';
 
 const MainPage = ({ setIsPageMain }) => {
   const [modalFilterShown, toggleFilterModal] = useState(false);
   const [loading, setLoading] = useState(false);
+  // const [isLiked, setIsLiked] = useState(false);
+  const [fav, setFav] = useState(false);
 
-  const rooms = useSelector(selectRoom);
+  const allRoomInfo = useSelector(getAllRoomInfo);
   const dispatch = useDispatch();
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     dispatch(getAllRoomsAsync());
     setIsPageMain(true);
-  }, [dispatch]);
+  }, [dispatch, fav]);
 
-  console.log('All Rooms', rooms);
+  //   useEffect(() => {
+  //   setLiked(room?.is_liked );
+  // }, []);
+
+  console.log('All Rooms', allRoomInfo);
 
   if (loading)
     return (
@@ -65,10 +72,18 @@ const MainPage = ({ setIsPageMain }) => {
 
         <MainMid>
           <MainMidWrap>
-            {rooms?.map((room, index) => {
+            {allRoomInfo?.map((room, index) => {
               return (
                 <Link key={index} to={`/room/${room?.pk}`}>
-                  <MainRoomCard room={room} loading={loading} />
+                  <RoomCard
+                    room={room}
+                    loading={loading}
+                    // isLiked={isLiked}
+                    // setIsLiked={isLiked}
+                    fav={fav}
+                    setFav={setFav}
+                  />
+                  {/* <MainRoomCard room={room} loading={loading} /> */}
                 </Link>
               );
             })}

@@ -1,7 +1,7 @@
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { Skeleton } from '@mui/material';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   SliderContainer,
   SliderButton,
@@ -11,16 +11,15 @@ import {
   SlideName,
 } from './MainCategorySliderStyle';
 import { useDispatch, useSelector } from 'react-redux';
-import { allRoomCategories } from '../../redux/slices/categories';
 import {
+  getAllCategory,
   getAllRoomCategoryAsync,
-  selectCategory,
 } from '../../redux/slices/categorySlice';
 
 const MainCategorySlider = ({ loading, visibleItems }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const categories = useSelector(selectCategory);
+  const categories = useSelector(getAllCategory);
   const dispatch = useDispatch();
 
   useEffect(() => {

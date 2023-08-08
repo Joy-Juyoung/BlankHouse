@@ -25,6 +25,11 @@ export const MainSmallContainer = styled.div`
   margin: 0 auto;
   padding: 0 80px;
   max-width: 1120px;
+  min-height: 70vh;
+
+  &.account {
+    max-width: 1015px;
+  }
 
   span {
     &.coma {
@@ -43,6 +48,10 @@ export const MainWrap = styled.div`
   flex-direction: column;
   width: 100%;
   margin-bottom: 60px;
+
+  /* &.account {
+    max-width: 1080px;
+  } */
 `;
 
 export const MainTop = styled.div`
@@ -100,6 +109,21 @@ export const MainMidWrap = styled.div`
     text-decoration: none;
     color: #000;
   }
+
+  &.wish {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  &.account {
+    grid-template-columns: repeat(3, 1fr);
+    /* margin: 0 auto; */
+  }
+
+  @media screen and (max-width: 1020px) {
+    &.account {
+      grid-template-columns: repeat(2, 1fr);
+      /* margin: 0 auto; */
+    }
+  }
 `;
 
 // -----List Each
@@ -150,6 +174,8 @@ export const RoomLike = styled.button`
 export const RoomEachDetails = styled.div`
   display: flex;
   flex-direction: column;
+  /* background: yellow; */
+  margin: 10px 0;
 `;
 
 export const RoomTitle = styled.div`
@@ -184,7 +210,7 @@ export const RoomDesc = styled.div`
 export const RoomPrice = styled.div`
   display: flex;
   align-items: center;
-  margin: 5px 0;
+  margin: 10px 0;
   font-size: 16px;
 
   p {

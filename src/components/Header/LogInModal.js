@@ -23,7 +23,7 @@ import appleIcon from '../../assets/images/apple.png';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginAsync } from '../../redux/slices/userSlice';
+import { loginAsync, loginUser } from '../../redux/slices/userSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -33,12 +33,16 @@ const LogInModal = ({
   modalSignupShown,
   toggleSignupModal,
   setIsUserDrop,
-  user,
+  userMe,
   isUserLogIn,
   setIsUserLogIn,
 }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  // const [userInfo, setUserIngo] = useState('');
+  // let userInfo = JSON.parse(localStorage.getItem('user'));
+
+  const userLogin = useSelector(loginUser);
   const dispatch = useDispatch();
 
   // console.log('username', username);
@@ -50,6 +54,7 @@ const LogInModal = ({
         toggleLogModal(false);
         setIsUserDrop(false);
         setIsUserLogIn(true);
+        // setUserIngo(JSON.parse(localStorage.getItem('user')));
       })
       .catch((error) => {
         console.error(error);
