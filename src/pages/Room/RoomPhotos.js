@@ -3,18 +3,18 @@ import { Skeleton } from '@mui/material';
 import { RoomPhotoMain, RoomPhotoSub, PhotoSubCover } from './RoomStyle';
 import RoomPhotosSk from './Skeletons/RoomPhotosSk';
 
-const RoomPhotos = ({ roomData }) => {
+const RoomPhotos = ({ roomInfo }) => {
   return (
     <>
-      {!roomData ? (
+      {!roomInfo ? (
         <RoomPhotosSk />
       ) : (
         <>
           <RoomPhotoMain>
-            <img src={roomData?.photos[0]?.picture} alt='' />
+            <img src={roomInfo?.photos?.[0]?.picture} alt='' />
           </RoomPhotoMain>
           <RoomPhotoSub>
-            {roomData?.photos?.slice(1, 5).map((pic) => {
+            {roomInfo?.photos?.slice(1, 5).map((pic) => {
               return (
                 <PhotoSubCover key={pic?.pk}>
                   <img src={pic?.picture} alt='' />

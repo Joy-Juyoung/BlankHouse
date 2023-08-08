@@ -31,53 +31,32 @@ const Header = () => {
 
   // console.log('location.pathname', location.pathname);
 
+const Header = ({ isPageMain, userMe, isUserLogIn, setIsUserLogIn }) => {
   return (
     // <>
     //   {isPageMain ? (
         <HeaderContrainer>
           <HeaderWrap>
-            {/* <HeaderContens
-              isLoggedIn={isLoggedIn}
-              setIsLoggedIn={setIsLoggedIn}
-            /> */}
-
-            <SearchBtn>
-              <SearchIcon fontSize='small' />
-            </SearchBtn>
-          {/* </SearchNavWrap> */}
-        {/* </HeaderWrapper> */}
-
-        <HeaderWrapper className='headerRight' style={{ zIndex: '4' }}>
-          <HeaderRightSection>
-            <ModeSetting>
-              <SwitchBtn>Airbnb your home</SwitchBtn>
-            </ModeSetting>
-          </HeaderRightSection>
-          <HeaderRightSection>
-            <CountrySetting>
-              <LanguageIcon fontSize='medium' />
-            </CountrySetting>
-          </HeaderRightSection>
-          <HeaderRightSection>
-            <UserSetting>
-              <MenuIcon fontSize='medium' />
-              <LogBtn
-                onClick={() => {
-                  toggleLogModal(!modalLogShown);
-                }}
-              >
-                <AccountCircleIcon fontSize='medium' />
-              </LogBtn>
-              <LogInModal
-                toggleLogModal={toggleLogModal}
-                modalLogShown={modalLogShown}
-              />
-            </UserSetting>
-          </HeaderRightSection>
-        </HeaderWrapper>
-      </HeaderWrap>
-    </HeaderContrainer>
-  )
+            <HeaderContens
+              userMe={userMe}
+              isUserLogIn={isUserLogIn}
+              setIsUserLogIn={setIsUserLogIn}
+            />
+          </HeaderWrap>
+        </HeaderContrainer>
+      ) : (
+        <HeaderSmallContrainer>
+          <HeaderSmallWrap>
+            <HeaderContens
+              userMe={userMe}
+              isUserLogIn={isUserLogIn}
+              setIsUserLogIn={setIsUserLogIn}
+            />
+          </HeaderSmallWrap>
+        </HeaderSmallContrainer>
+      )}
+    </>
+  );
 };
 
 export default Header;

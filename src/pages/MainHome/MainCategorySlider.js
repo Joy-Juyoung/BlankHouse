@@ -1,7 +1,7 @@
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { Skeleton } from '@mui/material';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   SliderContainer,
   SliderButton,
@@ -11,21 +11,20 @@ import {
   SlideName,
 } from './MainCategorySliderStyle';
 import { useDispatch, useSelector } from 'react-redux';
-import { allRoomCategories } from '../../redux/slices/categories';
+import {
+  getAllCategory,
+  getAllRoomCategoryAsync,
+} from '../../redux/slices/categorySlice';
 
 const MainCategorySlider = ({ loading, visibleItems }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const categories = useSelector((state) => state.categories[0]);
+  const categories = useSelector(getAllCategory);
   const dispatch = useDispatch();
 
-  const initFetch = useCallback(() => {
-    dispatch(allRoomCategories());
-  }, [dispatch]);
-
   useEffect(() => {
-    initFetch();
-  }, [initFetch]);
+    dispatch(getAllRoomCategoryAsync());
+  }, [dispatch]);
 
   const totalItems = categories?.length;
   const sliderWidth = `${100 / visibleItems}%`;

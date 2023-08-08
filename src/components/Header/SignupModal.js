@@ -11,14 +11,18 @@ import {
 import {
   DivideLine,
   GotoSignup,
+  LoginBtn,
   LoginInputWrap,
   LoginWithBtn,
   LoginWrap,
   ModalLoginMain,
 } from './LogInModalStyle';
 import ColorButton from '../Buttons/ColorButton';
-import { useDispatch } from 'react-redux';
-import { register } from '../../redux/slices/users';
+import { useDispatch, useSelector } from 'react-redux';
+// import { register } from '../../redux/slices/users';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { signupAsync, signupUser } from '../../redux/slices/userSlice';
 
 const SignupModal = ({
   modalSignupShown,
@@ -26,18 +30,28 @@ const SignupModal = ({
   modalLogShown,
   toggleLogModal,
   setIsUserDrop,
+  user,
+  isUserLogIn,
+  setIsUserLogIn,
 }) => {
-  const [username, setUsernmae] = useState('');
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  // const [comfirmPassword, setComfirmPassword] = useState('');
+
+  const userSignup = useSelector(signupUser);
   const dispatch = useDispatch();
 
-  const handleSignupSubmit = (e) => {
-    e.preventDefault();
-    dispatch(register({ username, email, password }));
-    toggleSignupModal(false);
-    toggleLogModal(true);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(signupAsync({ username, password }))
+      .then(() => {
+        // toast.success('Signup in successfully!');
+        toggleSignupModal(false);
+        toggleLogModal(true);
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error('Signup failed. Please try again.');
+      });
   };
 
   return (
@@ -49,24 +63,23 @@ const SignupModal = ({
       }}
       title='sign up'
     >
-      <form onSubmit={handleSignupSubmit}>
-        <ModalContainer>
-          <ModalLoginMain>
-            <ModalMainSection>
-              <ModalTitle>Create account</ModalTitle>
+      <ModalContainer>
+        <ModalLoginMain>
+          <ModalMainSection>
+            <ModalTitle>Create account</ModalTitle>
+            <form onSubmit={handleSubmit}>
               <LoginWrap>
                 <LoginInputWrap className='first'>
                   <p>Username</p>
                   <input
                     type='text'
-                    placeholder='Enter username'
-                    onChange={(e) => setUsernmae(e.target.value)}
                     value={username}
-                    name='username'
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder='Enter username'
                     required
                   />
                 </LoginInputWrap>
-                <LoginInputWrap>
+                {/* <LoginInputWrap>
                   <p>Email</p>
                   <input
                     type='email'
@@ -76,40 +89,41 @@ const SignupModal = ({
                     name='email'
                     required
                   />
-                </LoginInputWrap>
+                </LoginInputWrap> */}
                 <LoginInputWrap className='last'>
                   <p>Password</p>
                   <input
                     type='password'
-                    placeholder='Enter password'
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    name='password'
+                    placeholder='Enter password'
                     required
                   />
                 </LoginInputWrap>
               </LoginWrap>
-              <LoginWrap type='submit'>
+              <LoginBtn type='submit'>
                 <ColorButton buttonLabel='Sign up' />
-              </LoginWrap>
-              <LoginWrap>
-                <GotoSignup>
-                  Already have an account?
-                  <span
-                    onClick={() => {
-                      toggleLogModal(!modalLogShown);
-                      toggleSignupModal(!modalSignupShown);
-                    }}
-                  >
-                    Go to Log in
-                  </span>
-                </GotoSignup>
-              </LoginWrap>
-            </ModalMainSection>
-          </ModalLoginMain>
-        </ModalContainer>
-      </form>
+              </LoginBtn>
+            </form>
+            <LoginWrap>
+              <GotoSignup>
+                Already have an account?
+                <span
+                  onClick={() => {
+                    toggleLogModal(!modalLogShown);
+                    toggleSignupModal(!modalSignupShown);
+                  }}
+                >
+                  Go to Log in
+                </span>
+              </GotoSignup>
+            </LoginWrap>
+          </ModalMainSection>
+        </ModalLoginMain>
+      </ModalContainer>
+      {/* <ToastContainer /> */}
     </LogModal>
   );
 };
+
 export default SignupModal;

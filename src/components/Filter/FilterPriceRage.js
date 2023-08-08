@@ -5,7 +5,7 @@ import Slider from '@mui/material/Slider';
 import { PriceRangeGraph } from '../Modals/ModalStyle';
 // import { PriceRangeGraph } from './ModalStyle';
 import ReactEcharts from 'echarts-for-react';
-import { allRooms } from '../../redux/slices/rooms';
+// import { allRooms } from '../../redux/slices/rooms';
 
 function valuetext(value) {
   return `${value}°C`;
@@ -62,17 +62,17 @@ const options = {
 };
 
 const FilterPriceRage = () => {
-  const rooms = useSelector((state) => state.rooms);
+  // const rooms = useSelector((state) => state.rooms);
   const [value, setValue] = React.useState([10, 85]);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const initFetch = useCallback(() => {
-    dispatch(allRooms());
-  }, [dispatch]);
+  // const initFetch = useCallback(() => {
+  //   dispatch(allRooms());
+  // }, [dispatch]);
 
-  useEffect(() => {
-    initFetch();
-  }, [initFetch]);
+  // useEffect(() => {
+  //   initFetch();
+  // }, [initFetch]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
