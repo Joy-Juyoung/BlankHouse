@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { ExperiencesData } from './ExperiencesData';
 import StarIcon from '@mui/icons-material/Star';
 import Avatar from '@mui/material/Avatar';
@@ -69,12 +69,52 @@ import PersonIcon from '@mui/icons-material/Person';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import RollerSkatingIcon from '@mui/icons-material/RollerSkating';
 import MasksIcon from '@mui/icons-material/Masks';
+import ShowPhotoModal from '../../components/Show/ShowPhotoModal';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import experiencesDataService from '../../redux/services/ExperiencesService';
 
 const ExDetail = () => {
 
-    const [isDatePikerOpen, setIsDatePickerOpen] = useState(false);
-    const [isGuests, setIsGuests] = useState(false);
-    const [guestsNum, setGuestsNum] = useState(1);
+const [isDatePikerOpen, setIsDatePickerOpen] = useState(false);
+const [isGuests, setIsGuests] = useState(false);
+const [guestsNum, setGuestsNum] = useState(1);
+const [modalPhotoShown, togglePhotoModal] = useState(false);
+const [experienceData, setExperienceData] = useState('');
+const { experienceId } = useParams();
+
+const experiences = useSelector((state) => state.experiences[0]);
+const dispatch = useDispatch();
+
+const initFetch = useCallback(() => {
+    // dispatch(allRoomReviews());
+    // dispatch(allRooms());
+}, [dispatch]);
+
+    
+  const getExperience = (id) => {
+    experiencesDataService
+      .getExperienceById(id)
+      .then((response) => {
+        setExperienceData(response.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+  useEffect(() => {
+    initFetch();
+    // setIsPageMain(false);
+    getExperience(experienceId);
+    // getReviews(roomId);
+  }, [initFetch]);
+
+  const handlePhotoShowAll = () => {
+    togglePhotoModal(!modalPhotoShown);
+    document.body.style.overflow = 'hidden';
+    };
+
+    console.log('experienceData', experienceData);
 
   return (
     <div>
@@ -84,7 +124,7 @@ const ExDetail = () => {
                     <ExDetailNavWrap>
                         <ol>
                             <li>
-                                <TopNavLink>{ExperiencesData[0].city},{ExperiencesData[0].country}</TopNavLink>
+                                <TopNavLink>{experienceData?.city},{experienceData?.country}</TopNavLink>
                             </li>
                             <li>
                                 <span></span>
@@ -103,16 +143,16 @@ const ExDetail = () => {
                 <ExDetailMidWrap>
                     <DetailTopHead>
                         <TopHeadOne>
-                            <h1>Tip-Based Walking Tour of Calgary</h1>
+                            <h1>{experienceData?.name}</h1>
                         </TopHeadOne>
                         <TopHeadTwo>
                             <HeadTwoWrap>  
                                 <ReviewNavBtn>                             
                                     <StarIcon sx={{ fontSize: '16px' }} />
-                                    <span>{ExperiencesData[0].rating}</span>
+                                    <span>{experienceData?.experience_rating}</span>
                                 </ReviewNavBtn>
                                 <span>·</span> 
-                                <span>{ExperiencesData[0].city},{ExperiencesData[0].province}{ExperiencesData[0].country} </span>
+                                <span>{experienceData?.city},{experienceData?.country} </span>
                             </HeadTwoWrap>
                             <HeadTwoBtnsWrap>
                                 <ShareBtnWrap>
@@ -139,33 +179,46 @@ const ExDetail = () => {
                         <ExPhotoContainer>
                             <ExPhotoGridOne>
                                 <GridOneWrap>
-                                    <img src={ExperiencesData[0].photo} />
+                                    {/* <img src={experienceData?.photos.picture} /> */}
                                 </GridOneWrap>
                             </ExPhotoGridOne>
                             <ExPhotoGridTwo>
                                 <GridTwoWrap>
                                     <GridListOne>
-                                        <img src={ExperiencesData[1].photo} />
+                                        {/* <img src={experienceData?.photos.picture} /> */}
                                     </GridListOne>
                                     <GridListTwo>
-                                        <img src={ExperiencesData[2].photo} />
+                                        {/* <img src={experienceData?.photos.picture} /> */}
                                     </GridListTwo>
                                     <GridListThree>
-                                        <img src={ExperiencesData[3].photo} />
+                                        {/* <img src={experienceData?.photos.picture} /> */}
                                     </GridListThree>                                     
                                 </GridTwoWrap>
                             </ExPhotoGridTwo>
                             <ExPhotoGridThree>
                                 <GridOneWrap>
-                                    <img src={ExperiencesData[4].photo} />
+                                    {/* <img src={experienceData?.photos[0].picture} /> */}
                                 </GridOneWrap>
                             </ExPhotoGridThree>
                         </ExPhotoContainer>
                         <ExShowAllWrap>
-                            <ShowAllBtnWrap>
+                            <ShowAllBtnWrap onClick={handlePhotoShowAll}>
                                 <GridOnIcon/>
                                 <span>Show all 5 photos</span>
                             </ShowAllBtnWrap>
+                                        {/* About plce Modal Open */}
+                            <ShowPhotoModal
+                            togglePhotoModal={togglePhotoModal}
+                            modalPhotoShown={modalPhotoShown}
+                            // roomData={roomData}
+                            />
+
+                            {/* <RoomInfo
+                            roomData={roomData}
+                            reviewData={reviewData}
+                            rooms={rooms}
+                            roomId={roomId}
+                            /> */}
                         </ExShowAllWrap>
                     </ExPhotoWrap>
                 </ExDetailMidWrap>

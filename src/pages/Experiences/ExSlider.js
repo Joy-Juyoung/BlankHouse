@@ -3,7 +3,7 @@ import { RoomEachPhoto } from './ExperienceStyle';
 import "./ExSliderStyle.css";
 import { ExperiencesData } from './ExperiencesData';
 
-const ExSlider = ({ experiences,isMouseHover, setIsMouseHover }) => {
+const ExSlider = ({ experience,isMouseHover, setIsMouseHover,exIndex }) => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const slideLength = ExperiencesData.length;
   
@@ -29,36 +29,32 @@ const ExSlider = ({ experiences,isMouseHover, setIsMouseHover }) => {
       setCurrentSlide(0);
     }, []);
   
-    useEffect(() => {
-      if (autoScroll) {
-        auto();
-      }
-      return () => clearInterval(slideInterval);
-    }, [currentSlide]);
-  
+    // useEffect(() => {
+    //   if (autoScroll) {
+    //     auto();
+    //   }
+    //   return () => clearInterval(slideInterval);
+    // }, [currentSlide]);
+
+   console.log('experience', experience);
+
     return (
       <div className="slider"
-        onMouseOver={()=>{setIsMouseHover(true)}}
-        onMouseOut={()=>{setIsMouseHover(false)}}
+        // onMouseOver={()=>{setIsMouseHover(true)}}
+        // onMouseOut={()=>{setIsMouseHover(false)}}
       >
-        {isMouseHover === true ? (
-          <>
-            {ExperiencesData.map((slide, index) => {
-              return (    
-                <div
-                  className={index === currentSlide ? "slide current" : "slide"}
-                  key={index}
-                >    
-                  {index === currentSlide && (                
-                      <RoomEachPhoto src={slide.photo} alt="slide" className="image" />                  
-                  )}    
-                </div>
-              );
-            })}
-          </>
-        ):(
-          <RoomEachPhoto src={experiences.photo} alt="slide" className="image" />
-        )}
+                {isMouseHover === true ? (
+                  <div
+                    className={exIndex === currentSlide ? "slide current" : "slide"}
+     
+                  >    
+                    {exIndex === currentSlide && (                
+                        <RoomEachPhoto src={experience?.photos[0]?.picture} alt="slide" className="image" />                  
+                    )}    
+                  </div>
+                ):(
+                  <RoomEachPhoto src={experience?.photos[0]?.picture} alt="slide" className="image" />
+                )}
 
       </div>
     );

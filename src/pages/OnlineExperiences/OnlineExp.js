@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { ExImageWrapper, ExTopHeader, ExTopWrap, ExTopWrapper, ExpBody, ExpBodyBottom, ExpBodyTop, ExpDetail, ExpWrapper, 
         HeaderNameWrap, 
         InfoSlideWrap, 
@@ -16,8 +16,33 @@ import { ExperiencesData } from '../Experiences/ExperiencesData';
 import OnlineCard from './OnlineCard';
 import { MainListWrap } from '../Experiences/ExperienceStyle';
 import OnlineCategory from './OnlineCategory';
+import { useDispatch, useSelector } from 'react-redux';
+import { allExperiences } from '../../redux/slices/experiences';
+import PageLoading from '../../components/Loading/PageLoading';
 
 const OnlineExp = () => {
+    const [loading, setLoading] = useState(false);
+
+    const experiences = useSelector((state) => state.experiences[0]);
+    const dispatch = useDispatch();
+  
+    const initFetch = useCallback(() => {
+      dispatch(allExperiences());
+    }, [dispatch]);
+  
+    useEffect(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+      // setIsPageMain(true);
+      initFetch();
+    }, [initFetch]);
+  
+  
+    if (loading)
+      return (
+        <div>
+          <PageLoading />
+        </div>
+      );
 
   return (
     <OnlineExpContainer>
@@ -48,7 +73,7 @@ const OnlineExp = () => {
         </OnlineExpWrap>
 
         <OnlineExpWrap>
-            <OnlineCategory/>
+            <OnlineCategory visibleItems={15}/>
         </OnlineExpWrap>
 
         <OnlineExpWrap>
@@ -77,14 +102,8 @@ const OnlineExp = () => {
                         </ExpBodyTop>
                         <ExpBodyBottom>
                         <InfoSlideWrap>                         
-                                {ExperiencesData
-                                .filter(
-                                (list) =>
-                                    list.pk === 1 || 
-                                    list.pk < 7 
-                                )
-                                .map((experiences, index) => {
-                                return <OnlineCard key={index} experiences={experiences} />;
+                                {experiences?.map((experiences, index) => {
+                                return <OnlineCard key={index} experience={experiences} />;
                                 })}
                             </InfoSlideWrap>
                         </ExpBodyBottom>
@@ -119,14 +138,8 @@ const OnlineExp = () => {
                         </ExpBodyTop>
                         <ExpBodyBottom>
                         <InfoSlideWrap>                         
-                                {ExperiencesData
-                                .filter(
-                                (list) =>
-                                    list.pk === 1 || 
-                                    list.pk < 7 
-                                )
-                                .map((experiences, index) => {
-                                return <OnlineCard key={index} experiences={experiences} />;
+                            {experiences?.map((experiences, index) => {
+                                return <OnlineCard key={index} experience={experiences} />;
                                 })}
                             </InfoSlideWrap>
                         </ExpBodyBottom>
@@ -161,14 +174,8 @@ const OnlineExp = () => {
                         </ExpBodyTop>
                         <ExpBodyBottom>
                         <InfoSlideWrap>                         
-                                {ExperiencesData
-                                .filter(
-                                (list) =>
-                                    list.pk === 1 || 
-                                    list.pk < 7 
-                                )
-                                .map((experiences, index) => {
-                                return <OnlineCard key={index} experiences={experiences} />;
+                            {experiences?.map((experiences, index) => {
+                                return <OnlineCard key={index} experience={experiences} />;
                                 })}
                             </InfoSlideWrap>
                         </ExpBodyBottom>
@@ -203,14 +210,8 @@ const OnlineExp = () => {
                         </ExpBodyTop>
                         <ExpBodyBottom>
                         <InfoSlideWrap>                         
-                                {ExperiencesData
-                                .filter(
-                                (list) =>
-                                    list.pk === 1 || 
-                                    list.pk < 7 
-                                )
-                                .map((experiences, index) => {
-                                return <OnlineCard key={index} experiences={experiences} />;
+                        {experiences?.map((experiences, index) => {
+                                return <OnlineCard key={index} experience={experiences} />;
                                 })}
                             </InfoSlideWrap>
                         </ExpBodyBottom>
@@ -255,14 +256,8 @@ const OnlineExp = () => {
                         </MainListWrap> */}
                         <ExpBodyBottom>   
                             <InfoSlideWrap>                         
-                                {ExperiencesData
-                                .filter(
-                                (list) =>
-                                    list.pk === 1 || 
-                                    list.pk < 7 
-                                )
-                                .map((experiences, index) => {
-                                return <OnlineCard key={index} experiences={experiences} />;
+                            {experiences?.map((experiences, index) => {
+                                return <OnlineCard key={index} experience={experiences} exIndex={index}/>;
                                 })}
                             </InfoSlideWrap>
                         </ExpBodyBottom>

@@ -9,6 +9,7 @@ import Footer from '../components/Footer/Footer';
 import Test from './Test';
 import meDataService from '../redux/services/UsersService';
 import GotoTopButton from '../components/Buttons/GotoTopButton';
+import OnlineExp from './OnlineExperiences/OnlineExp';
 
 const GuestMode = () => {
   const [isPageMain, setIsPageMain] = useState(false);
@@ -51,14 +52,15 @@ const GuestMode = () => {
           exact={true}
         />
         <Route path='/experiences' element={<Experience />} exact={true} />
-        <Route path='/experiences/detail' element={<ExDetail />} exact={true} />
+        <Route path='/experiences/:experiencesId' element={<ExDetail />} exact={true} />
+        <Route path='/onlineExperiences' element={<OnlineExp />} exact={true} />
       </Routes>
 
       {/* <Routes>
         <Route path='/test' element={<Test meData={meData} />} exact={true} />
       </Routes> */}
       <GotoTopButton />
-      <Footer isPageMain={isPageMain} />
+      {/* <Footer isPageMain={isPageMain} /> */}
     </>
   );
 };

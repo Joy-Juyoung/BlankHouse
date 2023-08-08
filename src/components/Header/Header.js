@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
 import {
+  CountrySetting,
   HeaderContrainer,
+  HeaderRightSection,
   HeaderSmallContrainer,
   HeaderSmallWrap,
   HeaderWrap,
+  HeaderWrapper,
+  LogBtn,
+  ModeSetting,
+  SearchBtn,
+  SwitchBtn,
+  UserSetting,
 } from './HeaderStyle';
 import LanguageIcon from '@mui/icons-material/Language';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -24,20 +32,20 @@ const Header = () => {
   // console.log('location.pathname', location.pathname);
 
   return (
-    <>
-      {isPageMain ? (
+    // <>
+    //   {isPageMain ? (
         <HeaderContrainer>
           <HeaderWrap>
-            <HeaderContens
+            {/* <HeaderContens
               isLoggedIn={isLoggedIn}
               setIsLoggedIn={setIsLoggedIn}
-            />
+            /> */}
 
             <SearchBtn>
               <SearchIcon fontSize='small' />
             </SearchBtn>
-          </SearchNavWrap>
-        </HeaderWrapper>
+          {/* </SearchNavWrap> */}
+        {/* </HeaderWrapper> */}
 
         <HeaderWrapper className='headerRight' style={{ zIndex: '4' }}>
           <HeaderRightSection>
@@ -69,7 +77,7 @@ const Header = () => {
         </HeaderWrapper>
       </HeaderWrap>
     </HeaderContrainer>
-  );
+  )
 };
 
 export default Header;
