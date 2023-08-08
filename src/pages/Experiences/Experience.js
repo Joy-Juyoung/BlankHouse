@@ -65,12 +65,7 @@ const Experience = () => {
                                     )
                             })}
                         </MainListWrap>
-                        {/* <MainListWrap>           
-                       
-                            {ExperiencesData.map((experiences, index) => {
-                            return <ExpListCard key={index} experiences={experiences} />;
-                            })}
-                        </MainListWrap> */}
+
                     </MainMidWrap>
                 </MainMidList>
             </TopMenuWrap>

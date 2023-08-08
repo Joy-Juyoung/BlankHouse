@@ -18,6 +18,7 @@ import { getAllRoomsAsync } from '../redux/slices/roomSlice';
 import Wishlist from './Wishlist/Wishlist';
 import Account from './Account/Account';
 import Profile from './Account/Profile';
+import OnlineExp from './OnlineExperiences/OnlineExp';
 
 const GuestMode = () => {
   const [isPageMain, setIsPageMain] = useState(false);

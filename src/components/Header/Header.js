@@ -1,40 +1,17 @@
 import React, { useState } from 'react';
 import {
-  CountrySetting,
   HeaderContrainer,
-  HeaderRightSection,
   HeaderSmallContrainer,
   HeaderSmallWrap,
   HeaderWrap,
-  HeaderWrapper,
-  LogBtn,
-  ModeSetting,
-  SearchBtn,
-  SwitchBtn,
-  UserSetting,
 } from './HeaderStyle';
-import LanguageIcon from '@mui/icons-material/Language';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import SearchIcon from '@mui/icons-material/Search';
-import MenuIcon from '@mui/icons-material/Menu';
-import SearchModal from './SearchModal';
-import Logo from '../../assets/images/logo.png';
-import LogInModal from './LogInModal';
-
-import { Link, useLocation, useParams } from 'react-router-dom';
-const Header = () => {
-  const location = useLocation();
-  // const { room } = useParams();
-  const [modalSearchShown, toggleSearchModal] = useState(false);
-
-  const [modalLogShown, toggleLogModal] = useState(false);
-
-  // console.log('location.pathname', location.pathname);
+import HeaderContens from './HeaderContents';
+import SuccessAlert from '../Notifications/SuccessAlert';
 
 const Header = ({ isPageMain, userMe, isUserLogIn, setIsUserLogIn }) => {
   return (
-    // <>
-    //   {isPageMain ? (
+    <>
+      {isPageMain ? (
         <HeaderContrainer>
           <HeaderWrap>
             <HeaderContens

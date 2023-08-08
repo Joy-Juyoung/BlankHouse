@@ -17,23 +17,23 @@ import { BtnDetail,
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { useDispatch, useSelector } from 'react-redux';
-import { allExCategories } from '../../redux/slices/categories';
 import {   SliderContainer,
     SliderButton,
     SliderWrap,
     SliderWrapper,
     Slide,
     SlideName, } from './OnlineCategoryStyle';
+import { getAllExCategory, getAllExCategoryAsync } from '../../redux/slices/categorySlice';
 
 
 const OnlineCategory = ({visibleItems}) => {
     const [modalShown, toggleModal] = useState(false);
-    const categories = useSelector((state) => state.categories[0]);
+    const categories = useSelector(getAllExCategory);
     const [currentIndex, setCurrentIndex] = useState(0);
     const dispatch = useDispatch();
   
     const initFetch = useCallback(() => {
-      dispatch(allExCategories());
+      dispatch(getAllExCategoryAsync());
     }, [dispatch]);
   
     useEffect(() => {

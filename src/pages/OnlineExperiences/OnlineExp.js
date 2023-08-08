@@ -23,7 +23,7 @@ import PageLoading from '../../components/Loading/PageLoading';
 const OnlineExp = () => {
     const [loading, setLoading] = useState(false);
 
-    const experiences = useSelector((state) => state.experiences[0]);
+    const experiences = useSelector((state) => state.experiences);
     const dispatch = useDispatch();
   
     const initFetch = useCallback(() => {
