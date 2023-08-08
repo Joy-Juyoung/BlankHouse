@@ -12,30 +12,26 @@ import {   RoomDesc,
   RoomRating,
   RoomsEach,
   RoomTitle,
-  ToggleLike, } from './ExperienceStyle';
-import ExSlider from './ExSlider';
+  ToggleLike, } from './OnlineExpStyle';
+
+import OnlineSlider from './OnlineSlider';
 
 
 
-const ExpListCard = ({ experience, loading,exIndex }) => {
+
+const OnlineCard = ({ experience, loading,exIndex }) => {
   const [fav, setFav] = useState(false);
   const [isMouseHover, setIsMouseHover] = useState(false);
 
   return (
-    <RoomsEach  
-    // to='/experiences/${experiences?.pk}'
-    >
-      <ExSlider experience={experience} 
+    <RoomsEach  to='/experiences/detail'>
+      <OnlineSlider experience={experience} 
                 isMouseHover={isMouseHover}
                 setIsMouseHover={setIsMouseHover}
                 exIndex={exIndex}
-                />
+                 />
       {/* <RoomEachPhoto src={experiences.photo} alt='' /> */}
-      <ToggleLike  onClick={(e) => {
-              e.preventDefault();
-              // setFav(!fav);
-   
-            }}>
+      <ToggleLike onClick={(e) => setFav(!fav)}>
         <RoomLike>
           {fav ? (
             <FavoriteIcon sx={{ color: '#e20000' }} />
@@ -53,7 +49,7 @@ const ExpListCard = ({ experience, loading,exIndex }) => {
           </RoomRating>
         </RoomTitle>
         <RoomTitle>
-          <p>{experience?.name}</p>
+          <p>{experience?.title}</p>
         </RoomTitle>
         <RoomPrice>
           <p>From ${experience?.price}CAD</p>
@@ -64,4 +60,4 @@ const ExpListCard = ({ experience, loading,exIndex }) => {
   );
 };
 
-export default ExpListCard;
+export default OnlineCard;

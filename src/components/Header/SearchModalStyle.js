@@ -14,7 +14,7 @@ export const SearchModalNav = styled.div`
 `;
 
 export const SearchModalNavWrap = styled.div`
-  width: 150px;
+  width: 300px;
   display: flex;
   align-items: center;
   justify-content: space-between;

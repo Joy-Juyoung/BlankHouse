@@ -17,6 +17,18 @@ export const getAllRoomCategoryAsync = createAsyncThunk(
   }
 );
 
+export const getAllExCategoryAsync = createAsyncThunk(
+  'category/getAllExCategory',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get('/categories/experience');
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 const initialState = {
   allCategories: [],
   status: 'idle',
@@ -47,12 +59,28 @@ const categorySlice = createSlice({
       state.status = 'failed';
       state.error = action.payload;
     },
+
+    [getAllExCategoryAsync.pending]: (state) => {
+      console.log('Pending');
+      state.status = 'Pending';
+      state.error = null;
+    },
+    [getAllExCategoryAsync.fulfilled]: (state, { payload }) => {
+      console.log('Fetched Successfully!');
+      return { ...state, allExCategory: payload };
+    },
+    [getAllExCategoryAsync.rejected]: (state, action) => {
+      console.log('Rejected!');
+      state.status = 'failed';
+      state.error = action.payload;
+    },
   },
 });
 
 export const { setCategory } = categorySlice.actions;
 
 export const getAllCategory = (state) => state.category.allRoomCategory;
+export const getAllExCategory = (state) => state.category.allExCategory;
 export const selectStatus = (state) => state.category.status;
 export const selectError = (state) => state.category.error;
 

@@ -18,6 +18,7 @@ import { getAllRoomsAsync } from '../redux/slices/roomSlice';
 import Wishlist from './Wishlist/Wishlist';
 import Account from './Account/Account';
 import Profile from './Account/Profile';
+import OnlineExp from './OnlineExperiences/OnlineExp';
 
 const GuestMode = () => {
   const [isPageMain, setIsPageMain] = useState(false);
@@ -69,14 +70,15 @@ const GuestMode = () => {
           exact={true}
         />
         <Route path='/experiences' element={<Experience />} exact={true} />
-        <Route path='/experiences/detail' element={<ExDetail />} exact={true} />
+        <Route path='/experiences/:experiencesId' element={<ExDetail />} exact={true} />
+        <Route path='/onlineExperiences' element={<OnlineExp />} exact={true} />
       </Routes>
 
       {/* <Routes>
         <Route path='/test' element={<Test meData={meData} />} exact={true} />
       </Routes> */}
       <GotoTopButton />
-      <Footer isPageMain={isPageMain} />
+      {/* <Footer isPageMain={isPageMain} /> */}
     </>
   );
 };

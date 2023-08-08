@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const ModalContainer = styled.div`
@@ -164,4 +165,100 @@ export const GotoSignup = styled.div`
     text-decoration: underline;
     cursor: pointer;
   }
+`;
+export const ModalTitle = styled.div`
+  font-size: 18px;
+  font-weight: 600;
+`;
+
+export const ModalCloseBtn = styled.button`
+  display: flex;
+  align-items: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+`;
+
+
+
+export const ModalMainText = styled.p`
+  margin: 0;
+  padding: 0;
+  color: gray;
+`;
+
+
+
+
+
+// ----------Type of Place--------------
+
+
+export const PlaceInput = styled.input`
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  margin: 0;
+
+  &:hover {
+    border: 1px solid #000;
+  }
+`;
+
+export const PlaceInputText = styled.span`
+  /* display: block; */
+  margin-left: 10px;
+  /* margin-bottom: 10px; */
+  line-height: 80%;
+  width: 80%;
+  display: flex;
+  align-items: center;
+
+  p {
+    /* display: flex;
+    align-items: center; */
+    /* justify-content:center; */
+    margin: 0;
+    /* padding: 0; */
+    font-size: 16px;
+    /* margin-bottom: 8px; */
+  }
+
+  span {
+    font-size: 13px;
+    color: gray;
+  }
+`;
+
+export const PlaceNameText = styled.span`
+  display: block;
+  margin-left: 10px;
+  /* margin-bottom: 10px; */
+  line-height: 80%;
+  width: 80%;
+
+  p {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  span {
+    font-size: 13px;
+    color: gray;
+  }
+`;
+
+export const PlaceDivider = styled.div`
+    width: 100%;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+
+    span {
+        
+    }
 `;
