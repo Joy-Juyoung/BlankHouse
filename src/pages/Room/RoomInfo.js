@@ -16,6 +16,7 @@ import {
   BasicIntro,
   PlaceOffers,
   PlaceOffersList,
+  AvatarHost,
 } from './RoomStyle';
 import StarIcon from '@mui/icons-material/Star';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -29,23 +30,18 @@ import KitchenIcon from '@mui/icons-material/Kitchen';
 import WifiIcon from '@mui/icons-material/Wifi';
 import TvIcon from '@mui/icons-material/Tv';
 import MicrowaveIcon from '@mui/icons-material/Microwave';
-import ShowMoreModal from '../../components/Show/ShowMoreModal';
+// import ShowMoreModal from '../../components/Modals/ShowMoreModalLayout';
 // import SearchDateBox from '../../components/Dropdown/SearchDateBox';
 import DateRange from '../../components/DateRange';
 import RoomReviews from './RoomReviews';
 import Avatar from '../../components/Avatar/Avatar';
+import ShowMoreModal from '../../components/Show/ShowMoreModal';
 
-const RoomInfo = ({ reviewData, roomData, rooms, roomId }) => {
+const RoomInfo = ({ roomInfo, roomId, roomReviewInfo }) => {
   const [loading, setLoading] = useState(false);
   const [modalAboutPlaceShown, toggleAboutPlaceModal] = useState(false);
   const [checkInDate, setCheckInDate] = useState('');
   const [checkOutDate, setCheckOutDate] = useState('');
-  // const [houseTyp, setHouseTyp] = useState('Entire');
-  // const [roomInfo, setRoomInfo] = useState( rooms?.filter((room) => room.pk === roomData?.pk));
-  const roomInfo = rooms?.filter((room) => room?.pk === roomId);
-
-  // console.log('roomInfo', roomInfo);
-  // console.log('rooms', rooms);
 
   return (
     <RoomDetailSection>
@@ -68,14 +64,14 @@ const RoomInfo = ({ reviewData, roomData, rooms, roomId }) => {
               <span className='coma'>·</span>
               <span>{roomInfo?.number_of_bed} bath</span>
             </div>
-            <div>
+            <AvatarHost>
               {/* <img src='' alt='' /> */}
               <Avatar
-                initials={roomData?.owner?.username
+                initials={roomInfo?.owner?.username
                   ?.substring(0, 1)
                   .toUpperCase()}
               />
-            </div>
+            </AvatarHost>
           </RoomDetailsTop>
           <RoomDetailsSections>
             <ul>
@@ -110,7 +106,7 @@ const RoomInfo = ({ reviewData, roomData, rooms, roomId }) => {
           </RoomDetailsSections>
           <RoomDetailsSections>
             <h2>About this place</h2>
-            <BasicIntro>{roomData?.description}</BasicIntro>
+            <BasicIntro>{roomInfo?.description}</BasicIntro>
             <ShowMoreBtn
               onClick={() => {
                 toggleAboutPlaceModal(!modalAboutPlaceShown);
@@ -121,10 +117,15 @@ const RoomInfo = ({ reviewData, roomData, rooms, roomId }) => {
             </ShowMoreBtn>
           </RoomDetailsSections>
           {/* About plce Modal Open */}
+          {/* <ShowMoreModalLayout
+            toggleAboutPlaceModal={toggleAboutPlaceModal}
+            modalAboutPlaceShown={modalAboutPlaceShown}
+            roomInfo={roomInfo}
+          /> */}
           <ShowMoreModal
             toggleAboutPlaceModal={toggleAboutPlaceModal}
             modalAboutPlaceShown={modalAboutPlaceShown}
-            roomData={roomData}
+            roomInfo={roomInfo}
           />
 
           <RoomDetailsSections>
@@ -132,7 +133,7 @@ const RoomInfo = ({ reviewData, roomData, rooms, roomId }) => {
             <SleepWrap>
               <BedIcon />
               <p>Bedroom</p>
-              <span>{roomInfo?.[0]?.number_of_bed} bed</span>
+              <span>{roomInfo?.number_of_bed} bed</span>
             </SleepWrap>
           </RoomDetailsSections>
           <RoomDetailsSections id='viewAmenities'>
@@ -182,9 +183,8 @@ const RoomInfo = ({ reviewData, roomData, rooms, roomId }) => {
         </RoomMainDetailsWrap>
         <RoomSide
           loading={loading}
-          roomData={roomData}
-          rooms={rooms}
-          reviewData={reviewData}
+          roomInfo={roomInfo}
+          roomReviewInfo={roomReviewInfo}
           checkInDate={checkInDate}
           checkOutDate={checkOutDate}
         />
@@ -193,11 +193,11 @@ const RoomInfo = ({ reviewData, roomData, rooms, roomId }) => {
         <h2 className='rating'>
           <StarIcon sx={{ fontSize: '24px', marginRight: '5px' }} />
           <span>
-            {roomData?.rating?.toFixed(2)} / {reviewData?.length} reviews
+            {roomInfo?.rating?.toFixed(2)} / {roomReviewInfo?.length} reviews
           </span>
         </h2>
-        <RoomReviews roomData={roomData} reviewData={reviewData} />
-        <ShowAllBtn>Show all 00 Reviews</ShowAllBtn>
+        <RoomReviews roomInfo={roomInfo} roomReviewInfo={roomReviewInfo} />
+        <ShowAllBtn>Show all {roomReviewInfo?.length} Reviews</ShowAllBtn>
       </RoomDetailsSections>
       <RoomDetailsSections id='viewLocation'>
         <h2>Where you’ll be</h2>
@@ -255,7 +255,7 @@ const RoomInfo = ({ reviewData, roomData, rooms, roomId }) => {
         </ThingsToKnow>
       </RoomDetailsSections>
       {/* </RoomMainDetailsWrap>
-                <RoomSide loading={loading} RoomData={RoomData} /> */}
+                <RoomSide loading={loading} roomInfo={roomInfo} /> */}
       {/* </RoomMainDetails> */}
     </RoomDetailSection>
   );

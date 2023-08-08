@@ -1,9 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   ModalContainer,
-  ModalMain,
   ModalMainSection,
-  ModalMainTitle,
   ModalTitle,
 } from '../Modals/ModalStyle';
 import {
@@ -11,7 +9,6 @@ import {
   EyeIcon,
   GotoSignup,
   LoginBtn,
-  LoginBtnWrap,
   LoginInputWrap,
   LoginWithBtn,
   LoginWrap,
@@ -25,11 +22,10 @@ import googleIcon from '../../assets/images/google.png';
 import appleIcon from '../../assets/images/apple.png';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { Link, useNavigate } from 'react-router-dom';
-import { loginUser, userMe } from '../../redux/slices/users';
 import { useDispatch, useSelector } from 'react-redux';
-import SuccessAlert from '../Notifications/SuccessAlert';
-// const anyOptionList = ['Any', '1', '2', '3', '4', '5', '6', '7', '8+'];
+import { loginAsync, loginUser } from '../../redux/slices/userSlice';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LogInModal = ({
   modalLogShown,
@@ -37,50 +33,34 @@ const LogInModal = ({
   modalSignupShown,
   toggleSignupModal,
   setIsUserDrop,
-  isLoggedIn,
-  setIsLoggedIn,
-  users,
-  // setIsLoginSuccess,
+  userMe,
+  isUserLogIn,
+  setIsUserLogIn,
 }) => {
-  const [username, setUsernmae] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  // const [savedCp, setSavedCp] = useState([]);
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const navigation = useNavigate();
+  // const [userInfo, setUserIngo] = useState('');
+  // let userInfo = JSON.parse(localStorage.getItem('user'));
 
-  // const users = useSelector((state) => state.users);
+  const userLogin = useSelector(loginUser);
   const dispatch = useDispatch();
 
-  // const initFetch = useCallback(() => {
-  //   dispatch(userMe());
-  // }, [dispatch]);
+  // console.log('username', username);
 
-  // useEffect(() => {
-  //   initFetch();
-  // }, [initFetch, isLoggedIn, username]);
-
-  console.log('users', users);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(loginUser({ username, password }));
-    setIsLoggedIn(true);
-    toggleLogModal(false);
-    setIsUserDrop(false);
-    // setIsLoginSuccess(true);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(loginAsync({ username, password }))
+      .then(() => {
+        toggleLogModal(false);
+        setIsUserDrop(false);
+        setIsUserLogIn(true);
+        // setUserIngo(JSON.parse(localStorage.getItem('user')));
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error('Login failed. Please try again.');
+      });
   };
-
-  // useEffect(() => {
-  //   if (users?.ok === 'Welcome!') {
-  //     setIsLoginSuccess(true);
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   localStorage.setItem('logUser', JSON.stringify({ isLoggedIn: true }));
-  // }, [isLoggedIn]);
-
-  // console.log("logUser",logUser)
 
   return (
     <LogModal
@@ -91,7 +71,7 @@ const LogInModal = ({
       }}
       title='Log in'
     >
-      {/* {users?.ok === 'Welcome!' && <SuccessAlert />} */}
+      {/* {authIsLoggIn === true && <SuccessAlert />} */}
       <ModalContainer>
         <ModalLoginMain>
           <ModalMainSection>
@@ -103,10 +83,9 @@ const LogInModal = ({
                   <p>Username</p>
                   <input
                     type='text'
-                    placeholder='Enter username'
-                    onChange={(e) => setUsernmae(e.target.value)}
                     value={username}
-                    name='username'
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder='Enter your username'
                     required
                   />
                 </LoginInputWrap>
@@ -115,10 +94,9 @@ const LogInModal = ({
                   <PassewordWrapper>
                     <input
                       type='password'
-                      placeholder='Enter password'
-                      onChange={(e) => setPassword(e.target.value)}
                       value={password}
-                      name='password'
+                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder='Enter your password'
                       required
                     />
                     <EyeIcon>
@@ -169,6 +147,7 @@ const LogInModal = ({
         </ModalLoginMain>
       </ModalContainer>
       {/* </form> */}
+      {/* <ToastContainer /> */}
     </LogModal>
   );
 };

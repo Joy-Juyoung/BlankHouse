@@ -9,8 +9,8 @@ const AvatarContainer = styled.div`
   font-weight: bold;
   color: #fff;
 
-  width: 45px;
-  height: 45px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   background-color: ${(props) => props.backgroundColor};
 `;

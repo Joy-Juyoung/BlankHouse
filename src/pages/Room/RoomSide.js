@@ -30,9 +30,8 @@ import SideGuestDropdown from './SideGuestDropdown';
 
 const RoomSide = ({
   loading,
-  roomData,
-  rooms,
-  reviews,
+  roomInfo,
+  roomReviewInfo,
   checkInDate,
   checkOutDate,
 }) => {
@@ -51,34 +50,24 @@ const RoomSide = ({
           <RoomSideInside>
             <RoomSideTop>
               <SideTopPrice>
-                <h2>${roomData?.price?.toFixed(2)}</h2>
+                <h2>${roomInfo?.price?.toFixed(2)}</h2>
                 <span>night</span>
               </SideTopPrice>
               <SideTopInfo>
                 <StarIcon sx={{ fontSize: '16px' }} />
-                <span>{roomData?.rating?.toFixed(2)}</span>
+                <span>{roomInfo?.rating?.toFixed(2)}</span>
                 <span className='coma'>·</span>
-                <span>{reviews?.length} Reviews</span>
+                <span className='review'>{roomReviewInfo?.length} Reviews</span>
               </SideTopInfo>
             </RoomSideTop>
             <RoomSideInputField>
               <SideDateInput>
                 <DateInput className='checkin'>
                   <InputLabel>CHECK-IN</InputLabel>
-                  {/* <input
-                    type='date'
-                    value={checkInDate}
-                    onChange={handleDate}
-                  /> */}
                   <DateValue>{checkInDate}</DateValue>
                 </DateInput>
                 <DateInput>
                   <InputLabel>CHECK-OUT</InputLabel>
-                  {/* <input
-                    type='date'
-                    value={checkOutDate}
-                    onChange={handleDate}
-                  /> */}
                   <DateValue>{checkOutDate}</DateValue>
                 </DateInput>
               </SideDateInput>

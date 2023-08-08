@@ -73,6 +73,7 @@ export const ModalRightBtns = styled.div`
   }
 `;
 
+// This for Filter modal
 export const ModalMain = styled.div`
   padding: 0 25px;
   overflow-y: scroll;

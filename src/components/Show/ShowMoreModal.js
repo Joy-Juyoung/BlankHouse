@@ -1,15 +1,21 @@
-// import { Modal } from '@mui/material';
 import React from 'react';
-import Modal from '../Modals/ModalLayout';
-import { ModalContainer, ModalMainContents } from '../Modals/ModalStyle';
+import ModalLayout from '../Modals/ModalLayout';
+import {
+  ModalContainer,
+  ModalMain,
+  ModalMainSection,
+  ModalTitle,
+} from '../Modals/ModalStyle';
+import { ModalShowMain, ShowWrap } from './ShowModalStyle';
+// import ShowMoreModalLayout from '../Modals/ShowMoreModalLayout';
 
 const ShowMoreModal = ({
-  modalAboutPlaceShown,
   toggleAboutPlaceModal,
-  roomData,
+  modalAboutPlaceShown,
+  roomInfo,
 }) => {
   return (
-    <Modal
+    <ModalLayout
       shown={modalAboutPlaceShown}
       close={() => {
         toggleAboutPlaceModal(false);
@@ -17,14 +23,14 @@ const ShowMoreModal = ({
       title='About this place'
     >
       <ModalContainer>
-        {/* <ModalMain> */}
-        {/* <ModalMainSection> */}
-        {/* <ModalMainTitle>Price range</ModalMainTitle> */}
-        <ModalMainContents>{roomData?.description}</ModalMainContents>
-        {/* </ModalMainSection> */}
-        {/* </ModalMain> */}
+        <ModalShowMain>
+          <ModalMainSection>
+            {/* <ModalTitle>About this place</ModalTitle> */}
+            <ShowWrap>{roomInfo?.description}</ShowWrap>
+          </ModalMainSection>
+        </ModalShowMain>
       </ModalContainer>
-    </Modal>
+    </ModalLayout>
   );
 };
 

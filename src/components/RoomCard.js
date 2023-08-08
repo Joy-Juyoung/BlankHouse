@@ -11,20 +11,45 @@ import {
   RoomsEach,
   RoomTitle,
   ToggleLike,
-} from './MainStyle';
-import RoomEachSk from './Skeletons/MainEachSk';
-import MainRoomSlider from './MainRoomSlider';
+} from '../pages/MainHome/MainStyle';
+import RoomEachSk from '../pages/MainHome/Skeletons/MainEachSk';
+import MainRoomSlider from '../pages/MainHome/MainRoomSlider';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addRoomWishlistAsync,
+  RoomAddEishlist,
+  RoomAddWishlist,
+} from '../redux/slices/wishlistSlice';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const MainRoomCard = ({ room, loading }) => {
+const RoomCard = ({ room, loading }) => {
   const [fav, setFav] = useState(false);
   const [isBtnShown, setIsBtnShown] = useState(false);
+  const [roomId, setRoomId] = useState(room?.pk);
 
-  const handleLiked = (pk) => {
-    if (room) {
-      // var tempAllRooms = room;
-      setFav(!fav);
-    }
+  const addwishlistToRoom = useSelector(RoomAddWishlist);
+  const dispatch = useDispatch();
+
+  const handleLiked = () => {
+    dispatch(addRoomWishlistAsync(room?.pk))
+      .then(() => {
+        setFav(!fav);
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error('Logout failed. Please try again.');
+      });
+    // dispatch(addRoomWishlistAsync({ roomId }));
+    // }
   };
+
+  useEffect(() => {
+    // if (fav) {
+    // }
+  }, [fav, roomId]);
+
+  console.log('room?.rooms', addwishlistToRoom);
 
   return (
     <>
@@ -84,4 +109,4 @@ const MainRoomCard = ({ room, loading }) => {
   );
 };
 
-export default MainRoomCard;
+export default RoomCard;
