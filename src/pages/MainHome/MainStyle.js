@@ -49,9 +49,9 @@ export const MainWrap = styled.div`
   width: 100%;
   margin-bottom: 60px;
 
-  /* &.account {
-    max-width: 1080px;
-  } */
+  &.account {
+    margin-top: 20px;
+  }
 `;
 
 export const MainTop = styled.div`
@@ -154,20 +154,37 @@ export const ToggleLike = styled.div`
   /* position: relative; */
 `;
 
-export const RoomLike = styled.button`
-  position: absolute;
-  top: 10px;
-  right: 5px;
-  border: none;
-  background: none;
-  z-index: 2;
+export const RoomLike = styled.div`
+  &.card {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    border: none;
+    background: none;
+    z-index: 2;
 
-  &:active {
-    transform: translateY(4px);
+    &:active {
+      transform: translateY(4px);
+    }
+
+    svg {
+      cursor: pointer;
+    }
   }
 
-  svg {
-    cursor: pointer;
+  &.detail {
+    border: none;
+    background: none;
+    padding: 0;
+    z-index: 2;
+
+    &:active {
+      transform: translateY(4px);
+    }
+
+    svg {
+      cursor: pointer;
+    }
   }
 `;
 

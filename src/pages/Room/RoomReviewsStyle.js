@@ -90,7 +90,7 @@ export const ReviewCardText = styled.div`
   grid-column-gap: 95px;
   grid-row-gap: 8px;
   width: 100%; */
-  margin-top: 10px;
+  margin-top: 20px;
   padding: 0 10px;
 `;
 

@@ -24,6 +24,8 @@ const MainPage = ({ setIsPageMain }) => {
   const [loading, setLoading] = useState(false);
   // const [isLiked, setIsLiked] = useState(false);
   const [fav, setFav] = useState(false);
+  // const [per_page, setPer_page] = useState(20);
+  // const [page, setPage] = useState(1);
 
   const allRoomInfo = useSelector(getAllRoomInfo);
   const dispatch = useDispatch();

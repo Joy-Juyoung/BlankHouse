@@ -73,13 +73,13 @@ const Profile = ({ setIsPageMain, userMe }) => {
         setEditEmail(true);
         break;
       case 'phone_number':
-        setEditEmail(true);
+        setEditPhone(true);
         break;
       case 'address':
-        setEditEmail(true);
+        setEditAddress(true);
         break;
       case 'emergency_contact':
-        setEditEmail(true);
+        setEditEmergency(true);
         break;
       default:
         break;
@@ -136,18 +136,6 @@ const Profile = ({ setIsPageMain, userMe }) => {
     }
   };
 
-  // useEffect(() => {
-  //   dispatch(
-  //     editUserAsync({
-  //       saveUsername,
-  //       saveEmail,
-  //       savePhone,
-  //       saveAddress,
-  //       saveEmergency,
-  //     })
-  //   );
-  // }, [saveUsername, saveEmail, savePhone, saveAddress, saveEmergency]);
-
   const handleCancelClick = (field) => {
     switch (field) {
       case 'username':
@@ -157,13 +145,13 @@ const Profile = ({ setIsPageMain, userMe }) => {
         setEditEmail(false);
         break;
       case 'phone_number':
-        setEditEmail(false);
+        setEditPhone(false);
         break;
       case 'address':
-        setEditEmail(false);
+        setEditAddress(false);
         break;
       case 'emergency_contact':
-        setEditEmail(false);
+        setEditEmergency(false);
         break;
       default:
         break;
@@ -221,19 +209,17 @@ const Profile = ({ setIsPageMain, userMe }) => {
                     </>
                   )}
                 </InfoText>
-                {!editUsername ? (
-                  <InfoEdit>
-                    <button onClick={() => handleEditClick('username')}>
-                      Edit
-                    </button>
-                  </InfoEdit>
-                ) : (
-                  <InfoEdit>
-                    <button onClick={() => handleCancelClick('username')}>
-                      Cancel
-                    </button>
-                  </InfoEdit>
-                )}
+                <InfoEdit>
+                  <button
+                    onClick={() =>
+                      editUsername
+                        ? handleCancelClick('username')
+                        : handleEditClick('username')
+                    }
+                  >
+                    {editUsername ? 'Cancel' : 'Edit'}
+                  </button>
+                </InfoEdit>
               </DisplayInfo>
               <DisplayInfo>
                 <InfoText>
@@ -250,7 +236,6 @@ const Profile = ({ setIsPageMain, userMe }) => {
                       </InfoInput>
                       <input
                         type='email'
-                        // value={userMe?.email}
                         value={saveEmail || userMe?.email}
                         onChange={(event) => handleInputChange(event, 'email')}
                         id='email'
@@ -263,46 +248,150 @@ const Profile = ({ setIsPageMain, userMe }) => {
                     </>
                   )}
                 </InfoText>
-                {!editEmail ? (
-                  <InfoEdit>
-                    <button onClick={() => handleEditClick('email')}>
-                      Edit
-                    </button>
-                  </InfoEdit>
-                ) : (
-                  <InfoEdit>
-                    <button onClick={() => handleCancelClick('email')}>
-                      Cancel
-                    </button>
-                  </InfoEdit>
-                )}
+                <InfoEdit>
+                  <button
+                    onClick={() =>
+                      editEmail
+                        ? handleCancelClick('email')
+                        : handleEditClick('email')
+                    }
+                  >
+                    {editEmail ? 'Cancel' : 'Edit'}
+                  </button>
+                </InfoEdit>
               </DisplayInfo>
 
               <DisplayInfo>
                 <InfoText>
                   <InfoTitle>Phone number</InfoTitle>
-                  <InfoInput>{userMe?.phone_number}</InfoInput>
+                  {!editPhone ? (
+                    <>
+                      <InfoInput>
+                        {userMe?.phone_number || 'Not provided'}
+                      </InfoInput>
+                    </>
+                  ) : (
+                    <>
+                      <InfoInput>
+                        Your contact number is shared with confirmed guests and
+                        Blankhouse. You can add other numbers and choose how
+                        they’re used.
+                      </InfoInput>
+                      <input
+                        type='text'
+                        value={savePhone || userMe?.phone_number || ''}
+                        onChange={(event) =>
+                          handleInputChange(event, 'phone_number')
+                        }
+                        id='phone_number'
+                      />
+                      <InfoSave>
+                        <button onClick={() => handleSaveClick('phone_number')}>
+                          Save
+                        </button>
+                      </InfoSave>
+                    </>
+                  )}
                 </InfoText>
                 <InfoEdit>
-                  <button>Edit</button>
+                  <button
+                    onClick={() =>
+                      editPhone
+                        ? handleCancelClick('phone_number')
+                        : handleEditClick('phone_number')
+                    }
+                  >
+                    {editPhone ? 'Cancel' : 'Edit'}
+                  </button>
                 </InfoEdit>
               </DisplayInfo>
+
               <DisplayInfo>
                 <InfoText>
                   <InfoTitle>Address</InfoTitle>
-                  <InfoInput>{userMe?.address}</InfoInput>
+                  {!editAddress ? (
+                    <>
+                      <InfoInput>{userMe?.address || 'Not provided'}</InfoInput>
+                    </>
+                  ) : (
+                    <>
+                      <InfoInput>
+                        Your contact number is shared with confirmed guests and
+                        Blankhouse. You can add other numbers and choose how
+                        they’re used.
+                      </InfoInput>
+                      <input
+                        type='text'
+                        value={saveAddress || userMe?.address || ''}
+                        onChange={(event) =>
+                          handleInputChange(event, 'address')
+                        }
+                        id='address'
+                      />
+                      <InfoSave>
+                        <button onClick={() => handleSaveClick('address')}>
+                          Save
+                        </button>
+                      </InfoSave>
+                    </>
+                  )}
                 </InfoText>
                 <InfoEdit>
-                  <button>Edit</button>
+                  <button
+                    onClick={() =>
+                      editAddress
+                        ? handleCancelClick('address')
+                        : handleEditClick('address')
+                    }
+                  >
+                    {editAddress ? 'Cancel' : 'Edit'}
+                  </button>
                 </InfoEdit>
               </DisplayInfo>
               <DisplayInfo>
                 <InfoText>
                   <InfoTitle>Emergency contact</InfoTitle>
-                  <InfoInput>{userMe?.emergency_contact}</InfoInput>
+                  {!editEmergency ? (
+                    <>
+                      <InfoInput>
+                        {userMe?.emergency_contact || 'Not provided'}
+                      </InfoInput>
+                    </>
+                  ) : (
+                    <>
+                      <InfoInput>
+                        Your contact number is shared with confirmed guests and
+                        Blankhouse. You can add other numbers and choose how
+                        they’re used.
+                      </InfoInput>
+                      <input
+                        type='text'
+                        value={saveEmergency || userMe?.emergency_contact || ''}
+                        onChange={(event) =>
+                          handleInputChange(event, 'emergency_contact')
+                        }
+                        id='emergency_contact'
+                      />
+                      <InfoSave>
+                        <button
+                          onClick={() => handleSaveClick('emergency_contact')}
+                        >
+                          Save
+                        </button>
+                      </InfoSave>
+                    </>
+                  )}
                 </InfoText>
                 <InfoEdit>
-                  <button>Edit</button>
+                  <button
+                    onClick={() =>
+                      editEmergency
+                        ? handleCancelClick('emergency_contact')
+                        : handleEditClick('emergency_contact')
+                    }
+                  >
+                    {editEmergency ? 'Cancel' : 'Edit'}
+                  </button>
                 </InfoEdit>
               </DisplayInfo>
             </DisplayWrapper>

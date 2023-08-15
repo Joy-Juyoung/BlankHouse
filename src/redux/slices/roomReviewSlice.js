@@ -3,40 +3,13 @@ import axios from '../api/axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// const initialState = { review: {}, status: 'idle', error: null };
-
-// export const getAllRewviewAsync = createAsyncThunk(
-//   'review/getAllReview',
+// export const getAllRoomReviewsAsync = createAsyncThunk(
+//   'review/getAllRoomReviews',
 //   async (_, thunkAPI) => {
 //     try {
-//       const response = await axios.get('/reviews');
+//       const response = await axios.get('/reviews/rooms/');
 //       return response.data;
 //     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
-
-export const getAllRoomReviewsAsync = createAsyncThunk(
-  'review/getAllRoomReviews',
-  async (_, thunkAPI) => {
-    try {
-      const response = await axios.get('/reviews');
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-// export const getReviewByIdAsync = createAsyncThunk(
-//   'review/getReviewById',
-//   async ({ id }, thunkAPI) => {
-//     try {
-//       const response = await axios.get(`/reviews/${id}`);
-//       return response.data;
-//     } catch (error) {
-//       toast.error('Load getReviewById failed');
 //       return thunkAPI.rejectWithValue(error.message);
 //     }
 //   }
@@ -44,9 +17,11 @@ export const getAllRoomReviewsAsync = createAsyncThunk(
 
 export const getReviewByRoomIdAsync = createAsyncThunk(
   'review/getReviewByRoomId',
-  async ({ roomId }, thunkAPI) => {
+  async ({ roomId, per_page, page }, thunkAPI) => {
     try {
-      const response = await axios.get(`/reviews/rooms/${roomId}`);
+      const response = await axios.get(
+        `/reviews/rooms/${roomId}?per_page=${per_page}&page=${page}`
+      );
       return response.data;
     } catch (error) {
       toast.error('Load getReviewByRoomId failed');
@@ -71,20 +46,20 @@ const roomReviewSlice = createSlice({
     },
   },
   extraReducers: {
-    [getAllRoomReviewsAsync.pending]: (state) => {
-      console.log('Pending');
-      state.status = 'Pending';
-      state.error = null;
-    },
-    [getAllRoomReviewsAsync.fulfilled]: (state, { payload }) => {
-      console.log('Fetched Successfully!');
-      return { ...state, allRoomReviews: payload };
-    },
-    [getAllRoomReviewsAsync.rejected]: (state, action) => {
-      console.log('Rejected!');
-      state.status = 'failed';
-      state.error = action.payload;
-    },
+    // [getAllRoomReviewsAsync.pending]: (state) => {
+    //   console.log('Pending');
+    //   state.status = 'Pending';
+    //   state.error = null;
+    // },
+    // [getAllRoomReviewsAsync.fulfilled]: (state, { payload }) => {
+    //   console.log('Fetched Successfully!');
+    //   return { ...state, allRoomReviews: payload };
+    // },
+    // [getAllRoomReviewsAsync.rejected]: (state, action) => {
+    //   console.log('Rejected!');
+    //   state.status = 'failed';
+    //   state.error = action.payload;
+    // },
 
     [getReviewByRoomIdAsync.pending]: (state) => {
       console.log('Pending');
@@ -104,7 +79,7 @@ const roomReviewSlice = createSlice({
 });
 
 export const { removeSelectedReview } = roomReviewSlice.actions;
-export const getAllRoomReviews = (state) => state.review.allRoomReview;
+// export const getAllRoomReviews = (state) => state.review.allRoomReview.results;
 export const getAllReviewByRoomInfo = (state) => state.review.allReviewByRoomId;
 export const selectStatus = (state) => state.review.status;
 export const selectError = (state) => state.review.error;

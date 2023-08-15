@@ -180,9 +180,12 @@ export const RoomTopInfo = styled.div`
       margin-left: 5px;
     }
 
+    /* &.share {
+
+    }
     &:hover {
       box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.1);
-    }
+    } */
   }
 `;
 
@@ -352,7 +355,7 @@ export const RoomDetailsSections = styled.div`
   }
 
   p {
-    margin: 0;
+    margin: 10px 0;
   }
 
   ul {

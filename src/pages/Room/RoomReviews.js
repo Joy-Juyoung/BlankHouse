@@ -19,7 +19,14 @@ import {
 } from './RoomReviewsStyle';
 // import { allUsers, userMe } from '../redux/slices/users';
 
-const RoomReviews = ({ roomInfo, roomReviewInfo }) => {
+const RoomReviews = ({
+  roomInfo,
+  roomReviewInfo,
+  per_page,
+  modalReviewShown,
+  toggleReviewModal,
+  setIsShowReviews,
+}) => {
   return (
     <RoomReviewsContainter>
       <ReviewsWrap>
@@ -71,14 +78,17 @@ const RoomReviews = ({ roomInfo, roomReviewInfo }) => {
           </ReviewGraphs>
         </ReviewsMainTop>
         <ReviewsList>
-          {/* {reviewData?.map((review) => {
-            return <RoomReviewsCard key={review?.pk} review={review} />;
-          })} */}
-          {/* <RoomReviewsCard reviewData={reviewData} /> */}
-
-          {roomReviewInfo?.length > 0 &&
-            roomReviewInfo?.slice(0, 6)?.map((review) => {
-              return <RoomReviewsCard key={review?.pk} review={review} />;
+          {roomReviewInfo?.total_objects > 0 &&
+            roomReviewInfo?.results?.map((review) => {
+              return (
+                <RoomReviewsCard
+                  key={review?.pk}
+                  review={review}
+                  toggleReviewModal={toggleReviewModal}
+                  modalReviewShown={modalReviewShown}
+                  setIsShowReviews={setIsShowReviews}
+                />
+              );
             })}
         </ReviewsList>
       </ReviewsWrap>

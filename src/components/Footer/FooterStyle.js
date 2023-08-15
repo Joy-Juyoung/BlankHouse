@@ -78,5 +78,10 @@ export const FooterS = styled.div`
   span {
     display: flex;
     align-items: center;
+    margin-right: 10px;
+
+    &.last {
+      margin-right: 0;
+    }
   }
 `;

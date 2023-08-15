@@ -26,11 +26,16 @@ import {
   getAllReviewByRoomInfo,
   getReviewByRoomIdAsync,
 } from '../../redux/slices/roomReviewSlice';
+import ToggleLiked from '../../components/ToggleLiked';
 
 const Room = ({ setIsPageMain }) => {
   const [fav, setFav] = useState(false);
   const [loading, setLoading] = useState(false);
   const [modalPhotoShown, togglePhotoModal] = useState(false);
+  const [modalReviewShown, toggleReviewModal] = useState(false);
+  const [isShowReviews, setIsShowReviews] = useState(false);
+  const [per_page, setPer_page] = useState('6');
+  const [page, setpage] = useState('1');
 
   const { roomId } = useParams();
   const roomInfo = useSelector(getRoomInfo);
@@ -40,7 +45,7 @@ const Room = ({ setIsPageMain }) => {
   useEffect(() => {
     setIsPageMain(false);
     dispatch(getRoomsByIdAsync({ roomId }));
-    dispatch(getReviewByRoomIdAsync({ roomId }));
+    dispatch(getReviewByRoomIdAsync({ roomId, per_page, page }));
   }, [dispatch, roomId]);
 
   const handlePhotoShowAll = () => {
@@ -48,8 +53,9 @@ const Room = ({ setIsPageMain }) => {
     document.body.style.overflow = 'hidden';
   };
 
-  console.log('roomsById', roomInfo);
-  console.log('roomReviews', roomReviewInfo);
+  // console.log('roomsById', roomInfo);
+  // console.log('roomReviews', roomReviewInfo);
+  // console.log('page_size', roomReviewInfo?.page_size);
 
   if (loading) {
     return (
@@ -71,8 +77,13 @@ const Room = ({ setIsPageMain }) => {
                 <StarIcon sx={{ fontSize: '16px' }} />
                 <span className='strong'>{roomInfo?.rating}</span>
                 <span className='coma'>·</span>
-                <span>
-                  <Link href=''>{roomReviewInfo?.length} Reviews</Link>
+                <span
+                  onClick={() => {
+                    toggleReviewModal(!modalReviewShown);
+                    setIsShowReviews(true);
+                  }}
+                >
+                  <Link>{roomReviewInfo?.total_objects} Reviews</Link>
                 </span>
                 <span className='coma'>·</span>
                 <span>
@@ -85,18 +96,12 @@ const Room = ({ setIsPageMain }) => {
                 </span>
               </RoomTopInfo>
               <RoomTopInfo>
-                <button>
+                <button className='share'>
                   <ShareIcon sx={{ fontSize: '18px' }} />
                   <span>Share</span>
                 </button>
-                <button onClick={() => setFav(!fav)}>
-                  {fav ? (
-                    <FavoriteIcon sx={{ fontSize: '18px', color: '#e20000' }} />
-                  ) : (
-                    <FavoriteBorderIcon
-                      sx={{ fontSize: '18px', color: '#000' }}
-                    />
-                  )}
+                <button>
+                  <ToggleLiked roomInfo={roomInfo} roomId={roomId} />
                   <span>Save</span>
                 </button>
               </RoomTopInfo>
@@ -122,6 +127,13 @@ const Room = ({ setIsPageMain }) => {
               roomInfo={roomInfo}
               roomId={roomId}
               roomReviewInfo={roomReviewInfo}
+              setPer_page={setPer_page}
+              per_page={per_page}
+              setpage={setpage}
+              toggleReviewModal={toggleReviewModal}
+              modalReviewShown={modalReviewShown}
+              setIsShowReviews={setIsShowReviews}
+              isShowReviews={isShowReviews}
             />
           </RoomMainWrap>
         </MainWrap>

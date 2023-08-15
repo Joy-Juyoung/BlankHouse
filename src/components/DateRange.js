@@ -19,13 +19,6 @@ const DateRange = ({
   ]);
 
   useEffect(() => {
-    // setSelectedDateRange([
-    //   {
-    //     startDate: new Date(),
-    //     endDate: addDays(new Date(), 7),
-    //     key: 'selection',
-    //   },
-    // ]);
     setCheckInDate(
       selectedDateRange[0]?.startDate?.toLocaleDateString('en-CA')
     );

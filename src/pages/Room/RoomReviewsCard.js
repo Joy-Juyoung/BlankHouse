@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   ReviewCardText,
   ReviewCardUserWrap,
@@ -11,7 +11,23 @@ import { ShowMoreBtn } from './RoomStyle';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Avatar from '../../components/Avatar/Avatar';
 
-const RoomReviewsCard = ({ review }) => {
+const RoomReviewsCard = ({
+  review,
+  isShowReviews,
+  setPer_page,
+  per_page,
+  modalReviewShown,
+  toggleReviewModal,
+  setIsShowReviews,
+}) => {
+  //   useEffect(() => {
+  // if(isShowReviews) {
+
+  //   setPer_page(roomReviewInfo?.total_objects.toString())
+  // }
+  //   }, [isShowReviews]);
+  // console.log("  setPer_page('12');")
+
   return (
     <ReviewCardWrap>
       <ReviewCardUserWrap>
@@ -27,16 +43,25 @@ const RoomReviewsCard = ({ review }) => {
       </ReviewCardUserWrap>
       <ReviewCardText>
         <ReviewTextContents>
-          {review?.payload?.length > 180 ? (
+          {!isShowReviews && review?.payload?.length > 180 ? (
             <>
               <p>{review?.payload?.substring(0, 180)}...</p>
-              <ShowMoreBtn>
+              <ShowMoreBtn
+                onClick={() => {
+                  toggleReviewModal(!modalReviewShown);
+                  setIsShowReviews(true);
+                  // setPer_page('14');
+                  // setPer_page(roomReviewInfo?.total_objects.toString());
+                }}
+              >
                 <span>Show more</span>
                 <ArrowForwardIosIcon sx={{ fontSize: '14px' }} />
               </ShowMoreBtn>
             </>
           ) : (
-            <p>{review?.payload}</p>
+            <p style={{ marginBottom: isShowReviews && '20px' }}>
+              {review?.payload}
+            </p>
           )}
         </ReviewTextContents>
       </ReviewCardText>

@@ -36,7 +36,7 @@ export const MainDisplayWrap = styled.div`
 `;
 
 export const DisplayWrapper = styled.div`
-  flex: 2;
+  flex: 2.5;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -112,6 +112,7 @@ export const DisplaySideWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   margin-left: 90px;
+  margin-bottom: 40px;
   padding: 25px 0;
   border: 1px solid #bbbbbb;
   border-radius: 10px;

@@ -22,34 +22,11 @@ import {
 } from '../redux/slices/wishlistSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ToggleLiked from './ToggleLiked';
 
 const RoomCard = ({ room, loading }) => {
-  const [fav, setFav] = useState(false);
   const [isBtnShown, setIsBtnShown] = useState(false);
-  const [roomId, setRoomId] = useState(room?.pk);
-
-  const addwishlistToRoom = useSelector(RoomAddWishlist);
-  const dispatch = useDispatch();
-
-  const handleLiked = () => {
-    dispatch(addRoomWishlistAsync(room?.pk))
-      .then(() => {
-        setFav(!fav);
-      })
-      .catch((error) => {
-        console.error(error);
-        toast.error('Logout failed. Please try again.');
-      });
-    // dispatch(addRoomWishlistAsync({ roomId }));
-    // }
-  };
-
-  useEffect(() => {
-    // if (fav) {
-    // }
-  }, [fav, roomId]);
-
-  console.log('room?.rooms', addwishlistToRoom);
+  // const [roomId, setRoomId] = useState(room?.pk);
 
   return (
     <>
@@ -61,21 +38,8 @@ const RoomCard = ({ room, loading }) => {
           onMouseLeave={() => setIsBtnShown(false)}
         >
           <MainRoomSlider room={room} isBtnShown={isBtnShown} />
-          <ToggleLike
-            onClick={(e) => {
-              e.preventDefault();
-              // setFav(!fav);
-              handleLiked(room?.pk);
-            }}
-          >
-            <RoomLike>
-              {fav ? (
-                <FavoriteIcon sx={{ color: '#e20000' }} />
-              ) : (
-                <FavoriteBorderIcon sx={{ color: '#fff' }} />
-              )}
-            </RoomLike>
-          </ToggleLike>
+
+          <ToggleLiked room={room} />
 
           <RoomEachDetails>
             <RoomTitle>

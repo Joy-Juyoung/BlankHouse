@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header/Header';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from 'react-router-dom';
 import MainPage from './MainHome/MainPage';
 import Experience from './Experiences/Experience';
 import ExDetail from './Experiences/ExDetail';
@@ -19,11 +24,12 @@ import Wishlist from './Wishlist/Wishlist';
 import Account from './Account/Account';
 import Profile from './Account/Profile';
 import OnlineExp from './OnlineExperiences/OnlineExp';
+import Payment from './Payment/Payment';
 
 const GuestMode = () => {
   const [isPageMain, setIsPageMain] = useState(false);
   const [isUserLogIn, setIsUserLogIn] = useState(false);
-
+  const location = useLocation();
   const userMe = useSelector(getMeUser);
   // const rooms = useSelector(selectRoom);
   const dispatch = useDispatch();
@@ -54,6 +60,16 @@ const GuestMode = () => {
           element={<Room setIsPageMain={setIsPageMain} />}
           exact={true}
         />
+
+        <Route
+          // path='/room/:roomId/payment?reviews=:reviews&checkin=:checkinDate&checkout=:checkoutDate&guest=:guestNum&night=:perNight&totalPerNigh=:totalPerNight&tax=:taxPerNight&finalTotal=:fianlTotalPrice'
+          path='/room/:roomId/payment'
+          element={
+            <Payment setIsPageMain={setIsPageMain} location={location} />
+          }
+          exact={true}
+        />
+
         <Route
           path='/wishlist'
           element={<Wishlist setIsPageMain={setIsPageMain} />}
@@ -70,7 +86,11 @@ const GuestMode = () => {
           exact={true}
         />
         <Route path='/experiences' element={<Experience />} exact={true} />
-        <Route path='/experiences/:experiencesId' element={<ExDetail />} exact={true} />
+        <Route
+          path='/experiences/:experiencesId'
+          element={<ExDetail />}
+          exact={true}
+        />
         <Route path='/onlineExperiences' element={<OnlineExp />} exact={true} />
       </Routes>
 
@@ -78,7 +98,7 @@ const GuestMode = () => {
         <Route path='/test' element={<Test meData={meData} />} exact={true} />
       </Routes> */}
       <GotoTopButton />
-      {/* <Footer isPageMain={isPageMain} /> */}
+      <Footer isPageMain={isPageMain} />
     </>
   );
 };
