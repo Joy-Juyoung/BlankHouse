@@ -111,7 +111,7 @@ const LogInModal = ({
                 </LoginInputWrap>
               </LoginWrap>
               <LoginBtn type='submit'>
-                <ColorButton buttonLabel='Log in' on />
+                <ColorButton buttonLabel='Log in' />
               </LoginBtn>
             </form>
             <DivideLine>or</DivideLine>

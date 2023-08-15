@@ -28,6 +28,7 @@ import FlagIcon from '@mui/icons-material/Flag';
 import SubmitButton from '../../components/Buttons/SubmitButton';
 import SideGuestDropdown from './SideGuestDropdown';
 import SideDateDropdown from './SideDateDropdown';
+import { Link } from 'react-router-dom';
 
 const RoomSide = ({
   loading,
@@ -37,6 +38,7 @@ const RoomSide = ({
   checkOutDate,
   setCheckInDate,
   setCheckOutDate,
+  roomId,
 }) => {
   const [isGuests, setIsGuests] = useState(false);
   const [isSideCheckIn, setIsSideCheckIn] = useState(false);
@@ -44,6 +46,16 @@ const RoomSide = ({
 
   const [isSideDate, setIsSideDate] = useState(false);
   const [guestsNum, setGuestsNum] = useState(1);
+
+  const [reviewsTotal, setReviewsTotal] = useState(
+    roomReviewInfo?.total_objects
+  );
+
+  let perNight =
+    new Date(checkOutDate).getDate() - new Date(checkInDate).getDate();
+  let totalPerNight = roomInfo?.price * perNight;
+  let taxPerNight = totalPerNight * 0.05;
+  let finalTotalPrice = totalPerNight + roomInfo?.cleaning_fee + taxPerNight;
 
   const handleDate = () => {
     // console.log('checkIn', checkInDate);
@@ -57,12 +69,17 @@ const RoomSide = ({
           <RoomSideInside>
             <RoomSideTop>
               <SideTopPrice>
-                <h2>${roomInfo?.price?.toFixed(2)}</h2>
+                <h2>
+                  $
+                  {roomInfo?.price?.toLocaleString(undefined, {
+                    minimumFractionDigits: 2,
+                  })}
+                </h2>
                 <span>night</span>
               </SideTopPrice>
               <SideTopInfo>
                 <StarIcon sx={{ fontSize: '16px' }} />
-                <span>{roomInfo?.rating?.toFixed(2)}</span>
+                <span>{roomInfo?.rating}</span>
                 <span className='coma'>·</span>
                 <span className='review'>
                   {roomReviewInfo?.total_objects} Reviews
@@ -88,13 +105,7 @@ const RoomSide = ({
                   <InputLabel>CHECK-IN</InputLabel>
                   <DateValue>{checkInDate}</DateValue>
                 </DateInput>
-                <DateInput
-                  className={isSideDate && 'dropOpen'}
-                  // onClick={() => {
-                  //   setIsSideCheckOut(!isSideCheckOut);
-                  //   setIsSideCheckIn(false);
-                  // }}
-                >
+                <DateInput className={isSideDate && 'dropOpen'}>
                   <InputLabel>CHECK-OUT</InputLabel>
                   <DateValue>{checkOutDate}</DateValue>
                 </DateInput>
@@ -111,29 +122,6 @@ const RoomSide = ({
                   roomInfo={roomInfo}
                 />
               )}
-
-              {/* {isSideCheckIn && (
-                <SideDateDropdown
-                  setIsSideCheckIn={setIsSideCheckIn}
-                  isSideCheckIn={isSideCheckIn}
-                  checkInDate={checkInDate}
-                  checkOutDate={checkOutDate}
-                  setCheckInDate={setCheckInDate}
-                  setCheckOutDate={setCheckOutDate}
-                  roomInfo={roomInfo}
-                />
-              )}
-              {isSideCheckOut && (
-                <SideDateDropdown
-                  setIsSideCheckOut={setIsSideCheckOut}
-                  isSideCheckOut={isSideCheckOut}
-                  checkInDate={checkInDate}
-                  checkOutDate={checkOutDate}
-                  setCheckInDate={setCheckInDate}
-                  setCheckOutDate={setCheckOutDate}
-                  roomInfo={roomInfo}
-                />
-              )} */}
 
               <SideGuestsInput
                 onClick={() => setIsGuests(!isGuests)}
@@ -154,34 +142,66 @@ const RoomSide = ({
               </SideGuestsInput>
             </RoomSideInputField>
 
-            <SubmitButton />
+            {/* <Link to={`/room/${roomId}/payment`}> */}
+            <Link
+              to={`/room/${roomId}/payment?reviews=${reviewsTotal}&checkin=${checkInDate}&checkout=${checkOutDate}&guest=${guestsNum}&night=${perNight}&total=${totalPerNight}&tax=${taxPerNight}&finalTotal=${finalTotalPrice}`}
+            >
+              <SubmitButton />
+            </Link>
 
             <RoomSideText>You won't be charged yet</RoomSideText>
             <RoomSideOutput>
               <ul>
                 <li>
                   <SideOutput className='outputName'>
-                    $560.00 x 5 nights
+                    $
+                    {roomInfo?.price?.toLocaleString(undefined, {
+                      minimumFractionDigits: 2,
+                    })}{' '}
+                    x{' '}
+                    {new Date(checkOutDate).getDate() -
+                      new Date(checkInDate).getDate()}{' '}
+                    nights
                   </SideOutput>
-                  <SideOutput>$2,800.00</SideOutput>
+                  <SideOutput>
+                    $
+                    {totalPerNight?.toLocaleString(undefined, {
+                      minimumFractionDigits: 2,
+                    })}
+                  </SideOutput>
                 </li>
                 <li>
                   <SideOutput className='outputName'>Cleaning fee</SideOutput>
-                  <SideOutput>$148.25</SideOutput>
+                  <SideOutput>
+                    $
+                    {roomInfo?.cleaning_fee?.toLocaleString(undefined, {
+                      minimumFractionDigits: 2,
+                    })}
+                  </SideOutput>
                 </li>
-                <li>
+                {/* <li>
                   <SideOutput className='outputName'>Service fee</SideOutput>
-                  <SideOutput>$315.25</SideOutput>
-                </li>
+                  <SideOutput>${roomInfo?.cleaning_fee.toFixed(2)}</SideOutput>
+                </li> */}
                 <li>
                   <SideOutput className='outputName'>Taxes</SideOutput>
-                  <SideOutput>$270.48</SideOutput>
+                  <SideOutput>
+                    $
+                    {taxPerNight?.toLocaleString(undefined, {
+                      minimumFractionDigits: 2,
+                    })}
+                  </SideOutput>
                 </li>
               </ul>
             </RoomSideOutput>
             <RoomSideTotal>
               <SideTotal>Total</SideTotal>
-              <SideTotal>$3,533.98</SideTotal>
+              <SideTotal>
+                $
+                {finalTotalPrice?.toLocaleString(undefined, {
+                  minimumFractionDigits: 2,
+                })}
+              </SideTotal>
             </RoomSideTotal>
           </RoomSideInside>
         </RoomSideReserve>

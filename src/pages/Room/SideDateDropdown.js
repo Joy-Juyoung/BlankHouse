@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import RemoveIcon from '@mui/icons-material/Remove';
-import AddIcon from '@mui/icons-material/Add';
 import styled from 'styled-components';
 import DateRange from '../../components/DateRange';
 
 const SearchDateDropdown = styled.div`
   background: #fff;
   padding: 10px;
-  /* width: 100%; */
   position: absolute;
   top: 80px;
-  /* left: 0; */
   right: 0;
   z-index: 10;
   cursor: auto;
@@ -28,7 +24,6 @@ const SearchDropBackDrop = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  /* background-color: rgba(0, 0, 0, 0.1); */
   display: flex;
   justify-content: center;
   align-items: center;

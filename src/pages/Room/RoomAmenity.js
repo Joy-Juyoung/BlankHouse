@@ -6,12 +6,13 @@ import TvIcon from '@mui/icons-material/Tv';
 import MicrowaveIcon from '@mui/icons-material/Microwave';
 import LocalLaundryServiceIcon from '@mui/icons-material/LocalLaundryService';
 
-const RoomAmenity = ({ roomInfo }) => {
+const RoomAmenity = ({ roomInfo, roomAmenity }) => {
   return (
     <PlaceOffers>
-      {roomInfo?.amenities?.map((amenity) => {
+      {/* {roomInfo?.amenities?.map((amenity) => { */}
+      {roomAmenity?.map((amenity) => {
         return (
-          <PlaceOffersList>
+          <PlaceOffersList key={amenity?.pk}>
             <KitchenIcon />
             <span>{amenity?.name}</span>
           </PlaceOffersList>

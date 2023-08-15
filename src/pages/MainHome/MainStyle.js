@@ -49,9 +49,9 @@ export const MainWrap = styled.div`
   width: 100%;
   margin-bottom: 60px;
 
-  /* &.account {
-    max-width: 1080px;
-  } */
+  &.account {
+    margin-top: 20px;
+  }
 `;
 
 export const MainTop = styled.div`
@@ -154,7 +154,7 @@ export const ToggleLike = styled.div`
   /* position: relative; */
 `;
 
-export const RoomLike = styled.button`
+export const RoomLike = styled.div`
   &.card {
     position: absolute;
     top: 10px;

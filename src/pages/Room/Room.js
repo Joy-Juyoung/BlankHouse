@@ -32,6 +32,8 @@ const Room = ({ setIsPageMain }) => {
   const [fav, setFav] = useState(false);
   const [loading, setLoading] = useState(false);
   const [modalPhotoShown, togglePhotoModal] = useState(false);
+  const [modalReviewShown, toggleReviewModal] = useState(false);
+  const [isShowReviews, setIsShowReviews] = useState(false);
   const [per_page, setPer_page] = useState('6');
   const [page, setpage] = useState('1');
 
@@ -75,8 +77,13 @@ const Room = ({ setIsPageMain }) => {
                 <StarIcon sx={{ fontSize: '16px' }} />
                 <span className='strong'>{roomInfo?.rating}</span>
                 <span className='coma'>·</span>
-                <span>
-                  <Link href=''>{roomReviewInfo?.total_objects} Reviews</Link>
+                <span
+                  onClick={() => {
+                    toggleReviewModal(!modalReviewShown);
+                    setIsShowReviews(true);
+                  }}
+                >
+                  <Link>{roomReviewInfo?.total_objects} Reviews</Link>
                 </span>
                 <span className='coma'>·</span>
                 <span>
@@ -123,6 +130,10 @@ const Room = ({ setIsPageMain }) => {
               setPer_page={setPer_page}
               per_page={per_page}
               setpage={setpage}
+              toggleReviewModal={toggleReviewModal}
+              modalReviewShown={modalReviewShown}
+              setIsShowReviews={setIsShowReviews}
+              isShowReviews={isShowReviews}
             />
           </RoomMainWrap>
         </MainWrap>

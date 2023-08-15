@@ -10,9 +10,9 @@ const FooterBottom = () => {
   return (
     <>
       <FooterS>
-        <Link to='/test'>
-          <span>© 2023 BlankHouse, Inc.</span>
-        </Link>
+        {/* <Link to='/test'> */}
+        <span>© 2023 BlankHouse, Inc.</span>
+        {/* </Link> */}
         <span>Privacy</span>
         <span>Terms</span>
         <span>Sitemap</span>
@@ -32,7 +32,7 @@ const FooterBottom = () => {
         <span>
           <TwitterIcon />
         </span>
-        <span>
+        <span className='last'>
           <InstagramIcon />
         </span>
       </FooterS>

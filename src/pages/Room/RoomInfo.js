@@ -33,6 +33,11 @@ import RoomReviews from './RoomReviews';
 import Avatar from '../../components/Avatar/Avatar';
 import ShowMoreModal from '../../components/Show/ShowMoreModal';
 import RoomAmenity from './RoomAmenity';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  getAllAmenity,
+  getAllAmenityAsync,
+} from '../../redux/slices/roomSlice';
 
 const RoomInfo = ({
   roomInfo,
@@ -41,24 +46,37 @@ const RoomInfo = ({
   setPer_page,
   per_page,
   setpage,
+  modalReviewShown,
+  toggleReviewModal,
+  isShowReviews,
+  setIsShowReviews,
 }) => {
   const [loading, setLoading] = useState(false);
   const [modalAboutPlaceShown, toggleAboutPlaceModal] = useState(false);
   const [modalAmenityShown, toggleAmenityModal] = useState(false);
-  const [modalReviewShown, toggleReviewModal] = useState(false);
+  // const [modalReviewShown, toggleReviewModal] = useState(false);
   const [modalLocationShown, toggleLocationModal] = useState(false);
   const [modalThingsShown, toggleThingsModal] = useState(false);
 
-  const [isShowReviews, setIsShowReviews] = useState(false);
+  // const [isShowReviews, setIsShowReviews] = useState(false);
   const [checkInDate, setCheckInDate] = useState('');
   const [checkOutDate, setCheckOutDate] = useState('');
 
+  const roomAmenity = useSelector(getAllAmenity);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllAmenityAsync());
+  }, [dispatch]);
+
+  // console.log('roomAmenity', roomAmenity);
   // useEffect(() => {
   //   setPer_page('12');
   // }, []);
 
   return (
     <RoomDetailSection>
+      {/* Before Reviews */}
       <RoomMainDetails>
         <RoomMainDetailsWrap>
           <RoomDetailsTop>
@@ -87,6 +105,8 @@ const RoomInfo = ({
               />
             </AvatarHost>
           </RoomDetailsTop>
+
+          {/* 3 Services */}
           <RoomDetailsSections>
             <ul>
               <li>
@@ -118,6 +138,8 @@ const RoomInfo = ({
               </li>
             </ul>
           </RoomDetailsSections>
+
+          {/* About plce Modal Open */}
           <RoomDetailsSections>
             <h2>About this place</h2>
             <BasicIntro>{roomInfo?.description}</BasicIntro>
@@ -130,13 +152,13 @@ const RoomInfo = ({
               <ArrowForwardIosIcon sx={{ fontSize: '14px' }} />
             </ShowMoreBtn>
           </RoomDetailsSections>
-          {/* About plce Modal Open */}
           <ShowMoreModal
             toggleAboutPlaceModal={toggleAboutPlaceModal}
             modalAboutPlaceShown={modalAboutPlaceShown}
             roomInfo={roomInfo}
           />
 
+          {/* Num of bed */}
           <RoomDetailsSections>
             <h2>Where you'll sleep</h2>
             <SleepWrap>
@@ -145,15 +167,28 @@ const RoomInfo = ({
               <span>{roomInfo?.number_of_bed} bed</span>
             </SleepWrap>
           </RoomDetailsSections>
+
+          {/* Amenities */}
           <RoomDetailsSections id='viewAmenities'>
             <h2>What this place offers</h2>
-            <RoomAmenity roomInfo={roomInfo} />
-            <ShowAllBtn>
-              Show all {roomInfo?.amenities?.length} Amenities
+            <RoomAmenity roomInfo={roomInfo} roomAmenity={roomAmenity} />
+            <ShowAllBtn
+              onClick={() => {
+                toggleAmenityModal(!modalAmenityShown);
+              }}
+            >
+              Show all {roomAmenity?.length} Amenities
+              {/* Show all {roomInfo?.amenities?.length} Amenities */}
             </ShowAllBtn>
           </RoomDetailsSections>
+          <ShowMoreModal
+            toggleAmenityModal={toggleAmenityModal}
+            modalAmenityShown={modalAmenityShown}
+            roomInfo={roomInfo}
+          />
+
+          {/* Date */}
           <RoomDetailsSections>
-            {/* new Date(end.created_at).getTime() */}
             <h2>
               {new Date(checkOutDate).getDate() -
                 new Date(checkInDate).getDate()}{' '}
@@ -170,8 +205,11 @@ const RoomInfo = ({
             />
           </RoomDetailsSections>
         </RoomMainDetailsWrap>
+
+        {/* Room Side */}
         <RoomSide
           loading={loading}
+          roomId={roomId}
           roomInfo={roomInfo}
           roomReviewInfo={roomReviewInfo}
           checkInDate={checkInDate}
@@ -181,7 +219,7 @@ const RoomInfo = ({
         />
       </RoomMainDetails>
 
-      {/* reviews */}
+      {/* Reviews */}
       <RoomDetailsSections id='viewReviews'>
         <h2 className='rating'>
           <StarIcon sx={{ fontSize: '24px', marginRight: '5px' }} />
@@ -222,7 +260,7 @@ const RoomInfo = ({
         isShowReviews={isShowReviews}
       />
 
-      {/* Lodation */}
+      {/* Location */}
       <RoomDetailsSections id='viewLocation'>
         <h2>Where you’ll be</h2>
         <div>Map</div>
@@ -237,10 +275,14 @@ const RoomInfo = ({
           <ArrowForwardIosIcon sx={{ fontSize: '14px' }} />
         </ShowMoreBtn>
       </RoomDetailsSections>
+
+      {/* Host Info */}
       <RoomDetailsSections>
         <h2>Hosted by Grant</h2>
         <div>Host Info</div>
       </RoomDetailsSections>
+
+      {/* Thins to know */}
       <RoomDetailsSections>
         <h2>Things to know</h2>
         <ThingsToKnow>
@@ -278,9 +320,6 @@ const RoomInfo = ({
           </ThingsWrap>
         </ThingsToKnow>
       </RoomDetailsSections>
-      {/* </RoomMainDetailsWrap>
-                <RoomSide loading={loading} roomInfo={roomInfo} /> */}
-      {/* </RoomMainDetails> */}
     </RoomDetailSection>
   );
 };

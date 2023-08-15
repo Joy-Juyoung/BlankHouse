@@ -34,10 +34,42 @@ export const getRoomsByIdAsync = createAsyncThunk(
   }
 );
 
+export const getAllAmenityAsync = createAsyncThunk(
+  'room/getAllAmenity',
+  // async (_, thunkAPI) => {
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get('/rooms/amenities');
+      return response.data;
+    } catch (error) {
+      toast.error('getAllAmenity failed.');
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const bookRoomsByIdAsync = createAsyncThunk(
+  'room/bookRoomById',
+  async ({ roomId, checkIn, checkOut, guests }, thunkAPI) => {
+    try {
+      const response = await axios.post(`/rooms/${roomId}/bookings`, {
+        check_in: checkIn,
+        check_out: checkOut,
+        guests,
+      });
+      return response.data;
+    } catch (error) {
+      toast.error('bookRooms failed.');
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 const initialState = {
   allRooms: {},
-  // allRooms: [],
   roomById: {},
+  allAmenity: {},
+  bookingRoom: {},
   status: 'idle',
   error: null,
   selectRoom: {},
@@ -61,10 +93,6 @@ const roomSlice = createSlice({
       console.log('Fetched Successfully!');
       return { ...state, allRooms: payload };
     },
-    // [getAllRoomsAsync.fulfilled]: (state, { payload }) => {
-    //   console.log('Fetched Successfully!');
-    //   return { ...state, allRooms: payload.rooms }; // Assuming your API response has a 'rooms' property that holds the array
-    // },
     [getAllRoomsAsync.rejected]: (state, action) => {
       console.log('Rejected!');
       state.status = 'failed';
@@ -85,12 +113,44 @@ const roomSlice = createSlice({
       state.status = 'failed';
       state.error = action.payload;
     },
+
+    [getAllAmenityAsync.pending]: (state) => {
+      console.log('Pending');
+      state.status = 'Pending';
+      state.error = null;
+    },
+    [getAllAmenityAsync.fulfilled]: (state, { payload }) => {
+      console.log('Fetched Successfully!');
+      return { ...state, allAmenity: payload };
+    },
+    [getAllAmenityAsync.rejected]: (state, action) => {
+      console.log('Rejected!');
+      state.status = 'failed';
+      state.error = action.payload;
+    },
+
+    [bookRoomsByIdAsync.pending]: (state) => {
+      console.log('Pending');
+      state.status = 'Pending';
+      state.error = null;
+    },
+    [bookRoomsByIdAsync.fulfilled]: (state, { payload }) => {
+      console.log('Fetched Successfully!');
+      return { ...state, bookingRoom: payload };
+    },
+    [bookRoomsByIdAsync.rejected]: (state, action) => {
+      console.log('Rejected!');
+      state.status = 'failed';
+      state.error = action.payload;
+    },
   },
 });
 
 export const { removeSelectedRoom } = roomSlice.actions;
 export const getAllRoomInfo = (state) => state.room.allRooms.results;
 export const getRoomInfo = (state) => state.room.roomById;
+export const getAllAmenity = (state) => state.room.allAmenity;
+export const bookRoom = (state) => state.room.bookingRoom;
 export const getSelectedRoomInfo = (state) => state.room.selectRoom;
 export const selectStatus = (state) => state.room.status;
 export const selectError = (state) => state.room.error;

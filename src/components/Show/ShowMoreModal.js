@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import RoomAmenity from '../../pages/Room/RoomAmenity';
 import ModalLayout from '../Modals/ModalLayout';
 import {
   ModalContainer,
@@ -15,6 +16,8 @@ const ShowMoreModal = ({
   modalAboutPlaceShown,
   toggleReviewModal,
   modalReviewShown,
+  toggleAmenityModal,
+  modalAmenityShown,
   roomInfo,
   roomReviewInfo,
   setPer_page,
@@ -26,6 +29,9 @@ const ShowMoreModal = ({
   const onToggleClose = () => {
     if (modalAboutPlaceShown) {
       toggleAboutPlaceModal(false);
+    }
+    if (modalAmenityShown) {
+      toggleAmenityModal(false);
     }
     if (modalReviewShown) {
       toggleReviewModal(false);
@@ -42,11 +48,12 @@ const ShowMoreModal = ({
 
   return (
     <ModalLayout
-      shown={modalAboutPlaceShown || modalReviewShown}
+      shown={modalAboutPlaceShown || modalReviewShown || modalAmenityShown}
       close={onToggleClose}
       title={
         (modalAboutPlaceShown && 'About this place') ||
-        (modalReviewShown && 'Reviews')
+        (modalReviewShown && 'Reviews') ||
+        (modalAmenityShown && 'Amenities')
       }
     >
       <ModalContainer>
@@ -66,6 +73,7 @@ const ShowMoreModal = ({
                 isShowReviews={isShowReviews}
               />
             )}
+            {modalAmenityShown && <RoomAmenity roomInfo={roomInfo} />}
           </ModalMainSection>
         </ModalShowMain>
       </ModalContainer>

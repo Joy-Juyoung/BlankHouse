@@ -167,11 +167,11 @@ export const editUserAsync = createAsyncThunk(
         // gender,
         // language,
         // currency,
-        saveUsername,
-        saveEmail,
-        savePhone,
-        saveAddress,
-        saveEmergency,
+        username: saveUsername,
+        email: saveEmail,
+        phone_number: savePhone,
+        address: saveAddress,
+        emergency_contact: saveEmergency,
       });
       // toast.success('Edit profile successfully!', {
       //   position: toast.POSITION.TOP_CENTER,

@@ -41,7 +41,7 @@ const RoomSideBtn = styled.div`
   }
 `;
 
-const NormalButton = ({ loading, RoomData, buttonLabel }) => {
+const ColorButton = ({ loading, RoomData, buttonLabel }) => {
   const [hoverStyle, setHoverStyle] = useState({
     left: 0,
     top: 0,
@@ -68,4 +68,4 @@ const NormalButton = ({ loading, RoomData, buttonLabel }) => {
   );
 };
 
-export default NormalButton;
+export default ColorButton;

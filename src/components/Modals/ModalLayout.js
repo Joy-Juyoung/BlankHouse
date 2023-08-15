@@ -25,8 +25,8 @@ const ModalContentWrap = styled.div`
 `;
 
 const ModalContentWrapper = styled.div`
+  /* min-width: 680px; */
   width: 100%;
-  /* max-width: 680px; */
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -50,6 +50,8 @@ const ModalContentWrapper = styled.div`
 
 const ModalContent = styled.div`
   /* max-height: 780px; */
+  /* width: 60%; */
+  min-width: 680px;
   background-color: white;
   border-radius: 10px;
   z-index: 6;
