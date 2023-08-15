@@ -79,7 +79,7 @@ const RoomInfoHead = ({ roomInfo, roomReviewInfo }) => {
                     <span>{roomInfo?.rating?.toFixed(2)}</span>
                     <span className='coma'>·</span>
                     <span>
-                      <Link>{roomReviewInfo?.length} Reviews</Link>
+                      <Link>{roomReviewInfo?.total_objects} Reviews</Link>
                     </span>
                   </ReserveReview>
                 </HeaderReserveWrap>

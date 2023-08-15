@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const ModalShowMain = styled.div`
   padding: 0 25px;
   /* overflow-y: scroll; */
-  max-height: 650px;
+  max-height: 750px;
+  /* height: 100%; */
   align-items: center;
 `;
 

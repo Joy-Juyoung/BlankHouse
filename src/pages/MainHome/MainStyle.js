@@ -155,19 +155,36 @@ export const ToggleLike = styled.div`
 `;
 
 export const RoomLike = styled.button`
-  position: absolute;
-  top: 10px;
-  right: 5px;
-  border: none;
-  background: none;
-  z-index: 2;
+  &.card {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    border: none;
+    background: none;
+    z-index: 2;
 
-  &:active {
-    transform: translateY(4px);
+    &:active {
+      transform: translateY(4px);
+    }
+
+    svg {
+      cursor: pointer;
+    }
   }
 
-  svg {
-    cursor: pointer;
+  &.detail {
+    border: none;
+    background: none;
+    padding: 0;
+    z-index: 2;
+
+    &:active {
+      transform: translateY(4px);
+    }
+
+    svg {
+      cursor: pointer;
+    }
   }
 `;
 

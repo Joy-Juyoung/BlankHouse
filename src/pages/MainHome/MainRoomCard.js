@@ -14,15 +14,25 @@ import {
 } from './MainStyle';
 import RoomEachSk from './Skeletons/MainEachSk';
 import MainRoomSlider from './MainRoomSlider';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addRoomWishlistAsync,
+  RoomAddWishlist,
+  RoomAllWishlist,
+} from '../../redux/slices/wishlistSlice';
 
 const MainRoomCard = ({ room, loading }) => {
   const [fav, setFav] = useState(false);
   const [isBtnShown, setIsBtnShown] = useState(false);
 
+  const addWishlist = useSelector(RoomAddWishlist);
+  const dispatch = useDispatch();
+
   const handleLiked = (pk) => {
+    console.log('pk', pk);
     if (room) {
-      // var tempAllRooms = room;
       setFav(!fav);
+      dispatch(addRoomWishlistAsync({ room_pk: pk }));
     }
   };
 

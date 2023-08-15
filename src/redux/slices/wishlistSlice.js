@@ -22,13 +22,6 @@ export const addRoomWishlistAsync = createAsyncThunk(
       const response = await axios.put('/wishlists/rooms', {
         room_pk,
       });
-      // toast.success('Added to wishlist successfully!', {
-      //   position: toast.POSITION.TOP_CENTER,
-      //   closeButton: true,
-      //   autoClose: 1000,
-      //   progressBar: true,
-      //   allowHtml: true,
-      // });
       return response.data;
     } catch (error) {
       toast.error('Add wishlist failed', {

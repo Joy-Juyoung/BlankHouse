@@ -25,23 +25,37 @@ import BedIcon from '@mui/icons-material/Bed';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import PetsIcon from '@mui/icons-material/Pets';
 import TodayIcon from '@mui/icons-material/Today';
-import LocalLaundryServiceIcon from '@mui/icons-material/LocalLaundryService';
-import KitchenIcon from '@mui/icons-material/Kitchen';
-import WifiIcon from '@mui/icons-material/Wifi';
-import TvIcon from '@mui/icons-material/Tv';
-import MicrowaveIcon from '@mui/icons-material/Microwave';
+
 // import ShowMoreModal from '../../components/Modals/ShowMoreModalLayout';
 // import SearchDateBox from '../../components/Dropdown/SearchDateBox';
 import DateRange from '../../components/DateRange';
 import RoomReviews from './RoomReviews';
 import Avatar from '../../components/Avatar/Avatar';
 import ShowMoreModal from '../../components/Show/ShowMoreModal';
+import RoomAmenity from './RoomAmenity';
 
-const RoomInfo = ({ roomInfo, roomId, roomReviewInfo }) => {
+const RoomInfo = ({
+  roomInfo,
+  roomId,
+  roomReviewInfo,
+  setPer_page,
+  per_page,
+  setpage,
+}) => {
   const [loading, setLoading] = useState(false);
   const [modalAboutPlaceShown, toggleAboutPlaceModal] = useState(false);
+  const [modalAmenityShown, toggleAmenityModal] = useState(false);
+  const [modalReviewShown, toggleReviewModal] = useState(false);
+  const [modalLocationShown, toggleLocationModal] = useState(false);
+  const [modalThingsShown, toggleThingsModal] = useState(false);
+
+  const [isShowReviews, setIsShowReviews] = useState(false);
   const [checkInDate, setCheckInDate] = useState('');
   const [checkOutDate, setCheckOutDate] = useState('');
+
+  // useEffect(() => {
+  //   setPer_page('12');
+  // }, []);
 
   return (
     <RoomDetailSection>
@@ -117,11 +131,6 @@ const RoomInfo = ({ roomInfo, roomId, roomReviewInfo }) => {
             </ShowMoreBtn>
           </RoomDetailsSections>
           {/* About plce Modal Open */}
-          {/* <ShowMoreModalLayout
-            toggleAboutPlaceModal={toggleAboutPlaceModal}
-            modalAboutPlaceShown={modalAboutPlaceShown}
-            roomInfo={roomInfo}
-          /> */}
           <ShowMoreModal
             toggleAboutPlaceModal={toggleAboutPlaceModal}
             modalAboutPlaceShown={modalAboutPlaceShown}
@@ -138,41 +147,21 @@ const RoomInfo = ({ roomInfo, roomId, roomReviewInfo }) => {
           </RoomDetailsSections>
           <RoomDetailsSections id='viewAmenities'>
             <h2>What this place offers</h2>
-            <PlaceOffers>
-              <PlaceOffersList>
-                <KitchenIcon />
-                <span>Kitchen</span>
-              </PlaceOffersList>
-              <PlaceOffersList>
-                <WifiIcon />
-                <span>Wifi</span>
-              </PlaceOffersList>
-              <PlaceOffersList>
-                <LocalLaundryServiceIcon />
-                <span>Washer</span>
-              </PlaceOffersList>
-              <PlaceOffersList>
-                <TvIcon />
-                <span>Tv</span>
-              </PlaceOffersList>
-              <PlaceOffersList>
-                <MicrowaveIcon />
-                <span>Microwave</span>
-              </PlaceOffersList>
-              <PlaceOffersList>
-                <TvIcon />
-                <span>Tv</span>
-              </PlaceOffersList>
-              <PlaceOffersList>
-                <MicrowaveIcon />
-                <span>Microwave</span>
-              </PlaceOffersList>
-            </PlaceOffers>
-            <ShowAllBtn>Show all 00 Amenities</ShowAllBtn>
+            <RoomAmenity roomInfo={roomInfo} />
+            <ShowAllBtn>
+              Show all {roomInfo?.amenities?.length} Amenities
+            </ShowAllBtn>
           </RoomDetailsSections>
           <RoomDetailsSections>
-            <h2>0 nights in Cochrane</h2>
-            <p>Oct. 7, 2023 - Oct. 12, 2023</p>
+            {/* new Date(end.created_at).getTime() */}
+            <h2>
+              {new Date(checkOutDate).getDate() -
+                new Date(checkInDate).getDate()}{' '}
+              nights in {roomInfo?.city}
+            </h2>
+            <p>
+              {checkInDate} ~ {checkOutDate}
+            </p>
             <DateRange
               checkInDate={checkInDate}
               checkOutDate={checkOutDate}
@@ -187,18 +176,53 @@ const RoomInfo = ({ roomInfo, roomId, roomReviewInfo }) => {
           roomReviewInfo={roomReviewInfo}
           checkInDate={checkInDate}
           checkOutDate={checkOutDate}
+          setCheckInDate={setCheckInDate}
+          setCheckOutDate={setCheckOutDate}
         />
       </RoomMainDetails>
+
+      {/* reviews */}
       <RoomDetailsSections id='viewReviews'>
         <h2 className='rating'>
           <StarIcon sx={{ fontSize: '24px', marginRight: '5px' }} />
           <span>
-            {roomInfo?.rating?.toFixed(2)} / {roomReviewInfo?.length} reviews
+            {roomInfo?.rating?.toFixed(2)} / {roomReviewInfo?.total_objects}{' '}
+            reviews
           </span>
         </h2>
-        <RoomReviews roomInfo={roomInfo} roomReviewInfo={roomReviewInfo} />
-        <ShowAllBtn>Show all {roomReviewInfo?.length} Reviews</ShowAllBtn>
+        <RoomReviews
+          roomInfo={roomInfo}
+          roomReviewInfo={roomReviewInfo}
+          toggleReviewModal={toggleReviewModal}
+          modalReviewShown={modalReviewShown}
+          setIsShowReviews={setIsShowReviews}
+          // per_page={per_page}
+        />
+        <ShowAllBtn
+          onClick={() => {
+            toggleReviewModal(!modalReviewShown);
+            setIsShowReviews(true);
+            // setPer_page('14');
+            // setPer_page(roomReviewInfo?.total_objects.toString());
+          }}
+        >
+          Show all {roomReviewInfo?.total_objects} Reviews
+        </ShowAllBtn>
       </RoomDetailsSections>
+
+      <ShowMoreModal
+        toggleReviewModal={toggleReviewModal}
+        modalReviewShown={modalReviewShown}
+        roomInfo={roomInfo}
+        roomReviewInfo={roomReviewInfo}
+        setPer_page={setPer_page}
+        per_page={per_page}
+        setpage={setpage}
+        setIsShowReviews={setIsShowReviews}
+        isShowReviews={isShowReviews}
+      />
+
+      {/* Lodation */}
       <RoomDetailsSections id='viewLocation'>
         <h2>Where you’ll be</h2>
         <div>Map</div>

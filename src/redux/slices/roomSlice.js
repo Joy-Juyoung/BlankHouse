@@ -3,10 +3,11 @@ import axios from '../api/axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// const initialState = {};
+// const getRomsData = {keyword, category, rating, house_type};
 
 export const getAllRoomsAsync = createAsyncThunk(
   'room/getAllRoomInfo',
+  // async (_, thunkAPI) => {
   async (_, thunkAPI) => {
     try {
       const response = await axios.get('/rooms');
@@ -34,8 +35,8 @@ export const getRoomsByIdAsync = createAsyncThunk(
 );
 
 const initialState = {
-  // allRooms: {},
-  allRooms: [],
+  allRooms: {},
+  // allRooms: [],
   roomById: {},
   status: 'idle',
   error: null,
@@ -60,6 +61,10 @@ const roomSlice = createSlice({
       console.log('Fetched Successfully!');
       return { ...state, allRooms: payload };
     },
+    // [getAllRoomsAsync.fulfilled]: (state, { payload }) => {
+    //   console.log('Fetched Successfully!');
+    //   return { ...state, allRooms: payload.rooms }; // Assuming your API response has a 'rooms' property that holds the array
+    // },
     [getAllRoomsAsync.rejected]: (state, action) => {
       console.log('Rejected!');
       state.status = 'failed';
@@ -84,7 +89,7 @@ const roomSlice = createSlice({
 });
 
 export const { removeSelectedRoom } = roomSlice.actions;
-export const getAllRoomInfo = (state) => state.room.allRooms;
+export const getAllRoomInfo = (state) => state.room.allRooms.results;
 export const getRoomInfo = (state) => state.room.roomById;
 export const getSelectedRoomInfo = (state) => state.room.selectRoom;
 export const selectStatus = (state) => state.room.status;

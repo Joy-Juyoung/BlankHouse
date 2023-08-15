@@ -86,7 +86,9 @@ export const InputLabel = styled.span`
 
 export const SideDateInput = styled.div`
   display: flex;
+
   /* justify-content: space-evenly; */
+  /* position: relative; */
 `;
 
 export const DateValue = styled.p`
@@ -96,7 +98,16 @@ export const DateValue = styled.p`
 
 export const DateInput = styled.div`
   padding: 10px 15px;
+  z-index: 20;
   width: 100%;
+  /* width: 710px; */
+  position: relative;
+
+  &.dropOpen {
+    /* background: #f5f5f5; */
+    border: 1px solid #dddd;
+    border-radius: 10px;
+  }
 
   &.checkin {
     border-right: 1px solid #c4c4c4;
@@ -142,7 +153,7 @@ export const GuestsDropdown = styled.div`
   padding: 10px;
   /* width: 100%; */
   position: absolute;
-  top: 70px;
+  top: 60px;
   left: 0;
   right: 0;
   z-index: 5;

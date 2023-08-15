@@ -11,12 +11,10 @@ import DateRange from '../DateRange';
 const SearchDateDropdown = styled.div`
   background: #fff;
   padding: 10px;
-  /* width: 100%; */
   position: absolute;
   top: 70px;
   left: 50px;
   right: 50px;
-  /* right: -100px; */
   z-index: 5;
   cursor: auto;
 
@@ -31,7 +29,6 @@ const SearchDropBackDrop = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  /* background-color: rgba(0, 0, 0, 0.1); */
   display: flex;
   justify-content: center;
   align-items: center;
