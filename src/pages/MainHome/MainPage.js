@@ -53,7 +53,7 @@ const MainPage = ({ setIsPageMain }) => {
       <MainWrap>
         <MainTop>
           <MainTopCategory>
-            <MainCategorySlider loading={loading} visibleItems={15} />
+            <MainCategorySlider loading={loading} visibleItems={10} />
           </MainTopCategory>
           <MainTopFilter>
             <FilterBtn
