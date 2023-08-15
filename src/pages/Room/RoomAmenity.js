@@ -9,8 +9,10 @@ import LocalLaundryServiceIcon from '@mui/icons-material/LocalLaundryService';
 const RoomAmenity = ({ roomInfo, roomAmenity }) => {
   return (
     <PlaceOffers>
-      {/* {roomInfo?.amenities?.map((amenity) => { */}
-      {roomAmenity?.map((amenity) => {
+      {roomInfo?.amenities?.map((amenity) => {
+        {
+          /* {roomAmenity?.map((amenity) => { */
+        }
         return (
           <PlaceOffersList key={amenity?.pk}>
             <KitchenIcon />
