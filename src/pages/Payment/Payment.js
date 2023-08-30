@@ -23,7 +23,7 @@ import {
   PaymentList,
   PayList,
   PaymentSideImg,
-} from './PaymentSty';
+} from './PaymentStyle';
 import ColorButton from '../../components/Buttons/ColorButton';
 import { useNavigate, useParams } from 'react-router-dom';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
