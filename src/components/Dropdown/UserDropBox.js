@@ -123,10 +123,12 @@ const UserDropBox = ({
                 <li className='login'>
                   <span>Messages</span>
                 </li>
-                <li className='login'>
-                  <span>Trips</span>
-                </li>
-                <Link to='/wishlist' onClick={() => setIsUserDrop(false)}>
+                <Link to='/trips' onClick={() => setIsUserDrop(false)}>
+                  <li className='login'>
+                    <span>Trips</span>
+                  </li>{' '}
+                </Link>
+                <Link to='/account' onClick={() => setIsUserDrop(false)}>
                   <li className='login'>
                     <span>Wishlists</span>
                   </li>

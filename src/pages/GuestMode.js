@@ -25,6 +25,8 @@ import Account from './Account/Account';
 import Profile from './Account/Profile';
 import OnlineExp from './OnlineExperiences/OnlineExp';
 import Payment from './Payment/Payment';
+import Trips from './Trips/Trips';
+import BecomeHost from './Host/BecomeHost.js/BecomeHost';
 
 const GuestMode = () => {
   const [isPageMain, setIsPageMain] = useState(false);
@@ -75,16 +77,32 @@ const GuestMode = () => {
           element={<Wishlist setIsPageMain={setIsPageMain} />}
           exact={true}
         />
+
+        <Route
+          path='/trips'
+          element={<Trips setIsPageMain={setIsPageMain} />}
+          exact={true}
+        />
+
+        {/* Need Header Change */}
+        <Route
+          path='/host/become'
+          element={<BecomeHost setIsPageMain={setIsPageMain} />}
+          exact={true}
+        />
+
         <Route
           path='/account'
           element={<Account setIsPageMain={setIsPageMain} userMe={userMe} />}
           exact={true}
         />
+
         <Route
           path='/account/profile'
           element={<Profile setIsPageMain={setIsPageMain} userMe={userMe} />}
           exact={true}
         />
+
         <Route path='/experiences' element={<Experience />} exact={true} />
         <Route
           path='/experiences/:experiencesId'
