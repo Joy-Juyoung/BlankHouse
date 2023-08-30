@@ -128,7 +128,7 @@ const UserDropBox = ({
                     <span>Trips</span>
                   </li>{' '}
                 </Link>
-                <Link to='/account' onClick={() => setIsUserDrop(false)}>
+                <Link to='/wishlist' onClick={() => setIsUserDrop(false)}>
                   <li className='login'>
                     <span>Wishlists</span>
                   </li>
