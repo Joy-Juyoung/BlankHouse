@@ -5,10 +5,12 @@ import roomReviewSlice from '../slices/roomReviewSlice';
 import userReducer from '../slices/userSlice';
 import wishlistSlice from '../slices/wishlistSlice';
 import experiencesReducer from '../slices/experiences';
+import bookingReducer from '../slices/bookingSlice';
 
 const reducer = {
   user: userReducer,
   room: roomReducer,
+  booking: bookingReducer,
   category: categoryReducer,
   review: roomReviewSlice,
   wishlist: wishlistSlice,

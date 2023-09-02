@@ -30,7 +30,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  bookRoomsByIdAsync,
+  // bookRoomsByIdAsync,
   getRoomInfo,
   getRoomsByIdAsync,
 } from '../../redux/slices/roomSlice';
@@ -44,6 +44,7 @@ import {
 } from '../Room/RoomSideStyle';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { bookRoomsByIdAsync } from '../../redux/slices/bookingSlice';
 
 const Payment = ({ setIsPageMain, location }) => {
   const navigate = useNavigate();
