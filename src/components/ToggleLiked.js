@@ -8,7 +8,7 @@ import {
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
-const ToggleLiked = ({ room, roomInfo, roomId }) => {
+const ToggleLiked = ({ room, roomInfo, roomId, isPhotoFav }) => {
   const [fav, setFav] = useState(false);
   const [roomPk, setRoomPk] = useState();
 
@@ -24,7 +24,7 @@ const ToggleLiked = ({ room, roomInfo, roomId }) => {
       const isLiked = roomInfo.is_liked || false;
       setFav(isLiked);
     }
-  }, [room, roomInfo]);
+  }, [room, roomInfo, isPhotoFav]);
 
   const handleLiked = (pk) => {
     setRoomPk(pk);
