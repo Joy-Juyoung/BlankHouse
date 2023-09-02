@@ -29,9 +29,10 @@ import {
 import ToggleLiked from '../../components/ToggleLiked';
 
 const Room = ({ setIsPageMain }) => {
-  const [fav, setFav] = useState(false);
+  // const [fav, setFav] = useState(false);
   const [loading, setLoading] = useState(false);
   const [modalPhotoShown, togglePhotoModal] = useState(false);
+  const [isPhotoFav, setIsPhotoFav] = useState(false);
   const [modalReviewShown, toggleReviewModal] = useState(false);
   const [isShowReviews, setIsShowReviews] = useState(false);
   const [per_page, setPer_page] = useState('6');
@@ -52,6 +53,14 @@ const Room = ({ setIsPageMain }) => {
     togglePhotoModal(!modalPhotoShown);
     document.body.style.overflow = 'hidden';
   };
+
+  useEffect(() => {
+    if (modalPhotoShown === true) {
+      setIsPhotoFav(true);
+    } else {
+      setIsPhotoFav(false);
+    }
+  }, [modalPhotoShown]);
 
   // console.log('roomsById', roomInfo);
   // console.log('roomReviews', roomReviewInfo);
@@ -101,7 +110,11 @@ const Room = ({ setIsPageMain }) => {
                   <span>Share</span>
                 </button>
                 <button>
-                  <ToggleLiked roomInfo={roomInfo} roomId={roomId} />
+                  <ToggleLiked
+                    roomInfo={roomInfo}
+                    roomId={roomId}
+                    isPhotoFav={isPhotoFav}
+                  />
                   <span>Save</span>
                 </button>
               </RoomTopInfo>
@@ -116,11 +129,13 @@ const Room = ({ setIsPageMain }) => {
               </ShowPhotoBtn>
             </RoomMainPhotos>
 
-            {/* About place Modal Open */}
+            {/* Photo Modal Open */}
             <ShowPhotoModal
               togglePhotoModal={togglePhotoModal}
               modalPhotoShown={modalPhotoShown}
               roomInfo={roomInfo}
+              roomId={roomId}
+              isPhotoFav={isPhotoFav}
             />
 
             <RoomInfo

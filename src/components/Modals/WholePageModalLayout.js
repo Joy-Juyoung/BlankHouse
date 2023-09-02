@@ -5,6 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import ShareIcon from '@mui/icons-material/Share';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import ToggleLiked from '../ToggleLiked';
 
 const ModalBackDrop = styled.div`
   position: fixed;
@@ -46,7 +47,14 @@ const ModalContent = styled.div`
   }
 `;
 
-const WholePageModal = ({ children, shown, close, title }) => {
+const WholePageModal = ({
+  children,
+  shown,
+  close,
+  title,
+  dataInfo,
+  dataId,
+}) => {
   const [fav, setFav] = useState(false);
 
   return shown ? (
@@ -60,7 +68,7 @@ const WholePageModal = ({ children, shown, close, title }) => {
           e.stopPropagation();
         }}
       >
-        <ModalTop>
+        {/* <ModalTop>
           <ModalCloseBtn
             onClick={() => {
               close();
@@ -74,16 +82,11 @@ const WholePageModal = ({ children, shown, close, title }) => {
               <span>Share</span>
             </button>
             <button onClick={(e) => setFav(!fav)}>
-              {fav ? (
-                <FavoriteIcon sx={{ fontSize: '18px', color: '#e20000' }} />
-              ) : (
-                <FavoriteBorderIcon sx={{ fontSize: '18px', color: '#000' }} />
-              )}
+              <ToggleLiked dataInfo={dataInfo} dataId={dataId} />
               <span>Save</span>
             </button>
           </ModalRightBtns>
-        </ModalTop>
-
+        </ModalTop> */}
         {children}
       </ModalContent>
     </ModalBackDrop>
