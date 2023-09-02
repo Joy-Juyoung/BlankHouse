@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const getAllBookingAsync = createAsyncThunk(
-  'room/getAllBookingInfo',
+  'booking/getAllBookingInfo',
   async (_, thunkAPI) => {
     try {
       const response = await axios.get('/bookings');
@@ -16,8 +16,21 @@ export const getAllBookingAsync = createAsyncThunk(
   }
 );
 
+export const getBookingByIdAsync = createAsyncThunk(
+  'booking/getBookingInfo',
+  async ({ bookId }, thunkAPI) => {
+    try {
+      const response = await axios.get(`/bookings/${bookId}`);
+      return response.data;
+    } catch (error) {
+      toast.error('Load getBookingById failed.');
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const bookRoomsByIdAsync = createAsyncThunk(
-  'room/bookRoomById',
+  'booking/bookRoomById',
   async ({ roomId, checkIn, checkOut, guests }, thunkAPI) => {
     try {
       const response = await axios.post(`/rooms/${roomId}/bookings`, {
@@ -35,6 +48,7 @@ export const bookRoomsByIdAsync = createAsyncThunk(
 
 const initialState = {
   allBooking: {},
+  bookingDetail: {},
   bookingRoom: {},
   status: 'idle',
   error: null,
@@ -65,6 +79,21 @@ const bookingSlice = createSlice({
       state.error = action.payload;
     },
 
+    [getBookingByIdAsync.pending]: (state) => {
+      console.log('Pending');
+      state.status = 'Pending';
+      state.error = null;
+    },
+    [getBookingByIdAsync.fulfilled]: (state, { payload }) => {
+      console.log('Fetched Successfully!');
+      return { ...state, bookingDetail: payload };
+    },
+    [getBookingByIdAsync.rejected]: (state, action) => {
+      console.log('Rejected!');
+      state.status = 'failed';
+      state.error = action.payload;
+    },
+
     [bookRoomsByIdAsync.pending]: (state) => {
       console.log('Pending');
       state.status = 'Pending';
@@ -83,6 +112,7 @@ const bookingSlice = createSlice({
 });
 
 export const getAllBookingInfo = (state) => state.booking.allBooking;
+export const getBookingDetail = (state) => state.booking.bookingDetail;
 export const bookRoom = (state) => state.booking.bookingRoom;
 export const selectStatus = (state) => state.booking.status;
 export const selectError = (state) => state.booking.error;
