@@ -7,7 +7,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export const getAllRoomsAsync = createAsyncThunk(
   'room/getAllRoomInfo',
-  // async (_, thunkAPI) => {
   async (_, thunkAPI) => {
     try {
       const response = await axios.get('/rooms');

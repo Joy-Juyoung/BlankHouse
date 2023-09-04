@@ -27,6 +27,7 @@ import OnlineExp from './OnlineExperiences/OnlineExp';
 import Payment from './Payment/Payment';
 import Trips from './Trips/Trips';
 import BecomeHost from './Host/BecomeHost.js/BecomeHost';
+import TripsDetails from './Trips/TripsDetails';
 
 const GuestMode = () => {
   const [isPageMain, setIsPageMain] = useState(false);
@@ -81,6 +82,12 @@ const GuestMode = () => {
         <Route
           path='/trips'
           element={<Trips setIsPageMain={setIsPageMain} />}
+          exact={true}
+        />
+
+        <Route
+          path='/trips/:bookId'
+          element={<TripsDetails setIsPageMain={setIsPageMain} />}
           exact={true}
         />
 

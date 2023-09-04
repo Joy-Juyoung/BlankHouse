@@ -1,73 +1,84 @@
 import React, { useEffect, useState } from 'react';
 import { MainSmallContainer, MainWrap } from '../MainHome/MainStyle';
-import { TripCardInfo, TripList, TripWrapper } from './TripsStyle';
-import TestPic from '../../assets/images/soon.jpg';
+import { TripListWrapper, TripWrapper } from './TripsStyle';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getAllBookingAsync,
   getAllBookingInfo,
-  getBookingByIdAsync,
-  getBookingDetail,
 } from '../../redux/slices/bookingSlice';
+import TripListCard from './TripListCard';
 
 const Trips = ({ setIsPageMain }) => {
-  const [bookId, setBookId] = useState();
   const allBookingInfo = useSelector(getAllBookingInfo);
-  const bookingInfo = useSelector(getBookingDetail);
   const dispatch = useDispatch();
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     setIsPageMain(false);
     dispatch(getAllBookingAsync());
-    dispatch(getBookingByIdAsync(bookId));
   }, [dispatch]);
 
   console.log('All Bookings', allBookingInfo);
-  console.log('bookingInfo', bookingInfo);
 
   return (
     <MainSmallContainer>
       <h1>Trips</h1>
       <MainWrap>
-        <TripWrapper>
+        <TripWrapper className='upcomingList'>
           <h2>Upcoming trips</h2>
-          {allBookingInfo?.map((book) => {
-            return (
-              <TripList key={book?.pk} onClick={() => setBookId(book?.pk)}>
-                <img src={TestPic} alt='' />
-                <TripCardInfo>
-                  <p>{book?.room?.name}</p>
-                  <span>Location</span>
-                  <span>
-                    {book?.check_in} ~ {book?.check_out}
-                  </span>
-                </TripCardInfo>
-              </TripList>
-            );
-          })}
+          <TripListWrapper>
+            {/* check to ensure that allBookingInfo is an array before attempting to map */}
+            {Array.isArray(allBookingInfo) &&
+              allBookingInfo
+                ?.filter((book) => {
+                  // Convert book?.check_in to a Date object
+                  const checkInDate = new Date(book?.check_in);
+                  // Get today's date
+                  const today = new Date();
+
+                  // Compare the check-in date with today's date
+                  return book?.status !== 'canceled' && checkInDate >= today;
+                })
+                .sort((a, b) => {
+                  // Convert a and b's check_in dates to Date objects
+                  const dateA = new Date(a?.check_in);
+                  const dateB = new Date(b?.check_in);
+
+                  // Compare the dates for sorting
+                  return dateA - dateB;
+                })
+                .map((book) => {
+                  return <TripListCard key={book?.pk} book={book} />;
+                })}
+          </TripListWrapper>
         </TripWrapper>
         <TripWrapper>
           <h2>Where you’ve been</h2>
-          <TripList>
-            <img src={TestPic} alt='' />
-            <TripCardInfo>
-              <p>Name</p>
-              <span>Location</span>
-              <span>Date</span>
-            </TripCardInfo>
-          </TripList>
+          <TripListWrapper>
+            {Array.isArray(allBookingInfo) &&
+              allBookingInfo
+                ?.filter((book) => {
+                  const checkInDate = new Date(book?.check_in);
+                  const today = new Date();
+                  return book?.status !== 'canceled' && checkInDate < today;
+                })
+                ?.map((book) => {
+                  return <TripListCard key={book?.pk} book={book} />;
+                })}
+          </TripListWrapper>
         </TripWrapper>
         <TripWrapper>
-          <h2>Cancelled trips</h2>
-          <TripList>
-            <img src={TestPic} alt='' />
-            <TripCardInfo>
-              <p>Name</p>
-              <span>Location</span>
-              <span>Date</span>
-            </TripCardInfo>
-          </TripList>
+          <h2>Canceled trips</h2>
+          <TripListWrapper>
+            {Array.isArray(allBookingInfo) &&
+              allBookingInfo
+                ?.filter((book) => {
+                  return book?.status === 'canceled';
+                })
+                ?.map((book) => {
+                  return <TripListCard key={book?.pk} book={book} />;
+                })}
+          </TripListWrapper>
         </TripWrapper>
       </MainWrap>
     </MainSmallContainer>

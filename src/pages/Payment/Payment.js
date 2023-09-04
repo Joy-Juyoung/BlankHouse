@@ -68,7 +68,7 @@ const Payment = ({ setIsPageMain, location }) => {
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     setIsPageMain(false);
-    dispatch(getRoomsByIdAsync({ roomId }));
+    // dispatch(getRoomsByIdAsync({ roomId }));
   }, [dispatch, roomId]);
 
   const handleSubmit = (event) => {
