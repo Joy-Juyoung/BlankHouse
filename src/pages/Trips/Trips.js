@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { MainSmallContainer, MainWrap } from '../MainHome/MainStyle';
 import { TripListWrapper, TripWrapper } from './TripsStyle';
 import { useDispatch, useSelector } from 'react-redux';
