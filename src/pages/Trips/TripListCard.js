@@ -25,7 +25,7 @@ const TripListCard = ({ book }) => {
             (book?.status === 'canceled' && 'canceled')
           }
         >
-          {book?.status}
+          {book?.status?.toUpperCase()}
         </span>
       </TripStatus>
     </TripList>

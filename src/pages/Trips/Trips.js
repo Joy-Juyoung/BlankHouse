@@ -24,7 +24,7 @@ const Trips = ({ setIsPageMain }) => {
     <MainSmallContainer>
       <h1>Trips</h1>
       <MainWrap>
-        <TripWrapper>
+        <TripWrapper className='upcomingList'>
           <h2>Upcoming trips</h2>
           <TripListWrapper>
             {/* check to ensure that allBookingInfo is an array before attempting to map */}
