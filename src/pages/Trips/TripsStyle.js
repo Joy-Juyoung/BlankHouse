@@ -1,9 +1,18 @@
 import styled from 'styled-components';
 
-export const TripWrapper = styled.div``;
+export const TripWrapper = styled.div`
+  /* display: grid;
+  grid-template-columns: repeat(2, 1fr); */
+`;
+
+export const TripListWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+`;
 
 export const TripList = styled.div`
   display: flex;
+  margin: 10px 0;
 
   img {
     width: 100px;

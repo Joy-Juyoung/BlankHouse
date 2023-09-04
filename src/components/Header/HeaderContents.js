@@ -37,15 +37,13 @@ const HeaderContens = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
   const dropdownRef = useRef(null);
   const [modalSearchShown, toggleSearchModal] = useState(false);
   const [isUserDrop, setIsUserDrop] = useState(false);
-  // const [isUserLogIn, setIsUserLogIn] = useState(false);
-  // const userLogout = useSelector(logoutUser);
-  // const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(logoutAsync());
-  // }, [dispatch]);
-
+  console.log('isUserLogIn', isUserLogIn);
   console.log('userMe', userMe);
+
+  window.onbeforeunload = function () {
+    localStorage.clear();
+  };
 
   return (
     <>
@@ -98,7 +96,7 @@ const HeaderContens = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
           </CountrySetting>
         </HeaderRightSection>
         <HeaderRightSection>
-          {isUserLogIn || JSON.parse(localStorage.getItem('user')) ? (
+          {(isUserLogIn || JSON.parse(localStorage.getItem('user'))) && (
             <UserSetting
               onClick={() => {
                 setIsUserDrop(!isUserDrop);
@@ -116,7 +114,8 @@ const HeaderContens = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
                 </span>
               </LogBtn>
             </UserSetting>
-          ) : (
+          )}
+          {!isUserLogIn && (
             <UserSetting
               onClick={() => {
                 setIsUserDrop(!isUserDrop);
