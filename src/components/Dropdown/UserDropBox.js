@@ -117,7 +117,8 @@ const UserDropBox = ({
         }}
       >
         <UserDropdownWrap>
-          {(isUserLogIn || JSON.parse(localStorage.getItem('user'))) && (
+          {/* {(isUserLogIn || JSON.parse(localStorage.getItem('user'))) && ( */}
+          {isUserLogIn || JSON.parse(localStorage.getItem('user')) ? (
             <>
               <ul>
                 <li className='login'>
@@ -155,8 +156,10 @@ const UserDropBox = ({
                 </li>
               </ul>
             </>
-          )}
-          {!isUserLogIn && (
+          ) : (
+            // )}
+            // {!isUserLogIn &&
+            //   JSON.parse(localStorage.getItem('user')) === null && (
             <>
               <ul>
                 <li

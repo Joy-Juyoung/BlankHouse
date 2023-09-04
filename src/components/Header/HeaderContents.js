@@ -96,7 +96,8 @@ const HeaderContens = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
           </CountrySetting>
         </HeaderRightSection>
         <HeaderRightSection>
-          {(isUserLogIn || JSON.parse(localStorage.getItem('user'))) && (
+          {/* {(isUserLogIn || JSON.parse(localStorage.getItem('user'))) && ( */}
+          {isUserLogIn || JSON.parse(localStorage.getItem('user')) ? (
             <UserSetting
               onClick={() => {
                 setIsUserDrop(!isUserDrop);
@@ -114,8 +115,10 @@ const HeaderContens = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
                 </span>
               </LogBtn>
             </UserSetting>
-          )}
-          {!isUserLogIn && (
+          ) : (
+            // )}
+            // {!isUserLogIn &&
+            //   JSON.parse(localStorage.getItem('user')) === null && (
             <UserSetting
               onClick={() => {
                 setIsUserDrop(!isUserDrop);
