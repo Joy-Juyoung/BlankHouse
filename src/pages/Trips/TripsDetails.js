@@ -1,28 +1,177 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import {
-  getBookingByIdAsync,
-  getBookingDetail,
-} from '../../redux/slices/bookingSlice';
+  TripContainer,
+  TripDate,
+  TripDateWrapper,
+  TripDetailsWrapper,
+  TripInfo,
+  TripInfoLine,
+  TripInfoMore,
+  TripInfoText,
+  TripPhotoCover,
+  TripPhotos,
+  TripWrap,
+} from './TripsStyle';
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
+import HomeIcon from '@mui/icons-material/Home';
+import PeopleIcon from '@mui/icons-material/People';
+import PrintIcon from '@mui/icons-material/Print';
+import ReceiptIcon from '@mui/icons-material/Receipt';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import PersonIcon from '@mui/icons-material/Person';
+import HelpCenterIcon from '@mui/icons-material/HelpCenter';
+import TestPhoto from '../../assets/images/soon.jpg';
 
-const TripsDetails = ({ setIsPageMain }) => {
-  const { bookId } = useParams();
-  const bookingInfo = useSelector(getBookingDetail);
-  const dispatch = useDispatch();
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-    setIsPageMain(false);
-    dispatch(getBookingByIdAsync({ bookId }));
-  }, [dispatch]);
-
+const TripsDetails = ({ book, bookingInfo }) => {
   console.log('bookingInfo', bookingInfo);
 
   return (
-    <div>
-      <div>TripsDetails</div>
-    </div>
+    <TripContainer>
+      <TripWrap>
+        <TripPhotos>
+          <img src={TestPhoto} alt='' />
+          <TripPhotoCover>
+            <h2>You stay at HostName's place</h2>
+            <span>
+              <KeyboardArrowRightIcon />
+            </span>
+          </TripPhotoCover>
+        </TripPhotos>
+        <TripDetailsWrapper>
+          <TripInfo className='first check'>
+            <TripDate>
+              <TripDateWrapper className='left'>
+                <span>Check-in</span>
+                <p>{bookingInfo?.check_in}</p>
+                <span className='time'>checkin time</span>
+              </TripDateWrapper>
+              <TripDateWrapper>
+                <span>Check-out</span>
+                <p>{bookingInfo?.check_out}</p>
+                <span className='time'>checkout time</span>
+              </TripDateWrapper>
+            </TripDate>
+          </TripInfo>
+          <TripInfo>
+            <TripInfoLine>
+              <QuestionAnswerIcon sx={{ fontSize: 35 }} />
+              <TripInfoText>
+                <p>Message your Host</p>
+                <span>Host name</span>
+              </TripInfoText>
+            </TripInfoLine>
+          </TripInfo>
+          <TripInfo>
+            <TripInfoLine>
+              <HomeIcon sx={{ fontSize: 35 }} />
+              <TripInfoText>
+                <p>Your Place</p>
+                <span>Location</span>
+              </TripInfoText>
+            </TripInfoLine>
+          </TripInfo>
+        </TripDetailsWrapper>
+
+        <TripDetailsWrapper>
+          <h2>Reservation details</h2>
+          <TripInfo className='first'>
+            <TripInfoText>
+              <p>Who’s coming</p>
+              <span>{bookingInfo?.guests} guests</span>
+            </TripInfoText>
+            <PeopleIcon sx={{ fontSize: 45 }} />
+          </TripInfo>
+          <TripInfo>
+            <TripInfoText>
+              <p>Confirmation code</p>
+              {/* need */}
+              <span>HM9TEP3Z8D</span>
+            </TripInfoText>
+          </TripInfo>
+          <TripInfo>
+            <TripInfoText>
+              <p>Cancellation policy</p>
+              {/* need */}
+              <span>
+                Free cancellation before 12:00 p.m. on Feb. 1.
+                {/* Cancel before check-in at 12:00 p.m. on Feb. 2 for a partial refund. */}
+              </span>
+              <button>Read more</button>
+            </TripInfoText>
+          </TripInfo>
+          <TripInfo>
+            <TripInfoMore>
+              <PrintIcon />
+              <span>Print details</span>
+              <NavigateNextIcon />
+            </TripInfoMore>
+          </TripInfo>
+        </TripDetailsWrapper>
+
+        <TripDetailsWrapper>
+          <h2>Rules and instructions</h2>
+          <TripInfo className='first'>
+            <TripInfoText>
+              <p>House rules</p>
+              <span>4 guests maximum Pets allowed No parties or events</span>
+              <button>Show more</button>
+            </TripInfoText>
+          </TripInfo>
+        </TripDetailsWrapper>
+
+        <TripDetailsWrapper>
+          <h2>Hosted by</h2>
+          <TripInfo className='first'>
+            <TripInfoLine>
+              <PersonIcon />
+              <TripInfoText>
+                <p>Host name</p>
+                <span>Host rating</span>
+                <button>Show more</button>
+              </TripInfoText>
+            </TripInfoLine>
+          </TripInfo>
+        </TripDetailsWrapper>
+
+        <TripDetailsWrapper>
+          <h2>Payment info</h2>
+          <TripInfo className='first'>
+            <TripInfoText>
+              <p>Total cost</p>
+              <span>${bookingInfo?.total_cost}</span>
+            </TripInfoText>
+          </TripInfo>
+          <TripInfo>
+            <TripInfoMore>
+              <ReceiptIcon />
+              <span>Get receipt</span>
+            </TripInfoMore>
+            <NavigateNextIcon />
+          </TripInfo>
+        </TripDetailsWrapper>
+
+        <TripDetailsWrapper>
+          <h2>Get support anytime</h2>
+          <TripInfo className='first'>
+            <TripInfoText>
+              <span>
+                If you need help, we’re available 24/7 from anywhere in the
+                world.
+              </span>
+            </TripInfoText>
+          </TripInfo>
+          <TripInfo>
+            <TripInfoMore>
+              <HelpCenterIcon />
+              <span>Help Centre</span>
+            </TripInfoMore>
+            <NavigateNextIcon />
+          </TripInfo>
+        </TripDetailsWrapper>
+      </TripWrap>
+    </TripContainer>
   );
 };
 

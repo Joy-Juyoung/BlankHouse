@@ -1,8 +1,9 @@
 import React from 'react';
+import { WholePageContents } from './StepStyle';
 
 const HostStep1 = () => {
   return (
-    <div>
+    <WholePageContents>
       <span>Step 1</span>
       <h1>Tell us about your place</h1>
       <p>
@@ -10,7 +11,7 @@ const HostStep1 = () => {
         guests will book the entire place or just a room. Then let us know the
         location and how many guests can stay.
       </p>
-    </div>
+    </WholePageContents>
   );
 };
 

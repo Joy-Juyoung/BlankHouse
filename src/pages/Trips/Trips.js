@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { MainSmallContainer, MainWrap } from '../MainHome/MainStyle';
+import { MainSmallContainer, MainTitle, MainWrap } from '../MainHome/MainStyle';
 import { TripListWrapper, TripWrapper } from './TripsStyle';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -22,7 +22,7 @@ const Trips = ({ setIsPageMain }) => {
 
   return (
     <MainSmallContainer>
-      <h1>Trips</h1>
+      <MainTitle>Trips</MainTitle>
       <MainWrap>
         <TripWrapper className='upcomingList'>
           <h2>Upcoming trips</h2>

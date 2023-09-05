@@ -68,25 +68,6 @@ const WholePageModal = ({
           e.stopPropagation();
         }}
       >
-        {/* <ModalTop>
-          <ModalCloseBtn
-            onClick={() => {
-              close();
-            }}
-          >
-            <CloseIcon fontSize='small' />
-          </ModalCloseBtn>
-          <ModalRightBtns>
-            <button>
-              <ShareIcon sx={{ fontSize: '18px' }} />
-              <span>Share</span>
-            </button>
-            <button onClick={(e) => setFav(!fav)}>
-              <ToggleLiked dataInfo={dataInfo} dataId={dataId} />
-              <span>Save</span>
-            </button>
-          </ModalRightBtns>
-        </ModalTop> */}
         {children}
       </ModalContent>
     </ModalBackDrop>
