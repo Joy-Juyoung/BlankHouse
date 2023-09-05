@@ -42,7 +42,7 @@ const GuestMode = () => {
 
   useEffect(() => {
     // Check if the pathname starts with '/host/'
-    setIsHost(location.pathname.startsWith('/host/'));
+    setIsHost(location.pathname.startsWith('/host'));
   }, [location.pathname]);
 
   useEffect(() => {

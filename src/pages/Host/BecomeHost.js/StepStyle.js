@@ -25,6 +25,7 @@ export const LogoWrapper = styled.div`
 
   img {
     height: 50%;
+    cursor: pointer;
   }
 `;
 
@@ -35,8 +36,11 @@ export const ButtonsWrapper = styled.div`
     background: none;
     padding: 10px;
     margin-left: 10px;
+    cursor: pointer;
   }
 `;
+
+// ----footer
 
 export const BecomeFooter = styled.div`
   position: fixed;

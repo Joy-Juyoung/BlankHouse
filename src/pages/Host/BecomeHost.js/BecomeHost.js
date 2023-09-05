@@ -14,18 +14,21 @@ import {
   Progressbar,
 } from './StepStyle';
 import Logo from '../../../assets/logo-bl.png';
+import { useNavigate } from 'react-router-dom';
 
 const BecomeHost = () => {
+  const navigate = useNavigate();
+
   return (
     <BecomeContainer>
       {/* Header Change */}
       <BecomeHeader>
         <LogoWrapper>
-          <img src={Logo} alt='' />
+          <img src={Logo} alt='' onClick={() => navigate('/')} />
         </LogoWrapper>
         <ButtonsWrapper>
           <button>Questions?</button>
-          <button>Save & Exit</button>
+          <button onClick={() => navigate(-1)}>Save & Exit</button>
         </ButtonsWrapper>
       </BecomeHeader>
 
