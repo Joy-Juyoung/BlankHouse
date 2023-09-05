@@ -13,13 +13,6 @@ function App() {
       <Router>
         <GuestMode />
       </Router>
-      {/* <Header />
-      <MainPage /> */}
-      {/* <Router>
-        <Routes>
-          <Route path='/' element={<MainPage />} exact={true} />
-        </Routes>
-      </Router> */}
     </>
   );
 }

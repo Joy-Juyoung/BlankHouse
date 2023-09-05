@@ -55,8 +55,8 @@ const RoomInfo = ({
   const [modalAboutPlaceShown, toggleAboutPlaceModal] = useState(false);
   const [modalAmenityShown, toggleAmenityModal] = useState(false);
   // const [modalReviewShown, toggleReviewModal] = useState(false);
-  const [modalLocationShown, toggleLocationModal] = useState(false);
-  const [modalThingsShown, toggleThingsModal] = useState(false);
+  // const [modalLocationShown, toggleLocationModal] = useState(false);
+  // const [modalThingsShown, toggleThingsModal] = useState(false);
 
   // const [isShowReviews, setIsShowReviews] = useState(false);
   const [checkInDate, setCheckInDate] = useState('');

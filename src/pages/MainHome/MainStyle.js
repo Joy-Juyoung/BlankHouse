@@ -43,6 +43,10 @@ export const MainSmallContainer = styled.div`
   }
 `;
 
+export const MainTitle = styled.h1`
+  margin: 40px 0;
+`;
+
 export const MainWrap = styled.div`
   display: flex;
   flex-direction: column;

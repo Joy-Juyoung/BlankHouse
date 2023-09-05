@@ -6,6 +6,11 @@ export const ModalShowMain = styled.div`
   max-height: 750px;
   /* height: 100%; */
   align-items: center;
+
+  &.trips {
+    background: #f5f5f5;
+    overflow-y: scroll;
+  }
 `;
 
 export const ShowWrap = styled.div`
