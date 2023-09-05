@@ -19,7 +19,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchModal from './SearchModal';
-import Logo from '../../assets/images/logo.png';
+import Logo from '../../assets/logo.png';
 import LogInModal from './LogInModal';
 
 import { Link } from 'react-router-dom';
