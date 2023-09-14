@@ -25,7 +25,7 @@ import Profile from './Account/Profile';
 import OnlineExp from './OnlineExperiences/OnlineExp';
 import Payment from './Payment/Payment';
 import Trips from './Trips/Trips';
-import BecomeHost from './Host/BecomeHost.js/BecomeHost';
+// import BecomeHost from './Host/BecomeHost.js/BecomeHost';
 import TripsDetails from './Trips/TripsDetails';
 import HostMode from './HostMode';
 

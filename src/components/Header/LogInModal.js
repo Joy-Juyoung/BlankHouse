@@ -10,6 +10,7 @@ import {
   GotoSignup,
   LoginBtn,
   LoginInputWrap,
+  LoginTitle,
   LoginWithBtn,
   LoginWrap,
   ModalLoginMain,
@@ -75,7 +76,8 @@ const LogInModal = ({
       <ModalContainer>
         <ModalLoginMain>
           <ModalMainSection>
-            <ModalTitle>Welcome to Blankhouse</ModalTitle>
+            {/* <ModalTitle>Welcome to Blankhouse</ModalTitle> */}
+            <LoginTitle>Welcome to Blankhouse</LoginTitle>
             {/* <form onSubmit={handleSubmit> */}
             <form onSubmit={handleSubmit}>
               <LoginWrap>

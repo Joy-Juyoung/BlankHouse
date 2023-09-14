@@ -36,6 +36,10 @@ export const ModalTop = styled.div`
 export const ModalTitle = styled.div`
   font-size: 18px;
   font-weight: 600;
+  /* margin: 10px auto;
+  text-align: center; */
+  /* display: flex;
+  align-items: center; */
 `;
 
 export const ModalCloseBtn = styled.button`
