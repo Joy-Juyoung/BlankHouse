@@ -5,6 +5,7 @@ import {
   TripList,
   TripStatus,
   TripInfoDetails,
+  TripsCardWrap,
 } from './TripsStyle';
 import TestPic from '../../assets/images/soon.jpg';
 import ShowTripModal from '../../components/Show/ShowTripModal';
@@ -35,38 +36,40 @@ const TripListCard = ({ book }) => {
         handleOpenTrip(book?.pk);
       }}
     >
-      <img src={TestPic} alt='' />
-      <TripCardInfo>
-        <TripInfoTitle>
-          <p>{book?.room?.name?.toUpperCase()}</p>
-          <TripStatus>
-            <span
-              className={
-                (book?.status === 'pending' && 'pending') ||
-                (book?.status === 'ongoing' && 'ongoing') ||
-                (book?.status === 'completed' && 'completed') ||
-                (book?.status === 'canceled' && 'canceled')
-              }
-            >
-              {book?.status?.toUpperCase()}
+      <TripsCardWrap>
+        <img src={book?.room?.photos[0]?.picture} alt={book?.room?.name} />
+        <TripCardInfo>
+          <TripInfoTitle>
+            <p>{book?.room?.name?.toUpperCase()}</p>
+            <TripStatus>
+              <span
+                className={
+                  (book?.status === 'pending' && 'pending') ||
+                  (book?.status === 'ongoing' && 'ongoing') ||
+                  (book?.status === 'completed' && 'completed') ||
+                  (book?.status === 'canceled' && 'canceled')
+                }
+              >
+                {book?.status?.toUpperCase()}
+              </span>
+            </TripStatus>
+          </TripInfoTitle>
+          <TripInfoDetails>
+            <span>{book?.guests} Guests</span>
+            <span>
+              {book?.check_in} ~ {book?.check_out}
             </span>
-          </TripStatus>
-        </TripInfoTitle>
-        <TripInfoDetails>
-          <span>{book?.guests} Guests</span>
-          <span>
-            {book?.check_in} ~ {book?.check_out}
-          </span>
-        </TripInfoDetails>
-      </TripCardInfo>
+          </TripInfoDetails>
+        </TripCardInfo>
 
-      <ShowTripModal
-        book={book}
-        // bookId={bookId}
-        modalTripShown={modalTripShown}
-        toggleTripModal={toggleTripModal}
-        bookingInfo={bookingInfo}
-      />
+        <ShowTripModal
+          book={book}
+          // bookId={bookId}
+          modalTripShown={modalTripShown}
+          toggleTripModal={toggleTripModal}
+          bookingInfo={bookingInfo}
+        />
+      </TripsCardWrap>
     </TripList>
   );
 };

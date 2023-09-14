@@ -6,17 +6,15 @@ import {
   StepVideo,
   StepVideoContents,
   WholePageContents,
-} from './StepStyle';
-import Step1Video from '../../../assets/videos/building.mp4';
+} from '../StepStyle';
+import Step2Video from '../../../../assets/videos/houseDrowing.mp4';
 
-const HostStep1 = () => {
-  // Create a ref to the video element
+const HostStep2 = () => {
   const videoRef = useRef(null);
 
-  // Set the playback speed when the component mounts
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.playbackRate = 0.5; // Adjust this value for your desired speed
+      // videoRef.current.playbackRate = 0.5;
     }
   }, []);
 
@@ -24,12 +22,11 @@ const HostStep1 = () => {
     <WholePageContents>
       <StepMain>
         <StepMainWrapper>
-          <span>Step 1</span>
-          <h1>Tell us about your place</h1>
+          <span>Step 2</span>
+          <h1>Make your place stand out</h1>
           <p>
-            In this step, we'll ask you which type of property you have and if
-            guests will book the entire place or just a room. Then let us know
-            the location and how many guests can stay.
+            In this step, you’ll add some of the amenities your place offers,
+            plus 5 or more photos. Then, you’ll create a title and description.
           </p>
         </StepMainWrapper>
         <StepMainWrapper>
@@ -39,8 +36,9 @@ const HostStep1 = () => {
               loop
               muted
               ref={videoRef}
-              src={Step1Video}
+              src={Step2Video}
               type='video/mp4'
+              className='step2'
             />
           </StepVideo>
         </StepMainWrapper>
@@ -49,4 +47,4 @@ const HostStep1 = () => {
   );
 };
 
-export default HostStep1;
+export default HostStep2;

@@ -25,6 +25,15 @@ export const MainFormWrap = styled.form``;
 
 //---------------------------
 
+export const LoginTitle = styled.div`
+  display: flex;
+  justify-content: center;
+  /* margin: 20px auto; */
+  font-size: 24px;
+  font-weight: 600;
+  padding-bottom: 10px;
+`;
+
 export const ModalLoginMain = styled.div`
   padding: 0 25px;
   /* overflow-y: scroll; */
@@ -55,15 +64,21 @@ export const LoginWrap = styled.div`
   /* max-width: calc(100vw - 20%); */
   width: 550px;
   margin: 20px auto;
+  display: felx;
+  justify-content: center;
 `;
 
 export const LoginBtn = styled.button`
   /* max-width: calc(100vw - 20%); */
+  display: flex;
+  align-items: center;
   width: 550px;
   margin: 20px auto;
   border: none;
   background: none;
   padding: 0;
+  /* display: felx;
+  justify-content: center; */
 `;
 
 export const LoginInputWrap = styled.div`
@@ -179,20 +194,13 @@ export const ModalCloseBtn = styled.button`
   cursor: pointer;
 `;
 
-
-
 export const ModalMainText = styled.p`
   margin: 0;
   padding: 0;
   color: gray;
 `;
 
-
-
-
-
 // ----------Type of Place--------------
-
 
 export const PlaceInput = styled.input`
   width: 25px;
@@ -251,14 +259,13 @@ export const PlaceNameText = styled.span`
 `;
 
 export const PlaceDivider = styled.div`
-    width: 100%;
-    margin-top: 16px;
-    margin-bottom: 16px;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 16px;
+  width: 100%;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
 
-    span {
-        
-    }
+  span {
+  }
 `;

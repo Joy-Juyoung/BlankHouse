@@ -31,7 +31,7 @@ const TripsDetails = ({ book, bookingInfo }) => {
     <TripContainer>
       <TripWrap>
         <TripPhotos>
-          <img src={TestPhoto} alt='' />
+          <img src={bookingInfo?.room?.photos[0]?.picture} alt='' />
           <TripPhotoCover>
             <h2>You stay at HostName's place</h2>
             <span>
@@ -59,7 +59,7 @@ const TripsDetails = ({ book, bookingInfo }) => {
               <QuestionAnswerIcon sx={{ fontSize: 35 }} />
               <TripInfoText>
                 <p>Message your Host</p>
-                <span>Host name</span>
+                <span>{bookingInfo?.room?.owner?.username}</span>
               </TripInfoText>
             </TripInfoLine>
           </TripInfo>
@@ -68,7 +68,10 @@ const TripsDetails = ({ book, bookingInfo }) => {
               <HomeIcon sx={{ fontSize: 35 }} />
               <TripInfoText>
                 <p>Your Place</p>
-                <span>Location</span>
+                <span>
+                  {bookingInfo?.room?.address}, {bookingInfo?.room?.city},{' '}
+                  {bookingInfo?.room?.country}
+                </span>
               </TripInfoText>
             </TripInfoLine>
           </TripInfo>
@@ -127,7 +130,7 @@ const TripsDetails = ({ book, bookingInfo }) => {
             <TripInfoLine>
               <PersonIcon />
               <TripInfoText>
-                <p>Host name</p>
+                <p>{bookingInfo?.room?.owner?.username}</p>
                 <span>Host rating</span>
                 <button>Show more</button>
               </TripInfoText>

@@ -22,14 +22,16 @@ export const TripListWrapper = styled.div`
   margin-top: 20px;
 `;
 
-export const TripList = styled.div`
+export const TripList = styled.div``;
+
+export const TripsCardWrap = styled.div`
   /* width: 100%; */
   display: flex;
   margin: 10px 0;
-  /* cursor: pointer; */
+  cursor: pointer;
 
   img {
-    width: 80px;
+    width: 120px;
     height: 80px;
     object-fit: cover;
   }
@@ -99,6 +101,7 @@ export const TripContainer = styled.div`
   /* height: 650px; */
   /* width: 100%; */
   overflow-y: auto;
+  cursor: auto;
 `;
 
 export const TripWrap = styled.div`
