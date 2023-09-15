@@ -46,6 +46,7 @@ export const BecomeFooter = styled.div`
   height: 80px;
   max-width: 1450px;
   width: 100%;
+  background: #fff;
   /* margin: 0 auto; */
   /* margin: 0 40px; */
 `;
@@ -199,6 +200,10 @@ export const StepDetailMainWrapper = styled.div``;
 // ------Each
 
 export const StepInWrap = styled.div`
+  margin-bottom: 120px;
+  /* height: 100%;
+  width: 100%; */
+
   h1 {
     margin: 0;
   }
@@ -290,7 +295,8 @@ export const StepTypeInfo = styled.div`
 
 // -----
 export const StepInWrapper = styled.div`
-  margin: 40px 0;
+  /* margin: 40px 0; */
+  width: 100%;
 
   img {
     margin: 0 auto;
@@ -315,6 +321,17 @@ export const StepNumTitle = styled.div`
 export const StemNumber = styled.div``;
 
 // -----
+
+export const PhotoBox = styled.div`
+  width: 100%;
+  height: 40vh;
+  /* margin: 0 !important; */
+  /* object-fit: cover; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const DragPhotoBox = styled.div`
   border: 2px dashed #dddd;
   width: 100%;
@@ -322,6 +339,7 @@ export const DragPhotoBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 20px 0;
 `;
 
 export const DragBox = styled.div`
@@ -353,5 +371,27 @@ export const PhotoUpload = styled.label`
 
   input {
     display: none;
+  }
+`;
+
+// ----
+export const StepTextArea = styled.div`
+  width: 100%;
+  line-height: 1.625rem;
+  margin: 20px 0;
+
+  textarea {
+    width: 100%;
+    height: 120px;
+    padding: 20px;
+    font-size: 18px;
+    border-radius: 10px;
+  }
+
+  p {
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: -5px;
+    color: gray;
   }
 `;
