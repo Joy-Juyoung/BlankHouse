@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   DragBox,
   DragPhotoBox,
+  PhotoBox,
   PhotoUpload,
   StepInWrap,
   StepInWrapper,
@@ -9,6 +10,11 @@ import {
 import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
 
 const Step2_Photos = () => {
+  const [file, setFile] = useState();
+  function handleChange(e) {
+    console.log(e.target.files);
+    setFile(URL.createObjectURL(e.target.files[0]));
+  }
   return (
     <StepInWrap>
       <h1>Add some photos of your house</h1>
@@ -17,6 +23,14 @@ const Step2_Photos = () => {
         later.
       </p>
       <StepInWrapper>
+        {file && (
+          <DragPhotoBox>
+            <PhotoBox>
+              {/* Should add multiple photo */}
+              <img src={file} alt='' />
+            </PhotoBox>
+          </DragPhotoBox>
+        )}
         <DragPhotoBox>
           <DragBox>
             <span>
@@ -26,7 +40,7 @@ const Step2_Photos = () => {
             <span>Choose at least 5 photos</span>
             <PhotoUpload for='upload'>
               <span>Upload from your device</span>
-              <input type='file' id='upload' />
+              <input type='file' id='upload' onChange={handleChange} />
             </PhotoUpload>
           </DragBox>
         </DragPhotoBox>

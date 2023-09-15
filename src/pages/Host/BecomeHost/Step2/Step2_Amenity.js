@@ -29,7 +29,7 @@ const Step2_Amenity = () => {
       </p>
       <StepInWrapper>
         <StepCategoriesWrapper>
-          {roomAmenity?.map((amenity, index) => (
+          {/* {roomAmenity?.map((amenity, index) => (
             <StepCategories key={index}>
               <StepCategoryList>
                 <span>
@@ -38,7 +38,7 @@ const Step2_Amenity = () => {
                 <p>{amenity?.name}</p>
               </StepCategoryList>
             </StepCategories>
-          ))}
+          ))} */}
         </StepCategoriesWrapper>
       </StepInWrapper>
     </StepInWrap>
