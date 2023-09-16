@@ -11,9 +11,6 @@ const Step2_Title = ({}) => {
     [setContent]
   );
 
-  // useEffect(()=> {
-
-  // })
   return (
     <StepInWrap>
       <h1>Now, let's give your house a title</h1>
@@ -24,8 +21,6 @@ const Step2_Title = ({}) => {
       <StepInWrapper>
         <StepTextArea>
           <textarea
-            // rows={rows}
-            // cols={cols}
             onChange={(e) => setFormattedContent(e.target.value)}
             value={content || null}
           />
