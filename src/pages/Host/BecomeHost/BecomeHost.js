@@ -82,7 +82,7 @@ const BecomeHost = () => {
       navigate('/host/become?step3');
     }
   }, [stepId]);
-  console.log('stepId', stepId);
+  // console.log('stepId', stepId);
 
   return (
     <BecomeContainer>

@@ -21,6 +21,8 @@ const Step2_Amenity = () => {
     dispatch(getAllAmenityAsync());
   }, [dispatch]);
 
+  console.log('roomAmenity', roomAmenity);
+
   return (
     <StepInWrap>
       <h1>Tell guests what your place has to offer</h1>
@@ -29,16 +31,17 @@ const Step2_Amenity = () => {
       </p>
       <StepInWrapper>
         <StepCategoriesWrapper>
-          {/* {roomAmenity?.map((amenity, index) => (
-            <StepCategories key={index}>
-              <StepCategoryList>
-                <span>
-                  <HouseIcon sx={{ fontSize: 32 }} />
-                </span>
-                <p>{amenity?.name}</p>
-              </StepCategoryList>
-            </StepCategories>
-          ))} */}
+          {Array.isArray(roomAmenity) &&
+            roomAmenity?.map((amenity, index) => (
+              <StepCategories key={index}>
+                <StepCategoryList>
+                  <span>
+                    <HouseIcon sx={{ fontSize: 32 }} />
+                  </span>
+                  <p>{amenity?.name}</p>
+                </StepCategoryList>
+              </StepCategories>
+            ))}
         </StepCategoriesWrapper>
       </StepInWrapper>
     </StepInWrap>
