@@ -195,7 +195,12 @@ export const StepDetailMain = styled.div`
   }
 `;
 
-export const StepDetailMainWrapper = styled.div``;
+export const StepDetailMainWrapper = styled.div`
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 // ------Each
 
@@ -220,6 +225,7 @@ export const StepCategoriesWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 15px;
+  margin: 40px 0;
 `;
 
 export const StepCategories = styled.div`
@@ -251,7 +257,7 @@ export const StepCategoryList = styled.div`
 // ----------
 
 export const StepTypeWrapper = styled.div`
-  /* margin: 80px 0; */
+  margin: 40px 0;
 `;
 
 export const StepTypes = styled.div`
@@ -295,7 +301,7 @@ export const StepTypeInfo = styled.div`
 
 // -----
 export const StepInWrapper = styled.div`
-  /* margin: 40px 0; */
+  margin: 40px 0;
   width: 100%;
 
   img {

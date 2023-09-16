@@ -14,7 +14,8 @@ const Step1_Location = () => {
       <StepInWrapper>
         <div>
           {/* Shoud change img to real location */}
-          <img src={TestMap} alt='' />
+          {/* <img src={TestMap} alt='' /> */}
+          location
         </div>
       </StepInWrapper>
     </StepInWrap>
