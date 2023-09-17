@@ -26,6 +26,10 @@ const TopBtn = styled.div`
   span {
     margin-top: -3px;
   }
+
+  &:hover {
+    opacity: 1;
+  }
 `;
 
 const GotoTopButton = () => {
