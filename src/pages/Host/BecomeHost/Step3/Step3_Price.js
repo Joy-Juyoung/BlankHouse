@@ -1,11 +1,16 @@
 import React, { useEffect } from 'react';
+import { StepInWrap, StepInWrapper } from '../StepStyle';
 
 const Step3_Price = () => {
   return (
-    <div>
-      <h1>What type of place will guests have?</h1>
-      <div>Room Type</div>
-    </div>
+    <StepInWrap>
+      <h1>Now, set your price</h1>
+      <p className='titleSub'>You can change it anytime.</p>
+
+      <StepInWrapper>
+        <input type='number' />
+      </StepInWrapper>
+    </StepInWrap>
   );
 };
 
