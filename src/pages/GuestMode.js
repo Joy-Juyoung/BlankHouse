@@ -28,6 +28,7 @@ import Trips from './Trips/Trips';
 // import BecomeHost from './Host/BecomeHost.js/BecomeHost';
 import TripsDetails from './Trips/TripsDetails';
 import HostMode from './HostMode';
+import HelpMode from './HelpMode';
 
 const GuestMode = () => {
   const [isPageMain, setIsPageMain] = useState(false);
@@ -38,11 +39,13 @@ const GuestMode = () => {
   // const rooms = useSelector(selectRoom);
   const dispatch = useDispatch();
   const [isHost, setIsHost] = useState(false);
+  const [isHelp, setIsHelp] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
     // Check if the pathname starts with '/host/'
     setIsHost(location.pathname.startsWith('/host'));
+    setIsHelp(location.pathname.startsWith('/help'));
   }, [location.pathname]);
 
   useEffect(() => {
@@ -58,92 +61,115 @@ const GuestMode = () => {
         <HostMode setIsHost={setIsHost} />
       ) : (
         <>
-          <Header
-            isPageMain={isPageMain}
-            userMe={userMe}
-            isUserLogIn={isUserLogIn}
-            setIsUserLogIn={setIsUserLogIn}
-          />
-          <Routes>
-            <Route
-              path='/'
-              element={<MainPage setIsPageMain={setIsPageMain} />}
-              exact={true}
-            />
-            <Route
-              path='/room/:roomId'
-              element={<Room setIsPageMain={setIsPageMain} />}
-              exact={true}
-            />
+          {isHelp ? (
+            <>
+              <HelpMode
+                setIsHelp={setIsHelp}
+                userMe={userMe}
+                isUserLogIn={isUserLogIn}
+                setIsUserLogIn={setIsUserLogIn}
+                setIsPageMain={setIsPageMain}
+              />
+              <GotoTopButton />
+              <Footer isPageMain={isPageMain} />
+            </>
+          ) : (
+            <>
+              <Header
+                isPageMain={isPageMain}
+                userMe={userMe}
+                isUserLogIn={isUserLogIn}
+                setIsUserLogIn={setIsUserLogIn}
+              />
+              <Routes>
+                <Route
+                  path='/'
+                  element={<MainPage setIsPageMain={setIsPageMain} />}
+                  exact={true}
+                />
+                <Route
+                  path='/room/:roomId'
+                  element={<Room setIsPageMain={setIsPageMain} />}
+                  exact={true}
+                />
 
-            <Route
-              // path='/room/:roomId/payment?reviews=:reviews&checkin=:checkinDate&checkout=:checkoutDate&guest=:guestNum&night=:perNight&totalPerNigh=:totalPerNight&tax=:taxPerNight&finalTotal=:fianlTotalPrice'
-              path='/room/:roomId/payment'
-              element={
-                <Payment setIsPageMain={setIsPageMain} location={location} />
-              }
-              exact={true}
-            />
+                <Route
+                  // path='/room/:roomId/payment?reviews=:reviews&checkin=:checkinDate&checkout=:checkoutDate&guest=:guestNum&night=:perNight&totalPerNigh=:totalPerNight&tax=:taxPerNight&finalTotal=:fianlTotalPrice'
+                  path='/room/:roomId/payment'
+                  element={
+                    <Payment
+                      setIsPageMain={setIsPageMain}
+                      location={location}
+                    />
+                  }
+                  exact={true}
+                />
 
-            <Route
-              path='/wishlist'
-              element={<Wishlist setIsPageMain={setIsPageMain} />}
-              exact={true}
-            />
+                <Route
+                  path='/wishlist'
+                  element={<Wishlist setIsPageMain={setIsPageMain} />}
+                  exact={true}
+                />
 
-            <Route
-              path='/trips'
-              element={<Trips setIsPageMain={setIsPageMain} />}
-              exact={true}
-            />
+                <Route
+                  path='/trips'
+                  element={<Trips setIsPageMain={setIsPageMain} />}
+                  exact={true}
+                />
 
-            <Route
-              path='/trips/:bookId'
-              element={<TripsDetails setIsPageMain={setIsPageMain} />}
-              exact={true}
-            />
+                <Route
+                  path='/trips/:bookId'
+                  element={<TripsDetails setIsPageMain={setIsPageMain} />}
+                  exact={true}
+                />
 
-            {/* Need Header Change */}
-            {/* <Route
-          path='/host/become'
-          element={<BecomeHost setIsPageMain={setIsPageMain} />}
-          exact={true}
-        /> */}
+                {/* Need Header Change */}
+                {/* <Route
+      path='/host/become'
+      element={<BecomeHost setIsPageMain={setIsPageMain} />}
+      exact={true}
+    /> */}
 
-            <Route
-              path='/account'
-              element={
-                <Account setIsPageMain={setIsPageMain} userMe={userMe} />
-              }
-              exact={true}
-            />
+                <Route
+                  path='/account'
+                  element={
+                    <Account setIsPageMain={setIsPageMain} userMe={userMe} />
+                  }
+                  exact={true}
+                />
 
-            <Route
-              path='/account/profile'
-              element={
-                <Profile setIsPageMain={setIsPageMain} userMe={userMe} />
-              }
-              exact={true}
-            />
+                <Route
+                  path='/account/profile'
+                  element={
+                    <Profile setIsPageMain={setIsPageMain} userMe={userMe} />
+                  }
+                  exact={true}
+                />
 
-            <Route path='/experiences' element={<Experience />} exact={true} />
-            <Route
-              path='/experiences/:experiencesId'
-              element={<ExDetail />}
-              exact={true}
-            />
-            <Route
-              path='/onlineExperiences'
-              element={<OnlineExp />}
-              exact={true}
-            />
-          </Routes>
+                <Route
+                  path='/experiences'
+                  element={<Experience />}
+                  exact={true}
+                />
+                <Route
+                  path='/experiences/:experiencesId'
+                  element={<ExDetail />}
+                  exact={true}
+                />
+                <Route
+                  path='/onlineExperiences'
+                  element={<OnlineExp />}
+                  exact={true}
+                />
+              </Routes>
 
-          {/* <Routes>
-        <Route path='/test' element={<Test meData={meData} />} exact={true} />
-      </Routes> */}
-          <GotoTopButton />
-          <Footer isPageMain={isPageMain} />
+              {/* <Routes>
+    <Route path='/test' element={<Test meData={meData} />} exact={true} />
+  </Routes> */}
+              <GotoTopButton />
+              <Footer isPageMain={isPageMain} />
+            </>
+          )}
         </>
       )}
     </>

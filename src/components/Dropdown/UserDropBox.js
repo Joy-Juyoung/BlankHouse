@@ -127,7 +127,7 @@ const UserDropBox = ({
                 <Link to='/trips' onClick={() => setIsUserDrop(false)}>
                   <li className='login'>
                     <span>Trips</span>
-                  </li>{' '}
+                  </li>
                 </Link>
                 <Link to='/wishlist' onClick={() => setIsUserDrop(false)}>
                   <li className='login'>
@@ -142,15 +142,17 @@ const UserDropBox = ({
                 </li>
                 <Link to='/account' onClick={() => setIsUserDrop(false)}>
                   <li>
-                    <span>Account</span>{' '}
+                    <span>Account</span>
                   </li>
                 </Link>
               </ul>
               <hr />
               <ul>
-                <li>
-                  <span>Help</span>
-                </li>
+                <Link to='/help' onClick={() => setIsUserDrop(false)}>
+                  <li>
+                    <span>Help</span>
+                  </li>
+                </Link>
                 <li onClick={handleLogout}>
                   <span>Log out</span>
                 </li>

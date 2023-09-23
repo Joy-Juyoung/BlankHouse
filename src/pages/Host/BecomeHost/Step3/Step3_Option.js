@@ -3,8 +3,8 @@ import React, { useEffect } from 'react';
 const Step3_Option = () => {
   return (
     <div>
-      <h1>What type of place will guests have?</h1>
-      <div>Room Type</div>
+      <h1>Optional page</h1>
+      <div>Optional page</div>
     </div>
   );
 };
