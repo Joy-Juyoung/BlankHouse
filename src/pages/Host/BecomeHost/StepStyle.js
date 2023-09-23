@@ -401,3 +401,190 @@ export const StepTextArea = styled.div`
     color: gray;
   }
 `;
+
+// -------
+
+export const StepPrice = styled.div`
+  font-size: 110px;
+  font-weight: 600;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+
+  input {
+    border: none;
+    outline: none;
+    width: 100%;
+    /* padding: 0; */
+    font-size: 110px;
+    font-weight: 600;
+  }
+`;
+
+export const StepPriceTotalBox = styled.div`
+  border: 1px solid #bbbb;
+  border-radius: 10px;
+  margin: 10px 0;
+  padding: 5px 15px;
+
+  p {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    font-size: 14px;
+    color: gray;
+
+    &.total {
+      /* font-size: 16px; */
+      color: #000;
+      font-weight: 600;
+      border-top: 1px solid #bbbb;
+      padding-top: 15px;
+      margin-top: 15px;
+    }
+  }
+`;
+
+// ---------
+
+export const StepDiscountBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border: 1px solid #bbbb;
+  background: #f7f7f7;
+  border-radius: 10px;
+  margin: 20px 0;
+  padding: 15px 5px;
+`;
+
+export const StepDiscountBoxWrap = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const StepDiscountWrapper = styled.div`
+  /* &.details {
+    border-left: 1px solid #bbbb;
+    border-right: 1px solid #bbbb;
+  } */
+  margin: 0 15px;
+
+  p {
+    &.amount {
+      font-weight: 600;
+      font-size: 18px;
+    }
+    &.text {
+      display: flex;
+      flex-direction: column;
+    }
+    span {
+      &.textSub {
+        color: gray;
+        font-size: 14px;
+      }
+    }
+  }
+
+  input {
+    width: 20px;
+    height: 20px;
+
+    border: 2px solid #000;
+    background-color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+`;
+
+// ------
+
+export const StepCheck = styled.div`
+  margin: 40px 0;
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 40px;
+
+  h2 {
+    margin: 0;
+  }
+`;
+
+export const StepCheckWrapper = styled.div``;
+
+export const StepCheckPreview = styled.div`
+  box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 15px;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+    /* height: ; */
+    border-radius: 10px;
+  }
+`;
+
+export const PreviewInfo = styled.div``;
+
+export const PreviewTitle = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 14px;
+  margin-top: 15px;
+
+  span {
+    display: flex;
+    align-items: center;
+  }
+`;
+
+export const PreviewPrice = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  margin-top: 10px;
+  p {
+    /* display: flex;
+    align-items: center; */
+    margin: 0;
+    font-weight: 600;
+  }
+
+  span {
+    margin: 5px;
+  }
+`;
+
+export const StepNextWrapper = styled.div`
+  display: flex;
+  /* align-items: center; */
+  margin: 20px 0;
+  p {
+    margin: 0;
+
+    span {
+      display: block;
+      font-weight: 600;
+
+      &.textSub {
+        font-size: 14px;
+        color: gray;
+        font-weight: 300;
+        margin-top: 5px;
+      }
+    }
+  }
+
+  svg {
+    margin-right: 10px;
+  }
+`;
