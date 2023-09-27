@@ -19,8 +19,10 @@ import {
   BtnAccount,
 } from './DropdownListStyle';
 import LogInModal from './LogInModal';
+import { useNavigate } from 'react-router-dom';
 const DropdownList = () => {
   const [modalLogShown, toggleLogModal] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <DropAccountContainer>
@@ -47,7 +49,8 @@ const DropdownList = () => {
               <LinkAccount>
                 <DropLi>Airbnb your home</DropLi>
               </LinkAccount>
-              <LinkAccount to='/help'>
+              {/* <LinkAccount to='/help' onClick={navigate('/help')}> */}
+              <LinkAccount onClick={navigate('/help')}>
                 <DropLi>Help</DropLi>
               </LinkAccount>
             </DropUlWrap>
