@@ -59,8 +59,8 @@ const RoomCard = ({ room, loading }) => {
               {room?.house_type === 'private_room' && 'Private room '}
               {room?.house_type === 'shared_room' && 'Shared room '}
               {room?.category?.name?.toLowerCase()}
-              in
-              {room?.city}
+              {/* in
+              {room?.city} */}
             </RoomDesc>
             <RoomPrice>
               <p>${room?.price?.toFixed(2)}</p>

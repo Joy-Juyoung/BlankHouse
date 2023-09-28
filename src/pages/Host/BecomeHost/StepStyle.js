@@ -240,6 +240,12 @@ export const StepCategories = styled.div`
     background: #f7f7f7;
     padding: 20px;
   }
+
+  &.active {
+    border: 3px solid #000;
+    background: #f7f7f7;
+    padding: 20px;
+  }
 `;
 
 export const StepCategoryList = styled.div`
@@ -269,6 +275,12 @@ export const StepTypes = styled.div`
   /* transition: border-width 0.1s; */
 
   &:hover {
+    border: 3px solid #000;
+    background: #f7f7f7;
+    padding: 20px;
+  }
+
+  &.active {
     border: 3px solid #000;
     background: #f7f7f7;
     padding: 20px;
@@ -449,6 +461,56 @@ export const StepPriceTotalBox = styled.div`
 
 // ---------
 
+export const StepPetBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border: 1px solid #bbbb;
+  /* background: #f7f7f7; */
+  border-radius: 10px;
+  margin: 20px 0;
+  padding: 15px 5px;
+
+  width: 100%;
+`;
+
+export const StepPetBoxWrap = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const StepPetWrapper = styled.div`
+  margin: 0 15px;
+  display: flex;
+  align-items: center;
+
+  p {
+    &.text {
+      /* display: flex;
+      flex-direction: column; */
+
+      font-weight: 600;
+    }
+  }
+
+  input {
+    width: 20px;
+    height: 20px;
+
+    border: 2px solid #000;
+    background-color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  label {
+    /* font-weight: 600; */
+  }
+`;
+
+// ------------
+
 export const StepDiscountBox = styled.div`
   display: flex;
   align-items: center;
@@ -505,7 +567,7 @@ export const StepDiscountWrapper = styled.div`
 
 export const StepCheck = styled.div`
   margin: 40px 0;
-  width: 100%;
+  width: 80%;
 
   display: grid;
   grid-template-columns: repeat(2, 1fr);

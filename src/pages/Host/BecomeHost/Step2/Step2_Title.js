@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { StepInWrap, StepInWrapper, StepTextArea } from '../StepStyle';
 
 const Step2_Title = ({}) => {
-  const [content, setContent] = useState();
+  const initialStepTitle = JSON.parse(localStorage.getItem('getTitle')) || null;
+  const [content, setContent] = useState(initialStepTitle);
 
   const setFormattedContent = React.useCallback(
     (text) => {
@@ -10,6 +11,10 @@ const Step2_Title = ({}) => {
     },
     [setContent]
   );
+
+  useEffect(() => {
+    localStorage.setItem('getTitle', JSON.stringify(content));
+  }, [content]);
 
   return (
     <StepInWrap>
