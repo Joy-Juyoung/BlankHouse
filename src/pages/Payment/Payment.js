@@ -71,8 +71,8 @@ const Payment = ({ setIsPageMain, location }) => {
     // dispatch(getRoomsByIdAsync({ roomId }));
   }, [dispatch, roomId]);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     dispatch(
       bookRoomsByIdAsync({
         roomId,

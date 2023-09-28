@@ -8,7 +8,7 @@ import SignupModal from '../Header/SignupModal';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { logout, logoutAsync, logoutUser } from '../../redux/slices/userSlice';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const UserDropdown = styled.div`
   background: #fff;
@@ -70,6 +70,7 @@ const UserDropBox = ({
   isUserLogIn,
   setIsUserLogIn,
 }) => {
+  const navigate = useNavigate();
   const location = useLocation();
   let currentPath = location.pathname;
   const [modalLogShown, toggleLogModal] = useState(false);
@@ -82,6 +83,7 @@ const UserDropBox = ({
     dispatch(logoutAsync(userMe?.username))
       .then(() => {
         // toast.success('Logged out successfully!');
+        navigate('/');
         toggleLogModal(false);
         setIsUserDrop(false);
         setIsUserLogIn(false);
@@ -137,9 +139,11 @@ const UserDropBox = ({
               </ul>
               <hr />
               <ul>
-                <li>
-                  <span>Manage listings</span>
-                </li>
+                <Link to='/host/listing'>
+                  <li>
+                    <span>Manage listings</span>
+                  </li>
+                </Link>
                 <Link to='/account' onClick={() => setIsUserDrop(false)}>
                   <li>
                     <span>Account</span>
@@ -153,6 +157,7 @@ const UserDropBox = ({
                     <span>Help</span>
                   </li>
                 </Link>
+
                 <li onClick={handleLogout}>
                   <span>Log out</span>
                 </li>

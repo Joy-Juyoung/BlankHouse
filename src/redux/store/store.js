@@ -6,6 +6,7 @@ import userReducer from '../slices/userSlice';
 import wishlistSlice from '../slices/wishlistSlice';
 import experiencesReducer from '../slices/experiences';
 import bookingReducer from '../slices/bookingSlice';
+import hostReducer from '../slices/hostSlice';
 
 const reducer = {
   user: userReducer,
@@ -15,6 +16,7 @@ const reducer = {
   review: roomReviewSlice,
   wishlist: wishlistSlice,
   experiences: experiencesReducer,
+  host: hostReducer,
 };
 
 const store = configureStore({

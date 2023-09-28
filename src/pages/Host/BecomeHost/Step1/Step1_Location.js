@@ -1,8 +1,39 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StepInWrap, StepInWrapper } from '../StepStyle';
 import TestMap from '../../../../assets/images/map_test.png';
 
 const Step1_Location = () => {
+  const initialStepAddress =
+    JSON.parse(localStorage.getItem('getAddress')) || null;
+  const initialStepCity = JSON.parse(localStorage.getItem('getCity')) || null;
+  const initialStepCountry =
+    JSON.parse(localStorage.getItem('getCountry')) || null;
+  const [stepAddress, setStepAddress] = useState(initialStepAddress);
+  const [stepCity, setStepCity] = useState(initialStepCity);
+  const [stepCountry, setStepCountry] = useState(initialStepCountry);
+
+  const handleStepValue = (e) => {
+    if (e.target.id === 'address') {
+      setStepAddress(e.target.value);
+    }
+    if (e.target.id === 'city') {
+      setStepCity(e.target.value);
+    }
+    if (e.target.id === 'country') {
+      setStepCountry(e.target.value);
+    }
+  };
+
+  useEffect(() => {
+    localStorage.setItem('getAddress', JSON.stringify(stepAddress));
+    localStorage.setItem('getCity', JSON.stringify(stepCity));
+    localStorage.setItem('getCountry', JSON.stringify(stepCountry));
+  }, [stepAddress, stepCity, stepCountry]);
+
+  console.log('stepAddress', stepAddress);
+  console.log('stepCity', stepCity);
+  console.log('stepCountry', stepCountry);
+
   return (
     <StepInWrap>
       <h1>Is the pin in the right spot?</h1>
@@ -15,7 +46,27 @@ const Step1_Location = () => {
         <div>
           {/* Shoud change img to real location */}
           {/* <img src={TestMap} alt='' /> */}
-          location
+          <label for='address'>Address</label>
+          <input
+            type='text'
+            id='address'
+            value={stepAddress}
+            onChange={handleStepValue}
+          />
+          <label for='city'>City</label>
+          <input
+            type='text'
+            id='city'
+            value={stepCity}
+            onChange={handleStepValue}
+          />
+          <label for='country'>Country</label>
+          <input
+            type='text'
+            id='country'
+            value={stepCountry}
+            onChange={handleStepValue}
+          />
         </div>
       </StepInWrapper>
     </StepInWrap>

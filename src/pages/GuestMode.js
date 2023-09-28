@@ -58,7 +58,12 @@ const GuestMode = () => {
   return (
     <>
       {isHost ? (
-        <HostMode setIsHost={setIsHost} />
+        <HostMode
+          setIsHost={setIsHost}
+          userMe={userMe}
+          isUserLogIn={isUserLogIn}
+          setIsUserLogIn={setIsUserLogIn}
+        />
       ) : (
         <>
           {isHelp ? (

@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const HelpContainer = styled.div`
-  max-width: 1450px;
+  max-width: 1200px;
   height: 100%;
   margin: 0 auto;
   padding: 0 40px;
@@ -50,7 +50,7 @@ export const HelpFooter = styled.div`
   position: fixed;
   bottom: 0;
   height: 80px;
-  max-width: 1450px;
+  max-width: 1150px;
   width: 100%;
   background: #fff;
   /* margin: 0 auto; */
@@ -116,7 +116,7 @@ export const HelpSearchWrapper = styled.div`
 export const HelpMainNav = styled.div`
   display: flex;
   align-items: center;
-  margin: 60px 0;
+  margin: 80px 0;
   /* padding: 15px 0; */
   border-bottom: 1px solid #bbbb;
 `;

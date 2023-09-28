@@ -2,14 +2,25 @@ import React, { useEffect, useState } from 'react';
 import { StepInWrap, StepInWrapper, StepTextArea } from '../StepStyle';
 
 const Step2_Description = () => {
-  const [content, setContent] = useState();
+  const initialStepDesctiprion =
+    JSON.parse(localStorage.getItem('getDesctiprion')) || null;
+  const [contentDesc, setContentDesc] = useState(initialStepDesctiprion);
 
-  const setFormattedContent = React.useCallback(
+  //   const initialStepDesctiprion = localStorage.getItem('getDesctiprion');
+  // const parsedStepDesctiprion = initialStepDesctiprion ? JSON.parse(initialStepDesctiprion) : null;
+  // const [contentDesc, setContentDesc] = useState(parsedStepDesctiprion);
+
+  const setFormattedContentDesc = React.useCallback(
     (text) => {
-      setContent(text.slice(0, 500));
+      setContentDesc(text.slice(0, 500));
     },
-    [setContent]
+    [setContentDesc]
   );
+
+  useEffect(() => {
+    localStorage.setItem('getDesctiprion', JSON.stringify(contentDesc));
+  }, [contentDesc]);
+
   return (
     <StepInWrap>
       <h1>Create your description</h1>
@@ -18,13 +29,11 @@ const Step2_Description = () => {
       <StepInWrapper>
         <StepTextArea>
           <textarea
-            // rows={rows}
-            // cols={cols}
-            onChange={(e) => setFormattedContent(e.target.value)}
-            value={content || null}
+            onChange={(e) => setFormattedContentDesc(e.target.value)}
+            value={contentDesc || null}
           />
           <p>
-            {content?.length || 0}/{500}
+            {contentDesc?.length || 0}/{500}
           </p>
         </StepTextArea>
       </StepInWrapper>
