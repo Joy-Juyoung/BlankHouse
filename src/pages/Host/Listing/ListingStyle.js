@@ -7,6 +7,31 @@ export const ListingMainTop = styled.div`
 export const ListingSearch = styled.div`
   display: flex;
   justify-content: space-between;
+
+  input {
+    padding: 10px 15px;
+    border-radius: 30px;
+    outline: none;
+    border: 1px solid #bbbb;
+    background: #f5f5f5;
+    width: 50%;
+  }
+
+  button {
+    padding: 10px 15px;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid #000;
+    background: #fff;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin-right: 5px;
+    }
+  }
 `;
 
 export const ListingMainWrapper = styled.div``;

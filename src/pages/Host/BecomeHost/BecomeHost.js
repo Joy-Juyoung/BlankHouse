@@ -112,6 +112,22 @@ const BecomeHost = () => {
       .then(() => {
         toast.success('Listing success.');
         navigate('/host/listing');
+
+        localStorage.removeItem('getCategory');
+        localStorage.removeItem('getType');
+        localStorage.removeItem('getAddress');
+        localStorage.removeItem('getCity');
+        localStorage.removeItem('getCountry');
+        localStorage.removeItem('getGuests');
+        localStorage.removeItem('getBedroom');
+        localStorage.removeItem('getBeds');
+        localStorage.removeItem('getBathrooms');
+        localStorage.removeItem('getAmenity');
+        localStorage.removeItem('getTitle');
+        localStorage.removeItem('getDesctiprion');
+        localStorage.removeItem('getPrice');
+        localStorage.removeItem('getCleaningFee');
+        localStorage.removeItem('getPet');
       })
       .catch((error) => {
         console.error(error);

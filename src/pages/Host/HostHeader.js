@@ -55,10 +55,10 @@ const HostHeader = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
         </HeaderWrapper>
 
         <HeaderWrapper className='headerRight'>
-          <HeaderRightSection>
+          {/* <HeaderRightSection>
             <Link to='/host/become'>
               <div>
-                <button>Airbnb your home</button>
+                <button>Manage Listing</button>
               </div>
             </Link>
           </HeaderRightSection>
@@ -75,7 +75,7 @@ const HostHeader = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
                 <button>Airbnb your home</button>
               </div>
             </Link>
-          </HeaderRightSection>
+          </HeaderRightSection> */}
           {isUserLogIn && (
             <HeaderRightSection>
               <UserSetting
