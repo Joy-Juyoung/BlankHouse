@@ -21,6 +21,7 @@ import {
 } from './ListingStyle';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import AddIcon from '@mui/icons-material/Add';
 import Soon from '../../../assets/images/soon.jpg';
 
 const Listing = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
@@ -45,10 +46,13 @@ const Listing = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
       <MainContainer>
         <MainWrap>
           <ListingMainTop>
-            <h1>2 Listing</h1>
+            <h1>{allRoomInfo?.length || 0} Listing</h1>
             <ListingSearch>
               <input type='text' placeholder='Search listings' />
-              <button>Create listing</button>
+              <button>
+                <AddIcon sx={{ fontSize: 18 }} />
+                <span>Create listing</span>
+              </button>
             </ListingSearch>
           </ListingMainTop>
           <ListingMainWrapper>
