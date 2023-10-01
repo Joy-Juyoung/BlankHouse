@@ -90,8 +90,6 @@ const Listing = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
                               ? 'statusYet'
                               : 'statusFinish'
                           }
-                          // onMouseOver={() => setIsWarning(true)}
-                          // onMouseLeave={() => setIsWarning(false)}
                         >
                           {list?.photos?.length < 5
                             ? 'In Progress'
@@ -103,18 +101,10 @@ const Listing = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
                             <span>Add more pictures to publish</span>
                           </WarningText>
                         )}
-                        {/* {list?.photos?.length < 5 && isWarning && (
-                          <WarningText>
-                            <span>Add more pictures to publish</span>
-                          </WarningText>
-                        )} */}
                       </ListingTBodyCell>
                       <ListingTBodyCell>
                         <span className={list?.photos?.length < 5 ? 'yet' : ''}>
                           {list?.photos?.length}
-                          {/* {list?.photos?.length < 5 && (
-                            <ErrorOutlineIcon sx={{ fontSize: 18 }} />
-                          )} */}
                         </span>
                       </ListingTBodyCell>
                       <ListingTBodyCell>
