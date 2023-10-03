@@ -59,19 +59,22 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
       <SearchModalContainer>
         <SearchModalNav>
           <SearchModalNavWrap>
-            <SearchNavbar
-              className={isRoom ? 'active' : 'deactive'}
-              onClick={() => toggleSearchModal(false)}
-            >
-              <Link to='/'>Stays</Link>
-            </SearchNavbar>
-
-            <SearchNavbar
-              className={isExp ? 'active' : 'deactive'}
-              onClick={() => toggleSearchModal(false)}
-            >
-              <Link to='/experiences'>Experiences</Link>
-            </SearchNavbar>
+            <Link to='/' className={isRoom ? 'active' : 'deactive'}>
+              <SearchNavbar
+                className={isRoom ? 'active' : 'deactive'}
+                onClick={() => toggleSearchModal(false)}
+              >
+                Stays
+              </SearchNavbar>
+            </Link>
+            <Link to='/experiences'>
+              <SearchNavbar
+                className={isExp ? 'active' : 'deactive'}
+                onClick={() => toggleSearchModal(false)}
+              >
+                Experiences
+              </SearchNavbar>
+            </Link>
           </SearchModalNavWrap>
         </SearchModalNav>
         <SearchField>
