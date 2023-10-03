@@ -18,6 +18,16 @@ export const SearchModalNavWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  a {
+    &:hover {
+      color: #999;
+    }
+
+    &.active {
+      color: #000;
+    }
+  }
 `;
 
 export const SearchNavbar = styled.div`
@@ -29,7 +39,7 @@ export const SearchNavbar = styled.div`
       padding-bottom: 5px;
       display: block;
       content: '';
-      border-bottom: 2px solid gray;
+      border-bottom: 2px solid #aaa;
       /* color: gray; */
 
       transform: scaleX(0);
@@ -38,12 +48,6 @@ export const SearchNavbar = styled.div`
     &:hover {
       &:after {
         transform: scaleX(1);
-      }
-    }
-
-    a {
-      &:hover {
-        color: gray;
       }
     }
   }
