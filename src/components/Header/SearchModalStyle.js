@@ -14,25 +14,36 @@ export const SearchModalNav = styled.div`
 `;
 
 export const SearchModalNavWrap = styled.div`
-  width: 300px;
+  /* width: 300px; */
   display: flex;
   align-items: center;
   justify-content: space-between;
 `;
 
 export const SearchNavbar = styled.div`
+  margin: 0 20px;
+
+  /* color: #fff; */
   &.deactive {
     &:after {
       padding-bottom: 5px;
       display: block;
       content: '';
-      border-bottom: 2px solid #000;
+      border-bottom: 2px solid gray;
+      /* color: gray; */
+
       transform: scaleX(0);
       transition: transform 250ms ease-in-out;
     }
     &:hover {
       &:after {
         transform: scaleX(1);
+      }
+    }
+
+    a {
+      &:hover {
+        color: gray;
       }
     }
   }
@@ -59,7 +70,7 @@ export const SearchWrap = styled.div`
   height: 65px;
   cursor: pointer;
 
-  width: 100%;
+  /* width: 100%; */
   position: relative;
 `;
 
@@ -74,12 +85,18 @@ export const SearchSection = styled.div`
 `;
 
 export const SearchTextBack = styled.div`
-  width: 100%;
+  /* width: 100%; */
   height: 100%;
   padding: 0 15px;
   /* display: flex;
   align-items: center; */
   position: relative;
+
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  justify-content: flex-end;
+  /* margin: 5px 0; */
 
   &:hover {
     border-radius: 30px;
@@ -93,6 +110,18 @@ export const SearchTextBack = styled.div`
     border-radius: 30px;
     background: #fff;
     box-shadow: 0px 3px 10px 1px rgba(0, 0, 0, 0.15);
+    /* width: 100%; */
+  }
+
+  &.firstField {
+    width: 35%;
+  }
+
+  &.dateField {
+    width: 15%;
+  }
+  &.lastField {
+    /* width: 30%; */
   }
 `;
 
@@ -101,16 +130,18 @@ export const SearchTextSection = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: space-between; */
+  justify-content: flex-end;
   /* align-items: center; */
   position: relative;
 
   padding: 0 5px;
+  margin: 5px 0 10px;
   /* margin: 0 auto; */
 
   p {
     margin: 0;
-    font-size: 13px;
+    font-size: 12px;
     position: absolute;
     top: 10px;
     font-weight: 600;
@@ -118,20 +149,21 @@ export const SearchTextSection = styled.div`
 
   span {
     width: 100%;
-    margin: 20px 10px 3px 0px;
-    font-size: 16px;
+    /* margin-top: 10px; */
+    /* margin: 15px 10px 3px 0px; */
     color: gray;
+    font-size: 14px;
   }
 
-  &.firstField {
-    width: 300px;
+  &.first {
+    /* width: 100%; */
 
     input {
       border: none;
       background: none;
       width: 100%;
-      margin: 20px 10px 3px 0px;
-      font-size: 16px;
+      /* margin: 20px 10px 3px 0px; */
+      font-size: 14px;
       /* padding: 5px 10px; */
 
       &:focus {
@@ -148,12 +180,12 @@ export const NumberOfGuests = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 20px 10px 3px 0px;
+  /* margin: 20px 10px 3px 0px; */
 
   span {
     margin-right: 5px;
-    color: #000;
-    font-weight: 600;
+    /* color: #000; */
+    /* font-weight: 600; */
   }
 `;
 

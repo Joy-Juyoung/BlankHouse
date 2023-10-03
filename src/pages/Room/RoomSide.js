@@ -46,6 +46,7 @@ const RoomSide = ({
 
   const [isSideDate, setIsSideDate] = useState(false);
   const [guestsNum, setGuestsNum] = useState(1);
+  const [infantsNum, setInfantsNum] = useState(0);
 
   const [reviewsTotal, setReviewsTotal] = useState(
     roomReviewInfo?.total_objects
@@ -129,7 +130,10 @@ const RoomSide = ({
               >
                 <GuestsInput>
                   <InputLabel>GUESTS</InputLabel>
-                  <div>{guestsNum} guests</div>
+                  <div>
+                    {guestsNum} guests
+                    {infantsNum !== 0 && ', ' + infantsNum + ' infants'}
+                  </div>
                 </GuestsInput>
                 <ExpandMoreIcon />
                 {isGuests && (
@@ -137,6 +141,9 @@ const RoomSide = ({
                     setIsGuests={setIsGuests}
                     guestsNum={guestsNum}
                     setGuestsNum={setGuestsNum}
+                    infantsNum={infantsNum}
+                    setInfantsNum={setInfantsNum}
+                    roomInfo={roomInfo}
                   />
                 )}
               </SideGuestsInput>

@@ -62,12 +62,13 @@ export const HeaderWrapper = styled.div`
     cursor: pointer;
     font-size: 24px;
     color: #ffae00;
-    /* z-index: 5; */
+    z-index: 5;
   }
 
   img {
     width: 30px;
     margin-right: 10px;
+    z-index: 5;
   }
 
   &.headerCenter {
@@ -83,6 +84,7 @@ export const HeaderWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    z-index: 5;
   }
 `;
 
