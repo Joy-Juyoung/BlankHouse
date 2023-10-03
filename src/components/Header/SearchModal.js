@@ -24,6 +24,7 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
   const location = useLocation();
   const [isGuests, setIsGuests] = useState(false);
   const [guestsNum, setGuestsNum] = useState(1);
+  const [infantsNum, setInfantsNum] = useState(0);
 
   const [isCheckInDate, setIsCheckInDate] = useState(false);
   const [isCheckOutDate, setIsCheckOutDate] = useState(false);
@@ -71,26 +72,19 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
             >
               <Link to='/experiences'>Experiences</Link>
             </SearchNavbar>
-            <SearchNavbar
-              guestmode={location.pathname === '/onlinexperiences' ? true : false}
-              onClick={() => toggleSearchModal(false)}
-            >
-              <Link to='/onlinexperiences'>Online Experiences</Link>
-            </SearchNavbar>
-
           </SearchModalNavWrap>
         </SearchModalNav>
         <SearchField>
           <SearchWrap>
             <SearchSection>
-              <SearchTextBack>
-                <SearchTextSection className='firstField'>
+              <SearchTextBack className='firstField'>
+                <SearchTextSection className='first'>
                   <p>Where</p>
                   <input type='text' placeholder='Search destinations' />
                 </SearchTextSection>
               </SearchTextBack>
               <SearchTextBack
-                className={isCheckInDate && 'avtive'}
+                className={(isCheckInDate && 'avtive') || 'dateField'}
                 onClick={() => {
                   setIsCheckInDate(!isCheckInDate);
                   setIsCheckOutDate(false);
@@ -103,7 +97,7 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
                 </SearchTextSection>
               </SearchTextBack>
               <SearchTextBack
-                className={isCheckOutDate && 'avtive'}
+                className={(isCheckOutDate && 'avtive') || 'dateField'}
                 onClick={() => {
                   setIsCheckOutDate(!isCheckOutDate);
                   setIsCheckInDate(false);
@@ -116,7 +110,7 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
                 </SearchTextSection>
               </SearchTextBack>
               <SearchTextBack
-                className={isGuests && 'avtive'}
+                className={(isGuests && 'avtive') || 'lastField'}
                 onClick={() => {
                   setIsCheckInDate(false);
                   setIsCheckOutDate(false);
@@ -130,6 +124,9 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
                       <div>
                         <span>{guestsNum}</span>
                         <span>{guestsNum === 1 ? 'guest' : 'guests'}</span>
+                        {infantsNum !== 0 && (
+                          <span>, {infantsNum} infants</span>
+                        )}
                       </div>
                     </NumberOfGuests>
                   ) : (
@@ -141,6 +138,9 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
                     setIsGuests={setIsGuests}
                     guestsNum={guestsNum}
                     setGuestsNum={setGuestsNum}
+                    infantsNum={infantsNum}
+                    setInfantsNum={setInfantsNum}
+                    // roomInfo={roomInfo}
                     toggleSearchModal={toggleSearchModal}
                   />
                 )}

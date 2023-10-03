@@ -22,7 +22,7 @@ import SearchModal from './SearchModal';
 import Logo from '../../assets/logo.png';
 import LogInModal from './LogInModal';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import UserDropBox from '../Dropdown/UserDropBox';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -34,6 +34,7 @@ import {
 import Avatar from '../Avatar/Avatar';
 
 const HeaderContens = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
+  const navigation = useNavigate();
   const dropdownRef = useRef(null);
   const [modalSearchShown, toggleSearchModal] = useState(false);
   const [isUserDrop, setIsUserDrop] = useState(false);
@@ -49,9 +50,9 @@ const HeaderContens = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
     <>
       <HeaderWrapper>
         <img src={Logo} alt='' />
-        <Link to='/'>
-          <h1>BlankHouse</h1>
-        </Link>
+        {/* <Link to='/'> */}
+        <h1 onClick={() => navigation('/')}>BlankHouse</h1>
+        {/* </Link> */}
       </HeaderWrapper>
       <HeaderWrapper className='headerCenter'>
         {/* Search and Nav */}

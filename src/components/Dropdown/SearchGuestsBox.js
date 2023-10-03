@@ -37,6 +37,14 @@ const SearchGuestsDropdown = styled.div`
       border: none;
       padding-bottom: 0;
     }
+
+    span {
+      &.range {
+        color: gray;
+        font-size: 13px;
+      }
+      /* margin-top: 5px; */
+    }
   }
 
   p {
@@ -70,12 +78,14 @@ const SearchGuestsBox = ({
   setIsGuests,
   guestsNum,
   setGuestsNum,
+  infantsNum,
+  setInfantsNum,
   toggleSearchModal,
 }) => {
   // const [count, setCount] = useState(0);
   const [adultNum, setAdultNum] = useState(0);
   const [childrenNum, setChildrenNum] = useState(0);
-  const [infantsNum, setInfantsNum] = useState(0);
+  // const [infantsNum, setInfantsNum] = useState(0);
   const [petsNum, setPetsNum] = useState(0);
 
   // console.log('count', count);
@@ -84,7 +94,7 @@ const SearchGuestsBox = ({
   }, []);
 
   useEffect(() => {
-    setGuestsNum(adultNum + childrenNum + infantsNum + petsNum);
+    setGuestsNum(adultNum + childrenNum + petsNum);
   }, [adultNum, childrenNum, infantsNum, petsNum]);
 
   return (
@@ -98,7 +108,7 @@ const SearchGuestsBox = ({
           <li>
             <div>
               <p>Adults</p>
-              <span>Age 13+</span>
+              <span className='range'>Age 13+</span>
             </div>
             <GuestsCount>
               <button
@@ -117,7 +127,7 @@ const SearchGuestsBox = ({
           <li>
             <div>
               <p>Children</p>
-              <span>Age 13+</span>
+              <span className='range'>Age 2-12</span>
             </div>
             <GuestsCount>
               <button
@@ -141,7 +151,7 @@ const SearchGuestsBox = ({
           <li>
             <div>
               <p>Infants</p>
-              <span>Age 13+</span>
+              <span className='range'>Under 2</span>
             </div>
             <GuestsCount>
               <button
@@ -165,7 +175,10 @@ const SearchGuestsBox = ({
           <li className='last'>
             <div>
               <p>Pets</p>
-              <span>Bringing a service animal?</span>
+              <span className='range'>
+                Service animals aren’t pets, <br />
+                so there’s no need to add them here.
+              </span>
             </div>
             <GuestsCount>
               <button

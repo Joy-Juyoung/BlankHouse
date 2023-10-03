@@ -10,11 +10,18 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import { useEffect } from 'react';
 
-const GuestDropdown = ({ setIsGuests, guestsNum, setGuestsNum }) => {
+const GuestDropdown = ({
+  setIsGuests,
+  guestsNum,
+  setGuestsNum,
+  infantsNum,
+  setInfantsNum,
+  roomInfo,
+}) => {
   // const [count, setCount] = useState(0);
   const [adultNum, setAdultNum] = useState(1);
   const [childrenNum, setChildrenNum] = useState(0);
-  const [infantsNum, setInfantsNum] = useState(0);
+  // const [infantsNum, setInfantsNum] = useState(0);
   const [petsNum, setPetsNum] = useState(0);
 
   // console.log('count', count);
@@ -23,8 +30,12 @@ const GuestDropdown = ({ setIsGuests, guestsNum, setGuestsNum }) => {
   }, []);
 
   useEffect(() => {
-    setGuestsNum(adultNum + childrenNum + infantsNum + petsNum);
-  }, [adultNum, childrenNum, infantsNum, petsNum]);
+    setGuestsNum(adultNum + childrenNum + petsNum);
+
+    // if(guestsNum> roomInfo?.maximum_guests) {
+
+    // }
+  }, [adultNum, childrenNum, petsNum]);
 
   return (
     <>
@@ -37,18 +48,34 @@ const GuestDropdown = ({ setIsGuests, guestsNum, setGuestsNum }) => {
           <li>
             <div>
               <p>Adults</p>
-              <span>Age 13+</span>
+              <span className='range'>Age 13+</span>
             </div>
             <GuestsCount>
               <button
                 name='adults'
-                style={{ opacity: adultNum === 0 ? '0.25' : '1' }}
+                style={{
+                  opacity: adultNum === 0 ? '0.25' : '1',
+                  cursor: adultNum === 0 ? 'not-allowed' : 'pointer',
+                }}
                 onClick={() => adultNum !== 0 && setAdultNum(adultNum - 1)}
               >
                 <RemoveIcon sx={{ fontSize: '18px' }} />
               </button>
               <span>{adultNum}</span>
-              <button name='adults' onClick={() => setAdultNum(adultNum + 1)}>
+              <button
+                name='adults'
+                style={{
+                  opacity: guestsNum >= roomInfo?.maximum_guests ? '0.25' : '1',
+                  cursor:
+                    guestsNum >= roomInfo?.maximum_guests
+                      ? 'not-allowed'
+                      : 'pointer',
+                }}
+                onClick={() =>
+                  guestsNum < roomInfo?.maximum_guests &&
+                  setAdultNum(adultNum + 1)
+                }
+              >
                 <AddIcon sx={{ fontSize: '18px' }} />
               </button>
             </GuestsCount>
@@ -56,12 +83,15 @@ const GuestDropdown = ({ setIsGuests, guestsNum, setGuestsNum }) => {
           <li>
             <div>
               <p>Children</p>
-              <span>Age 13+</span>
+              <span className='range'>Age 2-12</span>
             </div>
             <GuestsCount>
               <button
                 name='children'
-                style={{ opacity: childrenNum === 0 ? '0.25' : '1' }}
+                style={{
+                  opacity: childrenNum === 0 ? '0.25' : '1',
+                  cursor: childrenNum === 0 ? 'not-allowed' : 'pointer',
+                }}
                 onClick={() =>
                   childrenNum !== 0 && setChildrenNum(childrenNum - 1)
                 }
@@ -71,7 +101,17 @@ const GuestDropdown = ({ setIsGuests, guestsNum, setGuestsNum }) => {
               <span>{childrenNum}</span>
               <button
                 name='children'
-                onClick={() => setChildrenNum(childrenNum + 1)}
+                style={{
+                  opacity: guestsNum >= roomInfo?.maximum_guests ? '0.25' : '1',
+                  cursor:
+                    guestsNum >= roomInfo?.maximum_guests
+                      ? 'not-allowed'
+                      : 'pointer',
+                }}
+                onClick={() =>
+                  guestsNum < roomInfo?.maximum_guests &&
+                  setChildrenNum(childrenNum + 1)
+                }
               >
                 <AddIcon sx={{ fontSize: '18px' }} />
               </button>
@@ -80,12 +120,15 @@ const GuestDropdown = ({ setIsGuests, guestsNum, setGuestsNum }) => {
           <li>
             <div>
               <p>Infants</p>
-              <span>Age 13+</span>
+              <span className='range'>Under 2</span>
             </div>
             <GuestsCount>
               <button
                 name='infants'
-                style={{ opacity: infantsNum === 0 ? '0.25' : '1' }}
+                style={{
+                  opacity: infantsNum === 0 ? '0.25' : '1',
+                  cursor: infantsNum === 0 ? 'not-allowed' : 'pointer',
+                }}
                 onClick={() =>
                   infantsNum !== 0 && setInfantsNum(infantsNum - 1)
                 }
@@ -104,12 +147,18 @@ const GuestDropdown = ({ setIsGuests, guestsNum, setGuestsNum }) => {
           <li>
             <div>
               <p>Pets</p>
-              <span>Bringing a service animal?</span>
+              <span className='range'>
+                Service animals aren’t pets, <br />
+                so there’s no need to add them here.
+              </span>
             </div>
             <GuestsCount>
               <button
                 name='pets'
-                style={{ opacity: petsNum === 0 ? '0.25' : '1' }}
+                style={{
+                  opacity: petsNum === 0 ? '0.25' : '1',
+                  cursor: petsNum === 0 ? 'not-allowed' : 'pointer',
+                }}
                 onClick={() => petsNum !== 0 && setPetsNum(petsNum - 1)}
               >
                 <RemoveIcon sx={{ fontSize: '18px' }} />
@@ -123,8 +172,9 @@ const GuestDropdown = ({ setIsGuests, guestsNum, setGuestsNum }) => {
         </ul>
         <GuestsNotice>
           <p>
-            This place has a maximum of 4 guests, not including infants. If
-            you're bringing more than 2 pets, please let your Host know.
+            This place has a maximum of {roomInfo?.maximum_guests} guests, not
+            including infants. If you're bringing more than 2 pets, please let
+            your Host know.
           </p>
         </GuestsNotice>
         <GuestsCloseBtn>

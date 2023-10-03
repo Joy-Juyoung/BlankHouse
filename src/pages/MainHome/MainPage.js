@@ -74,21 +74,24 @@ const MainPage = ({ setIsPageMain }) => {
 
         <MainMid>
           <MainMidWrap>
-            {allRoomInfo?.map((room, index) => {
-              return (
-                <Link key={index} to={`/room/${room?.pk}`}>
-                  <RoomCard
-                    room={room}
-                    loading={loading}
-                    // isLiked={isLiked}
-                    // setIsLiked={isLiked}
-                    fav={fav}
-                    setFav={setFav}
-                  />
-                  {/* <MainRoomCard room={room} loading={loading} /> */}
-                </Link>
-              );
-            })}
+            {/* ?.filter((rf) => rf?.photos?.length >= 5) */}
+            {allRoomInfo
+              ?.filter((rf) => rf?.photos?.length > 0)
+              ?.map((room, index) => {
+                return (
+                  <Link key={index} to={`/room/${room?.pk}`}>
+                    <RoomCard
+                      room={room}
+                      loading={loading}
+                      // isLiked={isLiked}
+                      // setIsLiked={isLiked}
+                      fav={fav}
+                      setFav={setFav}
+                    />
+                    {/* <MainRoomCard room={room} loading={loading} /> */}
+                  </Link>
+                );
+              })}
           </MainMidWrap>
           {/* <div ref={pageRef}>{isLoading && 'Loading...'}</div> */}
         </MainMid>

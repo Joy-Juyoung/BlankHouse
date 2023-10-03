@@ -55,12 +55,11 @@ const RoomCard = ({ room, loading }) => {
             </RoomTitle>
             <RoomDesc>
               {/* {room?.house_type} */}
-              {room?.house_type === 'entire_place' && 'Entire '}
+              {room?.house_type === 'entire_place' && 'Entire place 6'}
               {room?.house_type === 'private_room' && 'Private room '}
               {room?.house_type === 'shared_room' && 'Shared room '}
-              {room?.category?.name?.toLowerCase()}
-              {/* in
-              {room?.city} */}
+              {/* {room?.category?.name?.toLowerCase()} */}
+              in {room?.city}, {room?.country}
             </RoomDesc>
             <RoomPrice>
               <p>${room?.price?.toFixed(2)}</p>

@@ -182,6 +182,11 @@ export const GuestsDropdown = styled.div`
   span {
     font-weight: 400;
     font-size: 14px;
+
+    &.range {
+      color: gray;
+      font-size: 13px;
+    }
   }
 `;
 
@@ -209,16 +214,19 @@ export const GuestsCount = styled.div`
   span {
     width: 35px;
     text-align: center;
+    /* color: gray; */
   }
 `;
 
 export const GuestsNotice = styled.div`
-  padding: 0 10px;
+  padding: 20px 10px 0;
+  margin-top: 15px;
+  border-top: 1px solid #bbb;
 
   p {
     margin: 0;
     font-weight: 400;
-    font-size: 12px;
+    font-size: 11px;
     line-height: normal;
   }
 `;
