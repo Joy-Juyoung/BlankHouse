@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import MainRoomCard from './MainRoomCard';
+// import MainRoomCard from './MainRoomCard';
 import {
   FilterBtn,
   MainContainer,
@@ -21,33 +21,34 @@ import RoomCard from '../../components/RoomCard';
 
 const MainPage = ({ setIsPageMain }) => {
   const [modalFilterShown, toggleFilterModal] = useState(false);
-  const [loading, setLoading] = useState(false);
-  // const [isLiked, setIsLiked] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [fav, setFav] = useState(false);
-  // const [per_page, setPer_page] = useState(20);
-  // const [page, setPage] = useState(1);
 
   const allRoomInfo = useSelector(getAllRoomInfo);
   const dispatch = useDispatch();
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-    dispatch(getAllRoomsAsync());
+    // setLoading(true);
+    dispatch(getAllRoomsAsync())
+      .then(() => {
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error loading data:', error);
+        setLoading(false);
+      });
     setIsPageMain(true);
   }, [dispatch, fav]);
 
-  //   useEffect(() => {
-  //   setLiked(room?.is_liked );
-  // }, []);
+  // console.log('All Rooms', allRoomInfo);
 
-  console.log('All Rooms', allRoomInfo);
-
-  if (loading)
-    return (
-      <div>
-        <PageLoading />
-      </div>
-    );
+  // if (loading)
+  //   return (
+  //     <div>
+  //       <PageLoading />
+  //     </div>
+  //   );
   return (
     <MainContainer>
       <MainWrap>
@@ -83,17 +84,13 @@ const MainPage = ({ setIsPageMain }) => {
                     <RoomCard
                       room={room}
                       loading={loading}
-                      // isLiked={isLiked}
-                      // setIsLiked={isLiked}
                       fav={fav}
                       setFav={setFav}
                     />
-                    {/* <MainRoomCard room={room} loading={loading} /> */}
                   </Link>
                 );
               })}
           </MainMidWrap>
-          {/* <div ref={pageRef}>{isLoading && 'Loading...'}</div> */}
         </MainMid>
       </MainWrap>
     </MainContainer>

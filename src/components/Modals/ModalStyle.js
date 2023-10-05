@@ -8,6 +8,10 @@ export const ModalContainer = styled.div`
   /* margin: 0 auto; */
   max-height: 780px;
   z-index: 6;
+
+  &.filter {
+    max-width: 750px;
+  }
 `;
 
 export const ModalWholeContainer = styled.div`
@@ -83,6 +87,10 @@ export const ModalMain = styled.div`
   padding: 0 25px;
   overflow-y: scroll;
   max-height: 650px;
+
+  &.filter {
+    max-width: 750px;
+  }
 `;
 
 export const ModalMainSection = styled.div`

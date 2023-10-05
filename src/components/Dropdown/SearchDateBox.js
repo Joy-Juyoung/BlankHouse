@@ -13,12 +13,14 @@ const SearchDateDropdown = styled.div`
   padding: 10px;
   position: absolute;
   top: 70px;
-  left: 50px;
-  right: 50px;
+  left: 0;
+  right: 0;
+  /* left: 50px;
+  right: 50px; */
   z-index: 5;
   cursor: auto;
 
-  border-radius: 30px;
+  border-radius: 20px;
   border: 1px solid #dddd;
   box-shadow: 0px 10px 15px 2px rgba(0, 0, 0, 0.2);
 `;

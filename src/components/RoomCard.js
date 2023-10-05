@@ -14,15 +14,8 @@ import {
 } from '../pages/MainHome/MainStyle';
 import RoomEachSk from '../pages/MainHome/Skeletons/MainEachSk';
 import MainRoomSlider from '../pages/MainHome/MainRoomSlider';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  addRoomWishlistAsync,
-  RoomAddEishlist,
-  RoomAddWishlist,
-} from '../redux/slices/wishlistSlice';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import ToggleLiked from './ToggleLiked';
+import PageLoading from './Loading/PageLoading';
 
 const RoomCard = ({ room, loading }) => {
   const [isBtnShown, setIsBtnShown] = useState(false);
@@ -54,11 +47,9 @@ const RoomCard = ({ room, loading }) => {
               </RoomRating>
             </RoomTitle>
             <RoomDesc>
-              {/* {room?.house_type} */}
-              {room?.house_type === 'entire_place' && 'Entire place 6'}
+              {room?.house_type === 'entire_place' && 'Entire place '}
               {room?.house_type === 'private_room' && 'Private room '}
               {room?.house_type === 'shared_room' && 'Shared room '}
-              {/* {room?.category?.name?.toLowerCase()} */}
               in {room?.city}, {room?.country}
             </RoomDesc>
             <RoomPrice>

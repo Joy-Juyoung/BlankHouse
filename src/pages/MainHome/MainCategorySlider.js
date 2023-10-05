@@ -15,6 +15,7 @@ import {
   getAllCategory,
   getAllRoomCategoryAsync,
 } from '../../redux/slices/categorySlice';
+import MainCategorySk from './Skeletons/MainCategorySk';
 
 const MainCategorySlider = ({ loading, visibleItems }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -72,10 +73,13 @@ const MainCategorySlider = ({ loading, visibleItems }) => {
           <Slide>
             {categories
               ?.slice(currentIndex, currentIndex + visibleItems)
-              .map((category, index) => (
-                <SlideName key={index} style={{ width: sliderWidth }}>
-                  <span>{category?.name}</span>
-                </SlideName>
+              .map((category) => (
+                <MainCategorySk
+                  category={category}
+                  sliderWidth={sliderWidth}
+                  loading={loading}
+                  key={category?.pk}
+                />
               ))}
           </Slide>
         </SliderWrapper>
