@@ -51,7 +51,8 @@ const RoomInfo = ({
   roomReviewInfo,
   setPer_page,
   per_page,
-  setpage,
+  setPage,
+  page,
   modalReviewShown,
   toggleReviewModal,
   isShowReviews,
@@ -63,18 +64,6 @@ const RoomInfo = ({
 
   const [checkInDate, setCheckInDate] = useState('');
   const [checkOutDate, setCheckOutDate] = useState('');
-
-  // const [currentDate, setCurrentDate] = useState('');
-
-  // useEffect(() => {
-  //   const today = new Date();
-  //   const year = today.getFullYear();
-  //   const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed, so add 1
-  //   const day = String(today.getDate()).padStart(2, '0');
-
-  //   const formattedDate = `${year}-${month}-${day}`;
-  //   setCurrentDate(formattedDate);
-  // }, []);
 
   const roomAmenity = useSelector(getAllAmenity);
   const dispatch = useDispatch();
@@ -126,7 +115,7 @@ const RoomInfo = ({
                   <span className='coma'>·</span>
                   <span>{roomInfo?.number_of_toilet} bath</span>
                   <span className='coma'>·</span>
-                  <span>{roomInfo?.number_of_bed} bath</span>
+                  <span>{roomInfo?.number_of_bed} bed</span>
                 </>
               )}
             </RoomDetailsTopText>
@@ -340,7 +329,8 @@ const RoomInfo = ({
         roomReviewInfo={roomReviewInfo}
         setPer_page={setPer_page}
         per_page={per_page}
-        setpage={setpage}
+        setPage={setPage}
+        page={page}
         setIsShowReviews={setIsShowReviews}
         isShowReviews={isShowReviews}
       />

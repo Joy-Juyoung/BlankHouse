@@ -51,7 +51,7 @@ const ModalContentWrapper = styled.div`
 const ModalContent = styled.div`
   /* max-height: 780px; */
   /* width: 60%; */
-  min-width: 680px;
+  min-width: 450px;
   background-color: white;
   border-radius: 10px;
   z-index: 6;

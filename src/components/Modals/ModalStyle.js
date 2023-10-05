@@ -12,6 +12,10 @@ export const ModalContainer = styled.div`
   &.filter {
     max-width: 750px;
   }
+
+  &.small {
+    max-width: 450px;
+  }
 `;
 
 export const ModalWholeContainer = styled.div`
@@ -90,6 +94,10 @@ export const ModalMain = styled.div`
 
   &.filter {
     max-width: 750px;
+  }
+
+  &.small {
+    max-width: 450px;
   }
 `;
 

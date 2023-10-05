@@ -7,8 +7,15 @@ import {
   ModalMainSection,
   ModalTitle,
 } from '../Modals/ModalStyle';
-import { ModalShowMain, ShowWrap } from './ShowModalStyle';
+import {
+  ModalShowMain,
+  ShareWrapper,
+  ShowShare,
+  ShowShareWrap,
+  ShowWrap,
+} from './ShowModalStyle';
 import ShowMoreReview from './ShowMoreReview';
+import StarIcon from '@mui/icons-material/Star';
 // import ShowMoreModalLayout from '../Modals/ShowMoreModalLayout';
 
 const ShowMoreModal = ({
@@ -22,9 +29,12 @@ const ShowMoreModal = ({
   roomReviewInfo,
   setPer_page,
   per_page,
-  setpage,
+  setPage,
+  page,
   setIsShowReviews,
   isShowReviews,
+  toggleShareModal,
+  modalShareShown,
 }) => {
   const onToggleClose = () => {
     if (modalAboutPlaceShown) {
@@ -38,13 +48,6 @@ const ShowMoreModal = ({
       setIsShowReviews(false);
     }
   };
-
-  // useEffect(() => {
-  //   if (isShowReviews) {
-  //     // setPer_page(roomReviewInfo?.total_objects.toString());
-  //     setPer_page(roomReviewInfo?.total_objects.toString());
-  //   }
-  // }, [modalReviewShown]);
 
   return (
     <ModalLayout
@@ -65,12 +68,13 @@ const ShowMoreModal = ({
             {modalReviewShown && (
               <ShowMoreReview
                 roomReviewInfo={roomReviewInfo}
-                setPer_page={setPer_page}
-                per_page={per_page}
-                setpage={setpage}
                 roomInfo={roomInfo}
                 setIsShowReviews={setIsShowReviews}
                 isShowReviews={isShowReviews}
+                setPer_page={setPer_page}
+                per_page={per_page}
+                setPage={setPage}
+                page={page}
               />
             )}
             {modalAmenityShown && <RoomAmenity roomInfo={roomInfo} />}

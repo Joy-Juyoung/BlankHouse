@@ -13,39 +13,51 @@ import {
   ReviewGraphs,
   ReviewGraphsName,
   ReviewGraphsRate,
+  ShowReviewPage,
 } from './ShowStyle';
 import StarIcon from '@mui/icons-material/Star';
-// import {
-//   GraphsRateNum,
-//   ReviewGraphs,
-//   ReviewGraphsName,
-//   ReviewGraphsRate,
-// } from '../../pages/Room/RoomReviewsStyle';
 import RoomReviewBar from '../../pages/Room/RoomReviewBar';
 import RoomReviewsCard from '../../pages/Room/RoomReviewsCard';
 import SearchIcon from '@mui/icons-material/Search';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+import usePagination from '@mui/material/usePagination/usePagination';
 
 const ShowMoreReview = ({
   roomInfo,
   roomReviewInfo,
   setPer_page,
   per_page,
-  setpage,
+  setPage,
+  page,
   setIsShowReviews,
   isShowReviews,
 }) => {
-  // const [isShowReviews, setIsShowReviews] = useState(true);
+  const [searchedValue, setSearchedValue] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
 
-  // useEffect(()=> {
-  //   setIsShowReviews()
-  // })
+  useEffect(() => {
+    setSearchResults(roomReviewInfo?.results);
+  }, []);
 
-  // useEffect(() => {
-  //   if (isShowReviews) {
-  //     // setPer_page(roomReviewInfo?.total_objects.toString());
-  //     setPer_page('14');
-  //   }
-  // }, [isShowReviews]);
+  const handleSearch = (e) => {
+    const keyword = e.target.value;
+    setSearchedValue(keyword);
+
+    const filteredResults = roomReviewInfo?.results?.filter((item) =>
+      item?.payload.toLowerCase().includes(searchedValue.toLowerCase())
+    );
+
+    setSearchResults(filteredResults);
+  };
+
+  const handlePageChange = (e, p) => {
+    console.log('p', p);
+    setPage(p);
+  };
+
+  // console.log('per_page', per_page);
+  // console.log('page', page);
 
   return (
     <ShowReviewBox>
@@ -116,12 +128,23 @@ const ShowMoreReview = ({
           <span>
             <SearchIcon />
           </span>
-          <input type='text' placeholder='Search reviews' />
+          <input
+            type='text'
+            placeholder='Search reviews'
+            value={searchedValue}
+            onChange={handleSearch}
+          />
         </ShowReviewSearch>
         <ShowReviewList>
           <ShowReviewEach>
             {roomReviewInfo?.total_objects > 0 &&
+              // searchResults
               roomReviewInfo?.results
+                ?.filter((item) =>
+                  item?.payload
+                    .toLowerCase()
+                    .includes(searchedValue.toLowerCase())
+                )
                 ?.slice(0)
                 .reverse()
                 .map((review) => {
@@ -137,6 +160,18 @@ const ShowMoreReview = ({
                 })}
           </ShowReviewEach>
         </ShowReviewList>
+        {/* roomReviewInfo?.total_objects */}
+        <ShowReviewPage>
+          <Stack spacing={2}>
+            <Pagination
+              count={Math.ceil(roomReviewInfo?.total_objects / per_page)}
+              variant='outlined'
+              shape='rounded'
+              page={page}
+              onChange={handlePageChange}
+            />
+          </Stack>
+        </ShowReviewPage>
       </ShowReviewWrapper>
     </ShowReviewBox>
   );

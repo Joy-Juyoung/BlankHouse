@@ -28,6 +28,7 @@ import {
 } from '../../redux/slices/roomReviewSlice';
 import ToggleLiked from '../../components/ToggleLiked';
 import RoomTopSk from './Skeletons/RoomTopSk';
+import ShowSmallModal from '../../components/Show/ShowSmallModal';
 
 const Room = ({ setIsPageMain }) => {
   // const [fav, setFav] = useState(false);
@@ -36,8 +37,11 @@ const Room = ({ setIsPageMain }) => {
   const [isPhotoFav, setIsPhotoFav] = useState(false);
   const [modalReviewShown, toggleReviewModal] = useState(false);
   const [isShowReviews, setIsShowReviews] = useState(false);
-  const [per_page, setPer_page] = useState('6');
-  const [page, setpage] = useState('1');
+
+  const [modalShareShown, toggleShareModal] = useState(false);
+
+  const [per_page, setPer_page] = useState(6);
+  const [page, setPage] = useState(1);
 
   const { roomId } = useParams();
   const roomInfo = useSelector(getRoomInfo);
@@ -55,7 +59,7 @@ const Room = ({ setIsPageMain }) => {
         setLoading(false);
       });
     dispatch(getReviewByRoomIdAsync({ roomId, per_page, page }));
-  }, [dispatch, roomId]);
+  }, [dispatch, roomId, per_page, page]);
 
   const handlePhotoShowAll = () => {
     togglePhotoModal(!modalPhotoShown);
@@ -82,6 +86,8 @@ const Room = ({ setIsPageMain }) => {
   //   );
   // }
 
+  console.log('modalShareShown', modalShareShown);
+
   return (
     <>
       <RoomInfoHead roomInfo={roomInfo} roomReviewInfo={roomReviewInfo} />
@@ -102,7 +108,7 @@ const Room = ({ setIsPageMain }) => {
                     <span
                       onClick={() => {
                         toggleReviewModal(!modalReviewShown);
-                        setIsShowReviews(true);
+                        setIsShowReviews(!isShowReviews);
                       }}
                     >
                       <Link>{roomReviewInfo?.total_objects} Reviews</Link>
@@ -119,7 +125,12 @@ const Room = ({ setIsPageMain }) => {
                     </span>
                   </RoomTopInfo>
                   <RoomTopInfo>
-                    <button className='share'>
+                    <button
+                      className='share'
+                      onClick={() => {
+                        toggleShareModal(!modalShareShown);
+                      }}
+                    >
                       <ShareIcon sx={{ fontSize: '18px' }} />
                       <span>Share</span>
                     </button>
@@ -133,9 +144,15 @@ const Room = ({ setIsPageMain }) => {
                     </button>
                   </RoomTopInfo>
                 </RoomTopText>
+                <ShowSmallModal
+                  toggleShareModal={toggleShareModal}
+                  modalShareShown={modalShareShown}
+                  roomInfo={roomInfo}
+                />
               </>
             )}
           </RoomTopWrap>
+
           <RoomMainWrap>
             <RoomMainPhotos>
               <RoomPhotos loading={loading} roomInfo={roomInfo} />
@@ -162,7 +179,8 @@ const Room = ({ setIsPageMain }) => {
               roomReviewInfo={roomReviewInfo}
               setPer_page={setPer_page}
               per_page={per_page}
-              setpage={setpage}
+              setPage={setPage}
+              page={page}
               toggleReviewModal={toggleReviewModal}
               modalReviewShown={modalReviewShown}
               setIsShowReviews={setIsShowReviews}
