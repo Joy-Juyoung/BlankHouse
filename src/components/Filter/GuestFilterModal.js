@@ -67,8 +67,8 @@ const GuestFilterModal = ({ modalFilterShown, toggleFilterModal }) => {
       }}
       title='Filters'
     >
-      <ModalContainer>
-        <ModalMain>
+      <ModalContainer className='filter'>
+        <ModalMain className='filter'>
           <ModalMainSection>
             <ModalMainTitle>Price range</ModalMainTitle>
             <ModalMainText>The average nightly price is $000,000</ModalMainText>

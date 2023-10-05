@@ -64,6 +64,8 @@ export const SlideIcon = styled.div`
   justify-content: center;
 `;
 
+export const SlideBox = styled.div``;
+
 export const SlideName = styled.div`
   width: 100%;
   display: flex;
@@ -79,5 +81,10 @@ export const SlideName = styled.div`
 
   span {
     font-size: 13px;
+  }
+
+  &.loading {
+    border: none;
+    padding: 0;
   }
 `;
