@@ -3,10 +3,10 @@ import { Skeleton } from '@mui/material';
 import { RoomPhotoMain, RoomPhotoSub, PhotoSubCover } from './RoomStyle';
 import RoomPhotosSk from './Skeletons/RoomPhotosSk';
 
-const RoomPhotos = ({ roomInfo }) => {
+const RoomPhotos = ({ roomInfo, loading }) => {
   return (
     <>
-      {!roomInfo ? (
+      {loading ? (
         <RoomPhotosSk />
       ) : (
         <>
@@ -18,7 +18,6 @@ const RoomPhotos = ({ roomInfo }) => {
               return (
                 <PhotoSubCover key={pic?.pk}>
                   <img src={pic?.picture} alt='' />
-                  {/* <span className='subCover'></span> */}
                 </PhotoSubCover>
               );
             })}

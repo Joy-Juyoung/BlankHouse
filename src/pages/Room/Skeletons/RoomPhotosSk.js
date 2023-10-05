@@ -9,29 +9,29 @@ const RoomPhotosSk = () => {
         <Skeleton
           variant='rect'
           animation='wave'
-          sx={{ width: '100%', height: '536px', borderRadius: '10px' }}
+          sx={{ width: '100%', height: '100%', borderRadius: '10px' }}
         />
       </RoomPhotoMain>
       <RoomPhotoSub>
         <Skeleton
           variant='rect'
           animation='wave'
-          sx={{ width: '100%', height: '263px', borderRadius: '10px' }}
+          sx={{ width: '100%', height: '100%', borderRadius: '10px' }}
         />
         <Skeleton
           variant='rect'
           animation='wave'
-          sx={{ width: '100%', height: '263px', borderRadius: '10px' }}
+          sx={{ width: '100%', height: '100%', borderRadius: '10px' }}
         />
         <Skeleton
           variant='rect'
           animation='wave'
-          sx={{ width: '100%', height: '263px', borderRadius: '10px' }}
+          sx={{ width: '100%', height: '100%', borderRadius: '10px' }}
         />
         <Skeleton
           variant='rect'
           animation='wave'
-          sx={{ width: '100%', height: '263px', borderRadius: '10px' }}
+          sx={{ width: '100%', height: '100%', borderRadius: '10px' }}
         />
       </RoomPhotoSub>
     </>

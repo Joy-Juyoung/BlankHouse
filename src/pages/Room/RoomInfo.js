@@ -17,6 +17,8 @@ import {
   PlaceOffers,
   PlaceOffersList,
   AvatarHost,
+  RoomDetailsTopText,
+  GoToMap,
 } from './RoomStyle';
 import StarIcon from '@mui/icons-material/Star';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -38,6 +40,10 @@ import {
   getAllAmenity,
   getAllAmenityAsync,
 } from '../../redux/slices/roomSlice';
+import { Skeleton } from '@mui/material';
+import RoomBed from './RoomBed';
+import FmdGoodIcon from '@mui/icons-material/FmdGood';
+import { Link } from 'react-router-dom';
 
 const RoomInfo = ({
   roomInfo,
@@ -50,17 +56,25 @@ const RoomInfo = ({
   toggleReviewModal,
   isShowReviews,
   setIsShowReviews,
+  loading,
 }) => {
-  const [loading, setLoading] = useState(false);
   const [modalAboutPlaceShown, toggleAboutPlaceModal] = useState(false);
   const [modalAmenityShown, toggleAmenityModal] = useState(false);
-  // const [modalReviewShown, toggleReviewModal] = useState(false);
-  // const [modalLocationShown, toggleLocationModal] = useState(false);
-  // const [modalThingsShown, toggleThingsModal] = useState(false);
 
-  // const [isShowReviews, setIsShowReviews] = useState(false);
   const [checkInDate, setCheckInDate] = useState('');
   const [checkOutDate, setCheckOutDate] = useState('');
+
+  // const [currentDate, setCurrentDate] = useState('');
+
+  // useEffect(() => {
+  //   const today = new Date();
+  //   const year = today.getFullYear();
+  //   const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed, so add 1
+  //   const day = String(today.getDate()).padStart(2, '0');
+
+  //   const formattedDate = `${year}-${month}-${day}`;
+  //   setCurrentDate(formattedDate);
+  // }, []);
 
   const roomAmenity = useSelector(getAllAmenity);
   const dispatch = useDispatch();
@@ -69,35 +83,54 @@ const RoomInfo = ({
     dispatch(getAllAmenityAsync());
   }, [dispatch]);
 
-  // console.log('roomAmenity', roomAmenity);
-  // useEffect(() => {
-  //   setPer_page('12');
-  // }, []);
-
   return (
     <RoomDetailSection>
       {/* Before Reviews */}
       <RoomMainDetails>
         <RoomMainDetailsWrap>
           <RoomDetailsTop>
-            <div>
-              <h2>
-                {roomInfo?.house_type === 'entire_place' && 'Entire '}
-                {roomInfo?.house_type === 'private_room' && 'Private room '}
-                {roomInfo?.house_type === 'shared_room' && 'Shared room '}
-                {roomInfo?.category?.name?.toLowerCase()} hosted by{' '}
-                {roomInfo?.owner?.username}
-              </h2>
-              <span>{roomInfo?.maximum_guests} guests</span>
-              <span className='coma'>·</span>
-              <span>{roomInfo?.number_of_room} bedroom </span>
-              <span className='coma'>·</span>
-              <span>{roomInfo?.number_of_toilet} bath</span>
-              <span className='coma'>·</span>
-              <span>{roomInfo?.number_of_bed} bath</span>
-            </div>
+            <RoomDetailsTopText>
+              {loading ? (
+                <>
+                  <Skeleton
+                    variant='rect'
+                    animation='wave'
+                    sx={{
+                      width: '450px',
+                      height: '30px',
+                      borderRadius: '10px',
+                    }}
+                  />
+                  <Skeleton
+                    variant='rect'
+                    animation='wave'
+                    sx={{
+                      width: '300px',
+                      height: '20px',
+                      borderRadius: '10px',
+                      marginTop: '5px',
+                    }}
+                  />
+                </>
+              ) : (
+                <>
+                  <h2>
+                    {roomInfo?.house_type === 'entire_place' && 'Entire place '}
+                    {roomInfo?.house_type === 'private_room' && 'Private room '}
+                    {roomInfo?.house_type === 'shared_room' && 'Shared room '}
+                    hosted by {roomInfo?.owner?.username}
+                  </h2>
+                  <span>{roomInfo?.maximum_guests} guests</span>
+                  <span className='coma'>·</span>
+                  <span>{roomInfo?.number_of_room} bedroom </span>
+                  <span className='coma'>·</span>
+                  <span>{roomInfo?.number_of_toilet} bath</span>
+                  <span className='coma'>·</span>
+                  <span>{roomInfo?.number_of_bed} bath</span>
+                </>
+              )}
+            </RoomDetailsTopText>
             <AvatarHost>
-              {/* <img src='' alt='' /> */}
               <Avatar
                 initials={roomInfo?.owner?.username
                   ?.substring(0, 1)
@@ -132,7 +165,7 @@ const RoomInfo = ({
                   <TodayIcon />
                 </div>
                 <BasicInfo>
-                  <p>Free cancellation before Oct. 6.</p>
+                  <p>Free cancellation available 7 days before check-in.</p>
                   <span></span>
                 </BasicInfo>
               </li>
@@ -142,7 +175,18 @@ const RoomInfo = ({
           {/* About plce Modal Open */}
           <RoomDetailsSections>
             <h2>About this place</h2>
-            <BasicIntro>{roomInfo?.description}</BasicIntro>
+
+            {loading ? (
+              <BasicIntro>
+                <Skeleton
+                  variant='rect'
+                  animation='wave'
+                  sx={{ width: '100%', height: '85px', borderRadius: '10px' }}
+                />
+              </BasicIntro>
+            ) : (
+              <BasicIntro>{roomInfo?.description}</BasicIntro>
+            )}
             <ShowMoreBtn
               onClick={() => {
                 toggleAboutPlaceModal(!modalAboutPlaceShown);
@@ -159,25 +203,36 @@ const RoomInfo = ({
           />
 
           {/* Num of bed */}
-          <RoomDetailsSections>
+          {/* <RoomDetailsSections>
             <h2>Where you'll sleep</h2>
             <SleepWrap>
               <BedIcon />
               <p>Bedroom</p>
               <span>{roomInfo?.number_of_bed} bed</span>
             </SleepWrap>
-          </RoomDetailsSections>
+          </RoomDetailsSections> */}
+          <RoomBed roomInfo={roomInfo} />
 
           {/* Amenities */}
           <RoomDetailsSections id='viewAmenities'>
             <h2>What this place offers</h2>
-            <RoomAmenity roomInfo={roomInfo} roomAmenity={roomAmenity} />
+            <PlaceOffers>
+              {roomInfo?.amenities?.map((amenity) => {
+                return (
+                  <RoomAmenity
+                    key={amenity?.pk}
+                    amenity={amenity}
+                    loading={loading}
+                  />
+                );
+              })}
+            </PlaceOffers>
             <ShowAllBtn
               onClick={() => {
                 toggleAmenityModal(!modalAmenityShown);
               }}
             >
-              Show all {roomAmenity?.length} Amenities
+              Show all {roomAmenity?.length || '00'} Amenities
               {/* Show all {roomInfo?.amenities?.length} Amenities */}
             </ShowAllBtn>
           </RoomDetailsSections>
@@ -189,14 +244,43 @@ const RoomInfo = ({
 
           {/* Date */}
           <RoomDetailsSections>
-            <h2>
-              {new Date(checkOutDate).getDate() -
-                new Date(checkInDate).getDate()}{' '}
-              nights in {roomInfo?.city}
-            </h2>
-            <p>
-              {checkInDate} ~ {checkOutDate}
-            </p>
+            {loading ? (
+              <>
+                <h2>
+                  <Skeleton
+                    variant='rect'
+                    animation='wave'
+                    sx={{
+                      width: '250px',
+                      height: '28px',
+                      borderRadius: '10px',
+                    }}
+                  />
+                </h2>
+                <p>
+                  <Skeleton
+                    variant='rect'
+                    animation='wave'
+                    sx={{
+                      width: '200px',
+                      height: '19px',
+                      borderRadius: '10px',
+                    }}
+                  />
+                </p>
+              </>
+            ) : (
+              <>
+                <h2>
+                  {new Date(checkOutDate).getDate() -
+                    new Date(checkInDate).getDate()}{' '}
+                  nights in {roomInfo?.city}
+                </h2>
+                <p>
+                  {checkInDate} ~ {checkOutDate}
+                </p>
+              </>
+            )}
             <DateRange
               checkInDate={checkInDate}
               checkOutDate={checkOutDate}
@@ -224,8 +308,8 @@ const RoomInfo = ({
         <h2 className='rating'>
           <StarIcon sx={{ fontSize: '24px', marginRight: '5px' }} />
           <span>
-            {roomInfo?.rating?.toFixed(2)} / {roomReviewInfo?.total_objects}{' '}
-            reviews
+            {roomInfo?.rating?.toFixed(2) || '00'} /{' '}
+            {roomReviewInfo?.total_objects || '00'} reviews
           </span>
         </h2>
         <RoomReviews
@@ -235,6 +319,7 @@ const RoomInfo = ({
           modalReviewShown={modalReviewShown}
           setIsShowReviews={setIsShowReviews}
           // per_page={per_page}
+          loading={loading}
         />
         <ShowAllBtn
           onClick={() => {
@@ -244,7 +329,7 @@ const RoomInfo = ({
             // setPer_page(roomReviewInfo?.total_objects.toString());
           }}
         >
-          Show all {roomReviewInfo?.total_objects} Reviews
+          Show all {roomReviewInfo?.total_objects || '00'} Reviews
         </ShowAllBtn>
       </RoomDetailsSections>
 
@@ -263,17 +348,26 @@ const RoomInfo = ({
       {/* Location */}
       <RoomDetailsSections id='viewLocation'>
         <h2>Where you’ll be</h2>
-        <div>Map</div>
-        <p>Cochrane, Alberta, Canada</p>
-        <span>
+        <GoToMap>
+          <FmdGoodIcon sx={{ fontSize: 100 }} />
+          <Link
+            to={`https://maps.google.com/maps/place/${roomInfo?.address}+${roomInfo?.city}`}
+            target='_blank'
+          >
+            <p>
+              {roomInfo?.address}, {roomInfo?.city}, {roomInfo?.country}
+            </p>
+          </Link>
+        </GoToMap>
+        {/* <span>
           The historic town of Cochrane is 5min to the East of us and the
           historic Wine Glass Ranch, established in 1885, are our direct
           neighbours to the West.
-        </span>
-        <ShowMoreBtn>
+        </span> */}
+        {/* <ShowMoreBtn>
           <span>Show more</span>
           <ArrowForwardIosIcon sx={{ fontSize: '14px' }} />
-        </ShowMoreBtn>
+        </ShowMoreBtn> */}
       </RoomDetailsSections>
 
       {/* Host Info */}

@@ -27,6 +27,7 @@ import {
   getReviewByRoomIdAsync,
 } from '../../redux/slices/roomReviewSlice';
 import ToggleLiked from '../../components/ToggleLiked';
+import RoomTopSk from './Skeletons/RoomTopSk';
 
 const Room = ({ setIsPageMain }) => {
   // const [fav, setFav] = useState(false);
@@ -45,7 +46,14 @@ const Room = ({ setIsPageMain }) => {
 
   useEffect(() => {
     setIsPageMain(false);
-    dispatch(getRoomsByIdAsync({ roomId }));
+    dispatch(getRoomsByIdAsync({ roomId }))
+      .then(() => {
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error loading data:', error);
+        setLoading(false);
+      });
     dispatch(getReviewByRoomIdAsync({ roomId, per_page, page }));
   }, [dispatch, roomId]);
 
@@ -66,13 +74,13 @@ const Room = ({ setIsPageMain }) => {
   // console.log('roomReviews', roomReviewInfo);
   // console.log('page_size', roomReviewInfo?.page_size);
 
-  if (loading) {
-    return (
-      <div>
-        <PageLoading />
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div>
+  //       <PageLoading />
+  //     </div>
+  //   );
+  // }
 
   return (
     <>
@@ -80,49 +88,57 @@ const Room = ({ setIsPageMain }) => {
       <MainSmallContainer>
         <MainWrap>
           <RoomTopWrap id='viewPhoto'>
-            <RoomTopHeader>{roomInfo?.name}</RoomTopHeader>
-            <RoomTopText>
-              <RoomTopInfo>
-                <StarIcon sx={{ fontSize: '16px' }} />
-                <span className='strong'>{roomInfo?.rating}</span>
-                <span className='coma'>·</span>
-                <span
-                  onClick={() => {
-                    toggleReviewModal(!modalReviewShown);
-                    setIsShowReviews(true);
-                  }}
-                >
-                  <Link>{roomReviewInfo?.total_objects} Reviews</Link>
-                </span>
-                <span className='coma'>·</span>
-                <span>
-                  <Link
-                    to={`https://maps.google.com/maps/place/${roomInfo?.address}+${roomInfo?.city}`}
-                    target='_blank'
-                  >
-                    {roomInfo?.address}, {roomInfo?.city}
-                  </Link>
-                </span>
-              </RoomTopInfo>
-              <RoomTopInfo>
-                <button className='share'>
-                  <ShareIcon sx={{ fontSize: '18px' }} />
-                  <span>Share</span>
-                </button>
-                <button>
-                  <ToggleLiked
-                    roomInfo={roomInfo}
-                    roomId={roomId}
-                    isPhotoFav={isPhotoFav}
-                  />
-                  <span>Save</span>
-                </button>
-              </RoomTopInfo>
-            </RoomTopText>
+            {/* <RoomTopSk /> */}
+            {loading ? (
+              <RoomTopSk />
+            ) : (
+              <>
+                <RoomTopHeader>{roomInfo?.name}</RoomTopHeader>
+                <RoomTopText>
+                  <RoomTopInfo>
+                    <StarIcon sx={{ fontSize: '16px' }} />
+                    <span className='strong'>{roomInfo?.rating}</span>
+                    <span className='coma'>·</span>
+                    <span
+                      onClick={() => {
+                        toggleReviewModal(!modalReviewShown);
+                        setIsShowReviews(true);
+                      }}
+                    >
+                      <Link>{roomReviewInfo?.total_objects} Reviews</Link>
+                    </span>
+                    <span className='coma'>·</span>
+                    <span>
+                      <Link
+                        to={`https://maps.google.com/maps/place/${roomInfo?.address}+${roomInfo?.city}`}
+                        target='_blank'
+                      >
+                        {roomInfo?.address}, {roomInfo?.city},{' '}
+                        {roomInfo?.country}
+                      </Link>
+                    </span>
+                  </RoomTopInfo>
+                  <RoomTopInfo>
+                    <button className='share'>
+                      <ShareIcon sx={{ fontSize: '18px' }} />
+                      <span>Share</span>
+                    </button>
+                    <button>
+                      <ToggleLiked
+                        roomInfo={roomInfo}
+                        roomId={roomId}
+                        isPhotoFav={isPhotoFav}
+                      />
+                      <span>Save</span>
+                    </button>
+                  </RoomTopInfo>
+                </RoomTopText>
+              </>
+            )}
           </RoomTopWrap>
           <RoomMainWrap>
             <RoomMainPhotos>
-              <RoomPhotos roomInfo={roomInfo} />
+              <RoomPhotos loading={loading} roomInfo={roomInfo} />
               <ShowPhotoBtn onClick={handlePhotoShowAll}>
                 <AppsIcon />
                 <span>Show all photos</span>
@@ -136,9 +152,11 @@ const Room = ({ setIsPageMain }) => {
               roomInfo={roomInfo}
               roomId={roomId}
               isPhotoFav={isPhotoFav}
+              loading={loading}
             />
 
             <RoomInfo
+              loading={loading}
               roomInfo={roomInfo}
               roomId={roomId}
               roomReviewInfo={roomReviewInfo}

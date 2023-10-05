@@ -6,6 +6,7 @@ import RoomReviewsCard from './RoomReviewsCard';
 import {
   BarMax,
   BarRate,
+  EmptyReview,
   GraphsRateBar,
   GraphsRateNum,
   ReviewGraphs,
@@ -18,6 +19,7 @@ import {
   RoomReviewsContainter,
 } from './RoomReviewsStyle';
 // import { allUsers, userMe } from '../redux/slices/users';
+import RateReviewIcon from '@mui/icons-material/RateReview';
 
 const RoomReviews = ({
   roomInfo,
@@ -77,9 +79,9 @@ const RoomReviews = ({
             </ReviewGraphsRate>
           </ReviewGraphs>
         </ReviewsMainTop>
-        <ReviewsList>
-          {roomReviewInfo?.total_objects > 0 &&
-            roomReviewInfo?.results?.map((review) => {
+        {roomReviewInfo?.total_objects ? (
+          <ReviewsList>
+            {roomReviewInfo?.results?.map((review) => {
               return (
                 <RoomReviewsCard
                   key={review?.pk}
@@ -90,7 +92,13 @@ const RoomReviews = ({
                 />
               );
             })}
-        </ReviewsList>
+          </ReviewsList>
+        ) : (
+          <EmptyReview>
+            <RateReviewIcon sx={{ fontSize: 48 }} color='disabled' />
+            <p>This room has no reviews.</p>
+          </EmptyReview>
+        )}
       </ReviewsWrap>
     </RoomReviewsContainter>
   );
