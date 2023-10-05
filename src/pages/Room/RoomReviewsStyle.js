@@ -52,6 +52,14 @@ export const ReviewsList = styled.div`
   margin-top: 20px;
 `;
 
+export const EmptyReview = styled.div`
+  margin: 80px 0 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #bdbdbd;
+`;
+
 // -----review card
 
 export const ReviewCardWrap = styled.div`

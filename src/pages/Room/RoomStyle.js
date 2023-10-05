@@ -192,7 +192,7 @@ export const RoomTopInfo = styled.div`
 export const RoomMainWrap = styled.div``;
 
 export const RoomMainPhotos = styled.div`
-  padding-top: 10px;
+  /* padding-top: 10px; */
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 10px;
@@ -320,20 +320,12 @@ export const RoomDetailsTop = styled.div`
   padding-bottom: 20px;
   display: flex;
   justify-content: space-between;
+`;
 
-  img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: green;
-    object-fit: cover;
+export const RoomDetailsTopText = styled.div`
+  h2 {
+    margin-bottom: 5px;
   }
-
-  /* span {
-    &.coma {
-      margin: 0 3px;
-    }
-  } */
 `;
 
 export const AvatarHost = styled.div`
@@ -344,6 +336,7 @@ export const AvatarHost = styled.div`
 export const RoomDetailsSections = styled.div`
   padding: 30px 0 10px 0;
   border-top: 1px solid #dddd;
+  /* display: flex; */
 
   h2 {
     margin: 0;
@@ -366,6 +359,7 @@ export const RoomDetailsSections = styled.div`
 
   li {
     display: flex;
+    align-items: center;
     margin-bottom: 20px;
   }
 `;
@@ -443,6 +437,12 @@ export const ShowAllBtn = styled.button`
 `;
 
 export const SleepWrap = styled.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+`;
+
+export const SleepWrapper = styled.div`
   border: 1px solid #c4c4c4;
   border-radius: 10px;
   padding: 10px 0 10px 30px;
@@ -479,5 +479,31 @@ export const PlaceOffersList = styled.div`
 
   svg {
     margin-right: 15px;
+  }
+`;
+
+// ---------------
+
+export const GoToMap = styled.div`
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* color: #bdbdbd; */
+
+  /* border: 1px solid #dddd; */
+  border-radius: 10px;
+  padding: 80px 0;
+
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Canada_blank_map.svg/2422px-Canada_blank_map.svg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  a {
+    font-weight: 600;
+    font-size: 18px;
+    cursor: pointer;
+    color: #000;
   }
 `;

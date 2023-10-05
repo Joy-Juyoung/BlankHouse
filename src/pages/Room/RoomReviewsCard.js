@@ -10,6 +10,8 @@ import {
 import { ShowMoreBtn } from './RoomStyle';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Avatar from '../../components/Avatar/Avatar';
+import { Skeleton } from '@mui/material';
+import RoomReviewSk from './Skeletons/RoomReviewSk';
 
 const RoomReviewsCard = ({
   review,
@@ -19,6 +21,7 @@ const RoomReviewsCard = ({
   modalReviewShown,
   toggleReviewModal,
   setIsShowReviews,
+  loading,
 }) => {
   //   useEffect(() => {
   // if(isShowReviews) {
@@ -30,22 +33,41 @@ const RoomReviewsCard = ({
 
   return (
     <ReviewCardWrap>
-      <ReviewCardUserWrap>
-        <ReviewUserAvatar>
-          <Avatar
-            initials={review?.user?.username?.substring(0, 1).toUpperCase()}
-          />
-        </ReviewUserAvatar>
-        <ReviewUserInfo>
-          <p>{review?.user?.username}</p>
-          <span>{review?.created_at?.split('T')[0]}</span>
-        </ReviewUserInfo>
-      </ReviewCardUserWrap>
+      {loading ? (
+        <RoomReviewSk />
+      ) : (
+        <ReviewCardUserWrap>
+          <ReviewUserAvatar>
+            <Avatar
+              initials={review?.user?.username?.substring(0, 1).toUpperCase()}
+            />
+          </ReviewUserAvatar>
+          <ReviewUserInfo>
+            <p>{review?.user?.username}</p>
+            <span>{review?.created_at?.split('T')[0]}</span>
+          </ReviewUserInfo>
+        </ReviewCardUserWrap>
+      )}
       <ReviewCardText>
         <ReviewTextContents>
+          {loading && (
+            <p>
+              <Skeleton
+                variant='rect'
+                animation='wave'
+                sx={{
+                  width: '490px',
+                  height: '92px',
+                  borderRadius: '10px',
+                  margin: '10px 0',
+                }}
+              />
+            </p>
+          )}
           {!isShowReviews && review?.payload?.length > 180 ? (
             <>
               <p>{review?.payload?.substring(0, 180)}...</p>
+
               <ShowMoreBtn
                 onClick={() => {
                   toggleReviewModal(!modalReviewShown);

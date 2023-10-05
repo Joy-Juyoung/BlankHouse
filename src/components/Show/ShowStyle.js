@@ -101,3 +101,9 @@ export const ShowReviewList = styled.div``;
 export const ShowReviewEach = styled.div`
   /* margin-bottom: 20px; */
 `;
+
+export const ShowReviewPage = styled.div`
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+`;
