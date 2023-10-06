@@ -68,7 +68,6 @@ const initialState = {
   allRooms: {},
   roomById: {},
   allAmenity: {},
-  // bookingRoom: {},
   status: 'idle',
   error: null,
   selectRoom: {},

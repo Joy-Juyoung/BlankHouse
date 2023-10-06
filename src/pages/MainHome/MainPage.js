@@ -43,12 +43,6 @@ const MainPage = ({ setIsPageMain }) => {
 
   // console.log('All Rooms', allRoomInfo);
 
-  // if (loading)
-  //   return (
-  //     <div>
-  //       <PageLoading />
-  //     </div>
-  //   );
   return (
     <MainContainer>
       <MainWrap>
