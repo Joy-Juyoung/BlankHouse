@@ -222,7 +222,6 @@ const RoomInfo = ({
               }}
             >
               Show all {roomAmenity?.length || '00'} Amenities
-              {/* Show all {roomInfo?.amenities?.length} Amenities */}
             </ShowAllBtn>
           </RoomDetailsSections>
           <ShowMoreModal

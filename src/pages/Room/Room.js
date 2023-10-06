@@ -50,6 +50,7 @@ const Room = ({ setIsPageMain }) => {
 
   useEffect(() => {
     setIsPageMain(false);
+    setLoading(true);
     dispatch(getRoomsByIdAsync({ roomId }))
       .then(() => {
         setLoading(false);

@@ -29,7 +29,7 @@ const MainPage = ({ setIsPageMain }) => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-    // setLoading(true);
+    setLoading(true);
     dispatch(getAllRoomsAsync())
       .then(() => {
         setLoading(false);
@@ -43,12 +43,6 @@ const MainPage = ({ setIsPageMain }) => {
 
   // console.log('All Rooms', allRoomInfo);
 
-  // if (loading)
-  //   return (
-  //     <div>
-  //       <PageLoading />
-  //     </div>
-  //   );
   return (
     <MainContainer>
       <MainWrap>
