@@ -34,9 +34,7 @@ const GuestMode = () => {
   const [isPageMain, setIsPageMain] = useState(false);
   const [isUserLogIn, setIsUserLogIn] = useState(false);
 
-  // const location = useLocation();
   const userMe = useSelector(getMeUser);
-  // const rooms = useSelector(selectRoom);
   const dispatch = useDispatch();
   const [isHost, setIsHost] = useState(false);
   const [isHelp, setIsHelp] = useState(false);
