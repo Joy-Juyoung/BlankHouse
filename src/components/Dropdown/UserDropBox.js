@@ -190,10 +190,7 @@ const UserDropBox = ({
               <hr />
               <ul>
                 <li>
-                  <span>Hosting</span>
-                </li>
-                <li>
-                  <span>Help</span>
+                  <span>Help Center</span>
                 </li>
               </ul>
             </>

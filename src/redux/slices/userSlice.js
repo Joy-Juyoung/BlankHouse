@@ -44,17 +44,13 @@ export const loginAsync = createAsyncThunk(
         username,
         password,
       });
-      toast.success('Logged in successfully!', {
-        position: toast.POSITION.TOP_CENTER,
-        closeButton: true,
-        // timeOut: 10,
-        autoClose: 1000,
-        progressBar: true,
-        allowHtml: true,
-      });
+
       thunkAPI.dispatch(setUser(response.data)); // Dispatch the setUser action to update Redux store
       // localStorage.setItem('user', JSON.stringify(response.data)); // Save user data to localStorage
+      // const ok = response.data.ok;
+
       return response.data;
+      // return ok;
     } catch (error) {
       toast.error('Login failed. Please try again.');
       return thunkAPI.rejectWithValue(error.message);
@@ -249,6 +245,8 @@ const userSlice = createSlice({
     },
     [getUserInfoAsync.fulfilled]: (state, { payload }) => {
       console.log('Fetched Successfully!');
+      // state.status = 'Pending';
+      // state.error = payload.error;
       return { ...state, getMeUser: payload };
     },
     [getUserInfoAsync.rejected]: (state, action) => {

@@ -85,16 +85,17 @@ export const LoginInputWrap = styled.div`
   /* width: 100%; */
   border: 1px solid #bbbbbb;
   padding: 10px;
-  border-bottom: none;
+  /* border-bottom: none; */
 
-  &.first {
+  border-radius: 10px;
+  margin: 10px 0;
+  /* &.first {
     border-radius: 10px 10px 0 0;
   }
   &.last {
     border-bottom: 1px solid #bbbbbb;
     border-radius: 0 0 10px 10px;
-  }
-
+  } */
   p {
     margin: 0;
     font-size: 13px;
@@ -107,6 +108,35 @@ export const LoginInputWrap = styled.div`
     outline: none;
     border: none;
     font-size: 16px;
+  }
+`;
+
+export const ErrorMsg = styled.div`
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* margin: 20px 0; */
+  /* margin-bottom: -10px; */
+  padding: 10px;
+  /* border: 1px solid #a8003a; */
+  border-radius: 10px;
+  background: #fff6f6;
+  color: #a8003a;
+  font-weight: 600;
+  font-size: 13px;
+`;
+
+export const VerificationMsg = styled.div`
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  /* margin-top: 10px; */
+  font-size: 11px;
+
+  span {
+    margin-left: 10px;
+    color: grey;
   }
 `;
 
