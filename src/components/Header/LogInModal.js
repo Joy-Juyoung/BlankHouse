@@ -231,12 +231,9 @@ const LogInModal = ({
                 </span>
               </GotoSignup>
             </LoginWrap>
-            {/* </form> */}
           </ModalMainSection>
         </ModalLoginMain>
       </ModalContainer>
-      {/* </form> */}
-      {/* <ToastContainer /> */}
     </LogModal>
   );
 };
