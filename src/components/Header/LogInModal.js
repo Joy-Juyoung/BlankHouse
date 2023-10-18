@@ -100,61 +100,7 @@ const LogInModal = ({
       return;
     }
     dispatch(loginAsync({ username, password }));
-    // .then(() => {
-    //   if (userMe?.ok === 'Welcome!') {
-    //     toast.success('Logged in successfully!', {
-    //       position: toast.POSITION.TOP_CENTER,
-    //       closeButton: true,
-    //       autoClose: 1000,
-    //       progressBar: true,
-    //       allowHtml: true,
-    //     });
-    //     toggleLogModal(false);
-    //     setIsUserDrop(false);
-    //     setIsUserLogIn(true);
-    //   } else {
-    //     errRef.current?.focus();
-    //     setErrMsg(
-    //       'Login faild. Please re-check the username and password and try again'
-    //     );
-    //   }
-    //   // setUserIngo(JSON.parse(localStorage.getItem('user')));
-    // })
-    // .catch((error) => {
-    //   console.error(error);
-    //   toast.error('Login failed. Please try again.');
-    // });
   };
-
-  // useEffect(() => {
-  //   if (userMe?.ok === 'Welcome!') {
-  //     toast.success('Logged in successfully!', {
-  //       position: toast.POSITION.TOP_CENTER,
-  //       closeButton: true,
-  //       autoClose: 1000,
-  //       progressBar: true,
-  //       allowHtml: true,
-  //     });
-  //     toggleLogModal(false);
-  //     setIsUserDrop(false);
-  //     setIsUserLogIn(true);
-  //   }
-
-  //   if (userMe?.error === 'wrong password') {
-  //     errRef.current?.focus();
-  //     setErrMsg(
-  //       'Login faild. Please re-check the username and password and try again'
-  //     );
-  //     if (!modalLogShown) {
-  //       setErrMsg('');
-  //       // userMe
-  //     }
-  //   }
-
-  //   // setUserIngo(JSON.parse(localStorage.getItem('user')));
-  // }, [userMe, username, password, isUserLogIn]);
-
-  // console.log('userMe?.ok ', userMe?.ok);
 
   return (
     <LogModal
@@ -165,34 +111,22 @@ const LogInModal = ({
       }}
       title='Log in'
     >
-      {/* {authIsLoggIn === true && <SuccessAlert />} */}
       <ModalContainer>
         <ModalLoginMain>
           <ModalMainSection>
-            {/* <ModalTitle>Welcome to Blankhouse</ModalTitle> */}
             <LoginTitle>Welcome to Blankhouse</LoginTitle>
             <ErrorMsg
               ref={errRef}
               style={{ display: errMsg ? 'block' : 'none' }}
               aria-live='assertive'
             >
-              {/* <ErrorOutlineIcon style={{ color: 'red' }} /> */}
-              <div>
-                {/* <ErrorOutlineIcon fontSize='small' style={{ color: 'red' }} /> */}
-                {errMsg}
-              </div>
+              <div>{errMsg}</div>
             </ErrorMsg>
-            {/* <form onSubmit={handleSubmit> */}
             <form onSubmit={handleSubmit}>
               <LoginWrap>
                 <LoginInputWrap className='first'>
                   <p>Username</p>
                   <input
-                    // type='text'
-                    // value={username}
-                    // onChange={(e) => setUsername(e.target.value)}
-                    // placeholder='Enter your username'
-                    // required
                     ref={userRef}
                     type='text'
                     id='username'
@@ -224,11 +158,6 @@ const LogInModal = ({
                   <p>Password</p>
                   <PassewordWrapper>
                     <input
-                      // type='password'
-                      // value={password}
-                      // onChange={(e) => setPassword(e.target.value)}
-                      // placeholder='Enter your password'
-                      // required
                       placeholder='Enter password.'
                       type={passwordType}
                       onChange={(e) => setPassword(e.target.value)}
@@ -252,7 +181,6 @@ const LogInModal = ({
                           fontSize='small'
                         />
                       )}
-                      {/* <VisibilityOffIcon /> */}
                     </EyeIcon>
                   </PassewordWrapper>
                 </LoginInputWrap>
