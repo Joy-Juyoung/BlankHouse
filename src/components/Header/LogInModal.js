@@ -203,21 +203,7 @@ const LogInModal = ({
                 <ColorButton buttonLabel='Log in' />
               </LoginBtn>
             </form>
-            {/* <DivideLine>or</DivideLine>
-            <LoginWrap>
-              <LoginWithBtn>
-                <img src={facebookIcon} alt='' />
-                <span>Continue with Facebook</span>
-              </LoginWithBtn>
-              <LoginWithBtn>
-                <img src={googleIcon} alt='' />
-                <span>Continue with Google</span>
-              </LoginWithBtn>
-              <LoginWithBtn>
-                <img src={appleIcon} alt='' />
-                <span>Continue with Apple</span>
-              </LoginWithBtn>
-            </LoginWrap> */}
+
             <LoginWrap>
               <GotoSignup>
                 Don't have an account?
