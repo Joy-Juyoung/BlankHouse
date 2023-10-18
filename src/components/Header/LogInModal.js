@@ -203,7 +203,7 @@ const LogInModal = ({
                 <ColorButton buttonLabel='Log in' />
               </LoginBtn>
             </form>
-            <DivideLine>or</DivideLine>
+            {/* <DivideLine>or</DivideLine>
             <LoginWrap>
               <LoginWithBtn>
                 <img src={facebookIcon} alt='' />
@@ -217,7 +217,7 @@ const LogInModal = ({
                 <img src={appleIcon} alt='' />
                 <span>Continue with Apple</span>
               </LoginWithBtn>
-            </LoginWrap>
+            </LoginWrap> */}
             <LoginWrap>
               <GotoSignup>
                 Don't have an account?
@@ -225,6 +225,8 @@ const LogInModal = ({
                   onClick={() => {
                     toggleLogModal(!modalLogShown);
                     toggleSignupModal(!modalSignupShown);
+                    setUsername('');
+                    setPassword('');
                   }}
                 >
                   Go to Sign up

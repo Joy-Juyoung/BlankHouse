@@ -280,6 +280,9 @@ const SignupModal = ({
                   onClick={() => {
                     toggleLogModal(!modalLogShown);
                     toggleSignupModal(!modalSignupShown);
+                    setUsername('');
+                    setPassword('');
+                    setMatchPwd('');
                   }}
                 >
                   Go to Log in
