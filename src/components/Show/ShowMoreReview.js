@@ -61,7 +61,7 @@ const ShowMoreReview = ({
 
   return (
     <ShowReviewBox>
-      <ShowReviewWrapper className='showSide'>
+      <ShowReviewWrapper className='showLeft'>
         <ShowReviewSide>
           <ShowReviewTitle>
             <h2 className='rating'>
@@ -123,7 +123,7 @@ const ShowMoreReview = ({
           </ShowReviewRatingGraph>
         </ShowReviewSide>
       </ShowReviewWrapper>
-      <ShowReviewWrapper>
+      <ShowReviewWrapper className='showRight'>
         <ShowReviewSearch>
           <span>
             <SearchIcon />

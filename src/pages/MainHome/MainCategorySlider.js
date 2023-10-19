@@ -1,6 +1,5 @@
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
-import { Skeleton } from '@mui/material';
 import { useEffect, useState } from 'react';
 import {
   SliderContainer,
@@ -8,7 +7,6 @@ import {
   SliderWrap,
   SliderWrapper,
   Slide,
-  SlideName,
 } from './MainCategorySliderStyle';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -19,6 +17,8 @@ import MainCategorySk from './Skeletons/MainCategorySk';
 
 const MainCategorySlider = ({ loading, visibleItems }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [goRight, setGoRight] = useState(false);
+  const [goLeft, setGoLeft] = useState(false);
 
   const categories = useSelector(getAllCategory);
   const dispatch = useDispatch();
@@ -31,6 +31,11 @@ const MainCategorySlider = ({ loading, visibleItems }) => {
   const sliderWidth = `${100 / visibleItems}%`;
 
   const goToPrevSlide = () => {
+    setGoLeft(true);
+    setTimeout(() => {
+      setGoLeft(false);
+    }, 500);
+
     setCurrentIndex((prevIndex) => {
       if (prevIndex === 0) {
         return prevIndex;
@@ -41,12 +46,16 @@ const MainCategorySlider = ({ loading, visibleItems }) => {
   };
 
   const goToNextSlide = () => {
+    setGoRight(true);
+    setTimeout(() => {
+      setGoRight(false);
+    }, 500);
+
     setCurrentIndex((prevIndex) => {
       if (
         prevIndex === totalItems - visibleItems ||
         totalItems <= visibleItems
       ) {
-        // return 0;
         return prevIndex;
       } else {
         return prevIndex + 1;
@@ -69,16 +78,19 @@ const MainCategorySlider = ({ loading, visibleItems }) => {
         >
           <ArrowLeftIcon />
         </SliderButton>
+        {/* <SliderWrapper visibleItems={visibleItems} currentIndex={currentIndex}> */}
         <SliderWrapper>
-          <Slide>
+          <Slide style={{ right: goRight ? '0' : '-200px' }}>
             {categories
               ?.slice(currentIndex, currentIndex + visibleItems)
-              .map((category) => (
+              ?.map((category) => (
                 <MainCategorySk
                   category={category}
                   sliderWidth={sliderWidth}
                   loading={loading}
                   key={category?.pk}
+                  goRight={goRight}
+                  goLeft={goLeft}
                 />
               ))}
           </Slide>

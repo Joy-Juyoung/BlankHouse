@@ -3,10 +3,18 @@ import styled from 'styled-components';
 
 const ProgressContainer = styled.div`
   width: 60%;
-  background-color: #f0f0f0;
-  /* background-color: rgb(244, 221, 173, 0.3); */
+  background-color: #dddd;
   border-radius: 4px;
   height: 8px;
+
+  @media screen and (max-width: 1030px) {
+    width: 80%;
+    margin-right: 5px;
+  }
+
+  @media screen and (max-width: 680px) {
+    width: 60%;
+  }
 `;
 
 const Progress = styled.div`
