@@ -58,6 +58,19 @@ export const EmptyReview = styled.div`
   flex-direction: column;
   align-items: center;
   color: #bdbdbd;
+
+  &.modal {
+    width: 608px;
+    padding-top: 20px;
+
+    @media screen and (max-width: 1030px) {
+      width: calc(608px -100%);
+    }
+
+    @media screen and (max-width: 720px) {
+      width: 400px;
+    }
+  }
 `;
 
 // -----review card

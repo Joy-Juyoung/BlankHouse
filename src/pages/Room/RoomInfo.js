@@ -48,6 +48,7 @@ import { Link } from 'react-router-dom';
 const RoomInfo = ({
   roomInfo,
   roomId,
+  roomReviewAll,
   roomReviewInfo,
   setPer_page,
   per_page,
@@ -285,11 +286,12 @@ const RoomInfo = ({
         </h2>
         <RoomReviews
           roomInfo={roomInfo}
+          roomReviewAll={roomReviewAll}
           roomReviewInfo={roomReviewInfo}
           toggleReviewModal={toggleReviewModal}
           modalReviewShown={modalReviewShown}
           setIsShowReviews={setIsShowReviews}
-          // per_page={per_page}
+          // per_page={6}
           loading={loading}
         />
         <ShowAllBtn
@@ -300,7 +302,7 @@ const RoomInfo = ({
             // setPer_page(roomReviewInfo?.total_objects.toString());
           }}
         >
-          Show all {roomReviewInfo?.total_objects || '00'} Reviews
+          Show all {roomReviewAll?.length || '00'} Reviews
         </ShowAllBtn>
       </RoomDetailsSections>
 

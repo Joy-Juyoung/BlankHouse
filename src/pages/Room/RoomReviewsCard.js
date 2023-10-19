@@ -18,6 +18,10 @@ const RoomReviewsCard = ({
   isShowReviews,
   setPer_page,
   per_page,
+
+  pageChange,
+  setPageChange,
+
   modalReviewShown,
   toggleReviewModal,
   setIsShowReviews,

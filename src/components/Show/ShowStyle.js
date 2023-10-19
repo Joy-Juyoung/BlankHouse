@@ -10,14 +10,48 @@ export const ShowReviewBox = styled.div`
 
   @media screen and (max-width: 1030px) {
     display: block;
+    width: 100%;
   }
 `;
 
 export const ShowReviewWrapper = styled.div`
   padding: 0 10px;
+
+  &.showLeft {
+    /* position: relative; */
+    /* position: sticky;
+    top: 0px;
+    background: #fff; */
+  }
+
+  &.modal {
+    width: 608px;
+
+    @media screen and (max-width: 1030px) {
+      width: calc(608px -100%);
+      margin-top: 180px;
+    }
+
+    @media screen and (max-width: 720px) {
+      width: 400px;
+      margin-top: 220px;
+    }
+  }
 `;
 
-export const ShowReviewSide = styled.div``;
+export const ShowReviewSide = styled.div`
+  position: fixed;
+  background: #fff;
+  z-index: 3;
+
+  @media screen and (max-width: 1030px) {
+    width: 608px;
+  }
+
+  @media screen and (max-width: 720px) {
+    width: 400px;
+  }
+`;
 
 export const ShowReviewTitle = styled.div`
   h2 {
@@ -28,7 +62,7 @@ export const ShowReviewTitle = styled.div`
 `;
 
 export const ShowReviewRatingGraph = styled.div`
-  width: 300px;
+  /* width: 300px; */
   width: 100%;
 `;
 
@@ -40,7 +74,7 @@ export const ShowReviewGraph = styled.div`
     margin: 10px 0 20px;
   }
 
-  @media screen and (max-width: 680px) {
+  @media screen and (max-width: 720px) {
     display: block;
     margin: 20px 0 30px;
   }
@@ -69,7 +103,7 @@ export const ReviewGraphsRate = styled.div`
   align-items: center;
   justify-content: flex-end;
 
-  @media screen and (max-width: 680px) {
+  @media screen and (max-width: 720px) {
     flex: 2;
   }
 `;
@@ -84,6 +118,14 @@ export const ShowReviewSearch = styled.div`
   display: flex;
   align-items: center;
   position: relative;
+
+  position: fixed;
+  background: #fff;
+  /* width: 100%; */
+  z-index: 3;
+  width: 608px;
+  margin-top: -10px;
+  padding-bottom: 20px;
 
   span {
     position: absolute;
@@ -100,6 +142,19 @@ export const ShowReviewSearch = styled.div`
     padding-left: 45px;
     width: 100%;
   }
+
+  /* @media screen and (max-width: 1030px) {
+    width: 608px;
+  } */
+
+  @media screen and (max-width: 720px) {
+    width: 400px;
+  }
+`;
+
+export const ShowReviewText = styled.div`
+  /* margin-top: 250px; */
+  padding-top: 40px;
 `;
 
 export const ShowReviewList = styled.div``;

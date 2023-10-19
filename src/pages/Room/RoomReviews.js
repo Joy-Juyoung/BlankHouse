@@ -23,6 +23,7 @@ import RateReviewIcon from '@mui/icons-material/RateReview';
 
 const RoomReviews = ({
   roomInfo,
+  roomReviewAll,
   roomReviewInfo,
   per_page,
   modalReviewShown,
@@ -79,9 +80,9 @@ const RoomReviews = ({
             </ReviewGraphsRate>
           </ReviewGraphs>
         </ReviewsMainTop>
-        {roomReviewInfo?.total_objects ? (
+        {roomReviewAll.filter((review) => review.room.pk === roomInfo?.pk) ? (
           <ReviewsList>
-            {roomReviewInfo?.results?.map((review) => {
+            {roomReviewAll?.slice(0, 6).map((review) => {
               return (
                 <RoomReviewsCard
                   key={review?.pk}

@@ -12,7 +12,7 @@ const ProgressContainer = styled.div`
     margin-right: 5px;
   }
 
-  @media screen and (max-width: 680px) {
+  @media screen and (max-width: 720px) {
     width: 60%;
   }
 `;

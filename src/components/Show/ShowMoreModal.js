@@ -46,6 +46,7 @@ const ShowMoreModal = ({
     if (modalReviewShown) {
       toggleReviewModal(false);
       setIsShowReviews(false);
+      // setPage(1);
     }
   };
 

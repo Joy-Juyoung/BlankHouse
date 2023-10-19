@@ -24,6 +24,8 @@ import PageLoading from '../../components/Loading/PageLoading';
 import { getRoomInfo, getRoomsByIdAsync } from '../../redux/slices/roomSlice';
 import {
   getAllReviewByRoomInfo,
+  getAllRoomReviews,
+  getAllRoomReviewsAsync,
   getReviewByRoomIdAsync,
 } from '../../redux/slices/roomReviewSlice';
 import ToggleLiked from '../../components/ToggleLiked';
@@ -40,13 +42,25 @@ const Room = ({ setIsPageMain }) => {
 
   const [modalShareShown, toggleShareModal] = useState(false);
 
-  const [per_page, setPer_page] = useState(6);
-  const [page, setPage] = useState(1);
+  const [roomReviewAll, setRoomReviewAll] = useState([]);
+
+  // const [per_page, setPer_page] = useState(6);
+  // const [page, setPage] = useState(1);
 
   const { roomId } = useParams();
   const roomInfo = useSelector(getRoomInfo);
-  const roomReviewInfo = useSelector(getAllReviewByRoomInfo);
+  const allRoomReviewInfo = useSelector(getAllRoomReviews);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllRoomReviewsAsync());
+  }, [dispatch]);
+
+  useEffect(() => {
+    setRoomReviewAll(
+      allRoomReviewInfo.filter((review) => review.room.pk === roomInfo?.pk)
+    );
+  }, []);
 
   useEffect(() => {
     setIsPageMain(false);
@@ -59,8 +73,18 @@ const Room = ({ setIsPageMain }) => {
         console.error('Error loading data:', error);
         setLoading(false);
       });
-    dispatch(getReviewByRoomIdAsync({ roomId, per_page, page }));
-  }, [dispatch, roomId, per_page, page]);
+    // dispatch(getAllRoomReviewsAsync());
+  }, [dispatch, roomId]);
+
+  // useEffect(() => {
+  //   dispatch(getAllRoomReviewsAsync());
+  // }, [dispatch]);
+
+  // console.log(
+  //   'allRv',
+  //   allRoomReviewInfo.filter((review) => review.room.pk === roomInfo?.pk)
+  // );
+  console.log('id', roomId);
 
   const handlePhotoShowAll = () => {
     togglePhotoModal(!modalPhotoShown);
@@ -87,11 +111,11 @@ const Room = ({ setIsPageMain }) => {
   //   );
   // }
 
-  console.log('modalShareShown', modalShareShown);
+  // console.log('modalShareShown', modalShareShown);
 
   return (
     <>
-      <RoomInfoHead roomInfo={roomInfo} roomReviewInfo={roomReviewInfo} />
+      <RoomInfoHead roomInfo={roomInfo} roomReviewInfo={roomReviewAll} />
       <MainSmallContainer>
         <MainWrap>
           <RoomTopWrap id='viewPhoto'>
@@ -112,7 +136,7 @@ const Room = ({ setIsPageMain }) => {
                         setIsShowReviews(!isShowReviews);
                       }}
                     >
-                      <Link>{roomReviewInfo?.total_objects} Reviews</Link>
+                      <Link>{roomReviewAll?.length} Reviews</Link>
                     </span>
                     <span className='coma'>·</span>
                     <span>
@@ -177,11 +201,13 @@ const Room = ({ setIsPageMain }) => {
               loading={loading}
               roomInfo={roomInfo}
               roomId={roomId}
-              roomReviewInfo={roomReviewInfo}
-              setPer_page={setPer_page}
-              per_page={per_page}
-              setPage={setPage}
-              page={page}
+              roomReviewInfo={roomReviewAll}
+              // allRoomReviewInfo={allRoomReviewInfo}
+              roomReviewAll={roomReviewAll}
+              // setPer_page={setPer_page}
+              // per_page={per_page}
+              // setPage={setPage}
+              // page={page}
               toggleReviewModal={toggleReviewModal}
               modalReviewShown={modalReviewShown}
               setIsShowReviews={setIsShowReviews}
