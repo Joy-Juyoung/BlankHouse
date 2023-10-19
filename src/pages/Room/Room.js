@@ -49,7 +49,7 @@ const Room = ({ setIsPageMain }) => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (allRoomReviewInfo) {
+    if (Array.isArray(allRoomReviewInfo)) {
       setRoomReviewAll(
         allRoomReviewInfo.filter((review) => review.room.pk === roomInfo?.pk)
       );

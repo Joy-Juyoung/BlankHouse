@@ -19,7 +19,7 @@ import MainCategorySlider from './MainCategorySlider';
 import { getAllRoomInfo, getAllRoomsAsync } from '../../redux/slices/roomSlice';
 import RoomCard from '../../components/RoomCard';
 
-const MainPage = ({ setIsPageMain }) => {
+const MainPage = ({ setIsPageMain, userMe }) => {
   const [modalFilterShown, toggleFilterModal] = useState(false);
   const [loading, setLoading] = useState(true);
   const [fav, setFav] = useState(false);
@@ -80,6 +80,7 @@ const MainPage = ({ setIsPageMain }) => {
                       loading={loading}
                       fav={fav}
                       setFav={setFav}
+                      userMe={userMe}
                     />
                   </Link>
                 );
