@@ -74,14 +74,22 @@ export const FooterShortWrap = styled.div`
 
 export const FooterS = styled.div`
   display: flex;
+  padding: 10px 0;
 
   span {
     display: flex;
     align-items: center;
     margin-right: 10px;
+    cursor: pointer;
 
     &.last {
       margin-right: 0;
+    }
+
+    a {
+      display: flex;
+      align-items: center;
+      color: #000;
     }
   }
 `;

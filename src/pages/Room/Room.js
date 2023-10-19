@@ -49,9 +49,11 @@ const Room = ({ setIsPageMain }) => {
   }, [dispatch]);
 
   useEffect(() => {
-    setRoomReviewAll(
-      allRoomReviewInfo.filter((review) => review.room.pk === roomInfo?.pk)
-    );
+    if (allRoomReviewInfo) {
+      setRoomReviewAll(
+        allRoomReviewInfo.filter((review) => review.room.pk === roomInfo?.pk)
+      );
+    }
   }, []);
 
   useEffect(() => {
