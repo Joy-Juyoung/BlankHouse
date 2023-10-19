@@ -164,7 +164,6 @@ const RoomInfo = ({
           {/* About plce Modal Open */}
           <RoomDetailsSections>
             <h2>About this place</h2>
-
             {loading ? (
               <BasicIntro>
                 <Skeleton
@@ -192,29 +191,13 @@ const RoomInfo = ({
           />
 
           {/* Num of bed */}
-          {/* <RoomDetailsSections>
-            <h2>Where you'll sleep</h2>
-            <SleepWrap>
-              <BedIcon />
-              <p>Bedroom</p>
-              <span>{roomInfo?.number_of_bed} bed</span>
-            </SleepWrap>
-          </RoomDetailsSections> */}
-          <RoomBed roomInfo={roomInfo} />
+          <RoomBed roomInfo={roomInfo} loading={loading} />
 
           {/* Amenities */}
           <RoomDetailsSections id='viewAmenities'>
             <h2>What this place offers</h2>
             <PlaceOffers>
-              {roomInfo?.amenities?.map((amenity) => {
-                return (
-                  <RoomAmenity
-                    key={amenity?.pk}
-                    amenity={amenity}
-                    loading={loading}
-                  />
-                );
-              })}
+              <RoomAmenity roomInfo={roomInfo} loading={loading} />
             </PlaceOffers>
             <ShowAllBtn
               onClick={() => {

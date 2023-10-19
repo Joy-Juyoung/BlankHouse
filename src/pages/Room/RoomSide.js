@@ -29,6 +29,7 @@ import SubmitButton from '../../components/Buttons/SubmitButton';
 import SideGuestDropdown from './SideGuestDropdown';
 import SideDateDropdown from './SideDateDropdown';
 import { Link } from 'react-router-dom';
+import { Skeleton } from '@mui/material';
 
 const RoomSide = ({
   loading,
@@ -58,11 +59,6 @@ const RoomSide = ({
   let taxPerNight = totalPerNight * 0.05;
   let finalTotalPrice = totalPerNight + roomInfo?.cleaning_fee + taxPerNight;
 
-  const handleDate = () => {
-    // console.log('checkIn', checkInDate);
-    // console.log('checkOut', checkOutDate);
-  };
-
   return (
     <RoomDetailSide>
       <RoomDetailSideWrap>
@@ -70,21 +66,61 @@ const RoomSide = ({
           <RoomSideInside>
             <RoomSideTop>
               <SideTopPrice>
-                <h2>
-                  $
-                  {roomInfo?.price?.toLocaleString(undefined, {
-                    minimumFractionDigits: 2,
-                  })}
-                </h2>
+                {loading ? (
+                  <Skeleton
+                    variant='rect'
+                    animation='wave'
+                    sx={{
+                      width: '98px',
+                      height: '27px',
+                      borderRadius: '10%',
+                    }}
+                  />
+                ) : (
+                  <h2>
+                    $
+                    {roomInfo?.price?.toLocaleString(undefined, {
+                      minimumFractionDigits: 2,
+                    })}
+                  </h2>
+                )}
                 <span>night</span>
               </SideTopPrice>
               <SideTopInfo>
                 <StarIcon sx={{ fontSize: '16px' }} />
-                <span>{roomInfo?.rating}</span>
+                {loading ? (
+                  <span>
+                    <Skeleton
+                      variant='rect'
+                      animation='wave'
+                      sx={{
+                        width: '24px',
+                        height: '16px',
+                        borderRadius: '10%',
+                      }}
+                    />
+                  </span>
+                ) : (
+                  <span>{roomInfo?.rating}</span>
+                )}
                 <span className='coma'>·</span>
-                <span className='review'>
-                  {roomReviewInfo?.total_objects} Reviews
-                </span>
+                {loading ? (
+                  <span className='review'>
+                    <Skeleton
+                      variant='rect'
+                      animation='wave'
+                      sx={{
+                        width: '63px',
+                        height: '16px',
+                        borderRadius: '10%',
+                      }}
+                    />
+                  </span>
+                ) : (
+                  <span className='review'>
+                    {roomReviewInfo?.total_objects} Reviews
+                  </span>
+                )}
               </SideTopInfo>
             </RoomSideTop>
             <RoomSideInputField>
@@ -93,16 +129,7 @@ const RoomSide = ({
                   setIsSideDate(!isSideDate);
                 }}
               >
-                <DateInput
-                  className={isSideDate ? 'dropOpen' : 'checkin'}
-                  // className={`checkin ${
-                  //   isSideCheckIn || isSideCheckOut ? 'dropOpen' : ''
-                  // }`}
-                  // onClick={() => {
-                  //   setIsSideCheckIn(!isSideCheckIn);
-                  //   setIsSideCheckOut(false);
-                  // }}
-                >
+                <DateInput className={isSideDate ? 'dropOpen' : 'checkin'}>
                   <InputLabel>CHECK-IN</InputLabel>
                   <DateValue>{checkInDate}</DateValue>
                 </DateInput>
@@ -162,9 +189,11 @@ const RoomSide = ({
                 <li>
                   <SideOutput className='outputName'>
                     $
-                    {roomInfo?.price?.toLocaleString(undefined, {
-                      minimumFractionDigits: 2,
-                    })}{' '}
+                    {loading
+                      ? '0.00'
+                      : roomInfo?.price?.toLocaleString(undefined, {
+                          minimumFractionDigits: 2,
+                        })}{' '}
                     x{' '}
                     {new Date(checkOutDate).getDate() -
                       new Date(checkInDate).getDate()}{' '}
@@ -172,31 +201,33 @@ const RoomSide = ({
                   </SideOutput>
                   <SideOutput>
                     $
-                    {totalPerNight?.toLocaleString(undefined, {
-                      minimumFractionDigits: 2,
-                    })}
+                    {loading
+                      ? '0.00'
+                      : totalPerNight?.toLocaleString(undefined, {
+                          minimumFractionDigits: 2,
+                        })}
                   </SideOutput>
                 </li>
                 <li>
                   <SideOutput className='outputName'>Cleaning fee</SideOutput>
                   <SideOutput>
                     $
-                    {roomInfo?.cleaning_fee?.toLocaleString(undefined, {
-                      minimumFractionDigits: 2,
-                    })}
+                    {loading
+                      ? '0.00'
+                      : roomInfo?.cleaning_fee?.toLocaleString(undefined, {
+                          minimumFractionDigits: 2,
+                        })}
                   </SideOutput>
                 </li>
-                {/* <li>
-                  <SideOutput className='outputName'>Service fee</SideOutput>
-                  <SideOutput>${roomInfo?.cleaning_fee.toFixed(2)}</SideOutput>
-                </li> */}
                 <li>
                   <SideOutput className='outputName'>Taxes</SideOutput>
                   <SideOutput>
                     $
-                    {taxPerNight?.toLocaleString(undefined, {
-                      minimumFractionDigits: 2,
-                    })}
+                    {loading
+                      ? '0.00'
+                      : taxPerNight?.toLocaleString(undefined, {
+                          minimumFractionDigits: 2,
+                        })}
                   </SideOutput>
                 </li>
               </ul>
@@ -205,17 +236,19 @@ const RoomSide = ({
               <SideTotal>Total</SideTotal>
               <SideTotal>
                 $
-                {finalTotalPrice?.toLocaleString(undefined, {
-                  minimumFractionDigits: 2,
-                })}
+                {loading
+                  ? '0.00'
+                  : finalTotalPrice?.toLocaleString(undefined, {
+                      minimumFractionDigits: 2,
+                    }) || '0.0'}
               </SideTotal>
             </RoomSideTotal>
           </RoomSideInside>
         </RoomSideReserve>
-        <RoomSideReport>
+        {/* <RoomSideReport>
           <FlagIcon />
           <span>Report this listing</span>
-        </RoomSideReport>
+        </RoomSideReport> */}
       </RoomDetailSideWrap>
     </RoomDetailSide>
   );
