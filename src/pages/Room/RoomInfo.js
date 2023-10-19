@@ -20,6 +20,7 @@ import {
   RoomHostInfo,
   RoomHostInfoWrapper,
   Notice,
+  RoomHostInfoAvatar,
 } from './RoomStyle';
 import StarIcon from '@mui/icons-material/Star';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -327,7 +328,7 @@ const RoomInfo = ({
         <RoomHostInfo>
           <h2>Hosted by Grant</h2>
           <RoomHostInfoWrapper>
-            <p>
+            <RoomHostInfoAvatar>
               <AvatarHost>
                 <Avatar
                   initials={roomInfo?.owner?.username
@@ -336,7 +337,7 @@ const RoomInfo = ({
                 />
               </AvatarHost>
               <span>{roomInfo?.owner?.username.toUpperCase()}</span>
-            </p>
+            </RoomHostInfoAvatar>
             <button>
               Contact Host <ForumIcon />
             </button>

@@ -528,7 +528,9 @@ export const RoomHostInfoWrapper = styled.div`
   margin: 20px 0;
   display: flex;
   align-items: center;
+`;
 
+export const RoomHostInfoAvatar = styled.div`
   p {
     display: flex;
     align-items: center;
@@ -564,6 +566,7 @@ export const RoomHostInfoWrapper = styled.div`
     }
   }
 `;
+
 export const Notice = styled.div`
   display: flex;
   align-items: center;
