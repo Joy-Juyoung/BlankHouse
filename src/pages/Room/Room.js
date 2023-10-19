@@ -28,7 +28,6 @@ import RoomTopSk from './Skeletons/RoomTopSk';
 import ShowSmallModal from '../../components/Show/ShowSmallModal';
 
 const Room = ({ setIsPageMain }) => {
-  // const [fav, setFav] = useState(false);
   const [loading, setLoading] = useState(false);
   const [modalPhotoShown, togglePhotoModal] = useState(false);
   const [isPhotoFav, setIsPhotoFav] = useState(false);

@@ -555,7 +555,6 @@ export const RoomHostInfoWrapper = styled.div`
     }
 
     &:hover {
-      /* background: #000; */
       border: none;
       background: linear-gradient(to right, #fff 50%, #000 50%);
       background-size: 200% 100%;
