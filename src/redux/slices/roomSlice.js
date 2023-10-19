@@ -18,6 +18,85 @@ export const getAllRoomsAsync = createAsyncThunk(
   }
 );
 
+// export const getFilterRoomsAsync = createAsyncThunk(
+//   'room/getFilterRoomInfo',
+//   async (
+//     {
+//       owner_name: owner_name || '',
+//         country: country || '',
+//         city: city || '',
+//         category: category || '',
+//         house_type: house_type || '',
+//         mininum_price: mininum_price || '',
+//         maximum_price: maximum_price || '',
+//         maximum_guests: maximum_guests || '',
+//         check_in: check_in || '',
+//         check_out: check_out || '',
+//     },
+//     thunkAPI
+//   ) => {
+//     try {
+//       const response = await axios.get(`/rooms?owner_name=${owner_name || ''}
+//         &country=${country || ''}
+//         &city=${city}
+//         &category=${category || ''}
+//         &house_type=${house_type || ''}
+//         &mininum_price=${mininum_price || ''}
+//         &maximum_price=${maximum_price || ''}
+//         &maximum_guests=${maximum_guests || ''}
+//         &check_in=${check_in || ''}
+//         &check_out=${check_out || ''}`);
+//       return response.data;
+//     } catch (error) {
+//       toast.error('Load FilterRooms failed.');
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
+
+export const getFilterRoomsAsync = createAsyncThunk(
+  'room/getFilterRoomInfo',
+  async (
+    {
+      // owner_name = '',
+      // country = '',
+      // city = '',
+      // category = '',
+      house_type,
+      number_of_beds,
+      number_of_bedrooms,
+      number_of_toilets,
+      mininum_price = '',
+      maximum_price = '',
+      // maximum_guests = '',
+      // check_in = '',
+      // check_out = '',
+    },
+    thunkAPI
+  ) => {
+    try {
+      // const response = await axios.get(`/rooms?owner_name=${owner_name || ''}
+      //   &country=${country || ''}
+      //   &city=${city}
+      //   &category=${category || ''}
+      //   &house_type=${house_type || ''}
+      //   &mininum_price=${mininum_price || ''}
+      //   &maximum_price=${maximum_price || ''}
+      //   &maximum_guests=${maximum_guests || ''}
+      //   &check_in=${check_in || ''}
+      //   &check_out=${check_out || ''}`);
+
+      const response =
+        await axios.get(`/rooms?house_type=${house_type}&number_of_beds=${number_of_beds}&number_of_bedrooms=${number_of_bedrooms}&number_of_toilets=${number_of_toilets}&mininum_price=${mininum_price}&maximum_price=${maximum_price}
+        `);
+      return response.data;
+    } catch (error) {
+      toast.error('Load FilterRooms failed.');
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const getRoomsByIdAsync = createAsyncThunk(
   'room/getRoomInfoById',
   async ({ roomId }, thunkAPI) => {
@@ -66,6 +145,7 @@ export const getAllAmenityAsync = createAsyncThunk(
 
 const initialState = {
   allRooms: {},
+  filterRooms: {},
   roomById: {},
   allAmenity: {},
   status: 'idle',
@@ -92,6 +172,21 @@ const roomSlice = createSlice({
       return { ...state, allRooms: payload };
     },
     [getAllRoomsAsync.rejected]: (state, action) => {
+      console.log('Rejected!');
+      state.status = 'failed';
+      state.error = action.payload;
+    },
+
+    [getFilterRoomsAsync.pending]: (state) => {
+      console.log('Pending');
+      state.status = 'Pending';
+      state.error = null;
+    },
+    [getFilterRoomsAsync.fulfilled]: (state, { payload }) => {
+      console.log('Fetched Successfully!');
+      return { ...state, filterRooms: payload };
+    },
+    [getFilterRoomsAsync.rejected]: (state, action) => {
       console.log('Rejected!');
       state.status = 'failed';
       state.error = action.payload;
@@ -146,6 +241,7 @@ const roomSlice = createSlice({
 
 export const { removeSelectedRoom } = roomSlice.actions;
 export const getAllRoomInfo = (state) => state.room.allRooms.results;
+export const getFilterRoomInfo = (state) => state.room.filterRooms.results;
 export const getRoomInfo = (state) => state.room.roomById;
 export const getAllAmenity = (state) => state.room.allAmenity;
 // export const bookRoom = (state) => state.room.bookingRoom;

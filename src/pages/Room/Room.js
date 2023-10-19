@@ -95,7 +95,11 @@ const Room = ({ setIsPageMain }) => {
                 <RoomTopText>
                   <RoomTopInfo>
                     <StarIcon sx={{ fontSize: '16px' }} />
-                    <span className='strong'>{roomInfo?.rating}</span>
+                    <span className='strong'>
+                      {roomInfo?.rating?.toLocaleString(undefined, {
+                        minimumFractionDigits: 2,
+                      })}
+                    </span>
                     <span className='coma'>·</span>
                     <span
                       onClick={() => {
@@ -106,14 +110,16 @@ const Room = ({ setIsPageMain }) => {
                       <Link>{roomReviewAll?.length} Reviews</Link>
                     </span>
                     <span className='coma'>·</span>
-                    <span>
-                      <Link
-                        to={`https://maps.google.com/maps/place/${roomInfo?.address}+${roomInfo?.city}`}
-                        target='_blank'
-                      >
-                        {roomInfo?.address}, {roomInfo?.city},{' '}
-                        {roomInfo?.country}
-                      </Link>
+                    <span
+                      onClick={() =>
+                        window.open(
+                          `https://maps.google.com/maps/place/${roomInfo?.address}+${roomInfo?.city}`,
+                          '_blank'
+                        )
+                      }
+                      className='newTab'
+                    >
+                      {roomInfo?.address}, {roomInfo?.city}, {roomInfo?.country}
                     </span>
                   </RoomTopInfo>
                   <RoomTopInfo>

@@ -157,7 +157,7 @@ export const FilterResultBtn = styled.button`
 
 export const PriceRangeBarWrap = styled.div`
   margin: 20px;
-  min-height: 80px;
+  /* min-height: 80px; */
   /* background: lightgray; */
 `;
 

@@ -102,6 +102,10 @@ export const FilterBtn = styled.div`
 
 export const MainMid = styled.div`
   margin: 10px 0;
+
+  h2 {
+    margin: -10px 0 20px;
+  }
 `;
 
 export const MainMidWrap = styled.div`
@@ -128,6 +132,25 @@ export const MainMidWrap = styled.div`
       /* margin: 0 auto; */
     }
   }
+
+  &.empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin: 80px;
+  }
+`;
+
+export const EmptyMainRoom = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  color: #bbbb;
+  font-weight: 600;
 `;
 
 // -----List Each

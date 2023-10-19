@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from '../Modals/ModalLayout';
 import {
   FilterClearBtn,
@@ -35,15 +35,38 @@ import DomainIcon from '@mui/icons-material/Domain';
 import GiteIcon from '@mui/icons-material/Gite';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import FilterPriceRage from './FilterPriceRage';
+import { useDispatch } from 'react-redux';
+import {
+  getAllRoomsAsync,
+  getFilterRoomsAsync,
+} from '../../redux/slices/roomSlice';
+import { useParams } from 'react-router-dom';
 
 const anyOptionList = ['Any', '1', '2', '3', '4', '5', '6', '7', '8+'];
+// const anyOptionList = ['Any', '1', '2', '3', '4', '5', '6', '7', '8+'];
 
-const GuestFilterModal = ({ modalFilterShown, toggleFilterModal }) => {
+const GuestFilterModal = ({
+  modalFilterShown,
+  toggleFilterModal,
+  filterRoomInfo,
+  averagePrice,
+}) => {
+  // const {
+  //   house_type,
+  //   number_of_beds,
+  //   number_of_bedrooms,
+  //   number_of_toilets,
+  //   mininum_price,
+  //   maximum_price,
+  // } = useParams();
   const [isChecked, setIsChecked] = useState(false);
 
   const [bedrooms, setBedrooms] = useState('Any');
   const [beds, setBeds] = useState('Any');
   const [bethrooms, setBethrooms] = useState('Any');
+  const [value, setValue] = React.useState([200, 700]);
+
+  const [selectedType, setSelectedType] = useState('');
 
   // const [propety, setPropety] = useState('');
   const [house, setHouse] = useState('');
@@ -55,9 +78,68 @@ const GuestFilterModal = ({ modalFilterShown, toggleFilterModal }) => {
   const [isPropertyClick3, setIsPropertyClick3] = useState(false);
   const [isPropertyClick4, setIsPropertyClick4] = useState(false);
 
-  const handleCheckedType = (e) => {
-    console.log('checked type', e.target.value);
+  const [owner_name, setOwner_name] = useState('');
+  const [country, setCountry] = useState('');
+  const [houseType, setHouseType] = useState('');
+  const [mininumPrice, setMininumPrice] = useState('');
+  const [maximumPrice, setMaximumPrice] = useState('');
+  const [maximum_guests, setMaximum_guests] = useState('');
+  const [check_in, setCheck_in] = useState('');
+  const [check_out, setCheck_out] = useState('');
+
+  const dispatch = useDispatch();
+
+  // const handleCheckedType = (e) => {
+  //   console.log('checked type', e.target.value);
+  //   setHouse_type(e.target.value);
+  // };
+
+  const handleClickFilter = () => {
+    toggleFilterModal(false);
+    dispatch(
+      getFilterRoomsAsync({
+        owner_name: owner_name || '',
+        country: country || '',
+        //city: city || '',
+        //category: category || '',
+        maximum_guests: maximum_guests || '',
+        check_in: check_in || '',
+        check_out: check_out || '',
+
+        house_type: houseType || '',
+        number_of_beds: beds === 'Any' ? '' : beds,
+        number_of_bedrooms: bedrooms === 'Any' ? '' : bedrooms,
+        number_of_toilets: bethrooms === 'Any' ? '' : bethrooms,
+        mininum_price: mininumPrice || '',
+        maximum_price: maximumPrice || '',
+      })
+    );
   };
+
+  const handleClearFilter = () => {
+    setBedrooms('Any');
+    setBeds('Any');
+    setBethrooms('Any');
+    setValue([200, 700]);
+
+    setSelectedType('');
+    setHouseType('');
+    setMininumPrice('');
+    setMaximumPrice('');
+  };
+
+  //
+  useEffect(() => {
+    if (!modalFilterShown) {
+      setBedrooms('Any');
+      setBeds('Any');
+      setBethrooms('Any');
+      setValue([200, 700]);
+      setHouseType('');
+      setMininumPrice('');
+      setMaximumPrice('');
+    }
+  }, [modalFilterShown, toggleFilterModal]);
 
   return (
     <Modal
@@ -71,16 +153,27 @@ const GuestFilterModal = ({ modalFilterShown, toggleFilterModal }) => {
         <ModalMain className='filter'>
           <ModalMainSection>
             <ModalMainTitle>Price range</ModalMainTitle>
-            <ModalMainText>The average nightly price is $000,000</ModalMainText>
+            <ModalMainText>
+              The average nightly price is ${averagePrice?.toFixed(2)}
+            </ModalMainText>
             <PriceRangeBarWrap>
-              {/* <PriceRangeGraph>range graph</PriceRangeGraph> */}
-              <FilterPriceRage />
+              <FilterPriceRage
+                value={value}
+                setValue={setValue}
+                setMininumPrice={setMininumPrice}
+                setMaximumPrice={setMaximumPrice}
+              />
             </PriceRangeBarWrap>
             <PriceRangeWrap>
               <PriceRangeWrapper>
                 <PriceRangeLabel>min price</PriceRangeLabel>
                 <PriceRangeInputSection>
-                  <PriceInput type='text' value='00000' />
+                  <PriceCurrency>$</PriceCurrency>
+                  <PriceInput
+                    type='text'
+                    value={mininumPrice || '200'}
+                    onChange={(e) => setMininumPrice(e.target.value)}
+                  />
                 </PriceRangeInputSection>
               </PriceRangeWrapper>
               <PriceBetween>-</PriceBetween>
@@ -88,7 +181,11 @@ const GuestFilterModal = ({ modalFilterShown, toggleFilterModal }) => {
                 <PriceRangeLabel>max price</PriceRangeLabel>
                 <PriceRangeInputSection>
                   <PriceCurrency>$</PriceCurrency>
-                  <PriceInput type='text' value='00000+' />
+                  <PriceInput
+                    type='text'
+                    value={(maximumPrice || '700') + '+'}
+                    onChange={(e) => setMaximumPrice(e.target.value)}
+                  />
                 </PriceRangeInputSection>
               </PriceRangeWrapper>
             </PriceRangeWrap>
@@ -99,9 +196,14 @@ const GuestFilterModal = ({ modalFilterShown, toggleFilterModal }) => {
             <PlaceTypeWrap>
               <PlaceTypeWrapper>
                 <PlaceInput
-                  type='checkbox'
-                  value='Entire Place'
-                  onChange={(e) => handleCheckedType(e)}
+                  type='radio'
+                  name='type'
+                  value='entire_place'
+                  checked={selectedType === 'entire_place'}
+                  onChange={(e) => {
+                    setHouseType(e.target.value);
+                    setSelectedType(e.target.value);
+                  }}
                 />
                 <PlaceInputText>
                   <p>Entire Place</p>
@@ -110,20 +212,30 @@ const GuestFilterModal = ({ modalFilterShown, toggleFilterModal }) => {
               </PlaceTypeWrapper>
               <PlaceTypeWrapper>
                 <PlaceInput
-                  type='checkbox'
-                  value='Room'
-                  onChange={(e) => handleCheckedType(e)}
+                  type='radio'
+                  name='type'
+                  value='private_room'
+                  checked={selectedType === 'private_room'}
+                  onChange={(e) => {
+                    setHouseType(e.target.value);
+                    setSelectedType(e.target.value);
+                  }}
                 />
                 <PlaceInputText>
-                  <p>Room</p>
+                  <p>Private Room</p>
                   <span>Your own room, plus access to shared spaces</span>
                 </PlaceInputText>
               </PlaceTypeWrapper>
               <PlaceTypeWrapper>
                 <PlaceInput
-                  type='checkbox'
-                  value='Shared room'
-                  onChange={(e) => handleCheckedType(e)}
+                  type='radio'
+                  name='type'
+                  value='shared_room'
+                  checked={selectedType === 'shared_room'}
+                  onChange={(e) => {
+                    setHouseType(e.target.value);
+                    setSelectedType(e.target.value);
+                  }}
                 />
                 <PlaceInputText>
                   <p>Shared room</p>
@@ -189,62 +301,10 @@ const GuestFilterModal = ({ modalFilterShown, toggleFilterModal }) => {
               </RoomBedWrapper>
             </RoomBedWrap>
           </ModalMainSection>
-
-          <ModalMainSection>
-            <ModalMainTitle>Property type</ModalMainTitle>
-            <PropertyWrap>
-              <PropertyWrpper
-                onClick={() => {
-                  setHouse('House');
-                  setIsPropertyClick1(!isPropertyClick1);
-                }}
-                clicked={house && isPropertyClick1 ? true : false}
-              >
-                <HomeIcon fontSize='large' />
-                <p>House</p>
-              </PropertyWrpper>
-              <PropertyWrpper
-                onClick={() => {
-                  setApartment('Apartment');
-                  setIsPropertyClick2(!isPropertyClick2);
-                }}
-                clicked={apartment && isPropertyClick2 ? true : false}
-              >
-                <DomainIcon fontSize='large' />
-                <p>Apartment</p>
-              </PropertyWrpper>
-              <PropertyWrpper
-                onClick={() => {
-                  setGuesthouse('Guesthouse');
-                  setIsPropertyClick3(!isPropertyClick3);
-                }}
-                clicked={guesthouse && isPropertyClick3 ? true : false}
-              >
-                <GiteIcon fontSize='large' />
-                <p>Guesthouse</p>
-              </PropertyWrpper>
-              <PropertyWrpper
-                onClick={() => {
-                  setHotel('Hotel');
-                  setIsPropertyClick4(!isPropertyClick4);
-                }}
-                clicked={hotel && isPropertyClick4 ? true : false}
-              >
-                <LocationCityIcon fontSize='large' />
-                <p>Hotel</p>
-              </PropertyWrpper>
-            </PropertyWrap>
-          </ModalMainSection>
-
-          {/* <ModalMainSection>
-            <ModalMainTitle>Rooms and beds</ModalMainTitle>
-            <ModalMainText>The average nightly price is $000,000</ModalMainText>
-          </ModalMainSection> 
-          */}
         </ModalMain>
         <ModalFooter>
-          <FilterClearBtn>Clear all</FilterClearBtn>
-          <FilterResultBtn>Show 000 stay</FilterResultBtn>
+          <FilterClearBtn onClick={handleClearFilter}>Clear all</FilterClearBtn>
+          <FilterResultBtn onClick={handleClickFilter}>Show</FilterResultBtn>
         </ModalFooter>
       </ModalContainer>
     </Modal>
