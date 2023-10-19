@@ -106,14 +106,15 @@ const Room = ({ setIsPageMain }) => {
                       <Link>{roomReviewAll?.length} Reviews</Link>
                     </span>
                     <span className='coma'>·</span>
-                    <span>
-                      <Link
-                        to={`https://maps.google.com/maps/place/${roomInfo?.address}+${roomInfo?.city}`}
-                        target='_blank'
-                      >
-                        {roomInfo?.address}, {roomInfo?.city},{' '}
-                        {roomInfo?.country}
-                      </Link>
+                    <span
+                      onClick={() =>
+                        window.open(
+                          `https://maps.google.com/maps/place/${roomInfo?.address}+${roomInfo?.city}`,
+                          '_blank'
+                        )
+                      }
+                    >
+                      {roomInfo?.address}, {roomInfo?.city}, {roomInfo?.country}
                     </span>
                   </RoomTopInfo>
                   <RoomTopInfo>

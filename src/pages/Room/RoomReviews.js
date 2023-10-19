@@ -80,7 +80,8 @@ const RoomReviews = ({
             </ReviewGraphsRate>
           </ReviewGraphs>
         </ReviewsMainTop>
-        {roomReviewAll.filter((review) => review.room.pk === roomInfo?.pk) ? (
+        {roomReviewAll.filter((review) => review.room.pk === roomInfo?.pk)
+          ?.length !== 0 ? (
           <ReviewsList>
             {roomReviewAll?.slice(0, 6).map((review) => {
               return (
