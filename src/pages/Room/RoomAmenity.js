@@ -50,29 +50,67 @@ const RoomAmenity = ({ roomInfo, loading, modalAmenityShown }) => {
         </>
       ) : (
         <>
-          {roomInfo?.amenities?.slice(0, 6).map((amenity, index) => {
-            return (
-              <PlaceOffersList
-                key={amenity?.pk}
-                className={
-                  index === 0 ? 'first' : '' || modalAmenityShown ? 'modal' : ''
-                }
-              >
-                {amenity?.name === 'Wifi' && <WifiIcon />}
-                {amenity?.name === 'Kitchen' && <KitchenIcon />}
-                {amenity?.name === 'Microwave' && <MicrowaveIcon />}
-                {amenity?.name === 'Parking' && <LocalParkingIcon />}
-                {amenity?.name === 'Tv' && <TvIcon />}
-                {amenity?.name === 'Cooking basics' && <RestaurantIcon />}
-                {amenity?.name === 'Private entrance' && <DoorFrontIcon />}
-                {amenity?.name === 'Laundry' && <LocalLaundryServiceIcon />}
-                {amenity?.name === 'BBQ grill' && <OutdoorGrillIcon />}
-                {amenity?.name === 'Iron' && <IronIcon />}
-                {amenity?.name === 'Pool' && <PoolIcon />}
-                <span>{amenity?.name}</span>
-              </PlaceOffersList>
-            );
-          })}
+          {modalAmenityShown ? (
+            <>
+              {roomInfo?.amenities?.map((amenity, index) => {
+                return (
+                  <PlaceOffersList
+                    key={amenity?.pk}
+                    className={
+                      index === 0
+                        ? 'first'
+                        : '' || modalAmenityShown
+                        ? 'modal'
+                        : ''
+                    }
+                  >
+                    {amenity?.name === 'Wifi' && <WifiIcon />}
+                    {amenity?.name === 'Kitchen' && <KitchenIcon />}
+                    {amenity?.name === 'Microwave' && <MicrowaveIcon />}
+                    {amenity?.name === 'Parking' && <LocalParkingIcon />}
+                    {amenity?.name === 'Tv' && <TvIcon />}
+                    {amenity?.name === 'Cooking basics' && <RestaurantIcon />}
+                    {amenity?.name === 'Private entrance' && <DoorFrontIcon />}
+                    {amenity?.name === 'Laundry' && <LocalLaundryServiceIcon />}
+                    {amenity?.name === 'BBQ grill' && <OutdoorGrillIcon />}
+                    {amenity?.name === 'Iron' && <IronIcon />}
+                    {amenity?.name === 'Pool' && <PoolIcon />}
+                    <span>{amenity?.name}</span>
+                  </PlaceOffersList>
+                );
+              })}
+            </>
+          ) : (
+            <>
+              {roomInfo?.amenities?.slice(0, 6).map((amenity, index) => {
+                return (
+                  <PlaceOffersList
+                    key={amenity?.pk}
+                    className={
+                      index === 0
+                        ? 'first'
+                        : '' || modalAmenityShown
+                        ? 'modal'
+                        : ''
+                    }
+                  >
+                    {amenity?.name === 'Wifi' && <WifiIcon />}
+                    {amenity?.name === 'Kitchen' && <KitchenIcon />}
+                    {amenity?.name === 'Microwave' && <MicrowaveIcon />}
+                    {amenity?.name === 'Parking' && <LocalParkingIcon />}
+                    {amenity?.name === 'Tv' && <TvIcon />}
+                    {amenity?.name === 'Cooking basics' && <RestaurantIcon />}
+                    {amenity?.name === 'Private entrance' && <DoorFrontIcon />}
+                    {amenity?.name === 'Laundry' && <LocalLaundryServiceIcon />}
+                    {amenity?.name === 'BBQ grill' && <OutdoorGrillIcon />}
+                    {amenity?.name === 'Iron' && <IronIcon />}
+                    {amenity?.name === 'Pool' && <PoolIcon />}
+                    <span>{amenity?.name}</span>
+                  </PlaceOffersList>
+                );
+              })}
+            </>
+          )}
         </>
       )}
     </>

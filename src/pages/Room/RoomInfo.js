@@ -11,39 +11,33 @@ import {
   ThingsWrap,
   ThingsTitle,
   ThingsList,
-  SleepWrap,
   BasicInfo,
   BasicIntro,
   PlaceOffers,
-  PlaceOffersList,
   AvatarHost,
   RoomDetailsTopText,
   GoToMap,
+  RoomHostInfo,
+  RoomHostInfoWrapper,
+  Notice,
 } from './RoomStyle';
 import StarIcon from '@mui/icons-material/Star';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import RoomSide from './RoomSide';
-import BedIcon from '@mui/icons-material/Bed';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import PetsIcon from '@mui/icons-material/Pets';
 import TodayIcon from '@mui/icons-material/Today';
-
-// import ShowMoreModal from '../../components/Modals/ShowMoreModalLayout';
-// import SearchDateBox from '../../components/Dropdown/SearchDateBox';
 import DateRange from '../../components/DateRange';
 import RoomReviews from './RoomReviews';
 import Avatar from '../../components/Avatar/Avatar';
 import ShowMoreModal from '../../components/Show/ShowMoreModal';
 import RoomAmenity from './RoomAmenity';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  getAllAmenity,
-  getAllAmenityAsync,
-} from '../../redux/slices/roomSlice';
 import { Skeleton } from '@mui/material';
 import RoomBed from './RoomBed';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import { Link } from 'react-router-dom';
+import ForumIcon from '@mui/icons-material/Forum';
+import PrivacyTipIcon from '@mui/icons-material/PrivacyTip';
 
 const RoomInfo = ({
   roomInfo,
@@ -65,13 +59,6 @@ const RoomInfo = ({
 
   const [checkInDate, setCheckInDate] = useState('');
   const [checkOutDate, setCheckOutDate] = useState('');
-
-  const roomAmenity = useSelector(getAllAmenity);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getAllAmenityAsync());
-  }, [dispatch]);
 
   return (
     <RoomDetailSection>
@@ -333,21 +320,35 @@ const RoomInfo = ({
             </p>
           </Link>
         </GoToMap>
-        {/* <span>
-          The historic town of Cochrane is 5min to the East of us and the
-          historic Wine Glass Ranch, established in 1885, are our direct
-          neighbours to the West.
-        </span> */}
-        {/* <ShowMoreBtn>
-          <span>Show more</span>
-          <ArrowForwardIosIcon sx={{ fontSize: '14px' }} />
-        </ShowMoreBtn> */}
       </RoomDetailsSections>
 
       {/* Host Info */}
       <RoomDetailsSections>
-        <h2>Hosted by Grant</h2>
-        <div>Host Info</div>
+        <RoomHostInfo>
+          <h2>Hosted by Grant</h2>
+          <RoomHostInfoWrapper>
+            <p>
+              <AvatarHost>
+                <Avatar
+                  initials={roomInfo?.owner?.username
+                    ?.substring(0, 1)
+                    .toUpperCase()}
+                />
+              </AvatarHost>
+              <span>{roomInfo?.owner?.username.toUpperCase()}</span>
+            </p>
+            <button>
+              Contact Host <ForumIcon />
+            </button>
+          </RoomHostInfoWrapper>
+          <RoomHostInfoWrapper>
+            <Notice>
+              <PrivacyTipIcon sx={{ fontSize: 20 }} />
+              To protect your payment, never transfer money or communicate
+              outside of the Airbnb website or app.
+            </Notice>
+          </RoomHostInfoWrapper>
+        </RoomHostInfo>
       </RoomDetailsSections>
 
       {/* Thins to know */}
@@ -359,20 +360,20 @@ const RoomInfo = ({
             <ThingsList>Check-in: 3:00 p.m.–8:00 p.m.</ThingsList>
             <ThingsList>Checkout before 11:00 a.m.</ThingsList>
             <ThingsList>2 guests maximum</ThingsList>
-            <ShowMoreBtn>
+            {/* <ShowMoreBtn>
               <span>Show more</span>
               <ArrowForwardIosIcon sx={{ fontSize: '14px' }} />
-            </ShowMoreBtn>
+            </ShowMoreBtn> */}
           </ThingsWrap>
           <ThingsWrap>
             <ThingsTitle>Safety & property</ThingsTitle>
             <ThingsList>Carbon monoxide alarm</ThingsList>
             <ThingsList>Smoke alarm</ThingsList>
             <ThingsList>Must climb stairs</ThingsList>
-            <ShowMoreBtn>
+            {/* <ShowMoreBtn>
               <span>Show more</span>
               <ArrowForwardIosIcon sx={{ fontSize: '14px' }} />
-            </ShowMoreBtn>
+            </ShowMoreBtn> */}
           </ThingsWrap>
           <ThingsWrap>
             <ThingsTitle>Cancellation policy</ThingsTitle>
@@ -381,10 +382,10 @@ const RoomInfo = ({
               Review the Host’s full cancellation policy, which applies even if
               you cancel for illness or disruptions caused by COVID-19.
             </ThingsList>
-            <ShowMoreBtn>
+            {/* <ShowMoreBtn>
               <span>Show more</span>
               <ArrowForwardIosIcon sx={{ fontSize: '14px' }} />
-            </ShowMoreBtn>
+            </ShowMoreBtn> */}
           </ThingsWrap>
         </ThingsToKnow>
       </RoomDetailsSections>

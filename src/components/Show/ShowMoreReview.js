@@ -34,23 +34,13 @@ import {
   getReviewByRoomIdAsync,
 } from '../../redux/slices/roomReviewSlice';
 
-const ShowMoreReview = ({
-  roomInfo,
-  // roomReviewInfo,
-  // setPer_page,
-  // per_page,
-  // setPage,
-  // page,
-  setIsShowReviews,
-  isShowReviews,
-}) => {
+const ShowMoreReview = ({ roomInfo, setIsShowReviews, isShowReviews }) => {
   const [searchedValue, setSearchedValue] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [per_page, setPer_page] = useState(6);
   const [page, setPage] = useState(1);
 
   const { roomId } = useParams();
-  // const allRoomReviewInfo = useSelector(getAllRoomReviews);
   const roomReviewInfo = useSelector(getAllReviewByRoomInfo);
   const dispatch = useDispatch();
 
@@ -77,14 +67,6 @@ const ShowMoreReview = ({
     console.log('p', p);
     setPage(p);
   };
-
-  // console.log('allRoomReviewInfo ', allRoomReviewInfo);
-  // console.log(
-  //   'length',
-  //   roomReviewInfo?.results?.filter((item) =>
-  //     item?.payload.toLowerCase().includes(searchedValue.toLowerCase())
-  //   )?.length
-  // );
 
   return (
     <ShowReviewBox>
@@ -196,7 +178,6 @@ const ShowMoreReview = ({
               </ShowReviewEach>
             </ShowReviewList>
           )}
-          {/* roomReviewInfo?.total_objects */}
           <ShowReviewPage>
             <Stack spacing={2}>
               <Pagination

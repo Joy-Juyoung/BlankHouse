@@ -515,3 +515,65 @@ export const GoToMap = styled.div`
     color: #000;
   }
 `;
+
+// ----Host
+
+export const RoomHostInfo = styled.div`
+  /* display: flex;
+  align-items: center;
+  justify-content: space-between; */
+`;
+
+export const RoomHostInfoWrapper = styled.div`
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+
+  p {
+    display: flex;
+    align-items: center;
+
+    span {
+      margin-left: 10px;
+      font-weight: 600;
+    }
+  }
+
+  button {
+    margin-left: 20px;
+    border: 1px solid #999999;
+    border-radius: 10px;
+    padding: 15px 20px;
+    cursor: pointer;
+    background: none;
+
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin-left: 10px;
+    }
+
+    &:hover {
+      /* background: #000; */
+      border: none;
+      background: linear-gradient(to right, #fff 50%, #000 50%);
+      background-size: 200% 100%;
+      background-position: right bottom;
+      transition: all 0.5s ease-out;
+      color: #fff;
+    }
+  }
+`;
+export const Notice = styled.div`
+  display: flex;
+  align-items: center;
+  font-weight: 300;
+  font-size: 11px;
+
+  svg {
+    margin-right: 5px;
+    /* ouline: #ffae00; */
+    color: #ffae00;
+  }
+`;
