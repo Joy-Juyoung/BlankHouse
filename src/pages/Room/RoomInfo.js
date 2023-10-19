@@ -204,7 +204,7 @@ const RoomInfo = ({
                 toggleAmenityModal(!modalAmenityShown);
               }}
             >
-              Show all {roomAmenity?.length || '00'} Amenities
+              Show all {roomInfo?.amenities?.length || '00'} Amenities
             </ShowAllBtn>
           </RoomDetailsSections>
           <ShowMoreModal

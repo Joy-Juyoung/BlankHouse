@@ -17,6 +17,12 @@ const DateRange = ({
       key: 'selection',
     },
   ]);
+  const disabledDates = [
+    addDays(new Date(), 10),
+    addDays(new Date(), 8),
+    addDays(new Date(), 22),
+    addDays(new Date(), 20),
+  ];
 
   useEffect(() => {
     setCheckInDate(
@@ -38,6 +44,8 @@ const DateRange = ({
         ranges={selectedDateRange}
         // rangeColors='#ffae00 !important'
         direction='horizontal'
+        minDate={new Date()}
+        disabledDates={disabledDates}
       />
     </div>
   );

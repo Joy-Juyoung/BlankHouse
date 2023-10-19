@@ -8,7 +8,13 @@ import {
 } from '../MainCategorySliderStyle';
 import { Skeleton } from '@mui/material';
 
-const MainCategorySk = ({ loading, category, sliderWidth }) => {
+const MainCategorySk = ({
+  loading,
+  category,
+  sliderWidth,
+  goRight,
+  goLeft,
+}) => {
   return (
     <>
       {loading ? (
@@ -30,7 +36,10 @@ const MainCategorySk = ({ loading, category, sliderWidth }) => {
           />
         </SlideName>
       ) : (
-        <SlideName style={{ width: sliderWidth }}>
+        <SlideName
+          style={{ width: sliderWidth }}
+          // className={goRight ? 'goRight' : '' || goLeft ? 'goLeft' : ''}
+        >
           <span>{category?.name}</span>
         </SlideName>
       )}

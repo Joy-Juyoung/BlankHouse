@@ -480,6 +480,14 @@ export const PlaceOffersList = styled.div`
   svg {
     margin-right: 15px;
   }
+
+  &.modal {
+    margin-top: 30px;
+  }
+
+  &.first {
+    margin-top: 0;
+  }
 `;
 
 // ---------------

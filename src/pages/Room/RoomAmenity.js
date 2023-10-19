@@ -13,7 +13,7 @@ import PoolIcon from '@mui/icons-material/Pool';
 import OutdoorGrillIcon from '@mui/icons-material/OutdoorGrill';
 import { Skeleton } from '@mui/material';
 
-const RoomAmenity = ({ roomInfo, loading }) => {
+const RoomAmenity = ({ roomInfo, loading, modalAmenityShown }) => {
   const numberOfTimes = 6;
   const placeholderItems = new Array(numberOfTimes).fill(null);
 
@@ -50,9 +50,14 @@ const RoomAmenity = ({ roomInfo, loading }) => {
         </>
       ) : (
         <>
-          {roomInfo?.amenities?.slice(0, 6).map((amenity) => {
+          {roomInfo?.amenities?.slice(0, 6).map((amenity, index) => {
             return (
-              <PlaceOffersList>
+              <PlaceOffersList
+                key={amenity?.pk}
+                className={
+                  index === 0 ? 'first' : '' || modalAmenityShown ? 'modal' : ''
+                }
+              >
                 {amenity?.name === 'Wifi' && <WifiIcon />}
                 {amenity?.name === 'Kitchen' && <KitchenIcon />}
                 {amenity?.name === 'Microwave' && <MicrowaveIcon />}

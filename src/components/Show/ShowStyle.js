@@ -4,28 +4,20 @@ import styled from 'styled-components';
 export const ShowReviewBox = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: 50px;
-
+  gap: 20px;
   height: 650px;
   overflow-y: auto;
-`;
 
-export const ShowReviewWrapper = styled.div`
-  /* display: flex; */
-  padding: 0 20px;
-
-  &.showSide {
-    /* position: relative; */
-    /* height: 100%; */
-    /* width: 100%; */
-    /* position: fixed; */
+  @media screen and (max-width: 1030px) {
+    display: block;
   }
 `;
 
-export const ShowReviewSide = styled.div`
-  position: fixed;
-  /* right: 0; */
+export const ShowReviewWrapper = styled.div`
+  padding: 0 10px;
 `;
+
+export const ShowReviewSide = styled.div``;
 
 export const ShowReviewTitle = styled.div`
   h2 {
@@ -37,11 +29,21 @@ export const ShowReviewTitle = styled.div`
 
 export const ShowReviewRatingGraph = styled.div`
   width: 300px;
-  position: fixed;
+  width: 100%;
 `;
 
 export const ShowReviewGraph = styled.div`
-  /* width: 100%; */
+  @media screen and (max-width: 1030px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 80px;
+    margin: 10px 0 20px;
+  }
+
+  @media screen and (max-width: 680px) {
+    display: block;
+    margin: 20px 0 30px;
+  }
 `;
 
 export const ReviewGraphs = styled.div`
@@ -51,6 +53,10 @@ export const ReviewGraphs = styled.div`
   width: 100%;
 
   margin: 20px 0;
+
+  @media screen and (max-width: 1030px) {
+    margin: 10px 0;
+  }
 `;
 
 export const ReviewGraphsName = styled.div`
@@ -62,13 +68,14 @@ export const ReviewGraphsRate = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  /* width: 100%; */
-  /* background: #dddddd; */
+
+  @media screen and (max-width: 680px) {
+    flex: 2;
+  }
 `;
 
 export const GraphsRateNum = styled.div`
   width: 40px;
-  /* flex: 1; */
   display: flex;
   justify-content: flex-end;
 `;
@@ -83,7 +90,6 @@ export const ShowReviewSearch = styled.div`
     top: 12px;
     left: 15px;
     color: #bbbbbb;
-    /* margin-right: -30px; */
   }
 
   input {
@@ -98,9 +104,7 @@ export const ShowReviewSearch = styled.div`
 
 export const ShowReviewList = styled.div``;
 
-export const ShowReviewEach = styled.div`
-  /* margin-bottom: 20px; */
-`;
+export const ShowReviewEach = styled.div``;
 
 export const ShowReviewPage = styled.div`
   margin-top: 40px;
