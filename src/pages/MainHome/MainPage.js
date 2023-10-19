@@ -44,6 +44,15 @@ const MainPage = ({ setIsPageMain, userMe }) => {
   const filterRoomInfo = useSelector(getFilterRoomInfo);
   const dispatch = useDispatch();
 
+  const allPrices = allRoomInfo?.map((roomData) => roomData.price);
+  const total = allPrices?.reduce(
+    (accumulator, currentValue) => accumulator + currentValue,
+    0
+  );
+  const averagePrice = total / allPrices?.length;
+
+  console.log('averagePrice', averagePrice);
+
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     setLoading(true);
@@ -79,6 +88,7 @@ const MainPage = ({ setIsPageMain, userMe }) => {
               toggleFilterModal={toggleFilterModal}
               modalFilterShown={modalFilterShown}
               filterRoomInfo={filterRoomInfo}
+              averagePrice={averagePrice}
             />
           </MainTopFilter>
         </MainTop>

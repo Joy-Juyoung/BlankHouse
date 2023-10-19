@@ -42,18 +42,20 @@ import {
 } from '../../redux/slices/roomSlice';
 
 const anyOptionList = ['Any', '1', '2', '3', '4', '5', '6', '7', '8+'];
+// const anyOptionList = ['Any', '1', '2', '3', '4', '5', '6', '7', '8+'];
 
 const GuestFilterModal = ({
   modalFilterShown,
   toggleFilterModal,
   filterRoomInfo,
+  averagePrice,
 }) => {
   const [isChecked, setIsChecked] = useState(false);
 
   const [bedrooms, setBedrooms] = useState('Any');
   const [beds, setBeds] = useState('Any');
   const [bethrooms, setBethrooms] = useState('Any');
-  const [value, setValue] = React.useState([100, 1500]);
+  const [value, setValue] = React.useState([200, 700]);
 
   // const [propety, setPropety] = useState('');
   const [house, setHouse] = useState('');
@@ -105,33 +107,6 @@ const GuestFilterModal = ({
     );
   };
 
-  // useEffect(() => {
-  //   dispatch(
-  //     getFilterRoomsAsync({
-  //       owner_name: owner_name || '',
-  //       country: country || '',
-  //       city: city || '',
-  //       category: category || '',
-  //       maximum_guests: maximum_guests || '',
-  //       check_in: check_in || '',
-  //       check_out: check_out || '',
-
-  //       house_type: house_type || '',
-  //       number_of_beds: beds === 'Any' ? '' : beds,
-  //       number_of_bedrooms: bedrooms === 'Any' ? '' : bedrooms,
-  //       number_of_toilets: bethrooms === 'Any' ? '' : bethrooms,
-  //       mininum_price: mininum_price || '',
-  //       maximum_price: maximum_price || '',
-  //     })
-  //   );
-  // }, [house_type, beds, bedrooms, bethrooms, mininum_price, maximum_price]);
-
-  // console.log('filterRoomInfo', filterRoomInfo);
-  // console.log('beds', beds);
-
-  // console.log('mininum_price', mininum_price?.toString());
-  // console.log('maximum_price', maximum_price?.toString());
-
   return (
     <Modal
       shown={modalFilterShown}
@@ -144,7 +119,9 @@ const GuestFilterModal = ({
         <ModalMain className='filter'>
           <ModalMainSection>
             <ModalMainTitle>Price range</ModalMainTitle>
-            <ModalMainText>The average nightly price is $000,000</ModalMainText>
+            <ModalMainText>
+              The average nightly price is ${averagePrice?.toFixed(2)}
+            </ModalMainText>
             <PriceRangeBarWrap>
               <FilterPriceRage
                 value={value}
@@ -158,7 +135,7 @@ const GuestFilterModal = ({
                 <PriceRangeLabel>min price</PriceRangeLabel>
                 <PriceRangeInputSection>
                   <PriceCurrency>$</PriceCurrency>
-                  <PriceInput type='text' value={mininum_price || '00000'} />
+                  <PriceInput type='text' value={mininum_price || '000'} />
                 </PriceRangeInputSection>
               </PriceRangeWrapper>
               <PriceBetween>-</PriceBetween>
@@ -168,7 +145,7 @@ const GuestFilterModal = ({
                   <PriceCurrency>$</PriceCurrency>
                   <PriceInput
                     type='text'
-                    value={(maximum_price || '00000') + '+'}
+                    value={(maximum_price || '000') + '+'}
                   />
                 </PriceRangeInputSection>
               </PriceRangeWrapper>
@@ -273,52 +250,6 @@ const GuestFilterModal = ({
               </RoomBedWrapper>
             </RoomBedWrap>
           </ModalMainSection>
-
-          {/* <ModalMainSection>
-            <ModalMainTitle>Property type</ModalMainTitle>
-            <PropertyWrap>
-              <PropertyWrpper
-                onClick={() => {
-                  setHouse('House');
-                  setIsPropertyClick1(!isPropertyClick1);
-                }}
-                clicked={house && isPropertyClick1 ? true : false}
-              >
-                <HomeIcon fontSize='large' />
-                <p>House</p>
-              </PropertyWrpper>
-              <PropertyWrpper
-                onClick={() => {
-                  setApartment('Apartment');
-                  setIsPropertyClick2(!isPropertyClick2);
-                }}
-                clicked={apartment && isPropertyClick2 ? true : false}
-              >
-                <DomainIcon fontSize='large' />
-                <p>Apartment</p>
-              </PropertyWrpper>
-              <PropertyWrpper
-                onClick={() => {
-                  setGuesthouse('Guesthouse');
-                  setIsPropertyClick3(!isPropertyClick3);
-                }}
-                clicked={guesthouse && isPropertyClick3 ? true : false}
-              >
-                <GiteIcon fontSize='large' />
-                <p>Guesthouse</p>
-              </PropertyWrpper>
-              <PropertyWrpper
-                onClick={() => {
-                  setHotel('Hotel');
-                  setIsPropertyClick4(!isPropertyClick4);
-                }}
-                clicked={hotel && isPropertyClick4 ? true : false}
-              >
-                <LocationCityIcon fontSize='large' />
-                <p>Hotel</p>
-              </PropertyWrpper>
-            </PropertyWrap>
-          </ModalMainSection> */}
         </ModalMain>
         <ModalFooter>
           <FilterClearBtn>Clear all</FilterClearBtn>

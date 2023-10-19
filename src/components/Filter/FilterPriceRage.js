@@ -1,65 +1,62 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
-import Slider from '@mui/material/Slider';
+import Slider, { SliderThumb } from '@mui/material/Slider';
 import { PriceRangeGraph } from '../Modals/ModalStyle';
 // import { PriceRangeGraph } from './ModalStyle';
 import ReactEcharts from 'echarts-for-react';
 // import { allRooms } from '../../redux/slices/rooms';
+import { styled } from '@mui/material/styles';
+
+const AirbnbSlider = styled(Slider)(({ theme }) => ({
+  color: '#3a8589',
+
+  height: 10,
+  padding: '13px 0',
+  '& .MuiSlider-thumb': {
+    // circle
+    height: 30,
+    width: 30,
+    backgroundColor: '#fff',
+    border: '1px solid currentColor',
+    '&:hover': {
+      boxShadow: '0 0 0 8px rgba(58, 133, 137, 0.16)',
+    },
+    '& .airbnb-bar': {
+      height: 10,
+      width: 1,
+      backgroundColor: 'currentColor',
+      marginLeft: 1,
+      marginRight: 1,
+    },
+  },
+  '& .MuiSlider-track': {
+    // able range bar height
+    height: 10,
+  },
+  '& .MuiSlider-rail': {
+    color: theme.palette.mode === 'dark' ? '#bfbfbf' : '#d8d8d8',
+    opacity: theme.palette.mode === 'dark' ? undefined : 1,
+    // disable range bar height
+    height: 10,
+  },
+}));
+
+function AirbnbThumbComponent(props) {
+  const { children, ...other } = props;
+  return (
+    <SliderThumb {...other}>
+      {children}
+      <span className='airbnb-bar' />
+      <span className='airbnb-bar' />
+      <span className='airbnb-bar' />
+    </SliderThumb>
+  );
+}
 
 function valuetext(value) {
   return `${value}`;
 }
-
-// const options = {
-//   grid: { top: 0, right: 0, bottom: 0, left: 0 },
-//   xAxis: {
-//     type: 'category',
-//     data: [
-//       'Item 1',
-//       'Item 2',
-//       'Item 3',
-//       'Item 4',
-//       'Item 5',
-//       'Item 2',
-//       'Item 3',
-//       'Item 4',
-//       'Item 5',
-//       'Item 2',
-//       'Item 3',
-//       'Item 4',
-//       'Item 5',
-//       'Item 2',
-//       'Item 3',
-//       'Item 4',
-//       'Item 5',
-//       'Item 2',
-//       'Item 3',
-//       'Item 4',
-//       'Item 5',
-//       'Item 2',
-//       'Item 3',
-//       'Item 4',
-//       'Item 5',
-//     ],
-//   },
-//   yAxis: {
-//     type: 'value',
-//   },
-//   series: [
-//     {
-//       data: [
-//         0, 0, 0, 100, 2100, 1300, 3100, 2000, 2800, 3000, 3500, 200, 2800, 300,
-//         3500, 2000, 2810, 300, 3510, 2100, 100, 0, 0, 0, 0,
-//       ],
-//       type: 'bar',
-//       smooth: true,
-//     },
-//   ],
-//   tooltip: {
-//     trigger: 'axis',
-//   },
-// };
 
 const FilterPriceRage = ({
   value,
@@ -100,17 +97,23 @@ const FilterPriceRage = ({
         ></ReactEcharts>
       </PriceRangeGraph> */}
       <Box sx={{ width: '100%' }}>
-        <Slider
+        <AirbnbSlider
           // getAriaLabel={() => 'Temperature range'}
           min={0}
-          max={2000}
-          marks
+          max={1000}
+          // marks
           // step={100}
           value={value}
           onChange={handleChange}
-          aria-label='Default'
+          // aria-label='Default'
+          // valueLabelDisplay='auto'
+          // getAriaValueText={valuetext}
           valueLabelDisplay='auto'
-          getAriaValueText={valuetext}
+          aria-label='pretto slider'
+          getAriaLabel={(index) =>
+            index === 0 ? 'Minimum price' : 'Maximum price'
+          }
+          slots={{ thumb: AirbnbThumbComponent }}
           // size='large'
         />
       </Box>
