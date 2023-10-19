@@ -54,7 +54,7 @@ const Room = ({ setIsPageMain }) => {
         allRoomReviewInfo.filter((review) => review.room.pk === roomInfo?.pk)
       );
     }
-  }, []);
+  }, [roomId, allRoomReviewInfo, roomReviewAll]);
 
   useEffect(() => {
     setIsPageMain(false);
