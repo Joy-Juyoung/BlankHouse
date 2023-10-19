@@ -5,6 +5,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import { FooterS } from './FooterStyle';
 import { Link, useLocation } from 'react-router-dom';
+import HelpIcon from '@mui/icons-material/Help';
 
 const FooterBottom = () => {
   return (
@@ -18,7 +19,7 @@ const FooterBottom = () => {
         <span>Sitemap</span>
       </FooterS>
       <FooterS>
-        <span>
+        {/* <span>
           <LanguageIcon />
           <p>English(CA)</p>
         </span>
@@ -31,9 +32,17 @@ const FooterBottom = () => {
         </span>
         <span>
           <TwitterIcon />
+        </span> */}
+        <span>
+          <HelpIcon />
         </span>
         <span className='last'>
-          <InstagramIcon />
+          <Link
+            to='https://instagram.com/dev_blk?igshid=OGQ5ZDc2ODk2ZA=='
+            target='_blank'
+          >
+            <InstagramIcon />
+          </Link>
         </span>
       </FooterS>
     </>
