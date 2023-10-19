@@ -99,7 +99,9 @@ const LogInModal = ({
       setErrMsg('Invalid Entry');
       return;
     }
+
     dispatch(loginAsync({ username, password }));
+    toggleLogModal(false);
   };
 
   return (

@@ -87,7 +87,9 @@ const GuestMode = () => {
               <Routes>
                 <Route
                   path='/'
-                  element={<MainPage setIsPageMain={setIsPageMain} />}
+                  element={
+                    <MainPage setIsPageMain={setIsPageMain} userMe={userMe} />
+                  }
                   exact={true}
                 />
                 <Route

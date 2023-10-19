@@ -17,7 +17,7 @@ import MainRoomSlider from '../pages/MainHome/MainRoomSlider';
 import ToggleLiked from './ToggleLiked';
 import PageLoading from './Loading/PageLoading';
 
-const RoomCard = ({ room, loading }) => {
+const RoomCard = ({ room, loading, userMe }) => {
   const [isBtnShown, setIsBtnShown] = useState(false);
   // const [roomId, setRoomId] = useState(room?.pk);
 
@@ -32,7 +32,7 @@ const RoomCard = ({ room, loading }) => {
         >
           <MainRoomSlider room={room} isBtnShown={isBtnShown} />
 
-          <ToggleLiked room={room} />
+          {userMe && <ToggleLiked room={room} />}
 
           <RoomEachDetails>
             <RoomTitle>
