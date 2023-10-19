@@ -13,20 +13,15 @@ import {
 } from './RoomStyle';
 import StarIcon from '@mui/icons-material/Star';
 import ShareIcon from '@mui/icons-material/Share';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import AppsIcon from '@mui/icons-material/Apps';
 import ShowPhotoModal from '../../components/Show/ShowPhotoModal';
 import RoomInfoHead from './RoomInfoHead';
 import RoomInfo from './RoomInfo';
 import RoomPhotos from './RoomPhotos';
-import PageLoading from '../../components/Loading/PageLoading';
 import { getRoomInfo, getRoomsByIdAsync } from '../../redux/slices/roomSlice';
 import {
-  getAllReviewByRoomInfo,
   getAllRoomReviews,
   getAllRoomReviewsAsync,
-  getReviewByRoomIdAsync,
 } from '../../redux/slices/roomReviewSlice';
 import ToggleLiked from '../../components/ToggleLiked';
 import RoomTopSk from './Skeletons/RoomTopSk';
@@ -43,9 +38,6 @@ const Room = ({ setIsPageMain }) => {
   const [modalShareShown, toggleShareModal] = useState(false);
 
   const [roomReviewAll, setRoomReviewAll] = useState([]);
-
-  // const [per_page, setPer_page] = useState(6);
-  // const [page, setPage] = useState(1);
 
   const { roomId } = useParams();
   const roomInfo = useSelector(getRoomInfo);
@@ -73,18 +65,7 @@ const Room = ({ setIsPageMain }) => {
         console.error('Error loading data:', error);
         setLoading(false);
       });
-    // dispatch(getAllRoomReviewsAsync());
   }, [dispatch, roomId]);
-
-  // useEffect(() => {
-  //   dispatch(getAllRoomReviewsAsync());
-  // }, [dispatch]);
-
-  // console.log(
-  //   'allRv',
-  //   allRoomReviewInfo.filter((review) => review.room.pk === roomInfo?.pk)
-  // );
-  console.log('id', roomId);
 
   const handlePhotoShowAll = () => {
     togglePhotoModal(!modalPhotoShown);
@@ -99,27 +80,12 @@ const Room = ({ setIsPageMain }) => {
     }
   }, [modalPhotoShown]);
 
-  // console.log('roomsById', roomInfo);
-  // console.log('roomReviews', roomReviewInfo);
-  // console.log('page_size', roomReviewInfo?.page_size);
-
-  // if (loading) {
-  //   return (
-  //     <div>
-  //       <PageLoading />
-  //     </div>
-  //   );
-  // }
-
-  // console.log('modalShareShown', modalShareShown);
-
   return (
     <>
       <RoomInfoHead roomInfo={roomInfo} roomReviewInfo={roomReviewAll} />
       <MainSmallContainer>
         <MainWrap>
           <RoomTopWrap id='viewPhoto'>
-            {/* <RoomTopSk /> */}
             {loading ? (
               <RoomTopSk />
             ) : (
@@ -202,12 +168,7 @@ const Room = ({ setIsPageMain }) => {
               roomInfo={roomInfo}
               roomId={roomId}
               roomReviewInfo={roomReviewAll}
-              // allRoomReviewInfo={allRoomReviewInfo}
               roomReviewAll={roomReviewAll}
-              // setPer_page={setPer_page}
-              // per_page={per_page}
-              // setPage={setPage}
-              // page={page}
               toggleReviewModal={toggleReviewModal}
               modalReviewShown={modalReviewShown}
               setIsShowReviews={setIsShowReviews}
