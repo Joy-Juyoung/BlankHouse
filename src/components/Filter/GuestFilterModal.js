@@ -40,6 +40,7 @@ import {
   getAllRoomsAsync,
   getFilterRoomsAsync,
 } from '../../redux/slices/roomSlice';
+import { useParams } from 'react-router-dom';
 
 const anyOptionList = ['Any', '1', '2', '3', '4', '5', '6', '7', '8+'];
 // const anyOptionList = ['Any', '1', '2', '3', '4', '5', '6', '7', '8+'];
@@ -50,12 +51,22 @@ const GuestFilterModal = ({
   filterRoomInfo,
   averagePrice,
 }) => {
+  // const {
+  //   house_type,
+  //   number_of_beds,
+  //   number_of_bedrooms,
+  //   number_of_toilets,
+  //   mininum_price,
+  //   maximum_price,
+  // } = useParams();
   const [isChecked, setIsChecked] = useState(false);
 
   const [bedrooms, setBedrooms] = useState('Any');
   const [beds, setBeds] = useState('Any');
   const [bethrooms, setBethrooms] = useState('Any');
   const [value, setValue] = React.useState([200, 700]);
+
+  const [selectedType, setSelectedType] = useState('');
 
   // const [propety, setPropety] = useState('');
   const [house, setHouse] = useState('');
@@ -69,21 +80,19 @@ const GuestFilterModal = ({
 
   const [owner_name, setOwner_name] = useState('');
   const [country, setCountry] = useState('');
-  const [city, setCity] = useState('');
-  const [category, setCategory] = useState('');
-  const [house_type, setHouse_type] = useState('');
-  const [mininum_price, setMininum_price] = useState('');
-  const [maximum_price, setMaximum_price] = useState('');
+  const [houseType, setHouseType] = useState('');
+  const [mininumPrice, setMininumPrice] = useState('');
+  const [maximumPrice, setMaximumPrice] = useState('');
   const [maximum_guests, setMaximum_guests] = useState('');
   const [check_in, setCheck_in] = useState('');
   const [check_out, setCheck_out] = useState('');
 
   const dispatch = useDispatch();
 
-  const handleCheckedType = (e) => {
-    console.log('checked type', e.target.value);
-    setHouse_type(e.target.value);
-  };
+  // const handleCheckedType = (e) => {
+  //   console.log('checked type', e.target.value);
+  //   setHouse_type(e.target.value);
+  // };
 
   const handleClickFilter = () => {
     toggleFilterModal(false);
@@ -91,21 +100,46 @@ const GuestFilterModal = ({
       getFilterRoomsAsync({
         owner_name: owner_name || '',
         country: country || '',
-        city: city || '',
-        category: category || '',
+        //city: city || '',
+        //category: category || '',
         maximum_guests: maximum_guests || '',
         check_in: check_in || '',
         check_out: check_out || '',
 
-        house_type: house_type || '',
+        house_type: houseType || '',
         number_of_beds: beds === 'Any' ? '' : beds,
         number_of_bedrooms: bedrooms === 'Any' ? '' : bedrooms,
         number_of_toilets: bethrooms === 'Any' ? '' : bethrooms,
-        mininum_price: mininum_price || '',
-        maximum_price: maximum_price || '',
+        mininum_price: mininumPrice || '',
+        maximum_price: maximumPrice || '',
       })
     );
   };
+
+  const handleClearFilter = () => {
+    setBedrooms('Any');
+    setBeds('Any');
+    setBethrooms('Any');
+    setValue([200, 700]);
+
+    setSelectedType('');
+    setHouseType('');
+    setMininumPrice('');
+    setMaximumPrice('');
+  };
+
+  //
+  useEffect(() => {
+    if (!modalFilterShown) {
+      setBedrooms('Any');
+      setBeds('Any');
+      setBethrooms('Any');
+      setValue([200, 700]);
+      setHouseType('');
+      setMininumPrice('');
+      setMaximumPrice('');
+    }
+  }, [modalFilterShown, toggleFilterModal]);
 
   return (
     <Modal
@@ -126,8 +160,8 @@ const GuestFilterModal = ({
               <FilterPriceRage
                 value={value}
                 setValue={setValue}
-                setMininum_price={setMininum_price}
-                setMaximum_price={setMaximum_price}
+                setMininumPrice={setMininumPrice}
+                setMaximumPrice={setMaximumPrice}
               />
             </PriceRangeBarWrap>
             <PriceRangeWrap>
@@ -135,7 +169,11 @@ const GuestFilterModal = ({
                 <PriceRangeLabel>min price</PriceRangeLabel>
                 <PriceRangeInputSection>
                   <PriceCurrency>$</PriceCurrency>
-                  <PriceInput type='text' value={mininum_price || '000'} />
+                  <PriceInput
+                    type='text'
+                    value={mininumPrice || '200'}
+                    onChange={(e) => setMininumPrice(e.target.value)}
+                  />
                 </PriceRangeInputSection>
               </PriceRangeWrapper>
               <PriceBetween>-</PriceBetween>
@@ -145,7 +183,8 @@ const GuestFilterModal = ({
                   <PriceCurrency>$</PriceCurrency>
                   <PriceInput
                     type='text'
-                    value={(maximum_price || '000') + '+'}
+                    value={(maximumPrice || '700') + '+'}
+                    onChange={(e) => setMaximumPrice(e.target.value)}
                   />
                 </PriceRangeInputSection>
               </PriceRangeWrapper>
@@ -160,7 +199,11 @@ const GuestFilterModal = ({
                   type='radio'
                   name='type'
                   value='entire_place'
-                  onChange={handleCheckedType}
+                  checked={selectedType === 'entire_place'}
+                  onChange={(e) => {
+                    setHouseType(e.target.value);
+                    setSelectedType(e.target.value);
+                  }}
                 />
                 <PlaceInputText>
                   <p>Entire Place</p>
@@ -172,7 +215,11 @@ const GuestFilterModal = ({
                   type='radio'
                   name='type'
                   value='private_room'
-                  onChange={handleCheckedType}
+                  checked={selectedType === 'private_room'}
+                  onChange={(e) => {
+                    setHouseType(e.target.value);
+                    setSelectedType(e.target.value);
+                  }}
                 />
                 <PlaceInputText>
                   <p>Private Room</p>
@@ -184,7 +231,11 @@ const GuestFilterModal = ({
                   type='radio'
                   name='type'
                   value='shared_room'
-                  onChange={handleCheckedType}
+                  checked={selectedType === 'shared_room'}
+                  onChange={(e) => {
+                    setHouseType(e.target.value);
+                    setSelectedType(e.target.value);
+                  }}
                 />
                 <PlaceInputText>
                   <p>Shared room</p>
@@ -252,7 +303,7 @@ const GuestFilterModal = ({
           </ModalMainSection>
         </ModalMain>
         <ModalFooter>
-          <FilterClearBtn>Clear all</FilterClearBtn>
+          <FilterClearBtn onClick={handleClearFilter}>Clear all</FilterClearBtn>
           <FilterResultBtn onClick={handleClickFilter}>Show</FilterResultBtn>
         </ModalFooter>
       </ModalContainer>

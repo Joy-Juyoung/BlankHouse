@@ -51,7 +51,14 @@ const HeaderContens = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
       <HeaderWrapper>
         <img src={Logo} alt='' />
         {/* <Link to='/'> */}
-        <h1 onClick={() => navigation('/')}>BlankHouse</h1>
+        <h1
+          onClick={() => {
+            window.location.reload();
+            window.location.href = '/';
+          }}
+        >
+          BlankHouse
+        </h1>
         {/* </Link> */}
       </HeaderWrapper>
       <HeaderWrapper className='headerCenter'>

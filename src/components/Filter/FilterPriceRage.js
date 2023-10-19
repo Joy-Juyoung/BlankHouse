@@ -61,8 +61,8 @@ function valuetext(value) {
 const FilterPriceRage = ({
   value,
   setValue,
-  setMininum_price,
-  setMaximum_price,
+  setMininumPrice,
+  setMaximumPrice,
 }) => {
   // const rooms = useSelector((state) => state.rooms);
   // const [value, setValue] = React.useState([10, 85]);
@@ -78,8 +78,8 @@ const FilterPriceRage = ({
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    setMininum_price(newValue[0]);
-    setMaximum_price(newValue[1]);
+    setMininumPrice(newValue[0]);
+    setMaximumPrice(newValue[1]);
   };
 
   // useEffect(() => {
@@ -106,13 +106,13 @@ const FilterPriceRage = ({
           value={value}
           onChange={handleChange}
           // aria-label='Default'
+          valueLabelDisplay='auto'
           // valueLabelDisplay='auto'
           // getAriaValueText={valuetext}
-          valueLabelDisplay='auto'
-          aria-label='pretto slider'
-          getAriaLabel={(index) =>
-            index === 0 ? 'Minimum price' : 'Maximum price'
-          }
+          // aria-label='pretto slider'
+          // getAriaLabel={(index) =>
+          //   index === 0 ? 'Minimum price' : 'Maximum price'
+          // }
           slots={{ thumb: AirbnbThumbComponent }}
           // size='large'
         />
