@@ -531,7 +531,7 @@ export const RoomHostInfoWrapper = styled.div`
 `;
 
 export const RoomHostInfoAvatar = styled.div`
-  p {
+  
     display: flex;
     align-items: center;
 
@@ -564,7 +564,7 @@ export const RoomHostInfoAvatar = styled.div`
       transition: all 0.5s ease-out;
       color: #fff;
     }
-  }
+  
 `;
 
 export const Notice = styled.div`
