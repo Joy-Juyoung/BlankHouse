@@ -8,62 +8,67 @@ import ReactEcharts from 'echarts-for-react';
 // import { allRooms } from '../../redux/slices/rooms';
 
 function valuetext(value) {
-  return `${value}°C`;
+  return `${value}`;
 }
 
-const options = {
-  grid: { top: 0, right: 0, bottom: 0, left: 0 },
-  xAxis: {
-    type: 'category',
-    data: [
-      'Item 1',
-      'Item 2',
-      'Item 3',
-      'Item 4',
-      'Item 5',
-      'Item 2',
-      'Item 3',
-      'Item 4',
-      'Item 5',
-      'Item 2',
-      'Item 3',
-      'Item 4',
-      'Item 5',
-      'Item 2',
-      'Item 3',
-      'Item 4',
-      'Item 5',
-      'Item 2',
-      'Item 3',
-      'Item 4',
-      'Item 5',
-      'Item 2',
-      'Item 3',
-      'Item 4',
-      'Item 5',
-    ],
-  },
-  yAxis: {
-    type: 'value',
-  },
-  series: [
-    {
-      data: [
-        0, 0, 0, 100, 2100, 1300, 3100, 2000, 2800, 3000, 3500, 200, 2800, 300,
-        3500, 2000, 2810, 300, 3510, 2100, 100, 0, 0, 0, 0,
-      ],
-      type: 'bar',
-      smooth: true,
-    },
-  ],
-  tooltip: {
-    trigger: 'axis',
-  },
-};
+// const options = {
+//   grid: { top: 0, right: 0, bottom: 0, left: 0 },
+//   xAxis: {
+//     type: 'category',
+//     data: [
+//       'Item 1',
+//       'Item 2',
+//       'Item 3',
+//       'Item 4',
+//       'Item 5',
+//       'Item 2',
+//       'Item 3',
+//       'Item 4',
+//       'Item 5',
+//       'Item 2',
+//       'Item 3',
+//       'Item 4',
+//       'Item 5',
+//       'Item 2',
+//       'Item 3',
+//       'Item 4',
+//       'Item 5',
+//       'Item 2',
+//       'Item 3',
+//       'Item 4',
+//       'Item 5',
+//       'Item 2',
+//       'Item 3',
+//       'Item 4',
+//       'Item 5',
+//     ],
+//   },
+//   yAxis: {
+//     type: 'value',
+//   },
+//   series: [
+//     {
+//       data: [
+//         0, 0, 0, 100, 2100, 1300, 3100, 2000, 2800, 3000, 3500, 200, 2800, 300,
+//         3500, 2000, 2810, 300, 3510, 2100, 100, 0, 0, 0, 0,
+//       ],
+//       type: 'bar',
+//       smooth: true,
+//     },
+//   ],
+//   tooltip: {
+//     trigger: 'axis',
+//   },
+// };
 
-const FilterPriceRage = () => {
+const FilterPriceRage = ({
+  value,
+  setValue,
+  setMininum_price,
+  setMaximum_price,
+}) => {
   // const rooms = useSelector((state) => state.rooms);
-  const [value, setValue] = React.useState([10, 85]);
+  // const [value, setValue] = React.useState([10, 85]);
   // const dispatch = useDispatch();
 
   // const initFetch = useCallback(() => {
@@ -76,23 +81,37 @@ const FilterPriceRage = () => {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    setMininum_price(newValue[0]);
+    setMaximum_price(newValue[1]);
   };
+
+  // useEffect(() => {
+  //   initFetch();
+  // }, [initFetch]);
+
+  // console.log('value', value);
 
   return (
     <>
-      <PriceRangeGraph>
+      {/* <PriceRangeGraph>
         <ReactEcharts
           option={options}
           style={{ width: '100%', height: '70px' }}
         ></ReactEcharts>
-      </PriceRangeGraph>
+      </PriceRangeGraph> */}
       <Box sx={{ width: '100%' }}>
         <Slider
-          getAriaLabel={() => 'Temperature range'}
+          // getAriaLabel={() => 'Temperature range'}
+          min={0}
+          max={2000}
+          marks
+          // step={100}
           value={value}
           onChange={handleChange}
+          aria-label='Default'
           valueLabelDisplay='auto'
           getAriaValueText={valuetext}
+          // size='large'
         />
       </Box>
     </>

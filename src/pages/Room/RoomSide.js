@@ -101,7 +101,11 @@ const RoomSide = ({
                     />
                   </span>
                 ) : (
-                  <span>{roomInfo?.rating}</span>
+                  <span>
+                    {roomInfo?.rating?.toLocaleString(undefined, {
+                      minimumFractionDigits: 2,
+                    })}
+                  </span>
                 )}
                 <span className='coma'>·</span>
                 {loading ? (

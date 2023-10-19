@@ -149,6 +149,12 @@ export const RoomTopInfo = styled.div`
     &.coma {
       margin: 0 5px;
     }
+
+    &.newTab {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
     &.strong {
       font-weight: 600;
     }
