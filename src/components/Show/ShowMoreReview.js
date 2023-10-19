@@ -14,6 +14,7 @@ import {
   ReviewGraphsName,
   ReviewGraphsRate,
   ShowReviewPage,
+  ShowReviewText,
 } from './ShowStyle';
 import StarIcon from '@mui/icons-material/Star';
 import RoomReviewBar from '../../pages/Room/RoomReviewBar';
@@ -22,19 +23,40 @@ import SearchIcon from '@mui/icons-material/Search';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import usePagination from '@mui/material/usePagination/usePagination';
+import { EmptyReview, ReviewCardWrap } from '../../pages/Room/RoomReviewsStyle';
+import RateReviewIcon from '@mui/icons-material/RateReview';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import {
+  getAllReviewByRoomInfo,
+  getAllRoomReviews,
+  getAllRoomReviewsAsync,
+  getReviewByRoomIdAsync,
+} from '../../redux/slices/roomReviewSlice';
 
 const ShowMoreReview = ({
   roomInfo,
-  roomReviewInfo,
-  setPer_page,
-  per_page,
-  setPage,
-  page,
+  // roomReviewInfo,
+  // setPer_page,
+  // per_page,
+  // setPage,
+  // page,
   setIsShowReviews,
   isShowReviews,
 }) => {
   const [searchedValue, setSearchedValue] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+  const [per_page, setPer_page] = useState(6);
+  const [page, setPage] = useState(1);
+
+  const { roomId } = useParams();
+  // const allRoomReviewInfo = useSelector(getAllRoomReviews);
+  const roomReviewInfo = useSelector(getAllReviewByRoomInfo);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getReviewByRoomIdAsync({ roomId, per_page, page }));
+  }, [dispatch, roomId, per_page, page]);
 
   useEffect(() => {
     setSearchResults(roomReviewInfo?.results);
@@ -56,8 +78,13 @@ const ShowMoreReview = ({
     setPage(p);
   };
 
-  // console.log('per_page', per_page);
-  // console.log('page', page);
+  // console.log('allRoomReviewInfo ', allRoomReviewInfo);
+  // console.log(
+  //   'length',
+  //   roomReviewInfo?.results?.filter((item) =>
+  //     item?.payload.toLowerCase().includes(searchedValue.toLowerCase())
+  //   )?.length
+  // );
 
   return (
     <ShowReviewBox>
@@ -123,7 +150,7 @@ const ShowMoreReview = ({
           </ShowReviewRatingGraph>
         </ShowReviewSide>
       </ShowReviewWrapper>
-      <ShowReviewWrapper className='showRight'>
+      <ShowReviewWrapper className='modal'>
         <ShowReviewSearch>
           <span>
             <SearchIcon />
@@ -135,43 +162,63 @@ const ShowMoreReview = ({
             onChange={handleSearch}
           />
         </ShowReviewSearch>
-        <ShowReviewList>
-          <ShowReviewEach>
-            {roomReviewInfo?.total_objects > 0 &&
-              // searchResults
-              roomReviewInfo?.results
-                ?.filter((item) =>
-                  item?.payload
-                    .toLowerCase()
-                    .includes(searchedValue.toLowerCase())
-                )
-                ?.slice(0)
-                .reverse()
-                .map((review) => {
-                  return (
-                    <RoomReviewsCard
-                      key={review?.pk}
-                      review={review}
-                      isShowReviews={isShowReviews}
-                      setPer_page={setPer_page}
-                      per_page={per_page}
-                    />
-                  );
-                })}
-          </ShowReviewEach>
-        </ShowReviewList>
-        {/* roomReviewInfo?.total_objects */}
-        <ShowReviewPage>
-          <Stack spacing={2}>
-            <Pagination
-              count={Math.ceil(roomReviewInfo?.total_objects / per_page)}
-              variant='outlined'
-              shape='rounded'
-              page={page}
-              onChange={handlePageChange}
-            />
-          </Stack>
-        </ShowReviewPage>
+        <ShowReviewText>
+          {roomReviewInfo?.results?.filter((item) =>
+            item?.payload.toLowerCase().includes(searchedValue.toLowerCase())
+          )?.length === 0 ? (
+            <EmptyReview className='modal'>
+              <RateReviewIcon sx={{ fontSize: 48 }} color='disabled' />
+              <p>No reviews match your search.</p>
+            </EmptyReview>
+          ) : (
+            <ShowReviewList>
+              <ShowReviewEach>
+                {roomReviewInfo?.total_objects > 0 &&
+                  // searchResults
+                  roomReviewInfo?.results
+                    ?.filter((item) =>
+                      item?.payload
+                        .toLowerCase()
+                        .includes(searchedValue.toLowerCase())
+                    )
+                    .reverse()
+                    .map((review) => {
+                      return (
+                        <RoomReviewsCard
+                          key={review?.pk}
+                          review={review}
+                          isShowReviews={isShowReviews}
+                          setPer_page={setPer_page}
+                          per_page={per_page}
+                        />
+                      );
+                    })}
+              </ShowReviewEach>
+            </ShowReviewList>
+          )}
+          {/* roomReviewInfo?.total_objects */}
+          <ShowReviewPage>
+            <Stack spacing={2}>
+              <Pagination
+                count={
+                  searchedValue
+                    ? Math.ceil(
+                        roomReviewInfo?.results?.filter((item) =>
+                          item?.payload
+                            .toLowerCase()
+                            .includes(searchedValue.toLowerCase())
+                        )?.length / per_page
+                      )
+                    : Math.ceil(roomReviewInfo?.total_objects / per_page || 1)
+                }
+                variant='outlined'
+                shape='rounded'
+                page={page || 1}
+                onChange={handlePageChange}
+              />
+            </Stack>
+          </ShowReviewPage>
+        </ShowReviewText>
       </ShowReviewWrapper>
     </ShowReviewBox>
   );
