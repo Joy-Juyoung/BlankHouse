@@ -4,7 +4,7 @@ import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { DateRangePicker } from 'react-date-range';
 
-const DateRange = ({
+const SideDateRange = ({
   checkInDate,
   checkOutDate,
   setCheckInDate,
@@ -19,10 +19,10 @@ const DateRange = ({
     },
   ]);
   const disabledDates = [
-    // addDays(new Date(), 10),
-    // addDays(new Date(), 8),
-    // addDays(new Date(), 22),
-    // addDays(new Date(), 20),
+    addDays(new Date(), 10),
+    addDays(new Date(), 8),
+    addDays(new Date(), 22),
+    addDays(new Date(), 20),
   ];
 
   useEffect(() => {
@@ -43,7 +43,6 @@ const DateRange = ({
         moveRangeOnFirstSelection={false}
         months={2}
         ranges={selectedDateRange}
-        // rangeColors='#ffae00 !important'
         direction='horizontal'
         minDate={new Date()}
         disabledDates={disabledDates}
@@ -52,4 +51,4 @@ const DateRange = ({
   );
 };
 
-export default DateRange;
+export default SideDateRange;

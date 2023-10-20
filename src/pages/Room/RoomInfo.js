@@ -39,6 +39,7 @@ import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import { Link } from 'react-router-dom';
 import ForumIcon from '@mui/icons-material/Forum';
 import PrivacyTipIcon from '@mui/icons-material/PrivacyTip';
+import SideDateRange from '../../components/SideDateRange';
 
 const RoomInfo = ({
   roomInfo,
@@ -241,7 +242,7 @@ const RoomInfo = ({
                 </p>
               </>
             )}
-            <DateRange
+            <SideDateRange
               checkInDate={checkInDate}
               checkOutDate={checkOutDate}
               setCheckInDate={setCheckInDate}
