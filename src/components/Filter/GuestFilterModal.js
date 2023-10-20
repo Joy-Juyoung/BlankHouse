@@ -64,7 +64,7 @@ const GuestFilterModal = ({
   const [bedrooms, setBedrooms] = useState('Any');
   const [beds, setBeds] = useState('Any');
   const [bethrooms, setBethrooms] = useState('Any');
-  const [value, setValue] = React.useState([200, 700]);
+  const [value, setValue] = React.useState([0, 1000]);
 
   const [selectedType, setSelectedType] = useState('');
 
@@ -120,7 +120,7 @@ const GuestFilterModal = ({
     setBedrooms('Any');
     setBeds('Any');
     setBethrooms('Any');
-    setValue([200, 700]);
+    setValue([0, 1000]);
 
     setSelectedType('');
     setHouseType('');
@@ -129,17 +129,17 @@ const GuestFilterModal = ({
   };
 
   //
-  useEffect(() => {
-    if (!modalFilterShown) {
-      setBedrooms('Any');
-      setBeds('Any');
-      setBethrooms('Any');
-      setValue([200, 700]);
-      setHouseType('');
-      setMininumPrice('');
-      setMaximumPrice('');
-    }
-  }, [modalFilterShown, toggleFilterModal]);
+  // useEffect(() => {
+  //   if (!modalFilterShown) {
+  //     setBedrooms('Any');
+  //     setBeds('Any');
+  //     setBethrooms('Any');
+  //     setValue([200, 700]);
+  //     setHouseType('');
+  //     setMininumPrice('');
+  //     setMaximumPrice('');
+  //   }
+  // }, [modalFilterShown, toggleFilterModal]);
 
   return (
     <Modal
@@ -171,7 +171,7 @@ const GuestFilterModal = ({
                   <PriceCurrency>$</PriceCurrency>
                   <PriceInput
                     type='text'
-                    value={mininumPrice || '200'}
+                    value={mininumPrice || '0'}
                     onChange={(e) => setMininumPrice(e.target.value)}
                   />
                 </PriceRangeInputSection>
@@ -183,7 +183,7 @@ const GuestFilterModal = ({
                   <PriceCurrency>$</PriceCurrency>
                   <PriceInput
                     type='text'
-                    value={(maximumPrice || '700') + '+'}
+                    value={(maximumPrice || '1000') + '+'}
                     onChange={(e) => setMaximumPrice(e.target.value)}
                   />
                 </PriceRangeInputSection>

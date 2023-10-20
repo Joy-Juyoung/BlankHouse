@@ -256,6 +256,7 @@ const RoomInfo = ({
           roomId={roomId}
           roomInfo={roomInfo}
           roomReviewInfo={roomReviewInfo}
+          roomReviewAll={roomReviewAll}
           checkInDate={checkInDate}
           checkOutDate={checkOutDate}
           setCheckInDate={setCheckInDate}
@@ -269,7 +270,7 @@ const RoomInfo = ({
           <StarIcon sx={{ fontSize: '24px', marginRight: '5px' }} />
           <span>
             {roomInfo?.rating?.toFixed(2) || '00'} /{' '}
-            {roomReviewInfo?.total_objects || '00'} reviews
+            {roomReviewAll?.length || '00'} reviews
           </span>
         </h2>
         <RoomReviews

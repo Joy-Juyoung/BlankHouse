@@ -40,6 +40,7 @@ const RoomSide = ({
   setCheckInDate,
   setCheckOutDate,
   roomId,
+  roomReviewAll,
 }) => {
   const [isGuests, setIsGuests] = useState(false);
   const [isSideCheckIn, setIsSideCheckIn] = useState(false);
@@ -48,11 +49,9 @@ const RoomSide = ({
   const [isSideDate, setIsSideDate] = useState(false);
   const [guestsNum, setGuestsNum] = useState(1);
   const [infantsNum, setInfantsNum] = useState(0);
+  const reviewsTotal = roomReviewAll?.length;
 
-  const [reviewsTotal, setReviewsTotal] = useState(
-    roomReviewInfo?.total_objects
-  );
-
+  // console.log('reviewsTotal', roomReviewAll?.length);
   let perNight =
     new Date(checkOutDate).getDate() - new Date(checkInDate).getDate();
   let totalPerNight = roomInfo?.price * perNight;
@@ -122,7 +121,7 @@ const RoomSide = ({
                   </span>
                 ) : (
                   <span className='review'>
-                    {roomReviewInfo?.total_objects} Reviews
+                    {roomReviewAll?.length || '00'} Reviews
                   </span>
                 )}
               </SideTopInfo>

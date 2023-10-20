@@ -82,6 +82,16 @@ export const FooterS = styled.div`
     margin-right: 10px;
     cursor: pointer;
 
+    &.logo {
+      background: #000;
+      padding: 5px;
+      border-radius: 5px;
+
+      img {
+        width: 20px;
+      }
+    }
+
     &.last {
       margin-right: 0;
     }

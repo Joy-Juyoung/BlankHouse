@@ -6,17 +6,26 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import { FooterS } from './FooterStyle';
 import { Link, useLocation } from 'react-router-dom';
 import HelpIcon from '@mui/icons-material/Help';
+import Logo from '../../assets/logo.png';
 
 const FooterBottom = () => {
   return (
     <>
       <FooterS>
+        <span
+          className='logo'
+          onClick={() => {
+            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+          }}
+        >
+          <img src={Logo} alt='' />
+        </span>
         {/* <Link to='/test'> */}
         <span>© 2023 BlankHouse, Inc.</span>
         {/* </Link> */}
-        <span>Privacy</span>
+        {/* <span>Privacy</span>
         <span>Terms</span>
-        <span>Sitemap</span>
+        <span>Sitemap</span> */}
       </FooterS>
       <FooterS>
         {/* <span>

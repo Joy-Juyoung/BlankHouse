@@ -62,6 +62,7 @@ export const PaymentInfoDetail = styled.div`
     &.notice {
       font-size: 11px;
       margin-bottom: 20px;
+      padding: 0 5px;
     }
   }
 
@@ -136,9 +137,9 @@ export const PaymentSideDetail = styled.div`
 
   &.sideMid {
     border-top: 1px solid #dddd;
-    border-bottom: 1px solid #dddd;
-    margin: 20px 0;
-    padding: 20px 0;
+    /* border-bottom: 1px solid #dddd; */
+    margin: 20px 0 0;
+    padding: 20px 0 0;
   }
 `;
 
@@ -182,6 +183,7 @@ export const PayTopTitle = styled.div`
 
   p {
     margin: 3px 0;
+    font-size: 16px;
   }
 `;
 

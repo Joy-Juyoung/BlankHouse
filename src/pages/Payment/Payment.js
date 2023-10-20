@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MainSmallContainer, MainWrap } from '../MainHome/MainStyle';
 import { RoomTopHeader, RoomTopWrap } from '../Room/RoomStyle';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
@@ -45,8 +45,9 @@ import {
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { bookRoomsByIdAsync } from '../../redux/slices/bookingSlice';
+import SideDateDropdown from '../Room/SideDateDropdown';
 
-const Payment = ({ setIsPageMain, location }) => {
+const Payment = ({ setIsPageMain, location, userMe }) => {
   const navigate = useNavigate();
   const { roomId } = useParams();
   const roomInfo = useSelector(getRoomInfo);
@@ -62,6 +63,12 @@ const Payment = ({ setIsPageMain, location }) => {
   const totalPerNight = searchParams.get('total');
   const taxPerNight = searchParams.get('tax');
   const finalTotalPrice = searchParams.get('finalTotal');
+
+  // const [checkDateIn, setCheckDateIn] = useState(checkInDate);
+  // const [checkDateOut, setCheckDateOut] = useState(checkOutDate);
+
+  const [isEditDate, setIsEditDate] = useState(false);
+  const [isEditGuest, setIsEditGuest] = useState(false);
 
   // console.log(guestNum);
 
@@ -110,14 +117,18 @@ const Payment = ({ setIsPageMain, location }) => {
                       <p>Dates</p>
                       {checkInDate} ~ {checkOutDate}
                     </InfoDetail>
-                    <PayEditBtn>Edit</PayEditBtn>
+                    <PayEditBtn onClick={() => setIsEditDate(!isEditDate)}>
+                      Edit
+                    </PayEditBtn>
                   </PayInfo>
                   <PayInfo className='infoLast'>
                     <InfoDetail>
                       <p>Guests</p>
                       <span>{guestNum} Guest</span>
                     </InfoDetail>
-                    <PayEditBtn>Edit</PayEditBtn>
+                    <PayEditBtn onClick={() => setIsEditGuest(!isEditGuest)}>
+                      Edit
+                    </PayEditBtn>
                   </PayInfo>
                 </PaymentInfoDetail>
               </PaymentInfoWrapper>
@@ -127,11 +138,11 @@ const Payment = ({ setIsPageMain, location }) => {
                 <PaymentInfoDetail>
                   <PaymentOptions>
                     <div>
-                      <span>payIcon</span>
-                      <span>payNum</span>
+                      {/* <span>payIcon</span> */}
+                      <span>${userMe?.balance}</span>
                     </div>
                     {/* <button> */}
-                    <KeyboardArrowDownIcon />
+                    {/* <KeyboardArrowDownIcon /> */}
                     {/* </button> */}
                   </PaymentOptions>
                 </PaymentInfoDetail>

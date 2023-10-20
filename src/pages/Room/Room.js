@@ -83,7 +83,7 @@ const Room = ({ setIsPageMain }) => {
 
   return (
     <>
-      <RoomInfoHead roomInfo={roomInfo} roomReviewInfo={roomReviewAll} />
+      <RoomInfoHead roomInfo={roomInfo} roomReviewAll={roomReviewAll} />
       <MainSmallContainer>
         <MainWrap>
           <RoomTopWrap id='viewPhoto'>
