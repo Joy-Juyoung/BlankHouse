@@ -3,10 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import Box from '@mui/material/Box';
 import Slider, { SliderThumb } from '@mui/material/Slider';
 import { PriceRangeGraph } from '../Modals/ModalStyle';
-// import { PriceRangeGraph } from './ModalStyle';
 import ReactEcharts from 'echarts-for-react';
-// import { allRooms } from '../../redux/slices/rooms';
 import { styled } from '@mui/material/styles';
+import { LineChart } from '@mui/x-charts/LineChart';
 
 const AirbnbSlider = styled(Slider)(({ theme }) => ({
   color: '#3a8589',
@@ -54,9 +53,9 @@ function AirbnbThumbComponent(props) {
   );
 }
 
-function valuetext(value) {
-  return `${value}`;
-}
+// function valuetext(value) {
+//   return `${value}`;
+// }
 
 const FilterPriceRage = ({
   value,
@@ -90,12 +89,22 @@ const FilterPriceRage = ({
 
   return (
     <>
-      {/* <PriceRangeGraph>
-        <ReactEcharts
+      <PriceRangeGraph>
+        {/* <ReactEcharts
           option={options}
           style={{ width: '100%', height: '70px' }}
-        ></ReactEcharts>
-      </PriceRangeGraph> */}
+        ></ReactEcharts> */}
+        <LineChart
+          xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
+          series={[
+            {
+              data: [2, 5.5, 2, 8.5, 1.5, 5],
+            },
+          ]}
+          width={500}
+          height={300}
+        />
+      </PriceRangeGraph>
       <Box sx={{ width: '100%' }}>
         <AirbnbSlider
           // getAriaLabel={() => 'Temperature range'}

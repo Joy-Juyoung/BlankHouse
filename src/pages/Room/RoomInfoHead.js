@@ -12,7 +12,7 @@ import SmallReserveButton from '../../components/Buttons/SmallReserveButton';
 import StarIcon from '@mui/icons-material/Star';
 import { Link } from 'react-router-dom';
 
-const RoomInfoHead = ({ roomInfo, roomReviewInfo }) => {
+const RoomInfoHead = ({ roomInfo, roomReviewInfo, roomReviewAll }) => {
   const [scrollPosition, setScrollPosition] = useState(0);
 
   const handleClickScroll = (e) => {
@@ -79,7 +79,7 @@ const RoomInfoHead = ({ roomInfo, roomReviewInfo }) => {
                     <span>{roomInfo?.rating?.toFixed(2)}</span>
                     <span className='coma'>·</span>
                     <span>
-                      <Link>{roomReviewInfo?.total_objects} Reviews</Link>
+                      <Link>{roomReviewAll?.length || '00'} Reviews</Link>
                     </span>
                   </ReserveReview>
                 </HeaderReserveWrap>

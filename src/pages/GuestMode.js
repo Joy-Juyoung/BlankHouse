@@ -105,6 +105,7 @@ const GuestMode = () => {
                     <Payment
                       setIsPageMain={setIsPageMain}
                       location={location}
+                      userMe={userMe}
                     />
                   }
                   exact={true}
