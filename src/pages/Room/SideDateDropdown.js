@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import DateRange from '../../components/DateRange';
+import SideDateRange from '../../components/SideDateRange';
 
 const SearchDateDropdown = styled.div`
   background: #fff;
@@ -99,7 +100,7 @@ const SideDateDropdown = ({
           </p>
         </DateDropTitle>
         <SearchDateBoxWrap>
-          <DateRange
+          <SideDateRange
             checkInDate={checkInDate}
             checkOutDate={checkOutDate}
             setCheckInDate={setCheckInDate}
