@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   ModalCloseBtn,
   ModalPhotos,
@@ -26,13 +26,14 @@ const ShowPhotoModal = ({
       shown={modalPhotoShown}
       close={() => {
         togglePhotoModal(false);
-        // document.body.style.overflow = 'unset';
+        document.body.style.overflow = 'unset';
       }}
     >
       <ModalTop>
         <ModalCloseBtn
           onClick={() => {
             togglePhotoModal(false);
+            document.body.style.overflow = 'unset';
           }}
         >
           <CloseIcon fontSize='small' />
