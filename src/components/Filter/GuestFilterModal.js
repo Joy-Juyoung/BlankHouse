@@ -89,11 +89,6 @@ const GuestFilterModal = ({
 
   const dispatch = useDispatch();
 
-  // const handleCheckedType = (e) => {
-  //   console.log('checked type', e.target.value);
-  //   setHouse_type(e.target.value);
-  // };
-
   const handleClickFilter = () => {
     toggleFilterModal(false);
     dispatch(
