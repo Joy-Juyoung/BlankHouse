@@ -98,11 +98,6 @@ const HeaderContens = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
             </ModeSetting>
           </Link>
         </HeaderRightSection>
-        {/* <HeaderRightSection>
-          <CountrySetting>
-            <LanguageIcon fontSize='medium' />
-          </CountrySetting>
-        </HeaderRightSection> */}
         <HeaderRightSection>
           {/* {(isUserLogIn || JSON.parse(localStorage.getItem('user'))) && ( */}
           {isUserLogIn || JSON.parse(localStorage.getItem('user')) ? (
@@ -115,7 +110,6 @@ const HeaderContens = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
             >
               <MenuIcon fontSize='medium' />
               <LogBtn>
-                {/* <img src={user?.user?.} alt='' /> */}
                 <span>
                   <Avatar
                     initials={userMe?.username?.substring(0, 1).toUpperCase()}
@@ -124,9 +118,6 @@ const HeaderContens = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
               </LogBtn>
             </UserSetting>
           ) : (
-            // )}
-            // {!isUserLogIn &&
-            //   JSON.parse(localStorage.getItem('user')) === null && (
             <UserSetting
               onClick={() => {
                 setIsUserDrop(!isUserDrop);
