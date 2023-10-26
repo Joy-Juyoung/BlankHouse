@@ -69,6 +69,7 @@ const GuestFilterModal = ({
   const [selectedType, setSelectedType] = useState('');
 
   // const [propety, setPropety] = useState('');
+  const [keyword, setKeyword] = useState('');
   const [house, setHouse] = useState('');
   const [apartment, setApartment] = useState('');
   const [guesthouse, setGuesthouse] = useState('');
@@ -93,11 +94,18 @@ const GuestFilterModal = ({
     toggleFilterModal(false);
     dispatch(
       getFilterRoomsAsync({
+        keyword:
+          JSON.parse(localStorage.getItem('getSearched')) !== null
+            ? JSON.parse(localStorage.getItem('getSearched')).where
+            : '',
         owner_name: owner_name || '',
         country: country || '',
         //city: city || '',
         //category: category || '',
-        maximum_guests: maximum_guests || '',
+        maximum_guests:
+          JSON.parse(localStorage.getItem('getSearched')) !== null
+            ? JSON.parse(localStorage.getItem('getSearched')).who
+            : '',
         check_in: check_in || '',
         check_out: check_out || '',
 

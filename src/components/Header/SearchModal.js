@@ -19,6 +19,8 @@ import {
 import SearchButton from '../Buttons/SearchButton';
 import SearchGuestsBox from '../Dropdown/SearchGuestsBox';
 import SearchDateBox from '../Dropdown/SearchDateBox';
+import { useDispatch } from 'react-redux';
+import { getFilterRoomsAsync } from '../../redux/slices/roomSlice';
 
 const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
   const location = useLocation();
@@ -34,6 +36,77 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
   const [isRoom, setIsRoom] = useState(false);
   const [isExp, setIsExp] = useState(false);
   const { roomId } = useParams();
+
+  // const [bedrooms, setBedrooms] = useState('');
+  // const [beds, setBeds] = useState('');
+  // const [bethrooms, setBethrooms] = useState('');
+
+  const [keyword, setKeyword] = useState('');
+  const [country, setCountry] = useState('');
+  const [city, setCity] = useState('');
+  const [category, setCategory] = useState('');
+
+  const [searchedWhere, setSearchedWhere] = useState('');
+  // const [searchedWho, setSearchedWho] = useState(guestsNum.toString());
+  const [searchResults, setSearchResults] = useState([]);
+  const dispatch = useDispatch();
+
+  const handleSearchWhere = (e) => {
+    setSearchedWhere(e.target.value);
+  };
+
+  // const handleSearchWho = (e) => {
+  //   setSearchedWho(e.target.value);
+  // };
+  // console.log('searchedWhere', searchedWhere);
+
+  const handleClickFilter = () => {
+    setSearchResults([]);
+    localStorage.removeItem('getSearched');
+    toggleSearchModal(false);
+    dispatch(
+      getFilterRoomsAsync({
+        keyword:
+          searchedWhere ||
+          // searchedWhere.charAt(0).toUpperCase() + searchedWhere.slice(1) ||
+          '',
+        maximum_guests: guestsNum.toString() || '',
+        house_type: '',
+        number_of_beds: '',
+        number_of_bedrooms: '',
+        number_of_toilets: '',
+      })
+    );
+    // if (searchedWhere !== '' && guestsNum >= 1) {
+    //   searchResults.push({ where: searchedWhere, who: guestsNum.toString() });
+    //   localStorage.setItem('getSearched', JSON.stringify(searchResults));
+    // } else if (searchedWhere === '' && guestsNum >= 1) {
+    //   searchResults.push({ where: '', who: guestsNum.toString() });
+    //   localStorage.setItem('getSearched', JSON.stringify(searchResults));
+    // } else if (searchedWhere !== '' && guestsNum === 0) {
+    //   searchResults.push({ where: searchedWhere, who: '' });
+    //   localStorage.setItem('getSearched', JSON.stringify(searchResults));
+    // } else {
+    //   setSearchResults([]);
+    //   localStorage.removeItem('getSearched');
+    // }
+  };
+
+  useEffect(() => {
+    if (searchedWhere !== '' && guestsNum >= 1) {
+      searchResults.push({ where: searchedWhere, who: guestsNum.toString() });
+      localStorage.setItem('getSearched', JSON.stringify(searchResults));
+    } else if (searchedWhere === '' && guestsNum >= 1) {
+      searchResults.push({ where: '', who: guestsNum.toString() });
+      localStorage.setItem('getSearched', JSON.stringify(searchResults));
+    } else if (searchedWhere !== '' && guestsNum === 0) {
+      searchResults.push({ where: searchedWhere, who: '' });
+      localStorage.setItem('getSearched', JSON.stringify(searchResults));
+    } else {
+      setSearchResults([]);
+      localStorage.removeItem('getSearched');
+    }
+  }, [searchResults]);
 
   useEffect(() => {
     if (location.pathname === '/' || !roomId) {
@@ -67,14 +140,15 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
                 Stays
               </SearchNavbar>
             </Link>
-            <Link to='/experiences'>
-              <SearchNavbar
-                className={isExp ? 'active' : 'deactive'}
-                onClick={() => toggleSearchModal(false)}
-              >
-                Experiences
-              </SearchNavbar>
-            </Link>
+            {/* <Link to='/experiences'> */}
+            <SearchNavbar
+              className={isExp ? 'active' : 'deactive'}
+              // onClick={() => toggleSearchModal(false)}
+              onClick={handleClickFilter}
+            >
+              Experiences
+            </SearchNavbar>
+            {/* </Link> */}
           </SearchModalNavWrap>
         </SearchModalNav>
         <SearchField>
@@ -83,7 +157,11 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
               <SearchTextBack className='firstField'>
                 <SearchTextSection className='first'>
                   <p>Where</p>
-                  <input type='text' placeholder='Search destinations' />
+                  <input
+                    type='text'
+                    placeholder='Search destinations'
+                    onChange={handleSearchWhere}
+                  />
                 </SearchTextSection>
               </SearchTextBack>
               <SearchTextBack
@@ -120,7 +198,7 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
                   setIsGuests(!isGuests);
                 }}
               >
-                <SearchTextSection>
+                <SearchTextSection className='who'>
                   <p>Who</p>
                   {guestsNum ? (
                     <NumberOfGuests>
