@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const ListingMainTop = styled.div`
-  margin: 40px 0;
+  margin: 20px 0;
 `;
 
 export const ListingSearch = styled.div`

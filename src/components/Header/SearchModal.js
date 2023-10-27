@@ -37,14 +37,10 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
   const [isExp, setIsExp] = useState(false);
   const { roomId } = useParams();
 
-  // const [bedrooms, setBedrooms] = useState('');
-  // const [beds, setBeds] = useState('');
-  // const [bethrooms, setBethrooms] = useState('');
-
-  const [keyword, setKeyword] = useState('');
-  const [country, setCountry] = useState('');
-  const [city, setCity] = useState('');
-  const [category, setCategory] = useState('');
+  // const [keyword, setKeyword] = useState('');
+  // const [country, setCountry] = useState('');
+  // const [city, setCity] = useState('');
+  // const [category, setCategory] = useState('');
 
   const [searchedWhere, setSearchedWhere] = useState('');
   // const [searchedWho, setSearchedWho] = useState(guestsNum.toString());
@@ -80,19 +76,6 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
         check_out: checkOutDate || '',
       })
     );
-    // if (searchedWhere !== '' && guestsNum >= 1) {
-    //   searchResults.push({ where: searchedWhere, who: guestsNum.toString() });
-    //   localStorage.setItem('getSearched', JSON.stringify(searchResults));
-    // } else if (searchedWhere === '' && guestsNum >= 1) {
-    //   searchResults.push({ where: '', who: guestsNum.toString() });
-    //   localStorage.setItem('getSearched', JSON.stringify(searchResults));
-    // } else if (searchedWhere !== '' && guestsNum === 0) {
-    //   searchResults.push({ where: searchedWhere, who: '' });
-    //   localStorage.setItem('getSearched', JSON.stringify(searchResults));
-    // } else {
-    //   setSearchResults([]);
-    //   localStorage.removeItem('getSearched');
-    // }
   };
 
   useEffect(() => {

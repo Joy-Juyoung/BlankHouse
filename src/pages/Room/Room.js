@@ -151,6 +151,7 @@ const Room = ({ setIsPageMain }) => {
             )}
           </RoomTopWrap>
 
+          {/* Room Photos */}
           <RoomMainWrap>
             <RoomMainPhotos>
               <RoomPhotos loading={loading} roomInfo={roomInfo} />

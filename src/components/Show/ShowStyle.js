@@ -22,6 +22,7 @@ export const ShowReviewWrapper = styled.div`
     /* position: sticky;
     top: 0px;
     background: #fff; */
+    /* width: 300px; */
   }
 
   &.modal {
@@ -62,8 +63,12 @@ export const ShowReviewTitle = styled.div`
 `;
 
 export const ShowReviewRatingGraph = styled.div`
-  /* width: 300px; */
-  width: 100%;
+  width: 300px;
+  /* width: 100%; */
+
+  @media screen and (max-width: 1030px) {
+    width: 100%;
+  }
 `;
 
 export const ShowReviewGraph = styled.div`
@@ -95,6 +100,7 @@ export const ReviewGraphs = styled.div`
 
 export const ReviewGraphsName = styled.div`
   flex: 1;
+  /* width: 100%; */
 `;
 
 export const ReviewGraphsRate = styled.div`
@@ -102,6 +108,8 @@ export const ReviewGraphsRate = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+
+  /* width: 100%; */
 
   @media screen and (max-width: 720px) {
     flex: 2;
