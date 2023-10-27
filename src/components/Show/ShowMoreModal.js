@@ -90,6 +90,7 @@ const ShowMoreModal = ({
             {modalBalanceShown && (
               <AddBalance
                 userMe={userMe}
+                toggleBalanceModal={toggleBalanceModal}
                 modalBalanceShown={modalBalanceShown}
                 roomId={roomId}
               />

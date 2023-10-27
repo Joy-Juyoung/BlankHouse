@@ -69,6 +69,17 @@ const BoxNotice = styled.div`
   font-size: 11px;
   color: gray;
   text-align: left;
+
+  span {
+    &.over {
+      color: red;
+      font-weight: 600;
+    }
+    &.minus {
+      color: red;
+      font-weight: 600;
+    }
+  }
 `;
 
 const BoxBtn = styled.div`
@@ -90,11 +101,18 @@ const BoxBtn = styled.div`
   }
 `;
 
-const AddBalance = ({ roomId, userMe, modalBalanceShown }) => {
+const AddBalance = ({
+  roomId,
+  userMe,
+  toggleBalanceModal,
+  modalBalanceShown,
+}) => {
   const [changeUserBalance, setChangeUserBalance] = useState(
     parseFloat(userMe?.balance)
   );
   const [balance, setBalance] = useState(0);
+  const [isOverAmount, setIsOverAmount] = useState(false);
+  const [isMinus, setIsMinus] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -106,12 +124,20 @@ const AddBalance = ({ roomId, userMe, modalBalanceShown }) => {
   };
 
   const handleAddBalance = () => {
-    dispatch(
-      editUserAsync({
-        roomId,
-        balance: parseFloat(balance),
-      })
-    );
+    if (parseFloat(balance) <= 5000 && parseFloat(balance) >= 0) {
+      dispatch(
+        editUserAsync({
+          roomId,
+          balance: parseFloat(userMe?.balance) + parseFloat(balance),
+        })
+      );
+      toggleBalanceModal(false);
+      setIsOverAmount(false);
+    } else if (parseFloat(balance) > 5000) {
+      setIsOverAmount(true);
+    } else {
+      setIsMinus(true);
+    }
   };
 
   console.log('changeUserBalance', changeUserBalance);
@@ -140,7 +166,15 @@ const AddBalance = ({ roomId, userMe, modalBalanceShown }) => {
                 max='5000'
               />
             </BoxSpan>
-            <BoxNotice>* Up to $5,000 per day</BoxNotice>
+            <BoxNotice>
+              <span className={isOverAmount ? 'over' : ''}>
+                * Up to $5,000 at a time
+              </span>
+              <br />
+              <span className={isMinus ? 'minus' : ''}>
+                * Available only from 0 or higher
+              </span>
+            </BoxNotice>
           </BoxLi>
           <BoxLi className='total'>
             <BoxH4>Expected Amount</BoxH4>
@@ -151,7 +185,6 @@ const AddBalance = ({ roomId, userMe, modalBalanceShown }) => {
                 minimumFractionDigits: 2,
               })}
             </BoxSpan>
-            {/* <BoxSpan>Up to $5,000 per day</BoxSpan> */}
           </BoxLi>
         </BoxUl>
         <BoxBtn onClick={handleAddBalance}>
