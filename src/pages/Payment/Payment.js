@@ -22,6 +22,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { bookRoomsByIdAsync } from '../../redux/slices/bookingSlice';
 import PaymentSide from './PaymentSide';
 import PaymentBalance from './PaymentBalance';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import PeopleIcon from '@mui/icons-material/People';
+import { editUserAsync } from '../../redux/slices/userSlice';
 
 const Payment = ({ setIsPageMain, location, userMe }) => {
   const navigate = useNavigate();
@@ -39,9 +42,11 @@ const Payment = ({ setIsPageMain, location, userMe }) => {
   const taxPerNight = searchParams.get('tax');
   const finalTotalPrice = searchParams.get('finalTotal');
 
-  const [isEditDate, setIsEditDate] = useState(false);
-  const [isEditGuest, setIsEditGuest] = useState(false);
-  // console.log(guestNum);
+  // const [isEditDate, setIsEditDate] = useState(false);
+  // const [isEditGuest, setIsEditGuest] = useState(false);
+  // console.log(
+  //   parseFloat(userMe?.balance) - parseFloat(finalTotalPrice.replace(/,/g, ''))
+  // );
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
@@ -50,21 +55,33 @@ const Payment = ({ setIsPageMain, location, userMe }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(
-      bookRoomsByIdAsync({
-        roomId,
-        checkIn: checkInDate,
-        checkOut: checkOutDate,
-        guests: guestNum,
-      })
-    )
-      .then(() => {
-        toast.success('booking success.');
-      })
-      .catch((error) => {
-        console.error(error);
-        toast.error('booking failed.');
-      });
+
+    if (parseFloat(finalTotalPrice.replace(/,/g, '')) <= userMe?.balance) {
+      dispatch(
+        editUserAsync({
+          roomId,
+          balance:
+            parseFloat(userMe?.balance) -
+            parseFloat(finalTotalPrice.replace(/,/g, '')),
+        })
+      );
+      dispatch(
+        bookRoomsByIdAsync({
+          roomId,
+          checkIn: checkInDate,
+          checkOut: checkOutDate,
+          guests: guestNum,
+        })
+      )
+        .then(() => {
+          toast.success('booking success.');
+          navigate('/trips');
+        })
+        .catch((error) => {
+          console.error(error);
+          toast.error('booking failed.');
+        });
+    }
   };
 
   return (
@@ -84,21 +101,27 @@ const Payment = ({ setIsPageMain, location, userMe }) => {
                 <PaymentInfoDetail className='selected'>
                   <PayInfo>
                     <InfoDetail>
-                      <p>Dates</p>
+                      <p>
+                        <CalendarMonthIcon />
+                        Dates
+                      </p>
                       {checkInDate} ~ {checkOutDate}
                     </InfoDetail>
-                    <PayEditBtn onClick={() => setIsEditDate(!isEditDate)}>
+                    {/* <PayEditBtn onClick={() => setIsEditDate(!isEditDate)}>
                       Edit
-                    </PayEditBtn>
+                    </PayEditBtn> */}
                   </PayInfo>
                   <PayInfo className='infoLast'>
                     <InfoDetail>
-                      <p>Guests</p>
+                      <p>
+                        <PeopleIcon />
+                        Guests
+                      </p>
                       <span>{guestNum} Guest</span>
                     </InfoDetail>
-                    <PayEditBtn onClick={() => setIsEditGuest(!isEditGuest)}>
+                    {/* <PayEditBtn onClick={() => setIsEditGuest(!isEditGuest)}>
                       Edit
-                    </PayEditBtn>
+                    </PayEditBtn> */}
                   </PayInfo>
                 </PaymentInfoDetail>
               </PaymentInfoWrapper>

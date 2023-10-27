@@ -58,6 +58,9 @@ export const LongList = styled.div`
 export const FooterShort = styled.div`
   border-top: 1px solid #dddd;
   padding: 0 40px;
+  /* 
+  position: fixed;
+  bottom: 0; */
 
   @media screen and (max-width: 1280px) {
     padding: 0 40px;
