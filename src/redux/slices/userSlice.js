@@ -137,7 +137,7 @@ export const editUserAsync = createAsyncThunk(
     {
       // username,
       // email,
-      // balance,
+      balance,
       // address,
       // emergency_contact,
       // phone_number,
@@ -156,7 +156,7 @@ export const editUserAsync = createAsyncThunk(
       const response = await axios.put('/users/me', {
         // username,
         // email,
-        // balance,
+        balance,
         // address,
         // emergency_contact,
         // phone_number,

@@ -81,7 +81,8 @@ const RoomSide = ({
                 ) : (
                   <h2>
                     $
-                    {roomInfo?.price?.toLocaleString(undefined, {
+                    {roomInfo?.price?.toLocaleString('en-US', {
+                      style: 'decimal',
                       minimumFractionDigits: 2,
                     })}
                   </h2>
@@ -185,7 +186,19 @@ const RoomSide = ({
 
             {/* <Link to={`/room/${roomId}/payment`}> */}
             <Link
-              to={`/room/${roomId}/payment?reviews=${reviewsTotal}&checkin=${checkInDate}&checkout=${checkOutDate}&guest=${guestsNum}&night=${daysDifference}&total=${totalPerNight}&tax=${taxPerNight}&finalTotal=${finalTotalPrice}`}
+              to={`/room/${roomId}/payment?reviews=${reviewsTotal}&checkin=${checkInDate}&checkout=${checkOutDate}&guest=${guestsNum}&night=${daysDifference}&total=${totalPerNight.toLocaleString(
+                'en-US',
+                {
+                  style: 'decimal',
+                  minimumFractionDigits: 2,
+                }
+              )}&tax=${taxPerNight.toLocaleString('en-US', {
+                style: 'decimal',
+                minimumFractionDigits: 2,
+              })}&finalTotal=${finalTotalPrice.toLocaleString('en-US', {
+                style: 'decimal',
+                minimumFractionDigits: 2,
+              })}`}
             >
               <SubmitButton />
             </Link>
@@ -198,20 +211,18 @@ const RoomSide = ({
                     $
                     {loading
                       ? '0.00'
-                      : roomInfo?.price?.toLocaleString(undefined, {
+                      : roomInfo?.price?.toLocaleString('en-US', {
+                          style: 'decimal',
                           minimumFractionDigits: 2,
                         })}{' '}
-                    x{' '}
-                    {/* {new Date(checkOutDate).getDate() -
-                      new Date(checkInDate).getDate()}{' '} */}
-                    {daysDifference}
-                    nights
+                    x {daysDifference} nights
                   </SideOutput>
                   <SideOutput>
                     $
                     {loading
                       ? '0.00'
-                      : totalPerNight?.toLocaleString(undefined, {
+                      : totalPerNight?.toLocaleString('en-US', {
+                          style: 'decimal',
                           minimumFractionDigits: 2,
                         })}
                   </SideOutput>
@@ -222,7 +233,8 @@ const RoomSide = ({
                     $
                     {loading
                       ? '0.00'
-                      : roomInfo?.cleaning_fee?.toLocaleString(undefined, {
+                      : roomInfo?.cleaning_fee?.toLocaleString('en-US', {
+                          style: 'decimal',
                           minimumFractionDigits: 2,
                         })}
                   </SideOutput>
@@ -233,7 +245,8 @@ const RoomSide = ({
                     $
                     {loading
                       ? '0.00'
-                      : taxPerNight?.toLocaleString(undefined, {
+                      : taxPerNight?.toLocaleString('en-US', {
+                          style: 'decimal',
                           minimumFractionDigits: 2,
                         })}
                   </SideOutput>
@@ -246,7 +259,8 @@ const RoomSide = ({
                 $
                 {loading
                   ? '0.00'
-                  : finalTotalPrice?.toLocaleString(undefined, {
+                  : finalTotalPrice?.toLocaleString('en-US', {
+                      style: 'decimal',
                       minimumFractionDigits: 2,
                     }) || '0.0'}
               </SideTotal>

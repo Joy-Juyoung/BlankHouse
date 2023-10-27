@@ -59,11 +59,16 @@ export const PaymentInfoTitle = styled.div`
 
 export const PaymentInfoDetail = styled.div`
   p {
+    margin: 0;
     &.notice {
       font-size: 11px;
       margin-bottom: 20px;
       padding: 0 5px;
     }
+  }
+
+  ul {
+    margin-bottom: 0;
   }
 
   button {
@@ -105,9 +110,38 @@ export const PaymentOptions = styled.div`
   border: 1px solid #bbbbbb;
   border-radius: 10px;
   padding: 15px;
+`;
 
-  svg {
-    cursor: pointer;
+export const PaymentBalanceMsg = styled.div`
+  margin-top: 10px;
+  font-size: 12px;
+  color: red;
+`;
+
+export const PaymentBalanceBtn = styled.div`
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+`;
+
+export const BalanceBtn = styled.div`
+  width: 150px;
+  padding: 10px 0;
+  border: 1px solid #000;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+
+  &:hover {
+    /* border: 1px solid #000;
+      background: #fff;
+      color: #000; */
   }
 `;
 
