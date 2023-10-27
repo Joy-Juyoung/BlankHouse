@@ -90,8 +90,14 @@ export const PayInfo = styled.div`
 
 export const InfoDetail = styled.div`
   p {
+    display: flex;
+    align-items: center;
     margin: 5px 0;
     font-weight: 600;
+
+    svg {
+      margin-right: 5px;
+    }
   }
   span {
     font-weight: 300;
