@@ -18,57 +18,22 @@ export const getAllRoomsAsync = createAsyncThunk(
   }
 );
 
-// export const getFilterRoomsAsync = createAsyncThunk(
-//   'room/getFilterRoomInfo',
-//   async (
-//     {
-//       owner_name: owner_name || '',
-//         country: country || '',
-//         city: city || '',
-//         category: category || '',
-//         house_type: house_type || '',
-//         mininum_price: mininum_price || '',
-//         maximum_price: maximum_price || '',
-//         maximum_guests: maximum_guests || '',
-//         check_in: check_in || '',
-//         check_out: check_out || '',
-//     },
-//     thunkAPI
-//   ) => {
-//     try {
-//       const response = await axios.get(`/rooms?owner_name=${owner_name || ''}
-//         &country=${country || ''}
-//         &city=${city}
-//         &category=${category || ''}
-//         &house_type=${house_type || ''}
-//         &mininum_price=${mininum_price || ''}
-//         &maximum_price=${maximum_price || ''}
-//         &maximum_guests=${maximum_guests || ''}
-//         &check_in=${check_in || ''}
-//         &check_out=${check_out || ''}`);
-//       return response.data;
-//     } catch (error) {
-//       toast.error('Load FilterRooms failed.');
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
-
 export const getFilterRoomsAsync = createAsyncThunk(
   'room/getFilterRoomInfo',
   async (
     {
       // owner_name = '',
-      // country = '',
-      // city = '',
-      // category = '',
+      keyword = '',
+      country = '',
+      city = '',
+      category = '',
       house_type,
       number_of_beds,
       number_of_bedrooms,
       number_of_toilets,
       mininum_price = '',
       maximum_price = '',
-      // maximum_guests = '',
+      maximum_guests = '',
       // check_in = '',
       // check_out = '',
     },
@@ -84,10 +49,11 @@ export const getFilterRoomsAsync = createAsyncThunk(
       //   &maximum_price=${maximum_price || ''}
       //   &maximum_guests=${maximum_guests || ''}
       //   &check_in=${check_in || ''}
-      //   &check_out=${check_out || ''}`);
+      //   &check_out=${check_out || ''}`);   &maximum_guests=${maximum_guests}
 
       const response =
-        await axios.get(`/rooms?house_type=${house_type}&number_of_beds=${number_of_beds}&number_of_bedrooms=${number_of_bedrooms}&number_of_toilets=${number_of_toilets}&mininum_price=${mininum_price}&maximum_price=${maximum_price}
+        await axios.get(`/rooms?keyword=${keyword}&maximum_guests=${maximum_guests}&country=${country}&city=${city}&category=${category}&house_type=${house_type}&number_of_beds=${number_of_beds}&number_of_bedrooms=${number_of_bedrooms}&number_of_toilets=${number_of_toilets}&mininum_price=${mininum_price}&maximum_price=${maximum_price}
+       
         `);
       return response.data;
     } catch (error) {

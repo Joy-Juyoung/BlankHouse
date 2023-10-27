@@ -34,6 +34,8 @@ const GuestMode = () => {
   const [isPageMain, setIsPageMain] = useState(false);
   const [isUserLogIn, setIsUserLogIn] = useState(false);
 
+  // const [searchedValue, setSearchedValue] = useState('');
+
   const userMe = useSelector(getMeUser);
   const dispatch = useDispatch();
   const [isHost, setIsHost] = useState(false);
@@ -83,12 +85,17 @@ const GuestMode = () => {
                 userMe={userMe}
                 isUserLogIn={isUserLogIn}
                 setIsUserLogIn={setIsUserLogIn}
+                // searchedValue={searchedValue}
               />
               <Routes>
                 <Route
                   path='/'
                   element={
-                    <MainPage setIsPageMain={setIsPageMain} userMe={userMe} />
+                    <MainPage
+                      setIsPageMain={setIsPageMain}
+                      userMe={userMe}
+                      // searchedValue={searchedValue}
+                    />
                   }
                   exact={true}
                 />

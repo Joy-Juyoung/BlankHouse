@@ -176,6 +176,10 @@ export const SearchTextSection = styled.div`
       }
     }
   }
+
+  &.who {
+    margin-left: -5px;
+  }
 `;
 
 export const NumberOfGuests = styled.div`
@@ -188,6 +192,8 @@ export const NumberOfGuests = styled.div`
 
   span {
     margin-right: 5px;
+    /* padding: 0 5px; */
+    /* font-size: 14px; */
     /* color: #000; */
     /* font-weight: 600; */
   }

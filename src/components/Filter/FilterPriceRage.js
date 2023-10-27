@@ -89,12 +89,12 @@ const FilterPriceRage = ({
 
   return (
     <>
-      <PriceRangeGraph>
-        {/* <ReactEcharts
+      {/* <PriceRangeGraph> */}
+      {/* <ReactEcharts
           option={options}
           style={{ width: '100%', height: '70px' }}
         ></ReactEcharts> */}
-        <LineChart
+      {/* <LineChart
           xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
           series={[
             {
@@ -103,8 +103,8 @@ const FilterPriceRage = ({
           ]}
           width={500}
           height={300}
-        />
-      </PriceRangeGraph>
+        /> */}
+      {/* </PriceRangeGraph> */}
       <Box sx={{ width: '100%' }}>
         <AirbnbSlider
           // getAriaLabel={() => 'Temperature range'}
