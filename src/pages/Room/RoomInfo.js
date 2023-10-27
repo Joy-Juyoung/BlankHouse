@@ -237,8 +237,6 @@ const RoomInfo = ({
             ) : (
               <>
                 <h2>
-                  {/* {new Date(checkOutDate).getDate() -
-                    new Date(checkInDate).getDate()} */}
                   {daysDifference} nights in {roomInfo?.city}
                 </h2>
                 <p>
@@ -251,6 +249,7 @@ const RoomInfo = ({
               checkOutDate={checkOutDate}
               setCheckInDate={setCheckInDate}
               setCheckOutDate={setCheckOutDate}
+              // roomId={roomId}
             />
           </RoomDetailsSections>
         </RoomMainDetailsWrap>

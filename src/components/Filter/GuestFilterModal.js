@@ -87,8 +87,6 @@ const GuestFilterModal = ({
           JSON.parse(localStorage.getItem('getSearched')) !== null
             ? JSON.parse(localStorage.getItem('getSearched')).where
             : '',
-        owner_name: owner_name || '',
-        country: country || '',
         //city: city || '',
         category:
           JSON.parse(localStorage.getItem('getCategory')) !== null

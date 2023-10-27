@@ -93,7 +93,7 @@ const MainCategorySlider = ({ loading, visibleItems }) => {
                 !JSON.parse(localStorage.getItem('getCategory')) && 'all'
               }
             >
-              <span>All</span>
+              <span>All Rooms</span>
             </SlideName>
             {categories
               ?.slice(currentIndex, currentIndex + visibleItems)

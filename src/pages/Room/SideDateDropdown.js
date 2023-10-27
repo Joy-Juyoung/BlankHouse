@@ -41,7 +41,7 @@ const SearchDateBoxWrap = styled.div`
 
 const DateDropTitle = styled.div`
   margin-top: -50px;
-  padding: 10px;
+  padding: 10px 30px;
 
   p {
     margin: 0;
@@ -79,6 +79,7 @@ const SideDateDropdown = ({
   setCheckInDate,
   setCheckOutDate,
   roomInfo,
+  daysDifference,
 }) => {
   // const [checkInDate, setCheckInDate] = useState('');
   // const [checkOutDate, setCheckOutDate] = useState('');
@@ -92,8 +93,7 @@ const SideDateDropdown = ({
       >
         <DateDropTitle>
           <h2>
-            {new Date(checkOutDate).getDate() - new Date(checkInDate).getDate()}{' '}
-            nights in {roomInfo?.city}
+            {daysDifference} nights in {roomInfo?.city}
           </h2>
           <p>
             {checkInDate} ~ {checkOutDate}

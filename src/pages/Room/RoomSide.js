@@ -154,6 +154,7 @@ const RoomSide = ({
                   setCheckOutDate={setCheckOutDate}
                   checkOutDate={checkOutDate}
                   roomInfo={roomInfo}
+                  daysDifference={daysDifference}
                 />
               )}
 

@@ -19,11 +19,18 @@ const MainCategorySk = ({
   goLeft,
 }) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const handleClickCategory = () => {
     dispatch(
       getFilterRoomsAsync({
+        keyword: !JSON.parse(localStorage.getItem('getSearched'))
+          ? ''
+          : JSON.parse(localStorage.getItem('getSearched'))[0].where,
+        maximum_guests:
+          JSON.parse(localStorage.getItem('getSearched')) !== null
+            ? JSON.parse(localStorage.getItem('getSearched'))[0].who
+            : '',
         category: category?.name,
+
         house_type: '',
         number_of_beds: '',
         number_of_bedrooms: '',

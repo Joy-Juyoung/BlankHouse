@@ -67,6 +67,11 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
           // searchedWhere.charAt(0).toUpperCase() + searchedWhere.slice(1) ||
           '',
         maximum_guests: guestsNum.toString() || '',
+
+        category:
+          JSON.parse(localStorage.getItem('getCategory')) !== null
+            ? JSON.parse(localStorage.getItem('getCategory'))
+            : '',
         house_type: '',
         number_of_beds: '',
         number_of_bedrooms: '',
@@ -130,7 +135,7 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
             <SearchNavbar
               className={isExp ? 'active' : 'deactive'}
               // onClick={() => toggleSearchModal(false)}
-              onClick={handleClickFilter}
+              // onClick={handleClickFilter}
             >
               Experiences
             </SearchNavbar>
@@ -223,7 +228,9 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
               )}
             </SearchSection>
 
-            <SearchButton />
+            <div onClick={handleClickFilter}>
+              <SearchButton />
+            </div>
           </SearchWrap>
         </SearchField>
       </SearchModalContainer>
