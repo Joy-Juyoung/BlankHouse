@@ -49,7 +49,11 @@ const ShowMoreModal = ({
         <ModalShowMain>
           <ModalMainSection>
             {modalAboutPlaceShown && (
-              <ShowWrap>{roomInfo?.description}</ShowWrap>
+              <ShowWrap className='about'>
+                {roomInfo?.description?.split('.').map((paragraph, index) => (
+                  <p key={index}>{paragraph}.</p>
+                ))}
+              </ShowWrap>
             )}
             {modalReviewShown && (
               <ShowMoreReview

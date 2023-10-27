@@ -104,7 +104,11 @@ export const ModalMain = styled.div`
 export const ModalMainSection = styled.div`
   /* width: 100%; */
   padding: 30px 0;
-  border-bottom: 1px solid lightgray;
+  /* border-bottom: 1px solid lightgray; */
+  /* 
+  &.noBot {
+    border-bottom: none;
+  } */
 `;
 
 export const ModalMainTitle = styled.h1`
