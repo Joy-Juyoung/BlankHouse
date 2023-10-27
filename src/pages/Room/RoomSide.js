@@ -41,6 +41,7 @@ const RoomSide = ({
   setCheckOutDate,
   roomId,
   roomReviewAll,
+  daysDifference,
 }) => {
   const [isGuests, setIsGuests] = useState(false);
   const [isSideCheckIn, setIsSideCheckIn] = useState(false);
@@ -52,9 +53,9 @@ const RoomSide = ({
   const reviewsTotal = roomReviewAll?.length;
 
   // console.log('reviewsTotal', roomReviewAll?.length);
-  let perNight =
-    new Date(checkOutDate).getTime() - new Date(checkInDate).getTime();
-  let daysDifference = Math.ceil(perNight / (1000 * 60 * 60 * 24));
+  // let perNight =
+  //   new Date(checkOutDate).getTime() - new Date(checkInDate).getTime();
+  // let daysDifference = Math.ceil(perNight / (1000 * 60 * 60 * 24));
 
   let totalPerNight = roomInfo?.price * daysDifference;
   let taxPerNight = totalPerNight * 0.05;
@@ -183,7 +184,7 @@ const RoomSide = ({
 
             {/* <Link to={`/room/${roomId}/payment`}> */}
             <Link
-              to={`/room/${roomId}/payment?reviews=${reviewsTotal}&checkin=${checkInDate}&checkout=${checkOutDate}&guest=${guestsNum}&night=${perNight}&total=${totalPerNight}&tax=${taxPerNight}&finalTotal=${finalTotalPrice}`}
+              to={`/room/${roomId}/payment?reviews=${reviewsTotal}&checkin=${checkInDate}&checkout=${checkOutDate}&guest=${guestsNum}&night=${daysDifference}&total=${totalPerNight}&tax=${taxPerNight}&finalTotal=${finalTotalPrice}`}
             >
               <SubmitButton />
             </Link>

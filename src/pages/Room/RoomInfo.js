@@ -62,6 +62,10 @@ const RoomInfo = ({
   const [checkInDate, setCheckInDate] = useState('');
   const [checkOutDate, setCheckOutDate] = useState('');
 
+  let perNight =
+    new Date(checkOutDate).getTime() - new Date(checkInDate).getTime();
+  let daysDifference = Math.ceil(perNight / (1000 * 60 * 60 * 24));
+
   return (
     <RoomDetailSection>
       {/* Before Reviews */}
@@ -233,9 +237,9 @@ const RoomInfo = ({
             ) : (
               <>
                 <h2>
-                  {new Date(checkOutDate).getDate() -
-                    new Date(checkInDate).getDate()}{' '}
-                  nights in {roomInfo?.city}
+                  {/* {new Date(checkOutDate).getDate() -
+                    new Date(checkInDate).getDate()} */}
+                  {daysDifference} nights in {roomInfo?.city}
                 </h2>
                 <p>
                   {checkInDate} ~ {checkOutDate}
@@ -262,6 +266,7 @@ const RoomInfo = ({
           checkOutDate={checkOutDate}
           setCheckInDate={setCheckInDate}
           setCheckOutDate={setCheckOutDate}
+          daysDifference={daysDifference}
         />
       </RoomMainDetails>
 
