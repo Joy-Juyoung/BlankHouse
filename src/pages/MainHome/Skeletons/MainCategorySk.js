@@ -7,6 +7,9 @@ import {
   SlideName,
 } from '../MainCategorySliderStyle';
 import { Skeleton } from '@mui/material';
+import { useDispatch } from 'react-redux';
+import { getFilterRoomsAsync } from '../../../redux/slices/roomSlice';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const MainCategorySk = ({
   loading,
@@ -15,6 +18,29 @@ const MainCategorySk = ({
   goRight,
   goLeft,
 }) => {
+  const dispatch = useDispatch();
+  const handleClickCategory = () => {
+    dispatch(
+      getFilterRoomsAsync({
+        keyword: !JSON.parse(localStorage.getItem('getSearched'))
+          ? ''
+          : JSON.parse(localStorage.getItem('getSearched'))[0].where,
+        maximum_guests:
+          JSON.parse(localStorage.getItem('getSearched')) !== null
+            ? JSON.parse(localStorage.getItem('getSearched'))[0].who
+            : '',
+        category: category?.name,
+
+        house_type: '',
+        number_of_beds: '',
+        number_of_bedrooms: '',
+        number_of_toilets: '',
+      })
+    );
+
+    localStorage.setItem('getCategory', JSON.stringify(category?.name));
+  };
+
   return (
     <>
       {loading ? (
@@ -36,12 +62,18 @@ const MainCategorySk = ({
           />
         </SlideName>
       ) : (
-        <SlideName
-          style={{ width: sliderWidth }}
-          // className={goRight ? 'goRight' : '' || goLeft ? 'goLeft' : ''}
-        >
-          <span>{category?.name}</span>
-        </SlideName>
+        <>
+          <SlideName
+            style={{ width: sliderWidth }}
+            onClick={handleClickCategory}
+            className={
+              JSON.parse(localStorage.getItem('getCategory')) ===
+                category?.name && 'all'
+            }
+          >
+            <span>{category?.name}</span>
+          </SlideName>
+        </>
       )}
     </>
   );

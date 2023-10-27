@@ -43,7 +43,9 @@ const FooterBottom = () => {
           <TwitterIcon />
         </span> */}
         <span>
-          <HelpIcon />
+          <Link to='/help'>
+            <HelpIcon />
+          </Link>
         </span>
         <span className='last'>
           <Link

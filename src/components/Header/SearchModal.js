@@ -37,14 +37,10 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
   const [isExp, setIsExp] = useState(false);
   const { roomId } = useParams();
 
-  // const [bedrooms, setBedrooms] = useState('');
-  // const [beds, setBeds] = useState('');
-  // const [bethrooms, setBethrooms] = useState('');
-
-  const [keyword, setKeyword] = useState('');
-  const [country, setCountry] = useState('');
-  const [city, setCity] = useState('');
-  const [category, setCategory] = useState('');
+  // const [keyword, setKeyword] = useState('');
+  // const [country, setCountry] = useState('');
+  // const [city, setCity] = useState('');
+  // const [category, setCategory] = useState('');
 
   const [searchedWhere, setSearchedWhere] = useState('');
   // const [searchedWho, setSearchedWho] = useState(guestsNum.toString());
@@ -71,25 +67,20 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
           // searchedWhere.charAt(0).toUpperCase() + searchedWhere.slice(1) ||
           '',
         maximum_guests: guestsNum.toString() || '',
+
+        category:
+          JSON.parse(localStorage.getItem('getCategory')) !== null
+            ? JSON.parse(localStorage.getItem('getCategory'))
+            : '',
         house_type: '',
         number_of_beds: '',
         number_of_bedrooms: '',
         number_of_toilets: '',
+
+        check_in: checkInDate || '',
+        check_out: checkOutDate || '',
       })
     );
-    // if (searchedWhere !== '' && guestsNum >= 1) {
-    //   searchResults.push({ where: searchedWhere, who: guestsNum.toString() });
-    //   localStorage.setItem('getSearched', JSON.stringify(searchResults));
-    // } else if (searchedWhere === '' && guestsNum >= 1) {
-    //   searchResults.push({ where: '', who: guestsNum.toString() });
-    //   localStorage.setItem('getSearched', JSON.stringify(searchResults));
-    // } else if (searchedWhere !== '' && guestsNum === 0) {
-    //   searchResults.push({ where: searchedWhere, who: '' });
-    //   localStorage.setItem('getSearched', JSON.stringify(searchResults));
-    // } else {
-    //   setSearchResults([]);
-    //   localStorage.removeItem('getSearched');
-    // }
   };
 
   useEffect(() => {
@@ -144,7 +135,7 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
             <SearchNavbar
               className={isExp ? 'active' : 'deactive'}
               // onClick={() => toggleSearchModal(false)}
-              onClick={handleClickFilter}
+              // onClick={handleClickFilter}
             >
               Experiences
             </SearchNavbar>
@@ -237,7 +228,9 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
               )}
             </SearchSection>
 
-            <SearchButton />
+            <div onClick={handleClickFilter}>
+              <SearchButton />
+            </div>
           </SearchWrap>
         </SearchField>
       </SearchModalContainer>

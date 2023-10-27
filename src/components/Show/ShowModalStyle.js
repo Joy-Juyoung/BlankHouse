@@ -17,6 +17,16 @@ export const ShowWrap = styled.div`
   /* max-width: calc(100vw - 20%); */
   width: 550px;
   margin: 20px auto;
+
+  &.about {
+    margin-top: -20px;
+    height: 600px;
+    overflow-y: scroll;
+
+    p {
+      padding: 0 20px;
+    }
+  }
 `;
 
 // -------------------

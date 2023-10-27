@@ -90,21 +90,6 @@ export const SlideName = styled.div`
   margin: 0 10px;
   padding: 5px;
 
-  /* background: #fff7d8 50%; */
-
-  /* &.goRight {
-    background: linear-gradient(to right, #fff7d8 50%, white 50%);
-    background-size: 200% 100%;
-    background-position: right bottom;
-    transition: all 0.3s ease-out;
-  }
-
-  &.goLeft {
-    background: linear-gradient(to left, #fff7d8 50%, white 50%) right;
-    background-size: 200%;
-    transition: all 0.3s ease-out;
-  } */
-
   span {
     font-size: 13px;
   }
@@ -112,5 +97,22 @@ export const SlideName = styled.div`
   &.loading {
     border: none;
     padding: 0;
+  }
+
+  &:hover {
+    background: #f0f0f0;
+    /* color: #fff; */
+  }
+
+  /* --------------------------- */
+  &.all {
+    background: #000;
+    color: #fff;
+    /* border: 1px solid #f5f5f5; */
+
+    &:hover {
+      background: #000;
+      /* color: #fff; */
+    }
   }
 `;

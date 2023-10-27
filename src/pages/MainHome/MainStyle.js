@@ -144,6 +144,15 @@ export const MainMidWrap = styled.div`
 `;
 
 export const EmptyMainRoom = styled.div`
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; */
+
+  position: absolute;
+  top: 30%;
+  left: 50%;
+
   display: flex;
   flex-direction: column;
   align-items: center;

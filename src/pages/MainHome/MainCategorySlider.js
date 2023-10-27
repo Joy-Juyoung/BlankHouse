@@ -7,6 +7,7 @@ import {
   SliderWrap,
   SliderWrapper,
   Slide,
+  SlideName,
 } from './MainCategorySliderStyle';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -81,6 +82,19 @@ const MainCategorySlider = ({ loading, visibleItems }) => {
         {/* <SliderWrapper visibleItems={visibleItems} currentIndex={currentIndex}> */}
         <SliderWrapper>
           <Slide style={{ right: goRight ? '0' : '-200px' }}>
+            <SlideName
+              style={{ width: sliderWidth }}
+              onClick={() => {
+                localStorage.removeItem('getCategory');
+                window.location.reload();
+                window.location.href = '/';
+              }}
+              className={
+                !JSON.parse(localStorage.getItem('getCategory')) && 'all'
+              }
+            >
+              <span>All Rooms</span>
+            </SlideName>
             {categories
               ?.slice(currentIndex, currentIndex + visibleItems)
               ?.map((category) => (

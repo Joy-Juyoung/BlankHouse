@@ -68,17 +68,6 @@ const GuestFilterModal = ({
 
   const [selectedType, setSelectedType] = useState('');
 
-  // const [propety, setPropety] = useState('');
-  const [keyword, setKeyword] = useState('');
-  const [house, setHouse] = useState('');
-  const [apartment, setApartment] = useState('');
-  const [guesthouse, setGuesthouse] = useState('');
-  const [hotel, setHotel] = useState('');
-  const [isPropertyClick1, setIsPropertyClick1] = useState(false);
-  const [isPropertyClick2, setIsPropertyClick2] = useState(false);
-  const [isPropertyClick3, setIsPropertyClick3] = useState(false);
-  const [isPropertyClick4, setIsPropertyClick4] = useState(false);
-
   const [owner_name, setOwner_name] = useState('');
   const [country, setCountry] = useState('');
   const [houseType, setHouseType] = useState('');
@@ -98,10 +87,11 @@ const GuestFilterModal = ({
           JSON.parse(localStorage.getItem('getSearched')) !== null
             ? JSON.parse(localStorage.getItem('getSearched')).where
             : '',
-        owner_name: owner_name || '',
-        country: country || '',
         //city: city || '',
-        //category: category || '',
+        category:
+          JSON.parse(localStorage.getItem('getCategory')) !== null
+            ? JSON.parse(localStorage.getItem('getCategory'))
+            : '',
         maximum_guests:
           JSON.parse(localStorage.getItem('getSearched')) !== null
             ? JSON.parse(localStorage.getItem('getSearched')).who
@@ -130,19 +120,6 @@ const GuestFilterModal = ({
     setMininumPrice('');
     setMaximumPrice('');
   };
-
-  //
-  // useEffect(() => {
-  //   if (!modalFilterShown) {
-  //     setBedrooms('Any');
-  //     setBeds('Any');
-  //     setBethrooms('Any');
-  //     setValue([200, 700]);
-  //     setHouseType('');
-  //     setMininumPrice('');
-  //     setMaximumPrice('');
-  //   }
-  // }, [modalFilterShown, toggleFilterModal]);
 
   return (
     <Modal

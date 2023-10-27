@@ -21,11 +21,11 @@ const Footer = ({ isPageMain }) => {
     <>
       {isPageMain ? (
         <FooterContainer>
-          <FooterLong>
+          {/* <FooterLong>
             <FooterLongWrap>
               <FooterSupport />
             </FooterLongWrap>
-          </FooterLong>
+          </FooterLong> */}
           <FooterShort>
             <FooterShortWrap>
               <FooterBottom />
@@ -34,11 +34,11 @@ const Footer = ({ isPageMain }) => {
         </FooterContainer>
       ) : (
         <FooterSmallContainer>
-          <FooterSmallLong>
+          {/* <FooterSmallLong>
             <FooterSmallLongWrap>
               <FooterSupport isPageMain={isPageMain} />
             </FooterSmallLongWrap>
-          </FooterSmallLong>
+          </FooterSmallLong> */}
           <FooterSmallShort>
             <FooterSmallShortWrap>
               <FooterBottom />

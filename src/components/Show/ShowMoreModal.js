@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import RoomAmenity from '../../pages/Room/RoomAmenity';
+import AddBalance from '../AddBalance';
 import ModalLayout from '../Modals/ModalLayout';
 import { ModalContainer, ModalMainSection } from '../Modals/ModalStyle';
 import { ModalShowMain, ShowWrap } from './ShowModalStyle';
@@ -20,6 +21,10 @@ const ShowMoreModal = ({
   page,
   setIsShowReviews,
   isShowReviews,
+  toggleBalanceModal,
+  modalBalanceShown,
+  userMe,
+  roomId,
 }) => {
   const onToggleClose = () => {
     if (modalAboutPlaceShown) {
@@ -33,23 +38,36 @@ const ShowMoreModal = ({
       setIsShowReviews(false);
       // setPage(1);
     }
+    if (modalBalanceShown) {
+      toggleBalanceModal(false);
+    }
   };
 
   return (
     <ModalLayout
-      shown={modalAboutPlaceShown || modalReviewShown || modalAmenityShown}
+      shown={
+        modalAboutPlaceShown ||
+        modalReviewShown ||
+        modalAmenityShown ||
+        modalBalanceShown
+      }
       close={onToggleClose}
       title={
         (modalAboutPlaceShown && 'About this place') ||
         (modalReviewShown && 'Reviews') ||
-        (modalAmenityShown && 'Amenities')
+        (modalAmenityShown && 'Amenities') ||
+        (modalBalanceShown && 'Add Balance')
       }
     >
       <ModalContainer>
         <ModalShowMain>
           <ModalMainSection>
             {modalAboutPlaceShown && (
-              <ShowWrap>{roomInfo?.description}</ShowWrap>
+              <ShowWrap className='about'>
+                {roomInfo?.description?.split('.').map((paragraph, index) => (
+                  <p key={index}>{paragraph}.</p>
+                ))}
+              </ShowWrap>
             )}
             {modalReviewShown && (
               <ShowMoreReview
@@ -67,6 +85,14 @@ const ShowMoreModal = ({
               <RoomAmenity
                 roomInfo={roomInfo}
                 modalAmenityShown={modalAmenityShown}
+              />
+            )}
+            {modalBalanceShown && (
+              <AddBalance
+                userMe={userMe}
+                toggleBalanceModal={toggleBalanceModal}
+                modalBalanceShown={modalBalanceShown}
+                roomId={roomId}
               />
             )}
           </ModalMainSection>
