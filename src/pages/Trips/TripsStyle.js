@@ -255,3 +255,6 @@ export const TripInfoMore = styled.div`
   display: flex;
   align-items: center;
 `;
+
+// ----------
+export const TripsEmpty = styled.div``;

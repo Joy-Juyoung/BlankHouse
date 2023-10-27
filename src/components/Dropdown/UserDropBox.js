@@ -189,9 +189,11 @@ const UserDropBox = ({
               </ul>
               <hr />
               <ul>
-                <li>
-                  <span>Help Center</span>
-                </li>
+                <Link to='/help' onClick={() => setIsUserDrop(false)}>
+                  <li>
+                    <span>Help Center</span>
+                  </li>
+                </Link>
               </ul>
             </>
           )}

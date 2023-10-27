@@ -53,8 +53,10 @@ const RoomSide = ({
 
   // console.log('reviewsTotal', roomReviewAll?.length);
   let perNight =
-    new Date(checkOutDate).getDate() - new Date(checkInDate).getDate();
-  let totalPerNight = roomInfo?.price * perNight;
+    new Date(checkOutDate).getTime() - new Date(checkInDate).getTime();
+  let daysDifference = Math.ceil(perNight / (1000 * 60 * 60 * 24));
+
+  let totalPerNight = roomInfo?.price * daysDifference;
   let taxPerNight = totalPerNight * 0.05;
   let finalTotalPrice = totalPerNight + roomInfo?.cleaning_fee + taxPerNight;
 
@@ -198,8 +200,9 @@ const RoomSide = ({
                           minimumFractionDigits: 2,
                         })}{' '}
                     x{' '}
-                    {new Date(checkOutDate).getDate() -
-                      new Date(checkInDate).getDate()}{' '}
+                    {/* {new Date(checkOutDate).getDate() -
+                      new Date(checkInDate).getDate()}{' '} */}
+                    {daysDifference}
                     nights
                   </SideOutput>
                   <SideOutput>

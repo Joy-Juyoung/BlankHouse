@@ -75,6 +75,9 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
         number_of_beds: '',
         number_of_bedrooms: '',
         number_of_toilets: '',
+
+        check_in: checkInDate || '',
+        check_out: checkOutDate || '',
       })
     );
     // if (searchedWhere !== '' && guestsNum >= 1) {
