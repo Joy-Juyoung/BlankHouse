@@ -17,9 +17,18 @@ import MainRoomSlider from '../pages/MainHome/MainRoomSlider';
 import ToggleLiked from './ToggleLiked';
 import PageLoading from './Loading/PageLoading';
 
-const RoomCard = ({ room, loading, userMe }) => {
+const RoomCard = ({ wishRoom, room, loading, userMe }) => {
   const [isBtnShown, setIsBtnShown] = useState(false);
   // const [roomId, setRoomId] = useState(room?.pk);
+  const [roomData, setRoomData] = useState();
+
+  useEffect(() => {
+    if (wishRoom) {
+      setRoomData(wishRoom);
+    } else {
+      setRoomData(room);
+    }
+  }, [wishRoom, room]);
 
   return (
     <>
@@ -30,11 +39,39 @@ const RoomCard = ({ room, loading, userMe }) => {
           onMouseEnter={() => setIsBtnShown(true)}
           onMouseLeave={() => setIsBtnShown(false)}
         >
-          <MainRoomSlider room={room} isBtnShown={isBtnShown} />
+          <MainRoomSlider
+            // room={room}
+            isBtnShown={isBtnShown}
+            roomData={roomData}
+          />
 
-          {userMe && <ToggleLiked room={room} />}
+          {userMe && <ToggleLiked room={room} roomData={roomData} />}
 
           <RoomEachDetails>
+            <RoomTitle>
+              {roomData?.name?.length > 20 ? (
+                <p>{roomData?.name?.substring(0, 20)}...</p>
+              ) : (
+                <p>{roomData?.name}</p>
+              )}
+              <RoomRating>
+                <StarIcon sx={{ fontSize: '16px' }} />
+                <span>{roomData?.rating?.toFixed(2)}</span>
+              </RoomRating>
+            </RoomTitle>
+            <RoomDesc>
+              {roomData?.house_type === 'entire_place' && 'Entire place '}
+              {roomData?.house_type === 'private_room' && 'Private room '}
+              {roomData?.house_type === 'shared_room' && 'Shared room '}
+              in {roomData?.city}, {roomData?.country}
+            </RoomDesc>
+            <RoomPrice>
+              <p>${roomData?.price?.toFixed(2)}</p>
+              <span>night</span>
+            </RoomPrice>
+          </RoomEachDetails>
+
+          {/* <RoomEachDetails>
             <RoomTitle>
               {room?.name?.length > 20 ? (
                 <p>{room?.name?.substring(0, 20)}...</p>
@@ -56,7 +93,7 @@ const RoomCard = ({ room, loading, userMe }) => {
               <p>${room?.price?.toFixed(2)}</p>
               <span>night</span>
             </RoomPrice>
-          </RoomEachDetails>
+          </RoomEachDetails> */}
         </RoomsEach>
       )}
     </>

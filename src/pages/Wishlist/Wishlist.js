@@ -14,7 +14,7 @@ import {
 } from '../MainHome/MainStyle';
 import { RoomTopHeader, RoomTopWrap } from '../Room/RoomStyle';
 
-const Wishlist = ({ setIsPageMain }) => {
+const Wishlist = ({ setIsPageMain, userMe }) => {
   const wishListForRoom = useSelector(RoomAllWishlist);
   const dispatch = useDispatch();
 
@@ -37,7 +37,7 @@ const Wishlist = ({ setIsPageMain }) => {
             {wishListForRoom?.map((wishRoom, index) => {
               return (
                 <Link key={index} to={`/room/${wishRoom?.pk}`}>
-                  <RoomCard room={wishRoom} />
+                  <RoomCard wishRoom={wishRoom} userMe={userMe} />
                 </Link>
               );
             })}

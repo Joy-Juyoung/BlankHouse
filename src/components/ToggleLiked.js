@@ -8,7 +8,7 @@ import {
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
-const ToggleLiked = ({ room, roomInfo, roomId, isPhotoFav }) => {
+const ToggleLiked = ({ room, roomInfo, roomId, isPhotoFav, roomData }) => {
   const [fav, setFav] = useState(false);
   const [roomPk, setRoomPk] = useState();
 
@@ -16,15 +16,15 @@ const ToggleLiked = ({ room, roomInfo, roomId, isPhotoFav }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (room) {
-      const isLiked = room.is_liked || false;
+    if (roomData) {
+      const isLiked = roomData?.is_liked || false;
       setFav(isLiked);
     }
     if (roomInfo) {
-      const isLiked = roomInfo.is_liked || false;
+      const isLiked = roomInfo?.is_liked || false;
       setFav(isLiked);
     }
-  }, [room, roomInfo, isPhotoFav]);
+  }, [room, roomInfo, isPhotoFav, roomData]);
 
   const handleLiked = (pk) => {
     setRoomPk(pk);
@@ -36,15 +36,18 @@ const ToggleLiked = ({ room, roomInfo, roomId, isPhotoFav }) => {
     <ToggleLike
       onClick={(e) => {
         e.preventDefault();
-        handleLiked(room?.pk || roomId);
+        handleLiked(roomData?.pk || roomId);
       }}
     >
-      <RoomLike className={room ? 'card' : 'detail'}>
+      <RoomLike className={roomData ? 'card' : 'detail'}>
         {fav ? (
           <FavoriteIcon sx={{ color: '#e20000' }} />
         ) : (
           <FavoriteBorderIcon
-            sx={{ color: room ? '#fff' : '#000', fontSize: !room && '20px' }}
+            sx={{
+              color: roomData ? '#fff' : '#000',
+              fontSize: !roomData && '20px',
+            }}
           />
         )}
       </RoomLike>
