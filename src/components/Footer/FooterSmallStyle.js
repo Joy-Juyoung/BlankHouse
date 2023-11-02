@@ -5,6 +5,9 @@ export const FooterSmallContainer = styled.div`
   /* position: ${({ smallpage }) => (smallpage ? '' : 'fixed')};
   bottom: ${({ smallpage }) => (smallpage ? '' : '0')};
   width: ${({ smallpage }) => (smallpage ? '' : '100%')}; */
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 `;
 
 export const FooterSmallLong = styled.div`
