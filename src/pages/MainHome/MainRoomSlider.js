@@ -60,7 +60,7 @@ const SliderImage = styled.img`
   transform: translateX(${(props) => props.translateValue * 3}px); */
 `;
 
-const MainRoomSlider = ({ room, isBtnShown }) => {
+const MainRoomSlider = ({ room, isBtnShown, roomData }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   // const [isBtnShown, setIsBtnShown] = useState(false);
 
@@ -107,7 +107,8 @@ const MainRoomSlider = ({ room, isBtnShown }) => {
       )}
       <SliderImageWrap>
         <SliderImage
-          src={room?.photos[currentIndex]?.picture || SorryImg}
+          // src={room?.photos[currentIndex]?.picture || SorryImg}
+          src={roomData?.photos[currentIndex]?.picture || SorryImg}
           alt='Slider'
         />
       </SliderImageWrap>

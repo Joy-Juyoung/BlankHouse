@@ -120,7 +120,9 @@ const GuestMode = () => {
 
                 <Route
                   path='/wishlist'
-                  element={<Wishlist setIsPageMain={setIsPageMain} />}
+                  element={
+                    <Wishlist setIsPageMain={setIsPageMain} userMe={userMe} />
+                  }
                   exact={true}
                 />
 

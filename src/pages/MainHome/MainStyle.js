@@ -5,7 +5,7 @@ export const MainContainer = styled.div`
   margin: 0 auto;
   padding: 0 40px;
   max-width: 1700px;
-  min-height: 70vh;
+  min-height: 90vh;
   /* z-index: 2; */
 
   span {
@@ -25,7 +25,7 @@ export const MainSmallContainer = styled.div`
   margin: 0 auto;
   padding: 0 80px;
   max-width: 1120px;
-  min-height: 70vh;
+  min-height: 90vh;
 
   &.account {
     max-width: 1015px;
