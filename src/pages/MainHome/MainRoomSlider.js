@@ -86,8 +86,6 @@ const MainRoomSlider = ({ room, isBtnShown, roomData }) => {
 
   // const translateValue = currentIndex * -100;
 
-  // console.log('translateValue', translateValue);
-
   return (
     <SliderContainer>
       {currentIndex === 0 ? null : (

@@ -6,7 +6,6 @@ export const MainContainer = styled.div`
   padding: 0 40px;
   max-width: 1700px;
   min-height: 70vh;
-  /* z-index: 2; */
 
   span {
     &.coma {
