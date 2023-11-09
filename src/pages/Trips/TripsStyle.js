@@ -25,20 +25,22 @@ export const TripListWrapper = styled.div`
 export const TripList = styled.div``;
 
 export const TripsCardWrap = styled.div`
-  /* width: 100%; */
+  width: 100%;
   display: flex;
   margin: 10px 0;
   cursor: pointer;
 
   img {
-    width: 120px;
+    width: 85px;
     height: 80px;
     object-fit: cover;
+    flex: 1;
   }
 `;
 
 export const TripCardInfo = styled.div`
   width: 100%;
+  flex: 3;
   /* height: 100%; */
   display: flex;
   flex-direction: column;
@@ -68,12 +70,15 @@ export const TripInfoDetails = styled.div`
 
 export const TripStatus = styled.div`
   display: flex;
-
+  /* width: 100%; */
   span {
     padding: 5px;
     font-size: 11px;
     border-radius: 5px;
     color: #fff;
+
+    /* display: flex;
+    align-items: flex-end; */
 
     &.pending {
       border: 1px solid #54b7d3;
@@ -258,3 +263,76 @@ export const TripInfoMore = styled.div`
 
 // ----------
 export const TripsEmpty = styled.div``;
+
+export const LoadMore = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+`;
+
+export const LoadMoreBtn = styled.button`
+  width: auto;
+  min-width: 130px;
+  height: 44px;
+  border-radius: 6px;
+  background: #fff;
+  color: #0a0f18;
+  padding: 0 16px;
+  font-size: 16px;
+  outline: none;
+  border: 1px solid #a3a9b3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* text-align: center; */
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    background: #0a0f18;
+    color: #fff;
+  }
+
+  svg {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    margin-left: 5px;
+  }
+
+  &:disabled {
+    background: #f7f7f7;
+    color: gary !important;
+    cursor: not-allowed;
+
+    &:hover {
+      background: #f7f7f7;
+      color: gary !important;
+    }
+  }
+`;
+
+export const LoadMoreBtnDisabled = styled.button`
+  width: auto;
+  min-width: 130px;
+  height: 44px;
+  border-radius: 6px;
+  padding: 0 16px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: not-allowed;
+  text-decoration: none;
+
+  background: #f7f7f7;
+  color: gary;
+
+  svg {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    margin-left: 5px;
+  }
+`;
