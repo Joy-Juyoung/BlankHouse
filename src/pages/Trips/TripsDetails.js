@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   TripContainer,
   TripDate,
@@ -21,14 +21,18 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import PersonIcon from '@mui/icons-material/Person';
 import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 import TestPhoto from '../../assets/images/soon.jpg';
-
+import ReactToPrint from 'react-to-print';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 const TripsDetails = ({ book, bookingInfo }) => {
   console.log('bookingInfo', bookingInfo);
+  let printRef = useRef();
+
+  // const today = new Date();
+  // const prevThreeDays = new Date(today.setDate(today.getDate() - 3));
 
   return (
-    <TripContainer>
+    <TripContainer ref={printRef}>
       <TripWrap>
         <TripPhotos>
           <img src={bookingInfo?.room?.photos[0]?.picture} alt='' />
@@ -86,30 +90,39 @@ const TripsDetails = ({ book, bookingInfo }) => {
             </TripInfoText>
             <PeopleIcon sx={{ fontSize: 45 }} />
           </TripInfo>
-          <TripInfo>
+          {/* <TripInfo>
             <TripInfoText>
               <p>Confirmation code</p>
-              {/* need */}
               <span>HM9TEP3Z8D</span>
             </TripInfoText>
-          </TripInfo>
+          </TripInfo> */}
           <TripInfo>
             <TripInfoText>
               <p>Cancellation policy</p>
               {/* need */}
               <span>
-                Free cancellation before 12:00 p.m. on Feb. 1.
-                {/* Cancel before check-in at 12:00 p.m. on Feb. 2 for a partial refund. */}
+                Free cancellation until 12 p.m. three days before the check-in
+                date.
               </span>
               <button>Read more</button>
             </TripInfoText>
           </TripInfo>
-          <TripInfo>
-            <TripInfoMore>
+          <TripInfo className='showInfo'>
+            <ReactToPrint
+              content={() => printRef.current}
+              trigger={() => (
+                <TripInfoMore className='showInfo'>
+                  <PrintIcon />
+                  <span>Print details</span>
+                  <NavigateNextIcon />
+                </TripInfoMore>
+              )}
+            />
+            {/* <TripInfoMore className='showInfo'>
               <PrintIcon />
               <span>Print details</span>
               <NavigateNextIcon />
-            </TripInfoMore>
+            </TripInfoMore> */}
           </TripInfo>
         </TripDetailsWrapper>
 
@@ -131,7 +144,7 @@ const TripsDetails = ({ book, bookingInfo }) => {
               <PersonIcon />
               <TripInfoText>
                 <p>{bookingInfo?.room?.owner?.username}</p>
-                <span>Host rating</span>
+                {/* <span>Host rating</span> */}
                 <button>Show more</button>
               </TripInfoText>
             </TripInfoLine>
@@ -141,18 +154,24 @@ const TripsDetails = ({ book, bookingInfo }) => {
         <TripDetailsWrapper>
           <h2>Payment info</h2>
           <TripInfo className='first'>
-            <TripInfoText>
+            <TripInfoText className='cost'>
               <p>Total cost</p>
-              <span>${bookingInfo?.total_cost}</span>
+              <span>
+                $
+                {bookingInfo?.total_cost?.toLocaleString('en-US', {
+                  style: 'decimal',
+                  minimumFractionDigits: 2,
+                })}
+              </span>
             </TripInfoText>
           </TripInfo>
-          <TripInfo>
+          {/* <TripInfo>
             <TripInfoMore>
               <ReceiptIcon />
               <span>Get receipt</span>
             </TripInfoMore>
             <NavigateNextIcon />
-          </TripInfo>
+          </TripInfo> */}
         </TripDetailsWrapper>
 
         <TripDetailsWrapper>

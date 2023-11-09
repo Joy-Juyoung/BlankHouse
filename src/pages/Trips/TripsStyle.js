@@ -196,6 +196,8 @@ export const TripInfo = styled.div`
   padding: 20px 0;
   border-top: 1px solid #dddd;
 
+  padding-bottom: 10px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -211,6 +213,10 @@ export const TripInfo = styled.div`
   svg {
     margin-right: 15px;
   }
+
+  /* &.showInfo {
+    padding-bottom: 0;
+  } */
 `;
 
 export const TripInfoLine = styled.div`
@@ -246,6 +252,8 @@ export const TripDateWrapper = styled.div`
 `;
 
 export const TripInfoText = styled.div`
+  width: 100%;
+
   p {
     margin: 0 0 5px;
     font-weight: 600;
@@ -254,11 +262,36 @@ export const TripInfoText = styled.div`
   span {
     font-size: 14px;
   }
+
+  &.cost {
+    width: 100%;
+    display: flex;
+    /* align-items: center; */
+    justify-content: space-between;
+  }
+
+  button {
+    background: none;
+    border-radius: 5px;
+    border: 1px solid gray;
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    padding: 10px;
+
+    cursor: pointer;
+
+    /* justify-content: flex-end; */
+  }
 `;
 
 export const TripInfoMore = styled.div`
   display: flex;
   align-items: center;
+
+  &.showInfo {
+    cursor: pointer;
+  }
 `;
 
 // ----------
