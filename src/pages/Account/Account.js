@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   MainMid,
   MainMidWrap,
@@ -22,8 +22,10 @@ import CampaignIcon from '@mui/icons-material/Campaign';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
+import LanguageIcon from '@mui/icons-material/Language';
 
 const Account = ({ setIsPageMain, userMe }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -38,9 +40,9 @@ const Account = ({ setIsPageMain, userMe }) => {
           <RoomTopHeader>Account</RoomTopHeader>
           <RoomTopText className='account'>
             <RoomTopInfo>
-              <span>{userMe?.username}</span>
-              <span className='coma'>·</span>
-              <span>{userMe?.email}</span>
+              <span style={{ fontWeight: '600' }}>{userMe?.username}</span>
+              {/* <span className='coma'>·</span>
+              <span>{userMe?.email}</span> */}
               <span className='coma'>·</span>
               <span>
                 <Link to='/account/profile'>Go to profile</Link>
@@ -50,39 +52,39 @@ const Account = ({ setIsPageMain, userMe }) => {
         </RoomTopWrap>
         <MainMid>
           <MainMidWrap className='account'>
-            <Link to='/account/profile'>
-              <AccountBox>
-                <BoxIcon>
-                  <AccountBoxIcon sx={{ fontSize: 35 }} />
-                </BoxIcon>
-                <BoxTitle>Personal info</BoxTitle>
-                <BoxInfo>
-                  Provide personal details and how we can reach you
-                </BoxInfo>
-              </AccountBox>
-            </Link>
+            <AccountBox onClick={() => navigate('/account/profile')}>
+              <BoxIcon>
+                <AccountBoxIcon sx={{ fontSize: 35 }} />
+              </BoxIcon>
+              <BoxTitle>Personal info</BoxTitle>
+              <BoxInfo>
+                Provide personal details and how we can reach you
+              </BoxInfo>
+            </AccountBox>
             <AccountBox>
               <BoxIcon>
                 <ShieldIcon sx={{ fontSize: 35 }} />
               </BoxIcon>
               <BoxTitle>Login & security</BoxTitle>
-              <BoxInfo>Update your password and secure your account</BoxInfo>
+              <BoxInfo>Update your password</BoxInfo>
             </AccountBox>
-            <AccountBox>
+            <AccountBox onClick={() => navigate('/account/balances')}>
               <BoxIcon>
                 <PaymentsIcon sx={{ fontSize: 35 }} />
               </BoxIcon>
-              <BoxTitle>Payments & payouts</BoxTitle>
+              <BoxTitle>Payments & Balances</BoxTitle>
               <BoxInfo>
-                Review payments, payouts, coupons, and gift cards
+                {/* Review payments, payouts, coupons, and gift cards */}
+                Review payments and add your balances
               </BoxInfo>
             </AccountBox>
+            {/* </Link> */}
             <AccountBox>
               <BoxIcon>
-                <InsertDriveFileIcon sx={{ fontSize: 35 }} />
+                <LanguageIcon sx={{ fontSize: 35 }} />
               </BoxIcon>
-              <BoxTitle>Taxes</BoxTitle>
-              <BoxInfo>Manage taxpayer information and tax documents</BoxInfo>
+              <BoxTitle>Global preferences</BoxTitle>
+              <BoxInfo>Default language, currency, and time zone</BoxInfo>
             </AccountBox>
             <AccountBox>
               <BoxIcon>
@@ -97,11 +99,8 @@ const Account = ({ setIsPageMain, userMe }) => {
               <BoxIcon>
                 <RemoveRedEyeIcon sx={{ fontSize: 35 }} />
               </BoxIcon>
-              <BoxTitle>Privacy & sharing</BoxTitle>
-              <BoxInfo>
-                Manage your personal data, connected services, and data sharing
-                settings
-              </BoxInfo>
+              <BoxTitle>Privacy</BoxTitle>
+              <BoxInfo>Manage your personal data</BoxInfo>
             </AccountBox>
             <AccountBox>
               <BoxIcon>
@@ -110,7 +109,7 @@ const Account = ({ setIsPageMain, userMe }) => {
               <BoxTitle>Professional hosting tools</BoxTitle>
               <BoxInfo>
                 Get professional tools if you manage several properties on
-                Airbnb
+                BlankHouse
               </BoxInfo>
             </AccountBox>
             <AccountBox>
@@ -119,7 +118,8 @@ const Account = ({ setIsPageMain, userMe }) => {
               </BoxIcon>
               <BoxTitle>Referral credit & coupon</BoxTitle>
               <BoxInfo>
-                You have $0 CAD referral credits and coupon. Learn more.
+                Review your coupons and gift cards
+                {/* You have $0 CAD referral credits and coupon. Learn more. */}
               </BoxInfo>
             </AccountBox>
           </MainMidWrap>

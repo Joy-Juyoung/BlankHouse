@@ -36,6 +36,8 @@ import { editMeUser, editUserAsync } from '../../redux/slices/userSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+const PHONE_REGEX = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+
 const Profile = ({ setIsPageMain, userMe }) => {
   const [editUsername, setEditUsername] = useState(false);
   const [editEmail, setEditEmail] = useState(false);
@@ -49,20 +51,21 @@ const Profile = ({ setIsPageMain, userMe }) => {
   const [saveAddress, setSaveAddress] = useState('');
   const [saveEmergency, setSaveEmergency] = useState('');
 
+  const [validPhone, setValidPhone] = useState(false);
+
   const userEdit = useSelector(editMeUser);
   const dispatch = useDispatch();
-  // const successToast = toast.success('Edit profile successfully!', {
-  //   position: toast.POSITION.TOP_CENTER,
-  //   closeButton: true,
-  //   autoClose: 1000,
-  //   progressBar: true,
-  //   allowHtml: true,
-  // });
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     setIsPageMain(false);
   }, [dispatch]);
+
+  useEffect(() => {
+    setValidPhone(PHONE_REGEX.test(savePhone));
+  }, [savePhone]);
+
+  // console.log('setValidPhone', validPhone);
 
   const handleEditClick = (field) => {
     switch (field) {
@@ -110,6 +113,7 @@ const Profile = ({ setIsPageMain, userMe }) => {
 
   const handleSaveClick = (field) => {
     // event.preventDefault();
+
     switch (field) {
       case 'username':
         dispatch(editUserAsync({ saveUsername }));
@@ -120,8 +124,10 @@ const Profile = ({ setIsPageMain, userMe }) => {
         setEditEmail(false);
         break;
       case 'phone_number':
-        dispatch(editUserAsync({ savePhone }));
-        setEditPhone(false);
+        if (validPhone) {
+          dispatch(editUserAsync({ savePhone }));
+          setEditPhone(false);
+        }
         break;
       case 'address':
         dispatch(editUserAsync({ saveAddress }));
@@ -146,6 +152,8 @@ const Profile = ({ setIsPageMain, userMe }) => {
         break;
       case 'phone_number':
         setEditPhone(false);
+        setSavePhone('');
+        // setValidPhone(false);
         break;
       case 'address':
         setEditAddress(false);
@@ -279,12 +287,26 @@ const Profile = ({ setIsPageMain, userMe }) => {
                       </InfoInput>
                       <input
                         type='text'
-                        value={savePhone || userMe?.phone_number || ''}
+                        // value={savePhone || userMe?.phone_number || ''}
+                        value={savePhone || ''}
                         onChange={(event) =>
                           handleInputChange(event, 'phone_number')
                         }
                         id='phone_number'
+                        maxLength={15}
+                        placeholder={userMe?.phone_number}
                       />
+                      {/* {!validPhone && (
+                        <span
+                          style={{
+                            color: 'red',
+                            marginLeft: '10px',
+                            fontSize: '12px',
+                          }}
+                        >
+                          *Invalid phone number. Allowed only numbers.
+                        </span>
+                      )} */}
                       <InfoSave>
                         <button onClick={() => handleSaveClick('phone_number')}>
                           Save
