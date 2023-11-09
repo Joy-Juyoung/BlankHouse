@@ -50,6 +50,7 @@ const GuestFilterModal = ({
   toggleFilterModal,
   filterRoomInfo,
   averagePrice,
+  maxPrice,
 }) => {
   // const {
   //   house_type,
@@ -64,7 +65,7 @@ const GuestFilterModal = ({
   const [bedrooms, setBedrooms] = useState('Any');
   const [beds, setBeds] = useState('Any');
   const [bethrooms, setBethrooms] = useState('Any');
-  const [value, setValue] = React.useState([0, 1000]);
+  const [value, setValue] = React.useState([0, 2000]);
 
   const [selectedType, setSelectedType] = useState('');
 
@@ -113,7 +114,7 @@ const GuestFilterModal = ({
     setBedrooms('Any');
     setBeds('Any');
     setBethrooms('Any');
-    setValue([0, 1000]);
+    setValue([0, 2000]);
 
     setSelectedType('');
     setHouseType('');
@@ -151,7 +152,11 @@ const GuestFilterModal = ({
                   <PriceCurrency>$</PriceCurrency>
                   <PriceInput
                     type='text'
-                    value={mininumPrice || '0'}
+                    value={
+                      mininumPrice?.toLocaleString('en-US', {
+                        style: 'decimal',
+                      }) || '0'
+                    }
                     onChange={(e) => setMininumPrice(e.target.value)}
                   />
                 </PriceRangeInputSection>
@@ -163,7 +168,11 @@ const GuestFilterModal = ({
                   <PriceCurrency>$</PriceCurrency>
                   <PriceInput
                     type='text'
-                    value={(maximumPrice || '1000') + '+'}
+                    value={
+                      maximumPrice?.toLocaleString('en-US', {
+                        style: 'decimal',
+                      }) || '2,000'
+                    }
                     onChange={(e) => setMaximumPrice(e.target.value)}
                   />
                 </PriceRangeInputSection>

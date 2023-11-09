@@ -42,6 +42,10 @@ const MainPage = ({ setIsPageMain, userMe }) => {
     0
   );
   const averagePrice = total / allPrices?.length;
+  const maxPrice = Math.max(...allPrices);
+
+  // console.log('allPrices', allPrices);
+  // console.log('maxPrice', maxPrice);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
@@ -79,6 +83,7 @@ const MainPage = ({ setIsPageMain, userMe }) => {
               modalFilterShown={modalFilterShown}
               filterRoomInfo={filterRoomInfo}
               averagePrice={averagePrice}
+              maxPrice={maxPrice}
             />
           </MainTopFilter>
         </MainTop>

@@ -109,7 +109,7 @@ const FilterPriceRage = ({
         <AirbnbSlider
           // getAriaLabel={() => 'Temperature range'}
           min={0}
-          max={1000}
+          max={2000}
           // marks
           // step={100}
           value={value}
