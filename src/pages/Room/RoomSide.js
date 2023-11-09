@@ -184,21 +184,24 @@ const RoomSide = ({
               </SideGuestsInput>
             </RoomSideInputField>
 
-            {/* <Link to={`/room/${roomId}/payment`}> */}
+            {/* guestsNum > 0 && */}
             <Link
-              to={`/room/${roomId}/payment?reviews=${reviewsTotal}&checkin=${checkInDate}&checkout=${checkOutDate}&guest=${guestsNum}&night=${daysDifference}&total=${totalPerNight.toLocaleString(
-                'en-US',
-                {
+              to={
+                guestsNum > 0 &&
+                `/room/${roomId}/payment?reviews=${reviewsTotal}&checkin=${checkInDate}&checkout=${checkOutDate}&guest=${guestsNum}&night=${daysDifference}&total=${totalPerNight.toLocaleString(
+                  'en-US',
+                  {
+                    style: 'decimal',
+                    minimumFractionDigits: 2,
+                  }
+                )}&tax=${taxPerNight.toLocaleString('en-US', {
                   style: 'decimal',
                   minimumFractionDigits: 2,
-                }
-              )}&tax=${taxPerNight.toLocaleString('en-US', {
-                style: 'decimal',
-                minimumFractionDigits: 2,
-              })}&finalTotal=${finalTotalPrice.toLocaleString('en-US', {
-                style: 'decimal',
-                minimumFractionDigits: 2,
-              })}`}
+                })}&finalTotal=${finalTotalPrice.toLocaleString('en-US', {
+                  style: 'decimal',
+                  minimumFractionDigits: 2,
+                })}`
+              }
             >
               <SubmitButton />
             </Link>
@@ -267,10 +270,6 @@ const RoomSide = ({
             </RoomSideTotal>
           </RoomSideInside>
         </RoomSideReserve>
-        {/* <RoomSideReport>
-          <FlagIcon />
-          <span>Report this listing</span>
-        </RoomSideReport> */}
       </RoomDetailSideWrap>
     </RoomDetailSide>
   );
