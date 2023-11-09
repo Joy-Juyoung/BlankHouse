@@ -30,7 +30,7 @@ const PaymentBalance = ({ userMe, finalTotalPrice, roomId }) => {
           </span>
         </PaymentOptions>
         <PaymentBalanceMsg>
-          {parseFloat(finalTotalPrice.replace(/,/g, '')) > userMe?.balance && (
+          {parseFloat(finalTotalPrice?.replace(/,/g, '')) > userMe?.balance && (
             <p>
               * Your balance is not enough to buy items. Please add the balance
               through the button below.

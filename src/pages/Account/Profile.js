@@ -195,43 +195,7 @@ const Profile = ({ setIsPageMain, userMe }) => {
                 <InfoText>
                   <InfoTitle>Username</InfoTitle>
                   <InfoInput>{userMe?.username}</InfoInput>
-                  {/* {!editUsername ? (
-                    <>
-                      <InfoInput>{userMe?.username}</InfoInput>
-                    </>
-                  ) : (
-                    <>
-                      <InfoInput>
-                        This is the name on your travel document, which could be
-                        a licence or a passport.
-                      </InfoInput>
-                      <input
-                        type='text'
-                        value={saveUsername || userMe?.username}
-                        onChange={(event) => {
-                          handleInputChange(event, 'username');
-                        }}
-                        id='username'
-                      />
-                      <InfoSave>
-                        <button onClick={() => handleSaveClick('username')}>
-                          Save
-                        </button>
-                      </InfoSave>
-                    </>
-                  )} */}
                 </InfoText>
-                {/* <InfoEdit>
-                  <button
-                    onClick={() =>
-                      editUsername
-                        ? handleCancelClick('username')
-                        : handleEditClick('username')
-                    }
-                  >
-                    {editUsername ? 'Cancel' : 'Edit'}
-                  </button>
-                </InfoEdit> */}
               </DisplayInfo>
               <DisplayInfo>
                 <InfoText>
@@ -248,7 +212,6 @@ const Profile = ({ setIsPageMain, userMe }) => {
                       </InfoInput>
                       <input
                         type='email'
-                        // value={saveEmail || userMe?.email}
                         value={
                           saveEmail?.length < 1
                             ? ''

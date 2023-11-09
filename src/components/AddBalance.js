@@ -124,19 +124,29 @@ const AddBalance = ({
   };
 
   const handleAddBalance = () => {
-    if (parseFloat(balance) <= 5000 && parseFloat(balance) >= 0) {
+    if (roomId) {
+      if (parseFloat(balance) <= 5000 && parseFloat(balance) >= 0) {
+        dispatch(
+          editUserAsync({
+            roomId,
+            balance: parseFloat(userMe?.balance) + parseFloat(balance),
+          })
+        );
+        toggleBalanceModal(false);
+        setIsOverAmount(false);
+      } else if (parseFloat(balance) > 5000) {
+        setIsOverAmount(true);
+      } else {
+        setIsMinus(true);
+      }
+    } else {
       dispatch(
         editUserAsync({
-          roomId,
           balance: parseFloat(userMe?.balance) + parseFloat(balance),
         })
       );
       toggleBalanceModal(false);
       setIsOverAmount(false);
-    } else if (parseFloat(balance) > 5000) {
-      setIsOverAmount(true);
-    } else {
-      setIsMinus(true);
     }
   };
 
