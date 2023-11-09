@@ -196,7 +196,7 @@ export const TripInfo = styled.div`
   padding: 20px 0;
   border-top: 1px solid #dddd;
 
-  padding-bottom: 10px;
+  /* padding-bottom: 10px; */
 
   display: flex;
   align-items: center;

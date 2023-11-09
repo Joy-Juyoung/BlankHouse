@@ -174,7 +174,7 @@ const TripsDetails = ({ book, bookingInfo }) => {
           </TripInfo> */}
         </TripDetailsWrapper>
 
-        <TripDetailsWrapper>
+        {/* <TripDetailsWrapper>
           <h2>Get support anytime</h2>
           <TripInfo className='first'>
             <TripInfoText>
@@ -191,7 +191,7 @@ const TripsDetails = ({ book, bookingInfo }) => {
             </TripInfoMore>
             <NavigateNextIcon />
           </TripInfo>
-        </TripDetailsWrapper>
+        </TripDetailsWrapper> */}
       </TripWrap>
     </TripContainer>
   );
