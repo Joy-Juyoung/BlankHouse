@@ -65,7 +65,7 @@ const Profile = ({ setIsPageMain, userMe }) => {
     setValidPhone(PHONE_REGEX.test(savePhone));
   }, [savePhone]);
 
-  // console.log('setValidPhone', validPhone);
+  console.log('savePhone', savePhone);
 
   const handleEditClick = (field) => {
     switch (field) {
@@ -128,6 +128,10 @@ const Profile = ({ setIsPageMain, userMe }) => {
           dispatch(editUserAsync({ savePhone }));
           setEditPhone(false);
         }
+        if (!savePhone) {
+          dispatch(editUserAsync({ savePhone: '' }));
+          setEditPhone(false);
+        }
         break;
       case 'address':
         dispatch(editUserAsync({ saveAddress }));
@@ -152,7 +156,7 @@ const Profile = ({ setIsPageMain, userMe }) => {
         break;
       case 'phone_number':
         setEditPhone(false);
-        setSavePhone('');
+        setSavePhone(userMe?.phone_number);
         // setValidPhone(false);
         break;
       case 'address':
@@ -287,16 +291,19 @@ const Profile = ({ setIsPageMain, userMe }) => {
                       </InfoInput>
                       <input
                         type='text'
-                        // value={savePhone || userMe?.phone_number || ''}
-                        value={savePhone || ''}
+                        value={
+                          savePhone?.length < 1
+                            ? ''
+                            : savePhone || userMe?.phone_number
+                        }
                         onChange={(event) =>
                           handleInputChange(event, 'phone_number')
                         }
                         id='phone_number'
                         maxLength={15}
-                        placeholder={userMe?.phone_number}
+                        // placeholder={userMe?.phone_number}
                       />
-                      {/* {!validPhone && (
+                      {savePhone && !validPhone && (
                         <span
                           style={{
                             color: 'red',
@@ -304,9 +311,9 @@ const Profile = ({ setIsPageMain, userMe }) => {
                             fontSize: '12px',
                           }}
                         >
-                          *Invalid phone number. Allowed only numbers.
+                          *Please enter a valid phone number.
                         </span>
-                      )} */}
+                      )}
                       <InfoSave>
                         <button onClick={() => handleSaveClick('phone_number')}>
                           Save
@@ -388,11 +395,17 @@ const Profile = ({ setIsPageMain, userMe }) => {
                       </InfoInput>
                       <input
                         type='text'
-                        value={saveEmergency || userMe?.emergency_contact || ''}
+                        value={
+                          saveEmergency?.length < 1
+                            ? ''
+                            : saveEmergency || userMe?.emergency_contact
+                        }
                         onChange={(event) =>
                           handleInputChange(event, 'emergency_contact')
                         }
                         id='emergency_contact'
+                        maxLength={15}
+                        // placeholder={userMe?.emergency_contact}
                       />
                       <InfoSave>
                         <button
