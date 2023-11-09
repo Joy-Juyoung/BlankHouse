@@ -1,15 +1,10 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Slider, { SliderThumb } from '@mui/material/Slider';
-import { PriceRangeGraph } from '../Modals/ModalStyle';
-import ReactEcharts from 'echarts-for-react';
 import { styled } from '@mui/material/styles';
-import { LineChart } from '@mui/x-charts/LineChart';
 
 const AirbnbSlider = styled(Slider)(({ theme }) => ({
   color: '#3a8589',
-
   height: 10,
   padding: '13px 0',
   '& .MuiSlider-thumb': {
@@ -53,77 +48,38 @@ function AirbnbThumbComponent(props) {
   );
 }
 
-// function valuetext(value) {
-//   return `${value}`;
-// }
-
 const FilterPriceRage = ({
   value,
   setValue,
-  setMininumPrice,
+  setMinimumPrice,
+  minimumPrice,
   setMaximumPrice,
+  maximumPrice,
 }) => {
-  // const rooms = useSelector((state) => state.rooms);
-  // const [value, setValue] = React.useState([10, 85]);
-  // const dispatch = useDispatch();
-
-  // const initFetch = useCallback(() => {
-  //   dispatch(allRooms());
-  // }, [dispatch]);
-
-  // useEffect(() => {
-  //   initFetch();
-  // }, [initFetch]);
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    setMininumPrice(newValue[0]);
+    setMinimumPrice(newValue[0]);
     setMaximumPrice(newValue[1]);
   };
 
-  // useEffect(() => {
-  //   initFetch();
-  // }, [initFetch]);
+  useEffect(() => {
+    setValue([Number(minimumPrice), Number(maximumPrice)]);
+  }, [minimumPrice, maximumPrice]);
 
   // console.log('value', value);
 
   return (
     <>
-      {/* <PriceRangeGraph> */}
-      {/* <ReactEcharts
-          option={options}
-          style={{ width: '100%', height: '70px' }}
-        ></ReactEcharts> */}
-      {/* <LineChart
-          xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
-          series={[
-            {
-              data: [2, 5.5, 2, 8.5, 1.5, 5],
-            },
-          ]}
-          width={500}
-          height={300}
-        /> */}
-      {/* </PriceRangeGraph> */}
       <Box sx={{ width: '100%' }}>
         <AirbnbSlider
-          // getAriaLabel={() => 'Temperature range'}
+          // min={Number(minimumPrice)}
+          // max={Number(maximumPrice)}
           min={0}
           max={2000}
-          // marks
-          // step={100}
           value={value}
           onChange={handleChange}
-          // aria-label='Default'
           valueLabelDisplay='auto'
-          // valueLabelDisplay='auto'
-          // getAriaValueText={valuetext}
-          // aria-label='pretto slider'
-          // getAriaLabel={(index) =>
-          //   index === 0 ? 'Minimum price' : 'Maximum price'
-          // }
           slots={{ thumb: AirbnbThumbComponent }}
-          // size='large'
         />
       </Box>
     </>

@@ -12,19 +12,16 @@ import {
   MainWrap,
 } from './MainStyle';
 import GuestFilterModal from '../../components/Filter/GuestFilterModal';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import TuneIcon from '@mui/icons-material/Tune';
 import { useDispatch, useSelector } from 'react-redux';
-import PageLoading from '../../components/Loading/PageLoading';
 import MainCategorySlider from './MainCategorySlider';
 import {
   getAllRoomInfo,
   getAllRoomsAsync,
   getFilterRoomInfo,
-  getFilterRoomsAsync,
 } from '../../redux/slices/roomSlice';
 import RoomCard from '../../components/RoomCard';
-import { EmptyReview } from '../Room/RoomReviewsStyle';
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 
 const MainPage = ({ setIsPageMain, userMe }) => {
@@ -42,7 +39,7 @@ const MainPage = ({ setIsPageMain, userMe }) => {
     0
   );
   const averagePrice = total / allPrices?.length;
-  const maxPrice = Math.max(...allPrices);
+  const maxPrice = Math.max({ ...allPrices });
 
   // console.log('allPrices', allPrices);
   // console.log('maxPrice', maxPrice);

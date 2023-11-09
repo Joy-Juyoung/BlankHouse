@@ -45,14 +45,31 @@ export const loginAsync = createAsyncThunk(
         password,
       });
 
-      thunkAPI.dispatch(setUser(response.data)); // Dispatch the setUser action to update Redux store
-      // localStorage.setItem('user', JSON.stringify(response.data)); // Save user data to localStorage
-      // const ok = response.data.ok;
+      thunkAPI.dispatch(setUser(response.data));
+      // .then(() => {
+      //   if (response.data.error) {
+      //     console.log('Login Error', response.data.error);
+      //   }
+      //   if (response.data.ok) {
+      //     console.log('Login Ok', response.data.ok);
+      //   }
+      // })
+      // .catch((error) => {
+      //   console.error(error);
+      // });
+
+      if (response.data.error) {
+        console.log('Login Error', response.data.error);
+      }
+      if (response.data.ok) {
+        console.log('Login Ok', response.data.ok);
+      }
 
       return response.data;
       // return ok;
     } catch (error) {
-      toast.error('Login failed. Please try again.');
+      // toast.error('Login failed. Please try again.');
+      // toast.error('Login failed. Please try again.');
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -200,12 +217,12 @@ const userSlice = createSlice({
   },
   extraReducers: {
     [loginAsync.pending]: (state) => {
-      console.log('Pending');
+      // console.log('Pending');
       state.status = 'Pending';
       state.error = null;
     },
     [loginAsync.fulfilled]: (state, { payload }) => {
-      console.log('Fetched Successfully!');
+      console.log('login Successfully!');
       return { ...state, loginUser: payload };
     },
     [loginAsync.rejected]: (state, action) => {
@@ -213,7 +230,7 @@ const userSlice = createSlice({
       state.error = action.payload;
     },
     [logoutAsync.pending]: (state) => {
-      console.log('Pending');
+      // console.log('Pending');
       state.status = 'Pending';
       state.error = null;
     },
@@ -226,7 +243,7 @@ const userSlice = createSlice({
       state.error = action.payload;
     },
     [signupAsync.pending]: (state) => {
-      console.log('Pending');
+      // console.log('Pending');
       state.status = 'Pending';
       state.error = null;
     },
@@ -239,7 +256,7 @@ const userSlice = createSlice({
       state.error = action.payload;
     },
     [getUserInfoAsync.pending]: (state) => {
-      console.log('Pending');
+      // console.log('Pending');
       state.status = 'Pending';
       state.error = null;
     },
@@ -254,7 +271,7 @@ const userSlice = createSlice({
       state.error = action.payload;
     },
     [editUserAsync.pending]: (state) => {
-      console.log('Pending');
+      // console.log('Pending');
       state.status = 'Pending';
       state.error = null;
     },

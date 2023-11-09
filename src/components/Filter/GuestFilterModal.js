@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Modal from '../Modals/ModalLayout';
 import {
   FilterClearBtn,
-  FilterPriceRageGraph,
   FilterResultBtn,
   ModalContainer,
   ModalFooter,
@@ -18,32 +17,24 @@ import {
   PriceCurrency,
   PriceInput,
   PriceRangeBarWrap,
-  PriceRangeGraph,
   PriceRangeInputSection,
   PriceRangeLabel,
   PriceRangeWrap,
   PriceRangeWrapper,
-  PropertyWrap,
-  PropertyWrpper,
   RoomBedOption,
   RoomBedOptionList,
   RoomBedWrap,
   RoomBedWrapper,
 } from '../Modals/ModalStyle';
-import HomeIcon from '@mui/icons-material/Home';
-import DomainIcon from '@mui/icons-material/Domain';
-import GiteIcon from '@mui/icons-material/Gite';
-import LocationCityIcon from '@mui/icons-material/LocationCity';
+// import HomeIcon from '@mui/icons-material/Home';
+// import DomainIcon from '@mui/icons-material/Domain';
+// import GiteIcon from '@mui/icons-material/Gite';
+// import LocationCityIcon from '@mui/icons-material/LocationCity';
 import FilterPriceRage from './FilterPriceRage';
 import { useDispatch } from 'react-redux';
-import {
-  getAllRoomsAsync,
-  getFilterRoomsAsync,
-} from '../../redux/slices/roomSlice';
-import { useParams } from 'react-router-dom';
+import { getFilterRoomsAsync } from '../../redux/slices/roomSlice';
 
 const anyOptionList = ['Any', '1', '2', '3', '4', '5', '6', '7', '8+'];
-// const anyOptionList = ['Any', '1', '2', '3', '4', '5', '6', '7', '8+'];
 
 const GuestFilterModal = ({
   modalFilterShown,
@@ -52,29 +43,26 @@ const GuestFilterModal = ({
   averagePrice,
   maxPrice,
 }) => {
-  // const {
-  //   house_type,
-  //   number_of_beds,
-  //   number_of_bedrooms,
-  //   number_of_toilets,
-  //   mininum_price,
-  //   maximum_price,
-  // } = useParams();
   const [isChecked, setIsChecked] = useState(false);
 
   const [bedrooms, setBedrooms] = useState('Any');
   const [beds, setBeds] = useState('Any');
   const [bethrooms, setBethrooms] = useState('Any');
-  const [value, setValue] = React.useState([0, 2000]);
 
   const [selectedType, setSelectedType] = useState('');
 
-  const [owner_name, setOwner_name] = useState('');
-  const [country, setCountry] = useState('');
+  // const [owner_name, setOwner_name] = useState('');
+  // const [country, setCountry] = useState('');
   const [houseType, setHouseType] = useState('');
-  const [mininumPrice, setMininumPrice] = useState('');
-  const [maximumPrice, setMaximumPrice] = useState('');
-  const [maximum_guests, setMaximum_guests] = useState('');
+  const [minimumPrice, setMinimumPrice] = useState(0);
+  const [maximumPrice, setMaximumPrice] = useState(2000);
+  const [isUnder, setIsUnder] = useState(false);
+  const [isOver, setIsOver] = useState(false);
+  const [value, setValue] = React.useState([
+    Number(minimumPrice),
+    Number(maximumPrice),
+  ]);
+  // const [maximum_guests, setMaximum_guests] = useState('');
   const [check_in, setCheck_in] = useState('');
   const [check_out, setCheck_out] = useState('');
 
@@ -104,7 +92,7 @@ const GuestFilterModal = ({
         number_of_beds: beds === 'Any' ? '' : beds,
         number_of_bedrooms: bedrooms === 'Any' ? '' : bedrooms,
         number_of_toilets: bethrooms === 'Any' ? '' : bethrooms,
-        mininum_price: mininumPrice || '',
+        mininum_price: minimumPrice || '',
         maximum_price: maximumPrice || '',
       })
     );
@@ -118,8 +106,28 @@ const GuestFilterModal = ({
 
     setSelectedType('');
     setHouseType('');
-    setMininumPrice('');
+    setMinimumPrice('');
     setMaximumPrice('');
+  };
+
+  const handlePriceMax = (e) => {
+    if (e.target.value > 2000) {
+      setMaximumPrice(2000);
+      setIsOver(true);
+    } else {
+      setMaximumPrice(e.target.value);
+      setIsOver(false);
+    }
+  };
+
+  const handlePriceMin = (e) => {
+    if (e.target.value < 0) {
+      setMinimumPrice(0);
+      setIsUnder(true);
+    } else {
+      setMinimumPrice(e.target.value);
+      setIsUnder(false);
+    }
   };
 
   return (
@@ -127,6 +135,9 @@ const GuestFilterModal = ({
       shown={modalFilterShown}
       close={() => {
         toggleFilterModal(false);
+        setMaximumPrice(2000);
+        setIsOver(false);
+        setIsUnder(false);
       }}
       title='Filters'
     >
@@ -141,43 +152,72 @@ const GuestFilterModal = ({
               <FilterPriceRage
                 value={value}
                 setValue={setValue}
-                setMininumPrice={setMininumPrice}
+                setMinimumPrice={setMinimumPrice}
+                minimumPrice={minimumPrice}
                 setMaximumPrice={setMaximumPrice}
+                maximumPrice={maximumPrice}
               />
             </PriceRangeBarWrap>
             <PriceRangeWrap>
               <PriceRangeWrapper>
-                <PriceRangeLabel>min price</PriceRangeLabel>
+                <PriceRangeLabel>
+                  min price
+                  <span
+                    style={{
+                      color: isUnder && 'red',
+                      marginLeft: isUnder && '5px',
+                    }}
+                  >
+                    {isUnder && '*not allowed negative number'}
+                  </span>
+                </PriceRangeLabel>
                 <PriceRangeInputSection>
                   <PriceCurrency>$</PriceCurrency>
                   <PriceInput
-                    type='text'
-                    value={
-                      mininumPrice?.toLocaleString('en-US', {
-                        style: 'decimal',
-                      }) || '0'
-                    }
-                    onChange={(e) => setMininumPrice(e.target.value)}
+                    type='number'
+                    value={minimumPrice?.toLocaleString('en-US', {
+                      style: 'decimal',
+                    })}
+                    name='min'
+                    placeholder='0'
+                    min='0'
+                    max='2000'
+                    // onChange={(e) => setMinimumPrice(e.target.value)}
+                    onChange={handlePriceMin}
                   />
                 </PriceRangeInputSection>
               </PriceRangeWrapper>
               <PriceBetween>-</PriceBetween>
               <PriceRangeWrapper>
-                <PriceRangeLabel>max price</PriceRangeLabel>
+                <PriceRangeLabel>
+                  max price
+                  <span
+                    style={{
+                      color: isOver && 'red',
+                      marginLeft: isOver && '5px',
+                    }}
+                  >
+                    {isOver && '*up to $2,000'}
+                  </span>
+                </PriceRangeLabel>
                 <PriceRangeInputSection>
                   <PriceCurrency>$</PriceCurrency>
                   <PriceInput
-                    type='text'
-                    value={
-                      maximumPrice?.toLocaleString('en-US', {
-                        style: 'decimal',
-                      }) || '2,000'
-                    }
-                    onChange={(e) => setMaximumPrice(e.target.value)}
+                    type='number'
+                    value={maximumPrice?.toLocaleString('en-US', {
+                      style: 'decimal',
+                    })}
+                    name='max'
+                    placeholder='2,000'
+                    min='0'
+                    max='2000'
+                    // onChange={(e) => setMaximumPrice(e.target.value)}
+                    onChange={handlePriceMax}
                   />
                 </PriceRangeInputSection>
               </PriceRangeWrapper>
             </PriceRangeWrap>
+            {/* {isOver && <span> *It is over</span>} */}
           </ModalMainSection>
 
           <ModalMainSection>
