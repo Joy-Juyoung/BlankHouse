@@ -20,9 +20,6 @@ import {
 } from './LogInModalStyle';
 import LogModal from '../Modals/ModalLayout';
 import ColorButton from '../Buttons/ColorButton';
-import facebookIcon from '../../assets/images/facebook.png';
-import googleIcon from '../../assets/images/google.png';
-import appleIcon from '../../assets/images/apple.png';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
@@ -59,7 +56,7 @@ const LogInModal = ({
   const [usernameFocus, setUsernameFocus] = useState(false);
   const [passwordFocus, setPasswordFocus] = useState(false);
   const [errMsg, setErrMsg] = useState('');
-  const [loginSuccess, setLoginSuccess] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
   // const [userInfo, setUserIngo] = useState('');
   // let userInfo = JSON.parse(localStorage.getItem('user'));
 
@@ -93,6 +90,8 @@ const LogInModal = ({
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setIsClicked(!isClicked);
+
     const v1 = USERNAME_REGEX.test(username);
     const v2 = PWD_REGEX.test(password);
     if (!v1 || !v2) {
@@ -101,8 +100,26 @@ const LogInModal = ({
     }
 
     dispatch(loginAsync({ username, password }));
-    toggleLogModal(false);
   };
+
+  useEffect(() => {
+    if (isClicked) {
+      if (!userMe?.error) {
+        setErrMsg('');
+      } else {
+        setErrMsg('Invalid Entry');
+      }
+
+      if (userMe?.ok) {
+        setErrMsg('');
+        toggleLogModal(false);
+        window.location.reload();
+      }
+    }
+  }, [userMe, isClicked, modalLogShown]);
+
+  // console.log('isUserLogIn', isUserLogIn);
+  // console.log('isClicked', isClicked);
 
   return (
     <LogModal
@@ -110,6 +127,7 @@ const LogInModal = ({
       close={() => {
         toggleLogModal(false);
         setIsUserDrop(false);
+        setErrMsg('');
       }}
       title='Log in'
     >
@@ -119,7 +137,9 @@ const LogInModal = ({
             <LoginTitle>Welcome to Blankhouse</LoginTitle>
             <ErrorMsg
               ref={errRef}
-              style={{ display: errMsg ? 'block' : 'none' }}
+              style={{
+                display: errMsg !== '' ? 'block' : 'none',
+              }}
               aria-live='assertive'
             >
               <div>{errMsg}</div>
