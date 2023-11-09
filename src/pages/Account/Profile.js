@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import {
-  MainMid,
-  MainMidWrap,
-  MainSmallContainer,
-  MainWrap,
-} from '../MainHome/MainStyle';
+import { MainMid, MainSmallContainer, MainWrap } from '../MainHome/MainStyle';
 import {
   RoomTopHeader,
   RoomTopInfo,
@@ -16,7 +11,6 @@ import {
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import {
   DisplayInfo,
-  DisplaySideWrapper,
   DisplayWrapper,
   InfoEdit,
   InfoInput,
@@ -24,19 +18,13 @@ import {
   InfoText,
   InfoTitle,
   MainDisplayWrap,
-  SideIcon,
-  SideInfo,
-  SideTitle,
-  SideWrap,
 } from './AccountStyle';
-import PrivacyTipIcon from '@mui/icons-material/PrivacyTip';
-import LockIcon from '@mui/icons-material/Lock';
-import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import { editMeUser, editUserAsync } from '../../redux/slices/userSlice';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// import 'react-toastify/dist/ReactToastify.css';
+import ProfileNote from './ProfileNote';
 
 const PHONE_REGEX = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+const EMAIL_REGEX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
 const Profile = ({ setIsPageMain, userMe }) => {
   const [editUsername, setEditUsername] = useState(false);
@@ -52,6 +40,7 @@ const Profile = ({ setIsPageMain, userMe }) => {
   const [saveEmergency, setSaveEmergency] = useState('');
 
   const [validPhone, setValidPhone] = useState(false);
+  const [validEmail, setValidEmail] = useState(false);
 
   const userEdit = useSelector(editMeUser);
   const dispatch = useDispatch();
@@ -65,7 +54,11 @@ const Profile = ({ setIsPageMain, userMe }) => {
     setValidPhone(PHONE_REGEX.test(savePhone));
   }, [savePhone]);
 
-  console.log('savePhone', savePhone);
+  useEffect(() => {
+    setValidEmail(EMAIL_REGEX.test(saveEmail));
+  }, [saveEmail]);
+
+  // console.log('savePhone', savePhone);
 
   const handleEditClick = (field) => {
     switch (field) {
@@ -112,16 +105,20 @@ const Profile = ({ setIsPageMain, userMe }) => {
   };
 
   const handleSaveClick = (field) => {
-    // event.preventDefault();
-
     switch (field) {
       case 'username':
         dispatch(editUserAsync({ saveUsername }));
         setEditUsername(false);
         break;
       case 'email':
-        dispatch(editUserAsync({ saveEmail }));
-        setEditEmail(false);
+        if (validEmail) {
+          dispatch(editUserAsync({ saveEmail }));
+          setEditEmail(false);
+        }
+        if (!saveEmail) {
+          dispatch(editUserAsync({ saveEmail: '' }));
+          setEditEmail(false);
+        }
         break;
       case 'phone_number':
         if (validPhone) {
@@ -153,17 +150,19 @@ const Profile = ({ setIsPageMain, userMe }) => {
         break;
       case 'email':
         setEditEmail(false);
+        setSaveEmail(userMe?.email);
         break;
       case 'phone_number':
         setEditPhone(false);
         setSavePhone(userMe?.phone_number);
-        // setValidPhone(false);
         break;
       case 'address':
         setEditAddress(false);
+        setSavePhone(userMe?.address);
         break;
       case 'emergency_contact':
         setEditEmergency(false);
+        setSavePhone(userMe?.emergency_contact);
         break;
       default:
         break;
@@ -195,50 +194,15 @@ const Profile = ({ setIsPageMain, userMe }) => {
               <DisplayInfo>
                 <InfoText>
                   <InfoTitle>Username</InfoTitle>
-                  {!editUsername ? (
-                    <>
-                      <InfoInput>{userMe?.username}</InfoInput>
-                    </>
-                  ) : (
-                    <>
-                      <InfoInput>
-                        This is the name on your travel document, which could be
-                        a licence or a passport.
-                      </InfoInput>
-                      <input
-                        type='text'
-                        value={saveUsername || userMe?.username}
-                        onChange={(event) => {
-                          handleInputChange(event, 'username');
-                        }}
-                        id='username'
-                      />
-                      <InfoSave>
-                        <button onClick={() => handleSaveClick('username')}>
-                          Save
-                        </button>
-                      </InfoSave>
-                    </>
-                  )}
+                  <InfoInput>{userMe?.username}</InfoInput>
                 </InfoText>
-                <InfoEdit>
-                  <button
-                    onClick={() =>
-                      editUsername
-                        ? handleCancelClick('username')
-                        : handleEditClick('username')
-                    }
-                  >
-                    {editUsername ? 'Cancel' : 'Edit'}
-                  </button>
-                </InfoEdit>
               </DisplayInfo>
               <DisplayInfo>
                 <InfoText>
                   <InfoTitle>Email address</InfoTitle>
                   {!editEmail ? (
                     <>
-                      <InfoInput>{userMe?.email}</InfoInput>
+                      <InfoInput>{userMe?.email || 'Not provided'}</InfoInput>
                     </>
                   ) : (
                     <>
@@ -248,10 +212,25 @@ const Profile = ({ setIsPageMain, userMe }) => {
                       </InfoInput>
                       <input
                         type='email'
-                        value={saveEmail || userMe?.email}
+                        value={
+                          saveEmail?.length < 1
+                            ? ''
+                            : saveEmail || userMe?.email
+                        }
                         onChange={(event) => handleInputChange(event, 'email')}
                         id='email'
                       />
+                      {saveEmail && !validEmail && (
+                        <span
+                          style={{
+                            color: 'red',
+                            marginLeft: '10px',
+                            fontSize: '12px',
+                          }}
+                        >
+                          *Please enter a valid email.
+                        </span>
+                      )}
                       <InfoSave>
                         <button onClick={() => handleSaveClick('email')}>
                           Save
@@ -430,38 +409,7 @@ const Profile = ({ setIsPageMain, userMe }) => {
                 </InfoEdit>
               </DisplayInfo>
             </DisplayWrapper>
-            <DisplaySideWrapper>
-              <SideWrap className='firstSide'>
-                <SideIcon>
-                  <PrivacyTipIcon sx={{ fontSize: 30 }} />
-                </SideIcon>
-                <SideTitle>Why isn’t my info shown here?</SideTitle>
-                <SideInfo>
-                  We’re hiding some account details to protect your identity.
-                </SideInfo>
-              </SideWrap>
-              <SideWrap>
-                <SideIcon>
-                  <LockIcon sx={{ fontSize: 30 }} />
-                </SideIcon>
-                <SideTitle>Which details can be edited?</SideTitle>
-                <SideInfo>
-                  Contact info and personal details can be edited. If this info
-                  was used to verify your identity, you’ll need to get verified
-                  again the next time you book—or to continue hosting.
-                </SideInfo>
-              </SideWrap>
-              <SideWrap>
-                <SideIcon>
-                  <RemoveRedEyeIcon sx={{ fontSize: 30 }} />
-                </SideIcon>
-                <SideTitle>What info is shared with others?</SideTitle>
-                <SideInfo>
-                  Airbnb only releases contact information for Hosts and guests
-                  after a reservation is confirmed.
-                </SideInfo>
-              </SideWrap>
-            </DisplaySideWrapper>
+            <ProfileNote />
           </MainDisplayWrap>
         </MainMid>
       </MainWrap>
