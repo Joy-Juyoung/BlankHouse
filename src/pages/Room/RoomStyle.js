@@ -134,15 +134,11 @@ export const RoomTopInfo = styled.div`
   /* font-size: 14px; */
 
   span {
-    /* margin-left: 5px; */
-    /* margin-right: 10px; */
-    &.accountPath {
-      text-decoration: none;
-      cursor: pointer;
-
-      &:hover {
-        /* border-bottom: 1px solid; */
-        text-decoration: underline;
+    a {
+      &.accountPath {
+        text-decoration: none;
+        cursor: pointer;
+        font-weight: 600;
       }
     }
 
@@ -160,7 +156,7 @@ export const RoomTopInfo = styled.div`
     }
 
     &.accountPath {
-      margin: 0 15px;
+      margin: 0 10px;
     }
   }
 
