@@ -53,7 +53,6 @@ const HelpCenterHeader = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
           >
             <MenuIcon fontSize='medium' />
             <LogBtn>
-              {/* <img src={user?.user?.} alt='' /> */}
               <span>
                 <Avatar
                   initials={userMe?.username?.substring(0, 1).toUpperCase()}
