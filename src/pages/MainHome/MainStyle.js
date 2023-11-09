@@ -37,6 +37,23 @@ export const MainSmallContainer = styled.div`
     }
   }
 
+  &.account {
+    a {
+      text-decoration: none;
+      color: #000;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      /* &.accountBox {
+        &:hover {
+          text-decoration: none;
+        }
+      } */
+    }
+  }
+
   @media screen and (max-width: 1280px) {
     padding: 0 40px;
   }

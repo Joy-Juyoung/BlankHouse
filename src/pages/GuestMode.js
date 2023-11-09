@@ -29,6 +29,7 @@ import Trips from './Trips/Trips';
 import TripsDetails from './Trips/TripsDetails';
 import HostMode from './HostMode';
 import HelpMode from './HelpMode';
+import Balances from './Account/Balances';
 
 const GuestMode = () => {
   const [isPageMain, setIsPageMain] = useState(false);
@@ -138,13 +139,6 @@ const GuestMode = () => {
                   exact={true}
                 />
 
-                {/* Need Header Change */}
-                {/* <Route
-      path='/host/become'
-      element={<BecomeHost setIsPageMain={setIsPageMain} />}
-      exact={true}
-    /> */}
-
                 <Route
                   path='/account'
                   element={
@@ -162,6 +156,14 @@ const GuestMode = () => {
                 />
 
                 <Route
+                  path='/account/balances'
+                  element={
+                    <Balances setIsPageMain={setIsPageMain} userMe={userMe} />
+                  }
+                  exact={true}
+                />
+
+                {/* <Route
                   path='/experiences'
                   element={<Experience />}
                   exact={true}
@@ -175,7 +177,7 @@ const GuestMode = () => {
                   path='/onlineExperiences'
                   element={<OnlineExp />}
                   exact={true}
-                />
+                /> */}
               </Routes>
 
               {/* <Routes>

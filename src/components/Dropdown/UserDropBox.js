@@ -164,9 +164,6 @@ const UserDropBox = ({
               </ul>
             </>
           ) : (
-            // )}
-            // {!isUserLogIn &&
-            //   JSON.parse(localStorage.getItem('user')) === null && (
             <>
               <ul>
                 <li
