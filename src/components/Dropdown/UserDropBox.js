@@ -24,6 +24,16 @@ const UserDropdown = styled.div`
   border-radius: 10px;
   border: 1px solid #dddd;
   box-shadow: 0px 10px 15px 2px rgba(0, 0, 0, 0.2);
+
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+
+  &.help {
+    position: absolute;
+    right: 40px;
+  }
 `;
 
 const UserDropdownWrap = styled.div`
@@ -69,6 +79,7 @@ const UserDropBox = ({
   userMe,
   isUserLogIn,
   setIsUserLogIn,
+  isHelp,
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -117,6 +128,7 @@ const UserDropBox = ({
         onClick={(e) => {
           e.stopPropagation();
         }}
+        className={isHelp && 'help'}
       >
         <UserDropdownWrap>
           {/* {(isUserLogIn || JSON.parse(localStorage.getItem('user'))) && ( */}

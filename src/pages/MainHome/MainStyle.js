@@ -227,6 +227,8 @@ export const RoomLike = styled.div`
   &.detail {
     border: none;
     background: none;
+    display: flex;
+    align-items: center;
     padding: 0;
     z-index: 2;
 

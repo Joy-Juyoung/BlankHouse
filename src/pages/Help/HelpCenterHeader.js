@@ -7,7 +7,7 @@ import {
   HelpHeader,
   HelpLogoWrapper,
 } from './HelpStyle';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Logo from '../../assets/logo-bl.png';
 import {
   HeaderRightSection,
@@ -21,9 +21,19 @@ import UserDropBox from '../../components/Dropdown/UserDropBox';
 
 const HelpCenterHeader = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const dropdownRef = useRef(null);
   const [modalSearchShown, toggleSearchModal] = useState(false);
   const [isUserDrop, setIsUserDrop] = useState(false);
+  const [isHelp, setIsHelp] = useState(false);
+
+  useEffect(() => {
+    if (location.pathname === '/help') {
+      setIsHelp(true);
+    } else {
+      setIsHelp(false);
+    }
+  }, [location.pathname]);
 
   return (
     <>
@@ -75,6 +85,7 @@ const HelpCenterHeader = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
             userMe={userMe}
             isUserLogIn={isUserLogIn}
             setIsUserLogIn={setIsUserLogIn}
+            isHelp={isHelp}
           />
         </>
       )}

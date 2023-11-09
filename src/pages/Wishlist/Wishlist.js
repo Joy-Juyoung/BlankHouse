@@ -13,6 +13,9 @@ import {
   MainWrap,
 } from '../MainHome/MainStyle';
 import { RoomTopHeader, RoomTopWrap } from '../Room/RoomStyle';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import styled from 'styled-components';
+import { EmptyReview } from '../Room/RoomReviewsStyle';
 
 const Wishlist = ({ setIsPageMain, userMe }) => {
   const wishListForRoom = useSelector(RoomAllWishlist);
@@ -33,15 +36,22 @@ const Wishlist = ({ setIsPageMain, userMe }) => {
           <RoomTopHeader>Wishlist</RoomTopHeader>
         </RoomTopWrap>
         <MainMid>
-          <MainMidWrap className='wish'>
-            {wishListForRoom?.map((wishRoom, index) => {
-              return (
-                <Link key={index} to={`/room/${wishRoom?.pk}`}>
-                  <RoomCard wishRoom={wishRoom} userMe={userMe} />
-                </Link>
-              );
-            })}
-          </MainMidWrap>
+          {wishListForRoom?.length === 0 ? (
+            <EmptyReview>
+              <FavoriteBorderIcon sx={{ fontSize: 48 }} color='disabled' />
+              <p>Your wish list is empty.</p>
+            </EmptyReview>
+          ) : (
+            <MainMidWrap className='wish'>
+              {wishListForRoom?.map((wishRoom, index) => {
+                return (
+                  <Link key={index} to={`/room/${wishRoom?.pk}`}>
+                    <RoomCard wishRoom={wishRoom} userMe={userMe} />
+                  </Link>
+                );
+              })}
+            </MainMidWrap>
+          )}
         </MainMid>
       </MainWrap>
     </MainSmallContainer>

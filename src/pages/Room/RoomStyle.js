@@ -135,6 +135,11 @@ export const RoomTopInfo = styled.div`
 
   span {
     a {
+      /* color: #000;
+      &:visited {
+        color: #000;
+      } */
+
       &.accountPath {
         text-decoration: none;
         cursor: pointer;

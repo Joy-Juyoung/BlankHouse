@@ -14,10 +14,12 @@ export const HelpHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 `;
 
 export const HelpLogoWrapper = styled.div`
   height: 100%;
+  /* position: relative; */
   display: flex;
   align-items: center;
   cursor: pointer;
