@@ -1,8 +1,6 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-// import { logoutUser, userMe } from '../../redux/slices/users';
-import DateRange from '../DateRange';
 import LogInModal from '../Header/LogInModal';
 import SignupModal from '../Header/SignupModal';
 import { ToastContainer, toast } from 'react-toastify';
@@ -37,8 +35,6 @@ const UserDropdown = styled.div`
 `;
 
 const UserDropdownWrap = styled.div`
-  /* display: flex; */
-  /* justify-content: center; */
   font-size: 14px;
 
   hr {
@@ -83,7 +79,7 @@ const UserDropBox = ({
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  let currentPath = location.pathname;
+  // let currentPath = location.pathname;
   const [modalLogShown, toggleLogModal] = useState(false);
   const [modalSignupShown, toggleSignupModal] = useState(false);
 
