@@ -46,10 +46,12 @@ const ToggleLiked = ({ room, roomInfo, roomId, isPhotoFav, roomData }) => {
           <FavoriteBorderIcon
             sx={{
               color: roomData ? '#fff' : '#000',
-              fontSize: !roomData && '20px',
+              fontSize: !roomData && '24px',
             }}
           />
         )}
+
+        {!roomData && <span>Save</span>}
       </RoomLike>
     </ToggleLike>
   );

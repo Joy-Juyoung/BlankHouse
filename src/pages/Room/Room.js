@@ -107,7 +107,7 @@ const Room = ({ setIsPageMain }) => {
                         setIsShowReviews(!isShowReviews);
                       }}
                     >
-                      <Link>{roomReviewAll?.length} Reviews</Link>
+                      {roomReviewAll?.length} Reviews
                     </span>
                     <span className='coma'>·</span>
                     <span
@@ -138,7 +138,6 @@ const Room = ({ setIsPageMain }) => {
                         roomId={roomId}
                         isPhotoFav={isPhotoFav}
                       />
-                      <span>Save</span>
                     </button>
                   </RoomTopInfo>
                 </RoomTopText>
