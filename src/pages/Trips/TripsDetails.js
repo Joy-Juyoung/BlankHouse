@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   TripContainer,
   TripDate,
@@ -23,13 +23,14 @@ import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 import TestPhoto from '../../assets/images/soon.jpg';
 import ReactToPrint from 'react-to-print';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { useNavigate } from 'react-router-dom';
+import ShowSamllModal from '../../components/Show/ShowSmallModal';
 
-const TripsDetails = ({ book, bookingInfo }) => {
-  console.log('bookingInfo', bookingInfo);
+const TripsDetails = ({ bookingInfo }) => {
+  // console.log('book', book);
+  const navigate = useNavigate();
   let printRef = useRef();
-
-  // const today = new Date();
-  // const prevThreeDays = new Date(today.setDate(today.getDate() - 3));
+  const [modalNoServiceShown, toggleNoServiceModal] = useState(false);
 
   return (
     <TripContainer ref={printRef}>
@@ -49,16 +50,16 @@ const TripsDetails = ({ book, bookingInfo }) => {
               <TripDateWrapper className='left'>
                 <span>Check-in</span>
                 <p>{bookingInfo?.check_in}</p>
-                <span className='time'>checkin time</span>
+                <span className='time'>3:00p.m.</span>
               </TripDateWrapper>
               <TripDateWrapper>
                 <span>Check-out</span>
                 <p>{bookingInfo?.check_out}</p>
-                <span className='time'>checkout time</span>
+                <span className='time'>12:00p.m.</span>
               </TripDateWrapper>
             </TripDate>
           </TripInfo>
-          <TripInfo>
+          <TripInfo className='link'>
             <TripInfoLine>
               <QuestionAnswerIcon sx={{ fontSize: 35 }} />
               <TripInfoText>
@@ -66,8 +67,18 @@ const TripsDetails = ({ book, bookingInfo }) => {
                 <span>{bookingInfo?.room?.owner?.username}</span>
               </TripInfoText>
             </TripInfoLine>
+            <NavigateNextIcon
+              onClick={() => toggleNoServiceModal(!modalNoServiceShown)}
+            />
           </TripInfo>
-          <TripInfo>
+
+          {/*  */}
+          <ShowSamllModal
+            toggleNoServiceModal={toggleNoServiceModal}
+            modalNoServiceShown={modalNoServiceShown}
+          />
+
+          <TripInfo className='link'>
             <TripInfoLine>
               <HomeIcon sx={{ fontSize: 35 }} />
               <TripInfoText>
@@ -78,6 +89,11 @@ const TripsDetails = ({ book, bookingInfo }) => {
                 </span>
               </TripInfoText>
             </TripInfoLine>
+            <NavigateNextIcon
+              onClick={() =>
+                window.open(`/room/${bookingInfo?.room?.pk}`, '_blank')
+              }
+            />
           </TripInfo>
         </TripDetailsWrapper>
 
@@ -90,21 +106,13 @@ const TripsDetails = ({ book, bookingInfo }) => {
             </TripInfoText>
             <PeopleIcon sx={{ fontSize: 45 }} />
           </TripInfo>
-          {/* <TripInfo>
-            <TripInfoText>
-              <p>Confirmation code</p>
-              <span>HM9TEP3Z8D</span>
-            </TripInfoText>
-          </TripInfo> */}
           <TripInfo>
             <TripInfoText>
               <p>Cancellation policy</p>
-              {/* need */}
               <span>
-                Free cancellation until 12 p.m. three days before the check-in
+                Free cancellation until 12pm three days before the check-in
                 date.
               </span>
-              <button>Read more</button>
             </TripInfoText>
           </TripInfo>
           <TripInfo className='showInfo'>
@@ -118,11 +126,6 @@ const TripsDetails = ({ book, bookingInfo }) => {
                 </TripInfoMore>
               )}
             />
-            {/* <TripInfoMore className='showInfo'>
-              <PrintIcon />
-              <span>Print details</span>
-              <NavigateNextIcon />
-            </TripInfoMore> */}
           </TripInfo>
         </TripDetailsWrapper>
 
@@ -144,7 +147,6 @@ const TripsDetails = ({ book, bookingInfo }) => {
               <PersonIcon />
               <TripInfoText>
                 <p>{bookingInfo?.room?.owner?.username}</p>
-                {/* <span>Host rating</span> */}
                 <button>Show more</button>
               </TripInfoText>
             </TripInfoLine>
@@ -165,33 +167,7 @@ const TripsDetails = ({ book, bookingInfo }) => {
               </span>
             </TripInfoText>
           </TripInfo>
-          {/* <TripInfo>
-            <TripInfoMore>
-              <ReceiptIcon />
-              <span>Get receipt</span>
-            </TripInfoMore>
-            <NavigateNextIcon />
-          </TripInfo> */}
         </TripDetailsWrapper>
-
-        {/* <TripDetailsWrapper>
-          <h2>Get support anytime</h2>
-          <TripInfo className='first'>
-            <TripInfoText>
-              <span>
-                If you need help, we’re available 24/7 from anywhere in the
-                world.
-              </span>
-            </TripInfoText>
-          </TripInfo>
-          <TripInfo>
-            <TripInfoMore>
-              <HelpCenterIcon />
-              <span>Help Centre</span>
-            </TripInfoMore>
-            <NavigateNextIcon />
-          </TripInfo>
-        </TripDetailsWrapper> */}
       </TripWrap>
     </TripContainer>
   );

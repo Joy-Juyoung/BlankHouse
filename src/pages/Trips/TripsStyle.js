@@ -214,14 +214,27 @@ export const TripInfo = styled.div`
     margin-right: 15px;
   }
 
-  /* &.showInfo {
-    padding-bottom: 0;
-  } */
+  &.link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    svg {
+      cursor: pointer;
+
+      /* &:hover {
+        background: #f5f5f5;
+        padding: 5px;
+        border-radius: 50%;
+      } */
+    }
+  }
 `;
 
 export const TripInfoLine = styled.div`
   display: flex;
   align-items: center;
+  /* justify-content: space-between; */
 `;
 
 export const TripDate = styled.div`
@@ -239,7 +252,7 @@ export const TripDateWrapper = styled.div`
   }
 
   p {
-    margin: 10px 0 0;
+    margin: 10px 0;
   }
 
   span {
@@ -247,6 +260,7 @@ export const TripDateWrapper = styled.div`
 
     &.time {
       color: gray;
+      /* margin-top: 15px; */
     }
   }
 `;

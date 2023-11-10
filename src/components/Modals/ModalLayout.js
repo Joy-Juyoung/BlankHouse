@@ -57,7 +57,13 @@ const ModalContent = styled.div`
   z-index: 6;
 `;
 
-const ModalLayout = ({ children, shown, close, title }) => {
+const ModalLayout = ({
+  children,
+  shown,
+  close,
+  title,
+  modalNoServiceShown,
+}) => {
   return shown ? (
     <ModalBackDrop
       onClick={() => {
@@ -71,8 +77,8 @@ const ModalLayout = ({ children, shown, close, title }) => {
               e.stopPropagation();
             }}
           >
-            <ModalTop>
-              <div></div>
+            <ModalTop className={modalNoServiceShown && 'notice'}>
+              <div />
               <ModalTitle>{title}</ModalTitle>
               <ModalCloseBtn
                 onClick={() => {

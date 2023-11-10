@@ -10,10 +10,20 @@ const ShowTripModal = ({
   toggleTripModal,
   bookingInfo,
 }) => {
+  useEffect(() => {
+    if (modalTripShown) {
+      document.body.style.overflow = 'hidden';
+    }
+    // document.body.style.overflow = 'unset';
+  }, [modalTripShown]);
+
   return (
     <ModalLayout
       shown={modalTripShown}
-      close={() => toggleTripModal(false)}
+      close={() => {
+        toggleTripModal(false);
+        document.body.style.overflow = 'unset';
+      }}
       title={bookingInfo?.room?.name}
     >
       <ModalContainer>
