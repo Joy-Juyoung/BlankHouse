@@ -1,27 +1,30 @@
 import React from 'react';
 // import Smile from '../assets/images/smile.svg';
-import Coming from '../assets/images/coming3.png';
+import Coming from '../assets/images/coming7.png';
 import styled from 'styled-components';
 
 const EmptyContainer = styled.div`
-  width: 100%;
-  height: 100%;
+  /* width: 100%;
+  height: 100%; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* margin: 0; */
-  h1 {
-    /* margin: 20px auto; */
-    font-size: 22px;
-    /* margin: 0 auto; */
-  }
+  /* background: #f5f5f5; */
+  margin-top: -50px;
+  margin-left: 10px;
+  /* transform: rotate(30deg); */
 
+  /* padding: 20px; */ /* margin: 0; */
   img {
     width: 350px;
     height: 350px;
-    margin-top: -80px;
+    /* margin-top: -80px; */
     /* padding: 0; */
+    margin-bottom: 10px;
+
+    background: #f5f5f5;
+    transform: rotate(15deg);
   }
 `;
 
