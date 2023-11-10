@@ -31,6 +31,7 @@ import {
 } from '../../Trips/TripsStyle';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ShowMoreModal from '../../../components/Show/ShowMoreModal';
+import ListBody from './ListBody';
 
 const Listing = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
   const navigate = useNavigate();
@@ -39,6 +40,23 @@ const Listing = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
   const [modalUploadShown, toggleUploadModal] = useState(false);
   const [nextList, setNextList] = useState(6);
   const [clickedId, setClickedId] = useState();
+  const [searchedValue, setSearchedValue] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+
+  // useEffect(() => {
+  //   setSearchResults(allRoomInfo);
+  // }, []);
+
+  // const handleSearch = (e) => {
+  //   const keyword = e.target.value;
+  //   setSearchedValue(keyword);
+
+  //   const filteredResults = allRoomInfo?.filter((item) =>
+  //     item?.payload.toLowerCase().includes(searchedValue.toLowerCase())
+  //   );
+
+  //   setSearchResults(filteredResults);
+  // };
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
@@ -49,10 +67,10 @@ const Listing = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
     setNextList(nextList + 3);
   };
 
-  const handleOpenUpload = (id) => {
-    // console.log('id', id);
-    setClickedId(id);
-  };
+  // const handleOpenUpload = (id) => {
+  //   // console.log('id', id);
+  //   setClickedId(id);
+  // };
 
   console.log('Listing', allRoomInfo);
 
@@ -68,7 +86,11 @@ const Listing = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
           <ListingMainTop>
             <h1>{allRoomInfo?.length || 0} Listing</h1>
             <ListingSearch>
-              <input type='text' placeholder='Search listings' />
+              <input
+                type='text'
+                placeholder='Search listings'
+                onChange={(e) => setSearchedValue(e.target.value)}
+              />
               <button onClick={() => navigate('/host/become?step1')}>
                 <AddIcon sx={{ fontSize: 18 }} />
                 <span>Create listing</span>
@@ -94,76 +116,47 @@ const Listing = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
                   </ListingTHeadCell>
                 </ListingTHeadeRow>
               </ListingTHead>
-              {allRoomInfo
-                ?.slice(0, nextList)
-                // ?.reverse()
-                .map((list) => {
-                  return (
-                    <ListingTBody key={list?.pk}>
-                      <ListingTBodyRow>
-                        <ListingTBodyCell className='id'>
-                          {/* <input type='checkbox' /> */}
-                          <span>{list?.pk}</span>
-                        </ListingTBodyCell>
-                        <ListingTBodyCell className='title'>
-                          <img src={list?.photos[0]?.picture || Soon} alt='' />
-                          <span>{list?.name}</span>
-                        </ListingTBodyCell>
-                        <ListingTBodyCell>
-                          <span
-                            className={
-                              list?.photos?.length < 1
-                                ? 'statusYet'
-                                : 'statusFinish'
-                            }
-                          >
-                            {list?.photos?.length < 1
-                              ? 'In Progress'
-                              : 'Published'}
-                          </span>
-                          {list?.photos?.length < 1 && (
-                            <WarningText>
-                              <ErrorOutlineIcon sx={{ fontSize: 11 }} />
-                              <span>Add more pictures to publish</span>
-                            </WarningText>
-                          )}
-                        </ListingTBodyCell>
-                        <ListingTBodyCell>
-                          <span
-                            className={list?.photos?.length < 1 ? 'yet' : ''}
-                          >
-                            {list?.photos?.length}
-                          </span>
-                        </ListingTBodyCell>
-                        <ListingTBodyCell>
-                          {list?.house_type === 'entire_place' &&
-                            'Entire Place'}
-                          {list?.house_type === 'private_room' &&
-                            'Private Room'}
-                          {list?.house_type === 'shared_room' && 'Shared Room'}
-                        </ListingTBodyCell>
-                        <ListingTBodyCell>
-                          {list?.updated_at?.split('T')[0]}
-                        </ListingTBodyCell>
-                        <ListingTBodyCell className='center'>
-                          {list?.photos?.length < 1 ? (
-                            <span
-                              className='continue'
-                              onClick={(id) => {
-                                handleOpenUpload(list?.pk);
-                                toggleUploadModal(!modalUploadShown);
-                              }}
-                            >
-                              Continue
-                            </span>
-                          ) : (
-                            <span>Edit</span>
-                          )}
-                        </ListingTBodyCell>
-                      </ListingTBodyRow>
-                    </ListingTBody>
-                  );
-                })}
+              {allRoomInfo !== null ? (
+                <>
+                  {allRoomInfo
+                    ?.filter((item) =>
+                      item?.name
+                        ?.toLowerCase()
+                        ?.includes(searchedValue.toLowerCase())
+                    )
+                    ?.slice(0, nextList)
+                    // ?.reverse()
+                    .map((list) => {
+                      return (
+                        <ListBody
+                          key={list?.pk}
+                          toggleUploadModal={toggleUploadModal}
+                          modalUploadShown={modalUploadShown}
+                          setClickedId={setClickedId}
+                          list={list}
+                        />
+                      );
+                    })}
+                </>
+              ) : (
+                <>
+                  {allRoomInfo
+
+                    ?.slice(0, nextList)
+                    // ?.reverse()
+                    .map((list) => {
+                      return (
+                        <ListBody
+                          key={list?.pk}
+                          toggleUploadModal={toggleUploadModal}
+                          modalUploadShown={modalUploadShown}
+                          setClickedId={setClickedId}
+                          list={list}
+                        />
+                      );
+                    })}
+                </>
+              )}
             </ListingTable>
 
             {/* modal */}
