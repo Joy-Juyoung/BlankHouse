@@ -53,7 +53,7 @@ const SideDateRange = ({
     }
   }, [dispatch, roomId]);
 
-  console.log('Booked', bookedDate);
+  // console.log('Booked', bookedDate);
 
   useEffect(() => {
     const dateArray = [];
@@ -85,8 +85,8 @@ const SideDateRange = ({
   }, [checkInDate, checkOutDate, bookedDate, roomId]);
 
   // console.log('item', Number(checkOutDate - checkInDate));
-  console.log('roomId', roomId);
-  console.log('dateList', dateList);
+  // console.log('roomId', roomId);
+  // console.log('dateList', dateList);
 
   return (
     <div>

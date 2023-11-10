@@ -163,6 +163,7 @@ export const ShowReviewSearch = styled.div`
 export const ShowReviewText = styled.div`
   /* margin-top: 250px; */
   padding-top: 40px;
+  position: relative;
 `;
 
 export const ShowReviewList = styled.div``;
@@ -173,4 +174,8 @@ export const ShowReviewPage = styled.div`
   margin-top: 40px;
   display: flex;
   justify-content: center;
+  position: sticky;
+  bottom: 0;
+  background: #fff;
+  padding-top: 20px;
 `;
