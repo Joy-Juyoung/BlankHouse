@@ -15,9 +15,9 @@ const HostStep2Details = ({ stepId }) => {
       <StepDetailMain>
         <StepDetailMainWrapper>
           {stepId === 6 && <Step2_Amenity />}
-          {stepId === 7 && <Step2_Photos />}
-          {stepId === 8 && <Step2_Title />}
-          {stepId === 9 && <Step2_Description />}
+          {/* {stepId === 7 && <Step2_Photos />} */}
+          {stepId === 7 && <Step2_Title />}
+          {stepId === 8 && <Step2_Description />}
         </StepDetailMainWrapper>
       </StepDetailMain>
     </WholePageContents>

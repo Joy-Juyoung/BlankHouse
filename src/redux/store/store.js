@@ -4,7 +4,6 @@ import categoryReducer from '../slices/categorySlice';
 import roomReviewSlice from '../slices/roomReviewSlice';
 import userReducer from '../slices/userSlice';
 import wishlistSlice from '../slices/wishlistSlice';
-import experiencesReducer from '../slices/experiences';
 import bookingReducer from '../slices/bookingSlice';
 import hostReducer from '../slices/hostSlice';
 
@@ -15,7 +14,6 @@ const reducer = {
   category: categoryReducer,
   review: roomReviewSlice,
   wishlist: wishlistSlice,
-  experiences: experiencesReducer,
   host: hostReducer,
 };
 

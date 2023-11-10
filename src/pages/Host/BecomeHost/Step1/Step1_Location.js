@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { StepInWrap, StepInWrapper } from '../StepStyle';
+import {
+  StepInWrap,
+  StepInWrapper,
+  StepTypeList,
+  StepTypes,
+  StepTypesAddress,
+} from '../StepStyle';
 import TestMap from '../../../../assets/images/map_test.png';
 
 const Step1_Location = () => {
@@ -43,9 +49,8 @@ const Step1_Location = () => {
       </p>
 
       <StepInWrapper>
-        <div>
-          {/* Shoud change img to real location */}
-          {/* <img src={TestMap} alt='' /> */}
+        {/* <StepTypes> */}
+        <StepTypesAddress>
           <label for='address'>Address</label>
           <input
             type='text'
@@ -53,6 +58,8 @@ const Step1_Location = () => {
             value={stepAddress}
             onChange={handleStepValue}
           />
+        </StepTypesAddress>
+        <StepTypesAddress>
           <label for='city'>City</label>
           <input
             type='text'
@@ -60,6 +67,8 @@ const Step1_Location = () => {
             value={stepCity}
             onChange={handleStepValue}
           />
+        </StepTypesAddress>
+        <StepTypesAddress>
           <label for='country'>Country</label>
           <input
             type='text'
@@ -67,7 +76,8 @@ const Step1_Location = () => {
             value={stepCountry}
             onChange={handleStepValue}
           />
-        </div>
+        </StepTypesAddress>
+        {/* </StepTypes> */}
       </StepInWrapper>
     </StepInWrap>
   );

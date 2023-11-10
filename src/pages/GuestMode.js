@@ -7,25 +7,17 @@ import {
   useLocation,
 } from 'react-router-dom';
 import MainPage from './MainHome/MainPage';
-import Experience from './Experiences/Experience';
-import ExDetail from './Experiences/ExDetail';
+
 import Room from './Room/Room';
 import Footer from '../components/Footer/Footer';
 import GotoTopButton from '../components/Buttons/GotoTopButton';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getMeUser,
-  getUserInfoAsync,
-  selectUser,
-} from '../redux/slices/userSlice';
-import { getAllRoomsAsync } from '../redux/slices/roomSlice';
+import { getMeUser, getUserInfoAsync } from '../redux/slices/userSlice';
 import Wishlist from './Wishlist/Wishlist';
 import Account from './Account/Account';
 import Profile from './Account/Profile';
-import OnlineExp from './OnlineExperiences/OnlineExp';
 import Payment from './Payment/Payment';
 import Trips from './Trips/Trips';
-// import BecomeHost from './Host/BecomeHost.js/BecomeHost';
 import TripsDetails from './Trips/TripsDetails';
 import HostMode from './HostMode';
 import HelpMode from './HelpMode';
@@ -162,27 +154,8 @@ const GuestMode = () => {
                   }
                   exact={true}
                 />
-
-                {/* <Route
-                  path='/experiences'
-                  element={<Experience />}
-                  exact={true}
-                />
-                <Route
-                  path='/experiences/:experiencesId'
-                  element={<ExDetail />}
-                  exact={true}
-                />
-                <Route
-                  path='/onlineExperiences'
-                  element={<OnlineExp />}
-                  exact={true}
-                /> */}
               </Routes>
 
-              {/* <Routes>
-    <Route path='/test' element={<Test meData={meData} />} exact={true} />
-  </Routes> */}
               <GotoTopButton />
               <Footer isPageMain={isPageMain} />
             </>

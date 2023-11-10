@@ -92,7 +92,7 @@ const HeaderContens = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
 
       <HeaderWrapper className='headerRight'>
         <HeaderRightSection>
-          <Link to='/host/become'>
+          <Link to='/host/become?step1'>
             <ModeSetting>
               <SwitchBtn>Airbnb your home</SwitchBtn>
             </ModeSetting>

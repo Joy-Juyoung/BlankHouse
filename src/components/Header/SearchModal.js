@@ -21,9 +21,12 @@ import SearchGuestsBox from '../Dropdown/SearchGuestsBox';
 import SearchDateBox from '../Dropdown/SearchDateBox';
 import { useDispatch } from 'react-redux';
 import { getFilterRoomsAsync } from '../../redux/slices/roomSlice';
+import ShowSamllModal from '../Show/ShowSmallModal';
 
 const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
   const location = useLocation();
+  const [modalNoServiceShown, toggleNoServiceModal] = useState(false);
+
   const [isGuests, setIsGuests] = useState(false);
   const [guestsNum, setGuestsNum] = useState(1);
   const [infantsNum, setInfantsNum] = useState(0);
@@ -39,7 +42,7 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
 
   // const [keyword, setKeyword] = useState('');
   // const [country, setCountry] = useState('');
-  // const [city, setCity] = useState('');
+  const [city, setCity] = useState('');
   // const [category, setCategory] = useState('');
 
   const [searchedWhere, setSearchedWhere] = useState('');
@@ -56,16 +59,15 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
   // };
   // console.log('searchedWhere', searchedWhere);
 
-  const handleClickFilter = () => {
+  const handleClickFilter = (e) => {
     setSearchResults([]);
     localStorage.removeItem('getSearched');
     toggleSearchModal(false);
     dispatch(
       getFilterRoomsAsync({
-        keyword:
-          searchedWhere ||
-          // searchedWhere.charAt(0).toUpperCase() + searchedWhere.slice(1) ||
-          '',
+        city:
+          // searchedWhere ||
+          searchedWhere.charAt(0).toUpperCase() + searchedWhere.slice(1) || '',
         maximum_guests: guestsNum.toString() || '',
 
         category:
@@ -131,17 +133,21 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
                 Stays
               </SearchNavbar>
             </Link>
-            {/* <Link to='/experiences'> */}
             <SearchNavbar
               className={isExp ? 'active' : 'deactive'}
-              // onClick={() => toggleSearchModal(false)}
-              // onClick={handleClickFilter}
+              onClick={() => toggleNoServiceModal(!modalNoServiceShown)}
             >
               Experiences
             </SearchNavbar>
-            {/* </Link> */}
           </SearchModalNavWrap>
         </SearchModalNav>
+
+        {/*  */}
+        <ShowSamllModal
+          toggleNoServiceModal={toggleNoServiceModal}
+          modalNoServiceShown={modalNoServiceShown}
+        />
+
         <SearchField>
           <SearchWrap>
             <SearchSection>
@@ -150,7 +156,7 @@ const SearchModal = ({ modalSearchShown, toggleSearchModal }) => {
                   <p>Where</p>
                   <input
                     type='text'
-                    placeholder='Search destinations'
+                    placeholder='Search name of city'
                     onChange={handleSearchWhere}
                   />
                 </SearchTextSection>

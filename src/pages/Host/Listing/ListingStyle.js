@@ -59,6 +59,10 @@ export const ListingTHeadCell = styled.th`
   &.center {
     text-align: center;
   }
+
+  &.id {
+    padding-left: 10px;
+  }
 `;
 
 export const ListingTBody = styled.tbody``;
@@ -105,6 +109,11 @@ export const ListingTBodyCell = styled.td`
     }
   }
 
+  /* &.id {
+    padding: 0;
+    text-align: left;
+  } */
+
   &.center {
     text-align: center;
     cursor: pointer;
@@ -112,8 +121,8 @@ export const ListingTBodyCell = styled.td`
     color: gray;
 
     span {
-      text-decoration: underline;
       &.continue {
+        text-decoration: underline;
         color: #000;
       }
 

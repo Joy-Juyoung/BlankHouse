@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import UploadContinue from '../../pages/Host/Listing/UploadContinue';
 import RoomAmenity from '../../pages/Room/RoomAmenity';
 import AddBalance from '../AddBalance';
 import ModalLayout from '../Modals/ModalLayout';
@@ -25,13 +26,17 @@ const ShowMoreModal = ({
   modalBalanceShown,
   userMe,
   roomId,
+  toggleUploadModal,
+  modalUploadShown,
+  clickedId,
 }) => {
   useEffect(() => {
     if (
       modalAboutPlaceShown ||
       modalReviewShown ||
       modalAmenityShown ||
-      modalBalanceShown
+      modalBalanceShown ||
+      modalUploadShown
     ) {
       document.body.style.overflow = 'hidden';
     }
@@ -41,6 +46,7 @@ const ShowMoreModal = ({
     modalReviewShown,
     modalAmenityShown,
     modalBalanceShown,
+    modalUploadShown,
   ]);
 
   const onToggleClose = () => {
@@ -59,6 +65,9 @@ const ShowMoreModal = ({
     if (modalBalanceShown) {
       toggleBalanceModal(false);
     }
+    if (modalUploadShown) {
+      toggleUploadModal(false);
+    }
   };
 
   return (
@@ -67,14 +76,16 @@ const ShowMoreModal = ({
         modalAboutPlaceShown ||
         modalReviewShown ||
         modalAmenityShown ||
-        modalBalanceShown
+        modalBalanceShown ||
+        modalUploadShown
       }
       close={onToggleClose}
       title={
         (modalAboutPlaceShown && 'About this place') ||
         (modalReviewShown && 'Reviews') ||
         (modalAmenityShown && 'Amenities') ||
-        (modalBalanceShown && 'Add Balance')
+        (modalBalanceShown && 'Add Balance') ||
+        (modalUploadShown && 'Upload photos')
       }
     >
       <ModalContainer>
@@ -113,6 +124,7 @@ const ShowMoreModal = ({
                 roomId={roomId}
               />
             )}
+            {modalUploadShown && <UploadContinue clickedId={clickedId} />}
           </ModalMainSection>
         </ModalShowMain>
       </ModalContainer>

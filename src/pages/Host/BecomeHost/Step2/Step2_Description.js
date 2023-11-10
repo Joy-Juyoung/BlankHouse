@@ -6,10 +6,6 @@ const Step2_Description = () => {
     JSON.parse(localStorage.getItem('getDesctiprion')) || null;
   const [contentDesc, setContentDesc] = useState(initialStepDesctiprion);
 
-  //   const initialStepDesctiprion = localStorage.getItem('getDesctiprion');
-  // const parsedStepDesctiprion = initialStepDesctiprion ? JSON.parse(initialStepDesctiprion) : null;
-  // const [contentDesc, setContentDesc] = useState(parsedStepDesctiprion);
-
   const setFormattedContentDesc = React.useCallback(
     (text) => {
       setContentDesc(text.slice(0, 500));

@@ -28,7 +28,6 @@ import ShowSamllModal from '../../components/Show/ShowSmallModal';
 
 const TripsDetails = ({ bookingInfo }) => {
   // console.log('book', book);
-  const navigate = useNavigate();
   let printRef = useRef();
   const [modalNoServiceShown, toggleNoServiceModal] = useState(false);
 

@@ -30,7 +30,7 @@ const Step3_Price = () => {
   };
 
   useEffect(() => {
-    setPrice(parseFloat(price) || 0);
+    setPrice(parseFloat(price));
     setCleaningFee(Math.floor(parseFloat(price * 0.15)) || 0);
     setServiceFee(parseFloat(price * 0.15) || 0);
     setTaxes(parseFloat(price * 0.05) || 0);
@@ -57,7 +57,7 @@ const Step3_Price = () => {
           $
           <input
             type='number'
-            value={price || 0}
+            value={price}
             name='price'
             id='price'
             onChange={handlePrice}
