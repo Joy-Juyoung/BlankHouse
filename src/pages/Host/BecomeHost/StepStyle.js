@@ -213,6 +213,10 @@ export const StepInWrap = styled.div`
     margin: 0;
   }
 
+  h2 {
+    text-align: center;
+  }
+
   p {
     &.titleSub {
       margin: 5px 0;
@@ -272,7 +276,6 @@ export const StepTypes = styled.div`
   padding: 23px;
   cursor: pointer;
   margin-bottom: 10px;
-  /* transition: border-width 0.1s; */
 
   &:hover {
     border: 3px solid #000;
@@ -284,6 +287,28 @@ export const StepTypes = styled.div`
     border: 3px solid #000;
     background: #f7f7f7;
     padding: 20px;
+  }
+`;
+
+export const StepTypesAddress = styled.div`
+  border-bottom: 1px solid #dddd;
+  /* border-radius: 10px; */
+  padding: 23px;
+  cursor: pointer;
+  margin-bottom: 10px;
+
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  align-items: center;
+
+  label {
+    font-weight: 600;
+  }
+
+  input {
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #bbbb;
   }
 `;
 
@@ -341,8 +366,8 @@ export const StemNumber = styled.div``;
 // -----
 
 export const PhotoBox = styled.div`
-  width: 100%;
-  height: 40vh;
+  width: 400px;
+  height: 400px;
   /* margin: 0 !important; */
   /* object-fit: cover; */
   display: flex;
@@ -353,11 +378,25 @@ export const PhotoBox = styled.div`
 export const DragPhotoBox = styled.div`
   border: 2px dashed #dddd;
   width: 100%;
-  height: 40vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 20px 0;
+  padding: 80px 0;
+
+  /* padding-bottom: 20px; */
+
+  &.file {
+    border: 2px dashed #dddd;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    padding: 0;
+  }
 `;
 
 export const DragBox = styled.div`

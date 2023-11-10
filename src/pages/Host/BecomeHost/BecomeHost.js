@@ -142,7 +142,7 @@ const BecomeHost = () => {
           <img src={Logo} alt='' onClick={() => navigate('/')} />
         </LogoWrapper>
         <ButtonsWrapper>
-          <button>Questions?</button>
+          {/* <button>Questions?</button> */}
           <button onClick={() => navigate('/host/listing')}>Save & Exit</button>
         </ButtonsWrapper>
       </BecomeHeader>
@@ -156,15 +156,15 @@ const BecomeHost = () => {
         />
       )}
       {stepId === 5 && <HostStep2 />}
-      {stepId > 5 && stepId < 10 && (
+      {stepId > 5 && stepId < 9 && (
         <HostStep2Details
           stepId={stepId}
           stepValue={stepValue}
           setStepValue={setStepValue}
         />
       )}
-      {stepId === 10 && <HostStep3 />}
-      {stepId > 10 && stepId < 15 && (
+      {stepId === 9 && <HostStep3 />}
+      {stepId > 9 && stepId < 13 && (
         <HostStep3Details
           stepId={stepId}
           stepValue={stepValue}
@@ -189,9 +189,9 @@ const BecomeHost = () => {
               <ProgressBar>
                 <ProgressBarFill
                   style={{
-                    width: stepId >= 10 ? '100%' : `${progressPercentage2}%`,
+                    width: stepId >= 9 ? '100%' : `${progressPercentage2}%`,
                   }}
-                  className={stepId >= 5 && stepId < 10 && 'active'}
+                  className={stepId >= 5 && stepId < 9 && 'active'}
                 />
               </ProgressBar>
             </ProgressBarWrapper>
@@ -199,9 +199,9 @@ const BecomeHost = () => {
               <ProgressBar>
                 <ProgressBarFill
                   style={{
-                    width: stepId >= 14 ? '100%' : `${progressPercentage3}%`,
+                    width: stepId >= 9 ? '100%' : `${progressPercentage3}%`,
                   }}
-                  className={stepId >= 10 && stepId < 14 && 'active'}
+                  className={stepId >= 9 && stepId < 13 && 'active'}
                 />
               </ProgressBar>
             </ProgressBarWrapper>
@@ -211,7 +211,7 @@ const BecomeHost = () => {
               <button onClick={handleBackStep}>Back</button>
             </BackBtn>
             <NextBtn>
-              {stepId === 14 ? (
+              {stepId === 12 ? (
                 <button onClick={handleListing}> Add to Listing</button>
               ) : (
                 <button onClick={handleNextStep}>Next</button>

@@ -14,10 +14,10 @@ const HostStep3Details = ({ stepId }) => {
     <WholePageContents>
       <StepDetailMain>
         <StepDetailMainWrapper>
-          {stepId === 11 && <Step3_Price />}
-          {stepId === 12 && <Step3_Discount />}
-          {stepId === 13 && <Step3_Option />}
-          {stepId === 14 && <Step3_Check />}
+          {stepId === 10 && <Step3_Price />}
+          {/* {stepId === 11 && <Step3_Discount />} */}
+          {stepId === 11 && <Step3_Option />}
+          {stepId === 12 && <Step3_Check />}
         </StepDetailMainWrapper>
       </StepDetailMain>
     </WholePageContents>

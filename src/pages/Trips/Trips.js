@@ -37,7 +37,7 @@ const Trips = ({ setIsPageMain }) => {
   }, [dispatch]);
 
   const handleShowMore = () => {
-    setNextList(nextList + 20);
+    setNextList(nextList + 9);
   };
 
   return (

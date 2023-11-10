@@ -55,28 +55,7 @@ const HostHeader = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
         </HeaderWrapper>
 
         <HeaderWrapper className='headerRight'>
-          {/* <HeaderRightSection>
-            <Link to='/host/become'>
-              <div>
-                <button>Manage Listing</button>
-              </div>
-            </Link>
-          </HeaderRightSection>
-          <HeaderRightSection>
-            <Link to='/host/become'>
-              <div>
-                <button>Airbnb your home</button>
-              </div>
-            </Link>
-          </HeaderRightSection>
-          <HeaderRightSection>
-            <Link to='/host/become'>
-              <div>
-                <button>Airbnb your home</button>
-              </div>
-            </Link>
-          </HeaderRightSection> */}
-          {isUserLogIn && (
+          {userMe && !userMe?.error && (
             <HeaderRightSection>
               <UserSetting
                 onClick={() => {

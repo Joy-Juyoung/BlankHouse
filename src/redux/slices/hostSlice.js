@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const listingRoomAsync = createAsyncThunk(
-  'Host/listingRoom',
+  'host/listingRoom',
   async (
     {
       name,
@@ -51,8 +51,25 @@ export const listingRoomAsync = createAsyncThunk(
   }
 );
 
+export const uploadPhotosAsync = createAsyncThunk(
+  'host/uploadPhotos',
+  async ({ picture, room_pk }, thunkAPI) => {
+    try {
+      const response = await axios.post('/room/picture', {
+        picture,
+        room_pk,
+      });
+      return response.data;
+    } catch (error) {
+      toast.error('upload Photo failed.');
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 const initialState = {
   listingRoom: {},
+  uploadPic: {},
   status: 'idle',
   error: null,
   // selectRoom: {},
@@ -63,7 +80,7 @@ const hostSlice = createSlice({
   initialState,
   extraReducers: {
     [listingRoomAsync.pending]: (state) => {
-      console.log('Pending');
+      // console.log('Pending');
       state.status = 'Pending';
       state.error = null;
     },
@@ -76,10 +93,26 @@ const hostSlice = createSlice({
       state.status = 'failed';
       state.error = action.payload;
     },
+
+    [uploadPhotosAsync.pending]: (state) => {
+      // console.log('Pending');
+      state.status = 'Pending';
+      state.error = null;
+    },
+    [uploadPhotosAsync.fulfilled]: (state, { payload }) => {
+      console.log('Fetched Successfully!');
+      return { ...state, uploadPic: payload };
+    },
+    [uploadPhotosAsync.rejected]: (state, action) => {
+      console.log('Rejected!');
+      state.status = 'failed';
+      state.error = action.payload;
+    },
   },
 });
 
 export const HostListingRoom = (state) => state.host.listingRoom;
+export const uploadPicture = (state) => state.host.uploadPic;
 export const selectStatus = (state) => state.host.status;
 export const selectError = (state) => state.host.error;
 
