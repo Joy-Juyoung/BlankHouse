@@ -1,12 +1,6 @@
 import React, { useEffect } from 'react';
-import RoomAmenity from '../../pages/Room/RoomAmenity';
 import ModalLayout from '../Modals/ModalLayout';
-import {
-  ModalContainer,
-  ModalMain,
-  ModalMainSection,
-  ModalTitle,
-} from '../Modals/ModalStyle';
+import { ModalContainer, ModalMainSection } from '../Modals/ModalStyle';
 import {
   ModalShowMain,
   Sharebox,
@@ -16,23 +10,34 @@ import {
   ShowShareWrap,
   ShowWrap,
 } from './ShowModalStyle';
-import ShowMoreReview from './ShowMoreReview';
 import StarIcon from '@mui/icons-material/Star';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import EmailIcon from '@mui/icons-material/Email';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import NoService from '../NoService';
 // import ShowMoreModalLayout from '../Modals/ShowMoreModalLayout';
 
 const ShowSamllModal = ({
   roomInfo,
-
   toggleShareModal,
   modalShareShown,
+  toggleNoServiceModal,
+  modalNoServiceShown,
 }) => {
+  useEffect(() => {
+    if (modalShareShown || modalNoServiceShown) {
+      document.body.style.overflow = 'hidden';
+    }
+  }, [modalShareShown, modalNoServiceShown]);
+
   const onToggleClose = () => {
     if (modalShareShown) {
       toggleShareModal(false);
+      document.body.style.overflow = 'unset';
+    }
+    if (modalNoServiceShown) {
+      toggleNoServiceModal(false);
     }
   };
 
@@ -56,9 +61,11 @@ const ShowSamllModal = ({
 
   return (
     <ModalLayout
-      shown={modalShareShown}
+      shown={modalShareShown || modalNoServiceShown}
+      // shown={onToggleOpen}
       close={onToggleClose}
       title={modalShareShown && 'Share'}
+      modalNoServiceShown={modalNoServiceShown}
     >
       <ModalContainer className='small'>
         <ModalShowMain className='small'>
@@ -107,6 +114,7 @@ const ShowSamllModal = ({
                 </Sharebox>
               </>
             )}
+            {modalNoServiceShown && <NoService />}
           </ModalMainSection>
         </ModalShowMain>
       </ModalContainer>

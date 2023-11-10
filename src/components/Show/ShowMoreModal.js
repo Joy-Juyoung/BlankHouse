@@ -26,7 +26,25 @@ const ShowMoreModal = ({
   userMe,
   roomId,
 }) => {
+  useEffect(() => {
+    if (
+      modalAboutPlaceShown ||
+      modalReviewShown ||
+      modalAmenityShown ||
+      modalBalanceShown
+    ) {
+      document.body.style.overflow = 'hidden';
+    }
+    // document.body.style.overflow = 'unset';
+  }, [
+    modalAboutPlaceShown,
+    modalReviewShown,
+    modalAmenityShown,
+    modalBalanceShown,
+  ]);
+
   const onToggleClose = () => {
+    document.body.style.overflow = 'unset';
     if (modalAboutPlaceShown) {
       toggleAboutPlaceModal(false);
     }

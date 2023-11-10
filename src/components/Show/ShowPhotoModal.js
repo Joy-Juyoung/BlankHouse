@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   ModalCloseBtn,
   ModalPhotos,
@@ -21,6 +21,12 @@ const ShowPhotoModal = ({
   roomId,
   isPhotoFav,
 }) => {
+  useEffect(() => {
+    if (modalPhotoShown) {
+      document.body.style.overflow = 'hidden';
+    }
+  }, [modalPhotoShown]);
+
   return (
     <WholePageModal
       shown={modalPhotoShown}

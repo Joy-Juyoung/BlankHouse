@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 
 export const ModalContainer = styled.div`
-  /* max-width: 750px; */
   max-width: 1030px;
-  /* max-width: 600px; */
-  /* max-height: 650px; */
-  /* margin: 0 auto; */
   max-height: 780px;
   z-index: 6;
 
@@ -39,6 +35,11 @@ export const ModalTop = styled.div`
   border-bottom: 1px solid lightgray;
   padding: 0 25px;
   height: 60px;
+
+  &.notice {
+    border: none;
+    /* padding: 0 20px; */
+  }
 `;
 
 export const ModalTitle = styled.div`
