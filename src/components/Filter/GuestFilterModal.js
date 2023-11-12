@@ -26,10 +26,6 @@ import {
   RoomBedWrap,
   RoomBedWrapper,
 } from '../Modals/ModalStyle';
-// import HomeIcon from '@mui/icons-material/Home';
-// import DomainIcon from '@mui/icons-material/Domain';
-// import GiteIcon from '@mui/icons-material/Gite';
-// import LocationCityIcon from '@mui/icons-material/LocationCity';
 import FilterPriceRage from './FilterPriceRage';
 import { useDispatch } from 'react-redux';
 import { getFilterRoomsAsync } from '../../redux/slices/roomSlice';
@@ -130,6 +126,8 @@ const GuestFilterModal = ({
     }
   };
 
+  // console.log('maximumPrice', maximumPrice);
+
   return (
     <Modal
       shown={modalFilterShown}
@@ -175,11 +173,9 @@ const GuestFilterModal = ({
                   <PriceCurrency>$</PriceCurrency>
                   <PriceInput
                     type='number'
-                    value={minimumPrice?.toLocaleString('en-US', {
-                      style: 'decimal',
-                    })}
+                    value={minimumPrice}
                     name='min'
-                    placeholder='0'
+                    // placeholder='0'
                     min='0'
                     max='2000'
                     // onChange={(e) => setMinimumPrice(e.target.value)}
@@ -204,11 +200,12 @@ const GuestFilterModal = ({
                   <PriceCurrency>$</PriceCurrency>
                   <PriceInput
                     type='number'
-                    value={maximumPrice?.toLocaleString('en-US', {
-                      style: 'decimal',
-                    })}
+                    // value={maximumPrice?.toLocaleString('en-US', {
+                    //   style: 'decimal',
+                    // })}
+                    value={maximumPrice}
                     name='max'
-                    placeholder='2,000'
+                    // placeholder='2,000'
                     min='0'
                     max='2000'
                     // onChange={(e) => setMaximumPrice(e.target.value)}

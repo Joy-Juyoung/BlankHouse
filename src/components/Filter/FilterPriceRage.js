@@ -62,9 +62,9 @@ const FilterPriceRage = ({
     setMaximumPrice(newValue[1]);
   };
 
-  useEffect(() => {
-    setValue([Number(minimumPrice), Number(maximumPrice)]);
-  }, [minimumPrice, maximumPrice]);
+  // useEffect(() => {
+  //   setValue([Number(minimumPrice), Number(maximumPrice)]);
+  // }, [minimumPrice, maximumPrice]);
 
   // console.log('value', value);
 
