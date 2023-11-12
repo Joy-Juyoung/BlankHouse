@@ -20,13 +20,14 @@ const SideDateRange = ({
   const [bookedDate, setBookedDate] = useState([]);
   const [bookedCheckIn, setBookedCheckIn] = useState([]);
   const [bookedCheckOut, setBookedCheckOut] = useState([]);
-  // const [year, month, day] = dateString.split("-").map(Number);
-  // const date = new Date(year, month - 1, day);
+  const today = new Date(); // get today's date
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1); // Add 1 to today's date and set it to tomorrow
   const dateObjects = dateList?.map((dateString) => new Date(dateString));
 
   const [selectedDateRange, setSelectedDateRange] = useState([
     {
-      startDate: new Date() || new Date(checkInDate),
+      startDate: addDays(new Date(), 1) || new Date(checkInDate),
       endDate: addDays(new Date(), 5) || new Date(checkOutDate),
       key: 'selection',
     },
@@ -96,7 +97,7 @@ const SideDateRange = ({
         months={2}
         ranges={selectedDateRange}
         direction='horizontal'
-        minDate={new Date()}
+        minDate={tomorrow}
         disabledDates={dateObjects}
       />
     </div>

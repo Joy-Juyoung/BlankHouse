@@ -112,12 +112,6 @@ const SideDateDropdown = ({
         </DateDropBtn>
       </SearchDateDropdown>
       <SearchDropBackDrop onClick={() => setIsSideDate(false)} />
-      {/* {isSideCheckIn && (
-        <SearchDropBackDrop onClick={() => setIsSideCheckIn(false)} />
-      )}
-      {isSideCheckOut && (
-        <SearchDropBackDrop onClick={() => setIsSideCheckOut(false)} />
-      )} */}
     </>
   );
 };

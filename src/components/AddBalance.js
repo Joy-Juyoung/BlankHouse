@@ -134,6 +134,7 @@ const AddBalance = ({
         );
         toggleBalanceModal(false);
         setIsOverAmount(false);
+        document.body.style.overflow = 'unset';
       } else if (parseFloat(balance) > 5000) {
         setIsOverAmount(true);
       } else {
@@ -147,6 +148,7 @@ const AddBalance = ({
       );
       toggleBalanceModal(false);
       setIsOverAmount(false);
+      document.body.style.overflow = 'unset';
     }
   };
 

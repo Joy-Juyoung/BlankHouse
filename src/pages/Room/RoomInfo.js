@@ -65,6 +65,7 @@ const RoomInfo = ({
   let perNight =
     new Date(checkOutDate).getTime() - new Date(checkInDate).getTime();
   let daysDifference = Math.ceil(perNight / (1000 * 60 * 60 * 24));
+  // console.log('checkInDate', checkInDate);
 
   return (
     <RoomDetailSection>
