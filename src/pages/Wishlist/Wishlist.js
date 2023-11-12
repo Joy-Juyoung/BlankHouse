@@ -36,7 +36,7 @@ const Wishlist = ({ setIsPageMain, userMe }) => {
           <RoomTopHeader>Wishlist</RoomTopHeader>
         </RoomTopWrap>
         <MainMid>
-          {wishListForRoom?.length === 0 ? (
+          {wishListForRoom?.length === 0 || !wishListForRoom ? (
             <EmptyReview>
               <FavoriteBorderIcon sx={{ fontSize: 48 }} color='disabled' />
               <p>Your wish list is empty.</p>
