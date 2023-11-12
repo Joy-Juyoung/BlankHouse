@@ -11,19 +11,18 @@ const DateRange = ({
   setCheckOutDate,
   roomInfo,
 }) => {
+  const today = new Date(); // get today's date
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1); // Add 1 to today's date and set it to tomorrow
+
   const [selectedDateRange, setSelectedDateRange] = useState([
     {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 7),
+      startDate: addDays(new Date(), 1),
+      endDate: addDays(new Date(), 3),
       key: 'selection',
     },
   ]);
-  const disabledDates = [
-    // addDays(new Date(), 10),
-    // addDays(new Date(), 8),
-    // addDays(new Date(), 22),
-    // addDays(new Date(), 20),
-  ];
+  const disabledDates = [];
 
   useEffect(() => {
     setCheckInDate(
@@ -43,9 +42,8 @@ const DateRange = ({
         moveRangeOnFirstSelection={false}
         months={2}
         ranges={selectedDateRange}
-        // rangeColors='#ffae00 !important'
         direction='horizontal'
-        minDate={new Date()}
+        minDate={tomorrow}
         disabledDates={disabledDates}
       />
     </div>
