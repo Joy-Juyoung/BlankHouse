@@ -31,10 +31,6 @@ const DateRange = ({
     setCheckOutDate(selectedDateRange[0]?.endDate?.toLocaleDateString('en-CA'));
   }, [selectedDateRange]);
 
-  // console.log('item', Number(checkOutDate - checkInDate));
-  // console.log('checkInDate', checkInDate);
-  // console.log('checkOutDate', checkOutDate);
-
   return (
     <div>
       <DateRangePicker
