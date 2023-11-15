@@ -67,6 +67,21 @@ export const uploadPhotosAsync = createAsyncThunk(
   }
 );
 
+export const deleteRoomAsync = createAsyncThunk(
+  'host/deleteRoom',
+  async ({ room_pk }, thunkAPI) => {
+    try {
+      const response = await axios.delete('/rooms', {
+        room_pk,
+      });
+      return response.data;
+    } catch (error) {
+      toast.error('upload Photo failed.');
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 const initialState = {
   listingRoom: {},
   uploadPic: {},
