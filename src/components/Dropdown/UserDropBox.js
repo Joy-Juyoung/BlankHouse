@@ -76,11 +76,13 @@ const UserDropBox = ({
   isUserLogIn,
   setIsUserLogIn,
   isHelp,
+  modalLogShown,
+  toggleLogModal,
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
   // let currentPath = location.pathname;
-  const [modalLogShown, toggleLogModal] = useState(false);
+  // const [modalLogShown, toggleLogModal] = useState(false);
   const [modalSignupShown, toggleSignupModal] = useState(false);
 
   const userLogout = useSelector(logoutUser);

@@ -16,6 +16,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NoService from '../NoService';
+import NoUser from '../NoUser';
 // import ShowMoreModalLayout from '../Modals/ShowMoreModalLayout';
 
 const ShowSamllModal = ({
@@ -24,12 +25,14 @@ const ShowSamllModal = ({
   modalShareShown,
   toggleNoServiceModal,
   modalNoServiceShown,
+  toggleNoUser,
+  modalNoUser,
 }) => {
   useEffect(() => {
     if (modalShareShown || modalNoServiceShown) {
       document.body.style.overflow = 'hidden';
     }
-  }, [modalShareShown, modalNoServiceShown]);
+  }, [modalShareShown, modalNoServiceShown, modalNoUser]);
 
   const onToggleClose = () => {
     if (modalShareShown) {
@@ -38,6 +41,9 @@ const ShowSamllModal = ({
     }
     if (modalNoServiceShown) {
       toggleNoServiceModal(false);
+    }
+    if (modalNoUser) {
+      toggleNoUser(false);
     }
   };
 
@@ -61,7 +67,7 @@ const ShowSamllModal = ({
 
   return (
     <ModalLayout
-      shown={modalShareShown || modalNoServiceShown}
+      shown={modalShareShown || modalNoServiceShown || modalNoUser}
       // shown={onToggleOpen}
       close={onToggleClose}
       title={modalShareShown && 'Share'}
@@ -69,7 +75,10 @@ const ShowSamllModal = ({
     >
       <ModalContainer className='small'>
         <ModalShowMain className='small'>
-          <ModalMainSection>
+          <ModalMainSection className={modalNoUser && 's'}>
+            {modalNoUser && (
+              <NoUser toggleNoUser={toggleNoUser} modalNoUser={modalNoUser} />
+            )}
             {modalShareShown && (
               <>
                 <ShowShareWrap>
