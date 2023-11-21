@@ -4,6 +4,7 @@ import RoomAmenity from '../../pages/Room/RoomAmenity';
 import AddBalance from '../AddBalance';
 import ModalLayout from '../Modals/ModalLayout';
 import { ModalContainer, ModalMainSection } from '../Modals/ModalStyle';
+import NoUser from '../NoUser';
 import { ModalShowMain, ShowWrap } from './ShowModalStyle';
 import ShowMoreReview from './ShowMoreReview';
 

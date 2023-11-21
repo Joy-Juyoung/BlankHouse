@@ -33,8 +33,8 @@ export const ModalTop = styled.div`
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid lightgray;
-  padding: 0 25px;
-  height: 60px;
+  padding: 15px 25px;
+  /* height: 60px; */
 
   &.notice {
     border: none;
@@ -110,6 +110,10 @@ export const ModalMainSection = styled.div`
   &.noBot {
     border-bottom: none;
   } */
+
+  &.s {
+    padding: 10px 0;
+  }
 `;
 
 export const ModalMainTitle = styled.h1`

@@ -24,26 +24,33 @@ import LogInModal from './LogInModal';
 
 import { Link, useNavigate } from 'react-router-dom';
 import UserDropBox from '../Dropdown/UserDropBox';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  getMe,
-  getUserInfoAsync,
-  logoutAsync,
-  logoutUser,
-} from '../../redux/slices/userSlice';
+
 import Avatar from '../Avatar/Avatar';
+import ShowSmallModal from '../Show/ShowSmallModal';
 
 const HeaderContens = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
-  const navigation = useNavigate();
+  const navigate = useNavigate();
   const dropdownRef = useRef(null);
   const [modalSearchShown, toggleSearchModal] = useState(false);
   const [isUserDrop, setIsUserDrop] = useState(false);
+
+  const [modalNoUser, toggleNoUser] = useState(false);
+  const [modalLogShown, toggleLogModal] = useState(false);
 
   console.log('isUserLogIn', isUserLogIn);
   console.log('userMe', userMe);
 
   window.onbeforeunload = function () {
     localStorage.clear();
+  };
+
+  const handleNoUser = () => {
+    if (isUserLogIn || JSON.parse(localStorage.getItem('user'))) {
+      toggleNoUser(false);
+      navigate('/host/become?step1');
+    } else {
+      toggleNoUser(true);
+    }
   };
 
   return (
@@ -91,33 +98,49 @@ const HeaderContens = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
       </HeaderWrapper>
 
       <HeaderWrapper className='headerRight'>
-        <HeaderRightSection>
-          <Link to='/host/become?step1'>
-            <ModeSetting>
-              <SwitchBtn>Airbnb your home</SwitchBtn>
-            </ModeSetting>
-          </Link>
-        </HeaderRightSection>
-        <HeaderRightSection>
-          {/* {(isUserLogIn || JSON.parse(localStorage.getItem('user'))) && ( */}
-          {isUserLogIn || JSON.parse(localStorage.getItem('user')) ? (
-            <UserSetting
-              onClick={() => {
-                setIsUserDrop(!isUserDrop);
-                toggleSearchModal(false);
-              }}
-              ref={dropdownRef}
-            >
-              <MenuIcon fontSize='medium' />
-              <LogBtn>
-                <span>
-                  <Avatar
-                    initials={userMe?.username?.substring(0, 1).toUpperCase()}
-                  />
-                </span>
-              </LogBtn>
-            </UserSetting>
-          ) : (
+        {/* <HeaderRightSection>
+          <ModeSetting onClick={handleNoUser}>
+            <SwitchBtn>Airbnb your home</SwitchBtn>
+          </ModeSetting> */}
+
+        {/* <ShowSmallModal
+            toggleNoUser={toggleNoUser}
+            modalNoUser={modalNoUser}
+            userMe={userMe}
+            modalLogShown={modalLogShown}
+            toggleLogModal={toggleLogModal}
+          /> */}
+        {/* </HeaderRightSection>
+        <HeaderRightSection> */}
+        {/* {(isUserLogIn || JSON.parse(localStorage.getItem('user'))) && ( */}
+        {isUserLogIn || JSON.parse(localStorage.getItem('user')) ? (
+          <>
+            <HeaderRightSection>
+              <ModeSetting onClick={handleNoUser}>
+                <SwitchBtn>Airbnb your home</SwitchBtn>
+              </ModeSetting>
+            </HeaderRightSection>
+            <HeaderRightSection>
+              <UserSetting
+                onClick={() => {
+                  setIsUserDrop(!isUserDrop);
+                  toggleSearchModal(false);
+                }}
+                ref={dropdownRef}
+              >
+                <MenuIcon fontSize='medium' />
+                <LogBtn>
+                  <span>
+                    <Avatar
+                      initials={userMe?.username?.substring(0, 1).toUpperCase()}
+                    />
+                  </span>
+                </LogBtn>
+              </UserSetting>
+            </HeaderRightSection>
+          </>
+        ) : (
+          <HeaderRightSection>
             <UserSetting
               onClick={() => {
                 setIsUserDrop(!isUserDrop);
@@ -129,9 +152,11 @@ const HeaderContens = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
               <LogBtn>
                 <AccountCircleIcon fontSize='medium' />
               </LogBtn>
-            </UserSetting>
-          )}
-        </HeaderRightSection>
+            </UserSetting>{' '}
+          </HeaderRightSection>
+        )}
+
+        {/* </HeaderRightSection> */}
         {isUserDrop && (
           <>
             <UserDropBox
@@ -141,6 +166,8 @@ const HeaderContens = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
               userMe={userMe}
               isUserLogIn={isUserLogIn}
               setIsUserLogIn={setIsUserLogIn}
+              modalLogShown={modalLogShown}
+              toggleLogModal={toggleLogModal}
             />
           </>
         )}
