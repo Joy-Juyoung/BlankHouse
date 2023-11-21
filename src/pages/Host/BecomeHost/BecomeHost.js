@@ -73,15 +73,52 @@ const BecomeHost = () => {
     }
   };
 
+  // useEffect(() => {
+  //   localStorage.setItem('stepId', stepId);
+  // }, [stepId]);
+
   useEffect(() => {
-    if (stepId < 5) {
-      navigate('/host/become?step1');
-    }
-    if (stepId >= 5) {
-      navigate('/host/become?step2');
-    }
-    if (stepId >= 10) {
-      navigate('/host/become?step3');
+    localStorage.setItem('stepId', stepId);
+    switch (stepId) {
+      case 1:
+        navigate('/host/become?step1&category');
+        break;
+      case 2:
+        navigate('/host/become?step1&type');
+        break;
+      case 3:
+        navigate('/host/become?step1&address');
+        break;
+      case 4:
+        navigate('/host/become?step1&num');
+        break;
+      case 5:
+        navigate('/host/become?step2');
+        break;
+      case 6:
+        navigate('/host/become?step2&amenity');
+        break;
+      case 7:
+        navigate('/host/become?step2&title');
+        break;
+      case 8:
+        navigate('/host/become?step2&description');
+        break;
+      case 9:
+        navigate('/host/become?step3');
+        break;
+      case 10:
+        navigate('/host/become?step3&price');
+        break;
+      case 11:
+        navigate('/host/become?step3&pet');
+        break;
+      case 12:
+        navigate('/host/become?step3&review');
+        break;
+
+      default:
+        navigate('/host/become?step1');
     }
   }, [stepId]);
   // console.log('stepId', stepId);
@@ -112,6 +149,7 @@ const BecomeHost = () => {
       .then(() => {
         toast.success('Listing success.');
         navigate('/host/listing');
+        localStorage.removeItem('stepId');
 
         localStorage.removeItem('getCategory');
         localStorage.removeItem('getType');
