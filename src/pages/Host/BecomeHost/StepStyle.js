@@ -35,6 +35,18 @@ export const ButtonsWrapper = styled.div`
     padding: 10px;
     margin-left: 10px;
     cursor: pointer;
+    font-weight: 600;
+
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin-left: 5px;
+    }
+
+    &.exit {
+      padding: 10px 15px;
+    }
   }
 `;
 
