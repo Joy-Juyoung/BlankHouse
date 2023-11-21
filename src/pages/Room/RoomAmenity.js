@@ -11,6 +11,7 @@ import IronIcon from '@mui/icons-material/Iron';
 import DoorFrontIcon from '@mui/icons-material/DoorFront';
 import PoolIcon from '@mui/icons-material/Pool';
 import OutdoorGrillIcon from '@mui/icons-material/OutdoorGrill';
+import LivingIcon from '@mui/icons-material/Living';
 import { Skeleton } from '@mui/material';
 
 const RoomAmenity = ({ roomInfo, loading, modalAmenityShown }) => {
