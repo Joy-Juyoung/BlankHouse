@@ -53,12 +53,22 @@ export const listingRoomAsync = createAsyncThunk(
 
 export const uploadPhotosAsync = createAsyncThunk(
   'host/uploadPhotos',
-  async ({ picture, room_pk }, thunkAPI) => {
+  async ({ picture, description, room_pk }, thunkAPI) => {
     try {
-      const response = await axios.post('/room/picture', {
-        picture,
-        room_pk,
-      });
+      const response = await axios.post(
+        '/photos/room/picture',
+        {
+          picture,
+          description,
+          room_pk,
+        },
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+          withCredentials: true,
+        }
+      );
       return response.data;
     } catch (error) {
       toast.error('upload Photo failed.');

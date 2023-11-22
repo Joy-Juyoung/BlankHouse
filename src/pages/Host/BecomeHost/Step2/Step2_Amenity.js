@@ -41,13 +41,13 @@ const Step2_Amenity = () => {
     localStorage.setItem('getAmenity', JSON.stringify(stepAmenity));
   }, [stepAmenity]);
 
-  console.log('stepAmenity', stepAmenity);
+  // console.log('stepAmenity', stepAmenity);
 
   useEffect(() => {
     dispatch(getAllAmenityAsync());
   }, [dispatch]);
 
-  console.log('roomAmenity', roomAmenity);
+  // console.log('roomAmenity', roomAmenity);
   // It should be selected multiple
 
   return (

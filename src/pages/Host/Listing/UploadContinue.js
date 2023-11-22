@@ -39,27 +39,50 @@ const UploadContinue = ({ clickedId }) => {
   const dispatch = useDispatch();
 
   // const handleChange = (e) => {
-  //   console.log(e.target.files);
+  //   console.log(URL.createObjectURL(e.target.files[0]));
   //   setFile(URL.createObjectURL(e.target.files[0]));
   // };
-  function handleChange(e) {
-    console.log(e.target.files);
-    setFile(URL.createObjectURL(e.target.files[0]));
-  }
+
+  // const handleChange = (e) => {
+  //   const selectedFile = e.target.files[0];
+  //   if (selectedFile) {
+  //     const objectURL = URL.createObjectURL(selectedFile);
+  //     console.log(objectURL);
+  //     setFile(objectURL);
+  //   }
+  // };
+  const handleChange = (e) => {
+    const selectedFile = e.target.files[0];
+    // if (selectedFile) {
+    //   const objectURL = URL.createObjectURL(selectedFile);
+    //   console.log(objectURL);
+
+    //   // // Extract the URL without the "blob:" prefix
+    //   // const urlWithoutBlob = objectURL.replace(/^blob:/, '');
+
+    //   // console.log(urlWithoutBlob); // This will log the URL without "blob:"
+
+    //   // setFile(urlWithoutBlob);
+
+    //   setFile(objectURL);
+    // }
+    setFile(e.target.files[0]);
+  };
 
   const handleListing = (e) => {
     e.preventDefault();
     dispatch(
       uploadPhotosAsync({
-        picture: URL.createObjectURL(file),
+        // picture: URL.createObjectURL(file),
+        picture: file,
         room_pk: clickedId,
       })
-    )
-      .then(() => {})
-      .catch((error) => {
-        console.error(error);
-        toast.error('Upload photos failed.');
-      });
+    );
+    // .then(() => {})
+    // .catch((error) => {
+    //   console.error(error);
+    //   toast.error('Upload photos failed.');
+    // });
   };
 
   return (
