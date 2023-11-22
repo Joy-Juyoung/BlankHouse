@@ -36,9 +36,9 @@ const Step1_Location = () => {
     localStorage.setItem('getCountry', JSON.stringify(stepCountry));
   }, [stepAddress, stepCity, stepCountry]);
 
-  console.log('stepAddress', stepAddress);
-  console.log('stepCity', stepCity);
-  console.log('stepCountry', stepCountry);
+  // console.log('stepAddress', stepAddress);
+  // console.log('stepCity', stepCity);
+  // console.log('stepCountry', stepCountry);
 
   return (
     <StepInWrap>
