@@ -94,7 +94,7 @@ const UploadContinue = ({ clickedId }) => {
           <DragPhotoBox className='file'>
             <PhotoBox>
               {/* Should add multiple photo */}
-              <img src={file} alt='' />
+              <img src={URL.createObjectURL(file)} alt='' />
             </PhotoBox>
           </DragPhotoBox>
         ) : (
