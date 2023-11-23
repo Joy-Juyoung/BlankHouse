@@ -78,11 +78,6 @@ const UploadContinue = ({ clickedId }) => {
         room_pk: clickedId,
       })
     );
-    // .then(() => {})
-    // .catch((error) => {
-    //   console.error(error);
-    //   toast.error('Upload photos failed.');
-    // });
   };
 
   return (
