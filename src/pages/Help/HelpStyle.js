@@ -22,10 +22,10 @@ export const HelpLogoWrapper = styled.div`
   /* position: relative; */
   display: flex;
   align-items: center;
-  cursor: pointer;
 
   img {
     height: 40%;
+    cursor: pointer;
   }
 
   span {
@@ -118,7 +118,7 @@ export const HelpSearchWrapper = styled.div`
 export const HelpMainNav = styled.div`
   display: flex;
   align-items: center;
-  margin: 80px 0;
+  margin: 80px 0 20px 0;
   /* padding: 15px 0; */
   border-bottom: 1px solid #bbbb;
 `;
@@ -131,34 +131,29 @@ export const HelpNavWrapper = styled.div`
 
 export const HelpNav = styled.div`
   margin-right: 20px;
-  padding: 15px 0;
+  padding: 10px;
   font-size: 14px;
   cursor: pointer;
 
   &.active {
     border-bottom: 3px solid #000;
-    padding: 15px 0;
     font-weight: 600;
   }
 `;
 
-export const HelpMainContents = styled.div`
-  /* display: flex;
-  flex-direction: column;
-  align-items: center; */
-`;
+export const HelpMainContents = styled.div``;
 
 export const HelpContentsTitle = styled.h2``;
 
 export const HelpContentsWrapper = styled.div`
-  /* display: gird;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 20px; */
-
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 20px;
   align-items: center;
+
+  &.qna {
+    display: flex;
+  }
 `;
 
 export const HelpContentsList = styled.div`
@@ -174,5 +169,39 @@ export const HelpContentsList = styled.div`
   span {
     color: gray;
     font-size: 14px;
+  }
+`;
+
+export const HelpMoreBtn = styled.div`
+  margin-top: 40px;
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    color: #fff;
+    background: #000;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    svg {
+      display: flex;
+      align-items: center;
+      margin-right: 5px;
+    }
+  }
+`;
+
+export const HelpQnaList = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px auto 20px;
+  color: #bdbdbd;
+
+  p {
   }
 `;

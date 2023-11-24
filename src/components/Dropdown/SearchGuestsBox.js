@@ -148,7 +148,7 @@ const SearchGuestsBox = ({
               </button>
             </GuestsCount>
           </li>
-          <li>
+          {/* <li>
             <div>
               <p>Infants</p>
               <span className='range'>Under 2</span>
@@ -171,7 +171,7 @@ const SearchGuestsBox = ({
                 <AddIcon sx={{ fontSize: '18px' }} />
               </button>
             </GuestsCount>
-          </li>
+          </li> */}
           <li className='last'>
             <div>
               <p>Pets</p>
