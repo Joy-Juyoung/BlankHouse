@@ -56,3 +56,12 @@ export const FAQList = [
       'Let’s take care of your cancellation quickly: If it’s a matter of a change of plans—head to Trips to cancel the reservation. You’ll be shown the refund amount as you go through the cancellation process. If you’ve booked a place where there’s a more strict cancellation policy, you could also consider changing your dates instead. Just put in a change request to the Host and any difference in price will be shown before you confirm the request. You could also message the Host as well, to let them know more about your circumstance and why you’re changing the reservation.',
   },
 ];
+
+export const KindOfQnA = [
+  { id: 1, name: 'Payment' },
+  { id: 2, name: 'Refund' },
+  { id: 3, name: 'Room' },
+  { id: 4, name: 'Host' },
+  { id: 5, name: 'Booking' },
+  { id: 6, name: 'Others' },
+];
