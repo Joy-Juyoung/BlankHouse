@@ -17,14 +17,14 @@ const EmptyContainer = styled.div`
 
   /* padding: 20px; */ /* margin: 0; */
   img {
-    width: 350px;
-    height: 350px;
+    width: 300px;
+    height: 300px;
     /* margin-top: -80px; */
     /* padding: 0; */
     margin-bottom: 10px;
 
     background: #f5f5f5;
-    transform: rotate(15deg);
+    transform: rotate(10deg);
   }
 `;
 
@@ -32,7 +32,7 @@ const NoService = () => {
   return (
     <EmptyContainer>
       {/* <EmptyWrap> */}
-      <img src={Coming} alt='Smile' />
+      <img src={Coming} alt='soon' />
       {/* </EmptyWrap> */}
       {/* <h1>Sorry, This Service Is Coming Soon!</h1> */}
     </EmptyContainer>

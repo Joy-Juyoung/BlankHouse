@@ -37,8 +37,8 @@ const HelpCenterHeader = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
 
   return (
     <>
-      <HelpLogoWrapper onClick={() => navigate('/')}>
-        <img src={Logo} alt='' />
+      <HelpLogoWrapper>
+        <img src={Logo} alt='' onClick={() => window.open('/', '_blank')} />
         <span>Help Centre</span>
       </HelpLogoWrapper>
       <HeaderRightSection>
