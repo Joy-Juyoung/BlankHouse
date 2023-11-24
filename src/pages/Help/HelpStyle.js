@@ -118,7 +118,7 @@ export const HelpSearchWrapper = styled.div`
 export const HelpMainNav = styled.div`
   display: flex;
   align-items: center;
-  margin: 80px 0 20px 0;
+  margin: 80px 0 40px 0;
   /* padding: 15px 0; */
   border-bottom: 1px solid #bbbb;
 `;
@@ -152,7 +152,8 @@ export const HelpContentsWrapper = styled.div`
   align-items: center;
 
   &.qna {
-    display: flex;
+    display: block;
+    width: 100%;
   }
 `;
 
@@ -164,6 +165,7 @@ export const HelpContentsList = styled.div`
   p {
     text-decoration: underline;
     font-weight: 600;
+    cursor: pointer;
   }
 
   span {
@@ -179,7 +181,7 @@ export const HelpMoreBtn = styled.div`
 
   button {
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 10px 15px;
     color: #fff;
     background: #000;
@@ -204,4 +206,32 @@ export const HelpQnaList = styled.div`
 
   p {
   }
+`;
+
+export const HelpTable = styled.table`
+  width: 100%;
+  font-size: 14px;
+  text-align: center;
+`;
+
+export const HelpThead = styled.thead``;
+
+export const HelpTr = styled.tr`
+  &.qnaList {
+    cursor: pointer;
+  }
+`;
+
+export const HelpTh = styled.th`
+  background: #f7f7f7;
+  border-radius: 10px;
+  font-size: 13px;
+  padding: 10px;
+`;
+
+export const HelpTbody = styled.tbody``;
+
+export const HelpTd = styled.td`
+  border-bottom: 1px solid #eeee;
+  padding: 10px;
 `;
