@@ -91,7 +91,7 @@ const Listing = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
             <ListingSearch>
               <input
                 type='text'
-                placeholder='Search listings'
+                placeholder='Search listings by house name'
                 onChange={(e) => setSearchedValue(e.target.value)}
               />
               <button onClick={() => navigate('/host/become?step1')}>
