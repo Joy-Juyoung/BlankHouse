@@ -19,7 +19,13 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Avatar from '../../components/Avatar/Avatar';
 import UserDropBox from '../../components/Dropdown/UserDropBox';
 
-const HelpCenterHeader = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
+const HelpCenterHeader = ({
+  userMe,
+  isUserLogIn,
+  setIsUserLogIn,
+  modalLogShown,
+  toggleLogModal,
+}) => {
   const navigate = useNavigate();
   const location = useLocation();
   const dropdownRef = useRef(null);
@@ -47,7 +53,7 @@ const HelpCenterHeader = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
           <UserSetting
             onClick={() => {
               setIsUserDrop(!isUserDrop);
-              toggleSearchModal(false);
+              // toggleSearchModal(false);
             }}
             ref={dropdownRef}
           >
@@ -85,6 +91,8 @@ const HelpCenterHeader = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
             isUserLogIn={isUserLogIn}
             setIsUserLogIn={setIsUserLogIn}
             isHelp={isHelp}
+            modalLogShown={modalLogShown}
+            toggleLogModal={toggleLogModal}
           />
         </>
       )}

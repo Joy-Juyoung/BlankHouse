@@ -26,6 +26,7 @@ import Balances from './Account/Balances';
 const GuestMode = () => {
   const [isPageMain, setIsPageMain] = useState(false);
   const [isUserLogIn, setIsUserLogIn] = useState(false);
+  const [modalLogShown, toggleLogModal] = useState(false);
 
   // const [searchedValue, setSearchedValue] = useState('');
 
@@ -67,6 +68,8 @@ const GuestMode = () => {
                 isUserLogIn={isUserLogIn}
                 setIsUserLogIn={setIsUserLogIn}
                 setIsPageMain={setIsPageMain}
+                modalLogShown={modalLogShown}
+                toggleLogModal={toggleLogModal}
               />
               <GotoTopButton />
               <Footer isPageMain={isPageMain} />
@@ -78,6 +81,8 @@ const GuestMode = () => {
                 userMe={userMe}
                 isUserLogIn={isUserLogIn}
                 setIsUserLogIn={setIsUserLogIn}
+                modalLogShown={modalLogShown}
+                toggleLogModal={toggleLogModal}
                 // searchedValue={searchedValue}
               />
               <Routes>
