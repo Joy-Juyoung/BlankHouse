@@ -2,7 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HelpCenter from './Help/HelpCenter';
 
-const HelpMode = ({ userMe, isUserLogIn, setIsUserLogIn, setIsPageMain }) => {
+const HelpMode = ({
+  userMe,
+  isUserLogIn,
+  setIsUserLogIn,
+  setIsPageMain,
+  modalLogShown,
+  toggleLogModal,
+}) => {
   return (
     <>
       <Routes>
@@ -14,6 +21,8 @@ const HelpMode = ({ userMe, isUserLogIn, setIsUserLogIn, setIsPageMain }) => {
               isUserLogIn={isUserLogIn}
               setIsUserLogIn={setIsUserLogIn}
               setIsPageMain={setIsPageMain}
+              modalLogShown={modalLogShown}
+              toggleLogModal={toggleLogModal}
             />
           }
           exact={true}

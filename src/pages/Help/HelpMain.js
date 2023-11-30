@@ -115,32 +115,42 @@ const HelpMain = ({ userMe }) => {
       )}
       {navQnA && (
         <HelpMainContents>
-          <HelpContentsWrapper className='qna'>
-            <p
-              style={{
-                fontSize: '11px',
-                padding: '0 10px',
-              }}
-            >
-              Total{' '}
-              {ListOfQnA !== null &&
-                ListOfQnA?.filter((myQnA) => myQnA?.writer?.pk === userMe?.id)
-                  ?.length}
-            </p>
-            <HelpTable>
-              <HelpThead>
-                <HelpTr>
-                  <HelpTh>ID</HelpTh>
-                  <HelpTh>Kind</HelpTh>
-                  <HelpTh>User</HelpTh>
-                  <HelpTh>Status</HelpTh>
-                  <HelpTh>Updated_at</HelpTh>
-                </HelpTr>
-              </HelpThead>
-
-              <HelpTbody>
-                {ListOfQnA !== null &&
+          {!ListOfQnA || !userMe ? (
+            <HelpContentsWrapper className='qna'>
+              <HelpQnaList>
+                <QuestionAnswerIcon sx={{ fontSize: 48 }} color='disabled' />
+                <p>Your have no Q&A.</p>
+              </HelpQnaList>
+            </HelpContentsWrapper>
+          ) : (
+            <HelpContentsWrapper className='qna'>
+              <p
+                style={{
+                  fontSize: '11px',
+                  padding: '0 10px',
+                }}
+              >
+                Total{' '}
+                {
                   ListOfQnA?.filter((myQnA) => myQnA?.writer?.pk === userMe?.id)
+                    ?.length
+                }
+              </p>
+              <HelpTable>
+                <HelpThead>
+                  <HelpTr>
+                    <HelpTh>ID</HelpTh>
+                    <HelpTh>Kind</HelpTh>
+                    <HelpTh>User</HelpTh>
+                    <HelpTh>Status</HelpTh>
+                    <HelpTh>Updated_at</HelpTh>
+                  </HelpTr>
+                </HelpThead>
+
+                <HelpTbody>
+                  {ListOfQnA?.filter(
+                    (myQnA) => myQnA?.writer?.pk === userMe?.id
+                  )
                     .slice(0, 6)
                     .map((qna) => {
                       return (
@@ -153,9 +163,10 @@ const HelpMain = ({ userMe }) => {
                         </HelpTr>
                       );
                     })}
-              </HelpTbody>
-            </HelpTable>
-          </HelpContentsWrapper>
+                </HelpTbody>
+              </HelpTable>
+            </HelpContentsWrapper>
+          )}
           <HelpMoreBtn>
             <button>Show All My Q&A</button>
           </HelpMoreBtn>

@@ -4,7 +4,14 @@ import HelpCenterHeader from './HelpCenterHeader';
 
 import HelpMain from './HelpMain';
 
-const HelpCenter = ({ userMe, isUserLogIn, setIsUserLogIn, setIsPageMain }) => {
+const HelpCenter = ({
+  userMe,
+  isUserLogIn,
+  setIsUserLogIn,
+  setIsPageMain,
+  modalLogShown,
+  toggleLogModal,
+}) => {
   useEffect(() => {
     setIsPageMain(false);
   }, []);
@@ -16,6 +23,8 @@ const HelpCenter = ({ userMe, isUserLogIn, setIsUserLogIn, setIsPageMain }) => {
           userMe={userMe}
           isUserLogIn={isUserLogIn}
           setIsUserLogIn={setIsUserLogIn}
+          modalLogShown={modalLogShown}
+          toggleLogModal={toggleLogModal}
         />
       </HelpHeader>
 

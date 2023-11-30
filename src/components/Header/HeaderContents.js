@@ -28,14 +28,20 @@ import UserDropBox from '../Dropdown/UserDropBox';
 import Avatar from '../Avatar/Avatar';
 import ShowSmallModal from '../Show/ShowSmallModal';
 
-const HeaderContens = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
+const HeaderContens = ({
+  userMe,
+  isUserLogIn,
+  setIsUserLogIn,
+  modalLogShown,
+  toggleLogModal,
+}) => {
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
   const [modalSearchShown, toggleSearchModal] = useState(false);
   const [isUserDrop, setIsUserDrop] = useState(false);
 
   const [modalNoUser, toggleNoUser] = useState(false);
-  const [modalLogShown, toggleLogModal] = useState(false);
+  // const [modalLogShown, toggleLogModal] = useState(false);
 
   console.log('isUserLogIn', isUserLogIn);
   console.log('userMe', userMe);
