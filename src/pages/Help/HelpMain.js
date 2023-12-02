@@ -115,7 +115,10 @@ const HelpMain = ({ userMe }) => {
       )}
       {navQnA && (
         <HelpMainContents>
-          {!ListOfQnA || !userMe ? (
+          {(Array.isArray(ListOfQnA) &&
+            ListOfQnA?.filter((myQnA) => myQnA?.writer?.pk === userMe?.id)
+              ?.length === 0) ||
+          !userMe ? (
             <HelpContentsWrapper className='qna'>
               <HelpQnaList>
                 <QuestionAnswerIcon sx={{ fontSize: 48 }} color='disabled' />
@@ -131,10 +134,9 @@ const HelpMain = ({ userMe }) => {
                 }}
               >
                 Total{' '}
-                {
+                {Array.isArray(ListOfQnA) &&
                   ListOfQnA?.filter((myQnA) => myQnA?.writer?.pk === userMe?.id)
-                    ?.length
-                }
+                    ?.length}
               </p>
               <HelpTable>
                 <HelpThead>
@@ -148,21 +150,22 @@ const HelpMain = ({ userMe }) => {
                 </HelpThead>
 
                 <HelpTbody>
-                  {ListOfQnA?.filter(
-                    (myQnA) => myQnA?.writer?.pk === userMe?.id
-                  )
-                    .slice(0, 6)
-                    .map((qna) => {
-                      return (
-                        <HelpTr key={qna?.pk} className='qnaList'>
-                          <HelpTd>{qna?.pk}</HelpTd>
-                          <HelpTd>{qna?.kind}</HelpTd>
-                          <HelpTd>{qna?.writer?.username}</HelpTd>
-                          <HelpTd>{qna?.status}</HelpTd>
-                          <HelpTd>{qna?.updated_at?.split('T')[0]}</HelpTd>
-                        </HelpTr>
-                      );
-                    })}
+                  {Array.isArray(ListOfQnA) &&
+                    ListOfQnA?.filter(
+                      (myQnA) => myQnA?.writer?.pk === userMe?.id
+                    )
+                      .slice(0, 6)
+                      .map((qna) => {
+                        return (
+                          <HelpTr key={qna?.pk} className='qnaList'>
+                            <HelpTd>{qna?.pk}</HelpTd>
+                            <HelpTd>{qna?.kind}</HelpTd>
+                            <HelpTd>{qna?.writer?.username}</HelpTd>
+                            <HelpTd>{qna?.status}</HelpTd>
+                            <HelpTd>{qna?.updated_at?.split('T')[0]}</HelpTd>
+                          </HelpTr>
+                        );
+                      })}
                 </HelpTbody>
               </HelpTable>
             </HelpContentsWrapper>
