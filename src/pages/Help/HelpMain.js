@@ -95,18 +95,19 @@ const HelpMain = ({ userMe }) => {
       {navFAQ && (
         <HelpMainContents>
           <HelpContentsWrapper>
-            {FAQList?.slice(0, 6).map((faq) => {
-              return (
-                <HelpContentsList key={faq?.id}>
-                  <p>{faq?.title}</p>
-                  <span>
-                    {faq?.description.length > 70
-                      ? `${faq?.description.substring(0, 70)}...`
-                      : faq?.description}
-                  </span>
-                </HelpContentsList>
-              );
-            })}
+            {Array.isArray(FAQList) &&
+              FAQList?.slice(0, 6).map((faq) => {
+                return (
+                  <HelpContentsList key={faq?.id}>
+                    <p>{faq?.title}</p>
+                    <span>
+                      {faq?.description.length > 70
+                        ? `${faq?.description.substring(0, 70)}...`
+                        : faq?.description}
+                    </span>
+                  </HelpContentsList>
+                );
+              })}
           </HelpContentsWrapper>
           <HelpMoreBtn>
             <button>Show All FAQ</button>
