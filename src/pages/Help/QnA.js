@@ -4,6 +4,7 @@ const QnA = () => {
   return (
     <div>
       {/* Title */}
+      <h1>1:1 Q&A</h1>
       {/* Nav */}
       {/* My QnA History */}
       {/* If my list was updated somthing, It would be apeared  */}
