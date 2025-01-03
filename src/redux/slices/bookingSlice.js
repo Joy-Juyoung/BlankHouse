@@ -14,15 +14,6 @@ export const getAllBookingAsync = createAsyncThunk(
       return thunkAPI.rejectWithValue(error.message);
     }
   }
-  // async (_, thunkAPI) => {
-  //   try {
-  //     const response = await axios.get('/bookings');
-  //     return response.data;
-  //   } catch (error) {
-  //     toast.error('Load getAllBookings failed.');
-  //     return thunkAPI.rejectWithValue(error.message);
-  //   }
-  // }
 );
 
 export const getBookingByIdAsync = createAsyncThunk(
@@ -61,7 +52,6 @@ const initialState = {
   bookingRoom: {},
   status: 'idle',
   error: null,
-  // selectRoom: {},
 };
 
 const bookingSlice = createSlice({

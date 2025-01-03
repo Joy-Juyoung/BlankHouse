@@ -18,6 +18,19 @@ export const getAllRoomsAsync = createAsyncThunk(
   }
 );
 
+export const getAllQnAAsync = createAsyncThunk(
+  'feedback/getAllQnA',
+  async ({ kind = '' }, thunkAPI) => {
+    try {
+      const response = await axios.get(`/feedbacks?kind=${kind}`);
+      return response.data;
+    } catch (error) {
+      toast.error('Load QnA failed.');
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const getFilterRoomsAsync = createAsyncThunk(
   'room/getFilterRoomInfo',
   async (
@@ -69,7 +82,6 @@ export const getRoomsByIdAsync = createAsyncThunk(
 
 export const getAllAmenityAsync = createAsyncThunk(
   'room/getAllAmenity',
-  // async (_, thunkAPI) => {
   async (_, thunkAPI) => {
     try {
       const response = await axios.get('/rooms/amenities');
@@ -100,6 +112,7 @@ const initialState = {
   roomById: {},
   bookedInfoById: {},
   allAmenity: {},
+  allQnA: {},
   status: 'idle',
   error: null,
   selectRoom: {},
@@ -114,6 +127,20 @@ const roomSlice = createSlice({
     },
   },
   extraReducers: {
+    [getAllQnAAsync.pending]: (state) => {
+      console.log('allQnA Pending');
+      state.status = 'Pending';
+      state.error = null;
+    },
+    [getAllQnAAsync.fulfilled]: (state, { payload }) => {
+      console.log('Fetched allQnA Successfully!');
+      return { ...state, allQnA: payload };
+    },
+    [getAllQnAAsync.rejected]: (state, action) => {
+      console.log('allQnA Rejected!');
+      state.status = 'failed';
+      state.error = action.payload;
+    },
     [getAllRoomsAsync.pending]: (state) => {
       console.log('Pending');
       state.status = 'Pending';
@@ -192,6 +219,7 @@ const roomSlice = createSlice({
 });
 
 export const { removeSelectedRoom } = roomSlice.actions;
+export const getAllQnA = (state) => state.room.allQnA;
 export const getAllRoomInfo = (state) => state.room.allRooms.results;
 export const getFilterRoomInfo = (state) => state.room.filterRooms.results;
 export const getRoomInfo = (state) => state.room.roomById;

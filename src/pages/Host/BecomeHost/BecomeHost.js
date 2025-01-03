@@ -28,6 +28,7 @@ import HostStep3Details from './Step3/HostStep3Details';
 import { useDispatch } from 'react-redux';
 import { listingRoomAsync } from '../../../redux/slices/hostSlice';
 import { ToastContainer, toast } from 'react-toastify';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 const BecomeHost = () => {
   const navigate = useNavigate();
@@ -73,15 +74,52 @@ const BecomeHost = () => {
     }
   };
 
+  // useEffect(() => {
+  //   localStorage.setItem('stepId', stepId);
+  // }, [stepId]);
+
   useEffect(() => {
-    if (stepId < 5) {
-      navigate('/host/become?step1');
-    }
-    if (stepId >= 5) {
-      navigate('/host/become?step2');
-    }
-    if (stepId >= 10) {
-      navigate('/host/become?step3');
+    localStorage.setItem('stepId', stepId);
+    switch (stepId) {
+      case 1:
+        navigate('/host/become?step1&category');
+        break;
+      case 2:
+        navigate('/host/become?step1&type');
+        break;
+      case 3:
+        navigate('/host/become?step1&address');
+        break;
+      case 4:
+        navigate('/host/become?step1&num');
+        break;
+      case 5:
+        navigate('/host/become?step2');
+        break;
+      case 6:
+        navigate('/host/become?step2&amenity');
+        break;
+      case 7:
+        navigate('/host/become?step2&title');
+        break;
+      case 8:
+        navigate('/host/become?step2&description');
+        break;
+      case 9:
+        navigate('/host/become?step3');
+        break;
+      case 10:
+        navigate('/host/become?step3&price');
+        break;
+      case 11:
+        navigate('/host/become?step3&pet');
+        break;
+      case 12:
+        navigate('/host/become?step3&review');
+        break;
+
+      default:
+        navigate('/host/become?step1');
     }
   }, [stepId]);
   // console.log('stepId', stepId);
@@ -110,29 +148,76 @@ const BecomeHost = () => {
       })
     )
       .then(() => {
-        toast.success('Listing success.');
-        navigate('/host/listing');
+        if (
+          !JSON.parse(localStorage.getItem('getCategory')) ||
+          !JSON.parse(localStorage.getItem('getType')) ||
+          !JSON.parse(localStorage.getItem('getAddress')) ||
+          !JSON.parse(localStorage.getItem('getCity')) ||
+          !JSON.parse(localStorage.getItem('getCountry')) ||
+          !JSON.parse(localStorage.getItem('getGuests')) ||
+          !JSON.parse(localStorage.getItem('getBedroom')) ||
+          !JSON.parse(localStorage.getItem('getBeds')) ||
+          !JSON.parse(localStorage.getItem('getBathrooms')) ||
+          ![JSON.parse(localStorage.getItem('getAmenity'))] ||
+          !JSON.parse(localStorage.getItem('getTitle')) ||
+          !JSON.parse(localStorage.getItem('getDesctiprion')) ||
+          !JSON.parse(localStorage.getItem('getPrice')) ||
+          !JSON.parse(localStorage.getItem('getCleaningFee')) ||
+          !JSON.parse(localStorage.getItem('getPet'))
+        ) {
+          toast.error(
+            'You need to complete all the steps. Please re-check your answer.',
+            {
+              position: toast.POSITION.TOP_CENTER,
+            }
+          );
+        } else {
+          toast.success('Listing is success.');
+          navigate('/host/listing');
+          localStorage.removeItem('stepId');
 
-        localStorage.removeItem('getCategory');
-        localStorage.removeItem('getType');
-        localStorage.removeItem('getAddress');
-        localStorage.removeItem('getCity');
-        localStorage.removeItem('getCountry');
-        localStorage.removeItem('getGuests');
-        localStorage.removeItem('getBedroom');
-        localStorage.removeItem('getBeds');
-        localStorage.removeItem('getBathrooms');
-        localStorage.removeItem('getAmenity');
-        localStorage.removeItem('getTitle');
-        localStorage.removeItem('getDesctiprion');
-        localStorage.removeItem('getPrice');
-        localStorage.removeItem('getCleaningFee');
-        localStorage.removeItem('getPet');
+          localStorage.removeItem('getCategory');
+          localStorage.removeItem('getType');
+          localStorage.removeItem('getAddress');
+          localStorage.removeItem('getCity');
+          localStorage.removeItem('getCountry');
+          localStorage.removeItem('getGuests');
+          localStorage.removeItem('getBedroom');
+          localStorage.removeItem('getBeds');
+          localStorage.removeItem('getBathrooms');
+          localStorage.removeItem('getAmenity');
+          localStorage.removeItem('getTitle');
+          localStorage.removeItem('getDesctiprion');
+          localStorage.removeItem('getPrice');
+          localStorage.removeItem('getCleaningFee');
+          localStorage.removeItem('getPet');
+        }
       })
       .catch((error) => {
         console.error(error);
-        toast.error('Listing failed.');
+        toast.error('Listing is failed.');
       });
+  };
+
+  const handleExit = () => {
+    localStorage.removeItem('stepId');
+    localStorage.removeItem('getCategory');
+    localStorage.removeItem('getType');
+    localStorage.removeItem('getAddress');
+    localStorage.removeItem('getCity');
+    localStorage.removeItem('getCountry');
+    localStorage.removeItem('getGuests');
+    localStorage.removeItem('getBedroom');
+    localStorage.removeItem('getBeds');
+    localStorage.removeItem('getBathrooms');
+    localStorage.removeItem('getAmenity');
+    localStorage.removeItem('getTitle');
+    localStorage.removeItem('getDesctiprion');
+    localStorage.removeItem('getPrice');
+    localStorage.removeItem('getCleaningFee');
+    localStorage.removeItem('getPet');
+
+    navigate('/host/listing');
   };
 
   return (
@@ -143,7 +228,10 @@ const BecomeHost = () => {
         </LogoWrapper>
         <ButtonsWrapper>
           {/* <button>Questions?</button> */}
-          <button onClick={() => navigate('/host/listing')}>Save & Exit</button>
+          <button onClick={handleExit} className='exit'>
+            <span>Exit</span>
+            <ExitToAppIcon sx={{ fontSize: 18 }} />
+          </button>
         </ButtonsWrapper>
       </BecomeHeader>
 

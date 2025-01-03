@@ -72,7 +72,10 @@ const Listing = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
   //   setClickedId(id);
   // };
 
-  console.log('Listing', allRoomInfo);
+  // console.log(
+  //   'Listing',
+  //   allRoomInfo?.filter((item) => item?.owner?.username === userMe?.username)
+  // );
 
   return (
     <div>
@@ -88,7 +91,7 @@ const Listing = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
             <ListingSearch>
               <input
                 type='text'
-                placeholder='Search listings'
+                placeholder='Search listings by house name'
                 onChange={(e) => setSearchedValue(e.target.value)}
               />
               <button onClick={() => navigate('/host/become?step1')}>
@@ -119,10 +122,12 @@ const Listing = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
               {allRoomInfo !== null ? (
                 <>
                   {allRoomInfo
-                    ?.filter((item) =>
-                      item?.name
-                        ?.toLowerCase()
-                        ?.includes(searchedValue.toLowerCase())
+                    ?.filter(
+                      (item) =>
+                        item?.name
+                          ?.toLowerCase()
+                          ?.includes(searchedValue.toLowerCase()) &&
+                        item?.owner?.username === userMe?.username
                     )
                     ?.slice(0, nextList)
                     // ?.reverse()
@@ -141,7 +146,6 @@ const Listing = ({ userMe, isUserLogIn, setIsUserLogIn }) => {
               ) : (
                 <>
                   {allRoomInfo
-
                     ?.slice(0, nextList)
                     // ?.reverse()
                     .map((list) => {
