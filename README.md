@@ -1,29 +1,66 @@
-<h1>📚 Blank House</h1>
-<h2>🌟 Overview</h2>
-<p>A responsive accommodation booking platform designed for guests to search, select, and reserve properties based on location, date, and group size.</p>
-<br/>
-<h2>🗓️ Project Timeline:</h2>
-<p>Start Date: Aug 2023</p>
-<p>End Date: Jan 2024</p>
-<br/>
-<h2>📝 Project Description:</h2>
-<p>Developed dynamic dashboards for both guests and hosts.</p>
-<p>Built a seamless user experience using React.js, Redux-toolkit</p>
-<p>Integrated backend communication using Swagger API and Django for robust data flow..</p>
-<p>Ensured database management with PostgreSQL.</p>
-<br/>
-<h2>🚀 Key Features</h2>
-<p>📝 User-customizable mini-homepages.</p>
-<p>📷 Photo galleries and media uploads.</p>
-<p>💬 Interactive guestbook and comments.</p>
-<p>🔒 Secure user authentication and authorization.</p>
-<br/>
-<h2>🛠️ Tech Stack</h2>
-<p>Frontend: React.js, Redux-toolkit</p>
-<p>Backend: Django, PostgreSQL</p>
-<p>API Integration: Swagger API</p>
-<p>Styling: styled-components</p>
-<br/>
-<h2>📬 Contact</h2>
-<p>Author: Juyoung Lee</p>
-<p>GitHub: Joy-Juyoung/BlankHouse</p>
+# 🏡 Blank House
+
+## 🚀 Overview
+Blank House is a booking platform inspired by Airbnb, where users can browse listings, apply filters, and make reservations.
+
+It focuses on replicating real-world booking flows with dynamic UI updates and interactive components.
+
+---
+
+## ✨ Key Features
+
+### 🔍 Listing & Search
+- Browse property listings with images and basic information
+- Filter by category, price range, number of guests, and amenities
+- Dynamic filtering with real-time UI updates
+
+### 🏠 Property Details
+- View detailed property information
+- Image gallery and modal view for expanded content
+- Review section with ratings and breakdown
+- Amenities and property descriptions
+
+### 📅 Booking Flow
+- Select dates using a calendar UI
+- Choose number of guests
+- Reservation flow with basic payment simulation
+
+### 🏡 Host Feature
+- Users can register properties as hosts
+- Upload property details including images, category, and amenities
+- Listings are reflected in the main page
+
+---
+
+## 🛠 Tech Stack
+
+**Frontend**
+- React
+- JavaScript
+
+**Backend**
+- REST API (Swagger-based)
+
+**Deployment**
+- Netlify
+
+---
+
+## 🧠 What I Learned
+
+- Built a full booking flow with filters, search, and dynamic UI
+- Implemented complex filter logic and state updates
+- Designed UI based on a real-world product (Airbnb)
+- Handled modal interactions and responsive layouts
+- Worked with API structure to connect frontend and backend
+
+---
+
+## ⚠️ Notes
+This project focuses on frontend implementation and UI behavior. Some backend-related features may not fully function.
+
+---
+
+## 👩‍💻 Author
+Juyoung Lee  
+https://github.com/Joy-Juyoung
